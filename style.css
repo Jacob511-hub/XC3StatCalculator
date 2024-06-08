@@ -9,12 +9,45 @@ body {
     background-repeat: no-repeat;
 }
 
+#statCalculator {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-width: 1800px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+#party {
+    height: 10%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+#center {
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
 #characters {
     position: fixed;
     top: 10px;
     left: 10px;
     display: flex;
     gap: 10px;
+    padding-right: 10px;
+    max-width: 760px;
+    width: 50%;
+    flex: 1;
+    justify-content: flex-start;
 }
 
 #ouroboros {
@@ -23,14 +56,18 @@ body {
     right: 10px;
     display: flex;
     gap: 10px;
+    padding-left: 10px;
+    max-width: 650px;
+    width: 40%;
+    flex: 1;
+    justify-content: flex-end;
 }
 
 #characterPortrait {
-    position: fixed;
-    top: 100px;
-    left: 10px;
+    position: relative;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: left;
 }
 
 .icon {
@@ -56,4 +93,5 @@ body {
     display: flex;
     align-items: center;
     justify-content: left;
+    width: 100%;
 }
