@@ -11,32 +11,31 @@ body {
 
 #statCalculator {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    max-width: 1800px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: [first] 15% [line2] 15% [line3] 15% [line4] auto [col5-start] 15% [line6] 15% [end];
+    grid-template-rows: [row1-start] 50px [row1-end] auto [third-line] auto [last-line];
     height: 100vh;
 }
 
 #party {
-    height: 10%;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
+    grid-column: 1 / span 6;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: [first] 54% [line2] 46% [end];
 }
 
 #center {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    grid-column: 1 / span 6;
+    grid-row: 2;
+    display: grid;
     width: 100%;
     margin-right: auto;
+    grid-template-columns: [first] 15% [line2] 15% [line3] 15% [line4] auto [col5-start] 30% [end];
 }
 
 #bottom {
+    grid-column: 1 / span 6;
+    grid-row: 3;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -45,42 +44,70 @@ body {
 }
 
 #characters {
-    position: fixed;
-    top: 10px;
-    left: 10px;
     display: flex;
     gap: 10px;
     padding-right: 10px;
+    padding-left: 10px;
     max-width: 760px;
-    width: 50%;
-    flex: 1;
     justify-content: flex-start;
+    grid-column: 1;
+    grid-row: 1;
 }
 
 #ouroboros {
-    position: fixed;
-    top: 10px;
-    right: 10px;
     display: flex;
     gap: 10px;
+    padding-right: 10px;
     padding-left: 10px;
     max-width: 650px;
-    width: 40%;
-    flex: 1;
-    justify-content: flex-end;
+    justify-self: end;
+    grid-column: 2;
+    grid-row: 1;
 }
 
 #characterPortrait {
-    position: relative;
     display: flex;
-    justify-content: left;
+    gap: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    max-width: 760px;
+    justify-content: flex-start;
+    align-self: start;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#equipment {
+    display: grid;
+    padding-right: 10px;
+    padding-left: 10px;
+    justify-content: flex-end;
+    grid-column: 5 / span 1;
+    grid-template-rows: [first] 50% [line2] 50% [end];
+}
+
+#gems {
+    display: flex;
+    flex-direction: column;
+    max-width: 760px;
+    justify-content: flex-start;
+    grid-row: 1;
+    height: 100%;
+}
+
+#accessories {
+    display: flex;
+    flex-direction: column;
+    max-width: 760px;
+    justify-content: flex-start;
+    grid-row: 2;
+    height: 100%;
 }
 
 .icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -97,8 +124,58 @@ body {
 
 .portrait {
     display: flex;
-    justify-content: left;
-    max-height: 440px;
-    height: 100%;
-    width: auto;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.portrait img {
+    width: 100%;
+    height: auto;
+}
+
+.portrait {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.gem1 {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: auto;
+}
+
+.gem1 img {
+    max-width: 30%;
+    width: 100%;
+    height: auto;
+}
+
+.gem2 {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: auto;
+}
+
+.gem2 img {
+    max-width: 30%;
+    width: 100%;
+    height: auto;
+}
+
+.gem3 {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: auto;
+}
+
+.gem3 img {
+    max-width: 30%;
+    width: 100%;
+    height: auto;
 }
