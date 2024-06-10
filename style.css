@@ -12,25 +12,30 @@ body {
 #statCalculator {
     position: relative;
     display: grid;
-    grid-template-columns: [first] 15% [line2] 15% [line3] 15% [line4] auto [col5-start] 15% [line6] 15% [end];
     grid-template-rows: [row1-start] 50px [row1-end] auto [third-line] auto [last-line];
     height: 100vh;
+    grid-template-areas:
+    'top'
+    'middle'
+    'bottom';
 }
 
 #party {
-    grid-column: 1 / span 6;
-    grid-row: 1;
     display: grid;
     grid-template-columns: [first] 54% [line2] 46% [end];
+    grid-area: top;
+    align-items: center;
 }
 
 #center {
     grid-column: 1 / span 6;
     grid-row: 2;
     display: grid;
+    max-height: 304px;
     width: 100%;
     margin-right: auto;
-    grid-template-columns: [first] 15% [line2] 15% [line3] 15% [line4] auto [col5-start] 30% [end];
+    grid-area: middle;
+    grid-template-columns: [first] 15% [line2] 15% [line3] 15% [line4] auto [col5-start] 20% [end];
 }
 
 #bottom {
@@ -41,6 +46,7 @@ body {
     flex-wrap: nowrap;
     width: 100%;
     margin-right: auto;
+    grid-area: bottom;
 }
 
 #characters {
@@ -50,8 +56,7 @@ body {
     padding-left: 10px;
     max-width: 760px;
     justify-content: flex-start;
-    grid-column: 1;
-    grid-row: 1;
+    align-items: center;
 }
 
 #ouroboros {
@@ -61,8 +66,7 @@ body {
     padding-left: 10px;
     max-width: 650px;
     justify-self: end;
-    grid-column: 2;
-    grid-row: 1;
+    align-items: center;
 }
 
 #characterPortrait {
@@ -73,35 +77,27 @@ body {
     max-width: 760px;
     justify-content: flex-start;
     align-self: start;
-    grid-column: 1;
-    grid-row: 1;
 }
 
 #equipment {
     display: grid;
+    align-items: end;
     padding-right: 10px;
     padding-left: 10px;
-    justify-content: flex-end;
-    grid-column: 5 / span 1;
-    grid-template-rows: [first] 50% [line2] 50% [end];
+    justify-self: flex-end;
+    grid-column: 5;
+    height: auto;
 }
 
 #gems {
     display: flex;
     flex-direction: column;
-    max-width: 760px;
-    justify-content: flex-start;
-    grid-row: 1;
-    height: 100%;
 }
 
 #accessories {
     display: flex;
     flex-direction: column;
-    max-width: 760px;
-    justify-content: flex-start;
-    grid-row: 2;
-    height: 100%;
+    justify-content: flex-end;
 }
 
 .icon {
@@ -141,41 +137,27 @@ body {
     height: auto;
 }
 
-.gem1 {
+.gem {
     display: flex;
     align-items: center;
     justify-content: right;
     height: auto;
 }
 
-.gem1 img {
+.gem img {
     max-width: 30%;
     width: 100%;
     height: auto;
 }
 
-.gem2 {
+.accessory {
     display: flex;
     align-items: center;
     justify-content: right;
     height: auto;
 }
 
-.gem2 img {
-    max-width: 30%;
-    width: 100%;
-    height: auto;
-}
-
-.gem3 {
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    height: auto;
-}
-
-.gem3 img {
-    max-width: 30%;
+.accessory img {
     width: 100%;
     height: auto;
 }
