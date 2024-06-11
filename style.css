@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: white;
     background-image: url('img/bg.png');
     background-size: cover;
     background-attachment: fixed;
@@ -28,17 +30,13 @@ body {
 }
 
 #center {
-    grid-row: 2;
     display: grid;
     width: 100%;
     margin-right: auto;
     grid-area: middle;
-    /*grid-template-columns: [first] 15% [line2] 15% [line3] 15% [line4] auto [col5-start] 20% [end]; */
 }
 
 #bottom {
-    grid-column: 1 / span 6;
-    grid-row: 3;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -96,12 +94,17 @@ body {
 
 #class {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     padding-left: 10px;
     padding-top: 5px;
-    width: 70px;
-    height: auto;
+}
+
+#classInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 10px;
 }
 
 .icon {
@@ -168,12 +171,21 @@ body {
 
 .classIcon {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: left;
     height: auto;
+    width: 70px;
 }
 
 .classIcon img {
     width: 100%;
     height: auto;
+}
+
+.className {
+    margin-top: 0%;
+}
+
+.rank {
+    margin-top: 0%;
 }
