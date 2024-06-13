@@ -126,6 +126,62 @@ body {
     padding-top: 10px;
 }
 
+#skills {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#classSkills {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#masterSkills {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#arts {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+#masterArts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#classArts {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto;
+    padding-right: 10px;
+    align-items: center;
+}
+
+#normalArts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+#talentArt {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 .icon {
     display: flex;
     align-items: center;
@@ -196,4 +252,30 @@ body {
 
 .infoText {
     margin-top: 0%;
+}
+
+.artSlot {
+    display: flex;
+    align-items: baseline;
+    justify-content: left;
+    height: auto;
+    width: 50px;
+}
+
+.artSlot img {
+    width: 100%;
+    height: auto;
+}
+
+.talentSlot {
+    display: flex;
+    align-items: baseline;
+    justify-content: left;
+    height: auto;
+    width: 70px;
+}
+
+.talentSlot img {
+    width: 100%;
+    height: auto;
 }
