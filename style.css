@@ -254,6 +254,7 @@ body {
 .gem img {
     width: auto;
     height: 100%;
+    cursor: pointer;
 }
 
 .accessory {
@@ -261,6 +262,7 @@ body {
     align-items: center;
     justify-content: right;
     height: auto;
+    cursor: pointer;
 }
 
 .accessory img {
@@ -274,6 +276,7 @@ body {
     justify-content: left;
     height: auto;
     width: 70px;
+    cursor: pointer;
 }
 
 .classIcon img {
@@ -283,6 +286,10 @@ body {
 
 .infoText {
     margin-top: 0%;
+}
+
+.skillSlot {
+    cursor: pointer;
 }
 
 .artText {
@@ -297,6 +304,7 @@ body {
     justify-content: left;
     height: auto;
     width: 50px;
+    cursor: pointer;
 }
 
 .artSlot img {
@@ -310,6 +318,7 @@ body {
     justify-content: left;
     height: auto;
     width: 70px;
+    cursor: pointer;
 }
 
 .talentSlot img {
