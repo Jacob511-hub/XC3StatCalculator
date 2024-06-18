@@ -56,3 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
         portrait.src = "img/portraits/ouroboros/SenaOuroborosPortrait.png";
     });
 });
+
+var classMenu = document.getElementById("classModal");
+
+var classButton = document.getElementById("classButton");
+
+var span = document.getElementsByClassName("close")[0];
+
+classButton.onclick = function() {
+    classMenu.style.display = "block";
+}
+
+span.onclick = function() {
+    classMenu.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == classMenu) {
+        classMenu.style.display = "none";
+    }
+}
