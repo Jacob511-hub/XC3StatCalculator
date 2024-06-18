@@ -79,6 +79,12 @@ body {
     padding-right: 10px;
 }
 
+#stat-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 #equipment {
     display: flex;
     flex-direction: column;
