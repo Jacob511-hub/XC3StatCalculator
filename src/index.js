@@ -16,43 +16,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonSenaOuroboros = document.getElementById("buttonSenaOuroboros");
 
     buttonNoah.addEventListener("click", () => {
-        portrait.src = "img/NoahPortrait.png";
+        portrait.src = "img/portraits/NoahPortrait.png";
     });
     buttonMio.addEventListener("click", () => {
-        portrait.src = "img/MioPortrait.png";
+        portrait.src = "img/portraits/MioPortrait.png";
     });
     buttonEunie.addEventListener("click", () => {
-        portrait.src = "img/EuniePortrait.png";
+        portrait.src = "img/portraits/EuniePortrait.png";
     });
     buttonTaion.addEventListener("click", () => {
-        portrait.src = "img/TaionPortrait.png";
+        portrait.src = "img/portraits/TaionPortrait.png";
     });
     buttonLanz.addEventListener("click", () => {
-        portrait.src = "img/LanzPortrait.png";
+        portrait.src = "img/portraits/LanzPortrait.png";
     });
     buttonSena.addEventListener("click", () => {
-        portrait.src = "img/SenaPortrait.png";
+        portrait.src = "img/portraits/SenaPortrait.png";
     });
     buttonHero.addEventListener("click", () => {
-        portrait.src = "img/EthelPortrait.png";
+        portrait.src = "img/portraits/heroes/EthelPortrait.png";
     });
 
     buttonNoahOuroboros.addEventListener("click", () => {
-        portrait.src = "img/NoahOuroborosPortrait.png";
+        portrait.src = "img/portraits/ouroboros/NoahOuroborosPortrait.png";
     });
     buttonMioOuroboros.addEventListener("click", () => {
-        portrait.src = "img/MioOuroborosPortrait.png";
+        portrait.src = "img/portraits/ouroboros/MioOuroborosPortrait.png";
     });
     buttonEunieOuroboros.addEventListener("click", () => {
-        portrait.src = "img/EunieOuroborosPortrait.png";
+        portrait.src = "img/portraits/ouroboros/EunieOuroborosPortrait.png";
     });
     buttonTaionOuroboros.addEventListener("click", () => {
-        portrait.src = "img/TaionOuroborosPortrait.png";
+        portrait.src = "img/portraits/ouroboros/TaionOuroborosPortrait.png";
     });
     buttonLanzOuroboros.addEventListener("click", () => {
-        portrait.src = "img/LanzOuroborosPortrait.png";
+        portrait.src = "img/portraits/ouroboros/LanzOuroborosPortrait.png";
     });
     buttonSenaOuroboros.addEventListener("click", () => {
-        portrait.src = "img/SenaOuroborosPortrait.png";
+        portrait.src = "img/portraits/ouroboros/SenaOuroborosPortrait.png";
     });
 });
