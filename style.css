@@ -9,6 +9,24 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+
+    *::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #ffffff00; 
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: #888; 
+        border-radius: 6px;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+    }
 }
 
 #statCalculator {
@@ -298,22 +316,48 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
 
 .classMenuContent {
-    background-color: #c7c7c7;
+    background-color: #4c4c4c;
     margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
+    border: 10px solid #2c2c2c;
+    width: 400px;
+    height: 70%;
     animation: dropdown 0.4s;
+    display: flex;
+    flex-direction: column;
+}
+
+.class-list {
+    display: grid;
+    grid-template-columns: [first] auto [line2] auto [line3] auto [end];
+    grid-template-rows: [row1-start] auto [row1-end] auto [third-line] auto [last-line];
+    gap: 10px;
+    justify-content: space-around;
+    overflow-y: auto;
+}
+
+.modal-icon {
+    height: auto;
+    width: 100px;
+    cursor: pointer;
+}
+
+.modal-icon img {
+    width: 100%;
+    height: auto;
 }
 
 .classMenuHeader {
-    width: 100%;
+    display: flex;
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     background-color: rgb(255, 170, 0);
 }
 
