@@ -58,10 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 var classMenu = document.getElementById("classModal");
-
+var span = document.getElementById("class-close");
 var classButton = document.getElementById("classButton");
-
-var span = document.getElementsByClassName("close")[0];
 
 classButton.onclick = function() {
     classMenu.style.display = "block";
@@ -70,8 +68,23 @@ classButton.onclick = function() {
 span.onclick = function() {
     classMenu.style.display = "none";
 }
+
 window.onclick = function(event) {
     if (event.target == classMenu) {
         classMenu.style.display = "none";
     }
+}
+
+// This function swaps between the Class and Hero select menus
+function menuSwap(character) {
+    let characterType = character.getAttribute("data-character-type");
+
+    if (characterType === "party") {
+        classMenu = document.getElementById("classModal");
+        span = document.getElementById("class-close");
+    }
+    else if (characterType === "hero") {
+        classMenu = document.getElementById("heroModal");
+        span = document.getElementById("hero-close");
+    } 
 }

@@ -8,13 +8,13 @@
         <section id="statCalculator">
             <section id="party">
                 <div id="characters">
-                    <div class="icon" id="buttonNoah"><img src="img\party\NoahParty.png" alt="Icon 1"></div>
-                    <div class="icon" id="buttonMio"><img src="img\party\MioParty.png" alt="Icon 2"></div>
-                    <div class="icon" id="buttonEunie"><img src="img\party\EunieParty.png" alt="Icon 3"></div>
-                    <div class="icon" id="buttonTaion"><img src="img\party\TaionParty.png" alt="Icon 4"></div>
-                    <div class="icon" id="buttonLanz"><img src="img\party\LanzParty.png" alt="Icon 5"></div>
-                    <div class="icon" id="buttonSena"><img src="img\party\SenaParty.png" alt="Icon 6"></div>
-                    <div class="icon" id="buttonHero"><img src="img\party\heroes\EthelParty.png" alt="Icon 7"></div>
+                    <div class="icon" id="buttonNoah" onclick="menuSwap(this)" data-character-type="party"><img src="img\party\NoahParty.png" alt="Icon 1"></div>
+                    <div class="icon" id="buttonMio" onclick="menuSwap(this)" data-character-type="party"><img src="img\party\MioParty.png" alt="Icon 2"></div>
+                    <div class="icon" id="buttonEunie" onclick="menuSwap(this)" data-character-type="party"><img src="img\party\EunieParty.png" alt="Icon 3"></div>
+                    <div class="icon" id="buttonTaion" onclick="menuSwap(this)" data-character-type="party"><img src="img\party\TaionParty.png" alt="Icon 4"></div>
+                    <div class="icon" id="buttonLanz" onclick="menuSwap(this)" data-character-type="party"><img src="img\party\LanzParty.png" alt="Icon 5"></div>
+                    <div class="icon" id="buttonSena" onclick="menuSwap(this)" data-character-type="party"><img src="img\party\SenaParty.png" alt="Icon 6"></div>
+                    <div class="icon" id="buttonHero" onclick="menuSwap(this)" data-character-type="hero"><img src="img\party\heroes\EthelParty.png" alt="Icon 7"></div>
                 </div>
                 <div id="ouroboros">
                     <div class="icon" id="buttonNoahOuroboros"><img src="img\party\ouroboros\NoahOuroborosParty.png" alt="Icon 1"></div>
@@ -88,7 +88,7 @@
                             <div class="classMenuContent">
                                 <header class="classMenuHeader">
                                     <h2>Class Select</h2>
-                                    <span class="close">&times;</span>
+                                    <span class="close" id="class-close">&times;</span>
                                 </header>
                                 <div class="class-list">
                                     <div class="modal-icon" id="class-select"><img src="img\classes\Swordfighter.png" alt="Class Icon"></div>
@@ -105,6 +105,51 @@
                                     <div class="modal-icon" id="class-select"><img src="img\classes\Strategos.png" alt="Class Icon"></div>
                                     <div class="modal-icon" id="class-select"><img src="img\classes\Stalker.png" alt="Class Icon"></div>
                                     <div class="modal-icon" id="class-select"><img src="img\classes\LoneExile.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\Incursor.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\LostVanguard.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\Signifer.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\Soulhacker.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\MartialArtist.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\Troubadour.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\Seraph.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\MachineAssassin.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\Lifesage.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\RoyalSummoner.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\NoponicChampion.png" alt="Class Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\classes\Lapidarist.png" alt="Class Icon"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="heroMenu" id="heroModal">
+                            <div class="classMenuContent">
+                                <header class="classMenuHeader">
+                                    <h2>Hero Select</h2>
+                                    <span class="close" id="hero-close">&times;</span>
+                                </header>
+                                <div class="class-list">
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\ethel-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\valdi-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\zeon-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\teach-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\riku-manana-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\gray-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\isurd-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\juniper-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\ashera-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\alexandria-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\monica-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\fiona-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\triton-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\ghondor-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\miyabi-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\cammuravi-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\segiri-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\nia-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\melia-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\ino-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\masha-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\shulk-select.png" alt="Hero Icon"></div>
+                                    <div class="modal-icon" id="class-select"><img src="img\heroes\rex-select.png" alt="Hero Icon"></div>
                                 </div>
                             </div>
                         </div>
