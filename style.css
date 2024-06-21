@@ -103,6 +103,18 @@ body {
     align-items: center;
 }
 
+#statuses {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+    max-height: 480px;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 6px;
+}
+
 #equipment {
     display: flex;
     flex-direction: column;
@@ -268,6 +280,23 @@ body {
     height: 100%;
 }
 
+.buffs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.buffIcon {
+    height: 50px;
+    width: auto;
+}
+
+.buffIcon img {
+    width: auto;
+    height: 100%;
+    cursor: pointer;
+}
+
 .gem {
     display: flex;
     align-items: center;
@@ -387,18 +416,23 @@ body {
     background-color: rgba(0,0,0,0.4);
 }
 
-.infoText {
+.info-text-1 {
     margin-top: 0%;
+}
+
+.info-text-2 {
+    margin: 0%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.info-text-3 {
+    margin: 0%;
+    padding: 10px;
 }
 
 .skillSlot {
     cursor: pointer;
-}
-
-.artText {
-    margin: 0%;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 .artSlot {
