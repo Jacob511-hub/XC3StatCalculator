@@ -58,20 +58,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 var classMenu = document.getElementById("classModal");
-var span = document.getElementById("class-close");
 var classButton = document.getElementById("classButton");
+var classSpan = document.getElementById("class-close");
+var heroSpan = document.getElementById("hero-close");
 
 classButton.onclick = function() {
     classMenu.style.display = "block";
 }
 
-span.onclick = function() {
+classSpan.onclick = function() {
+    classMenu.style.display = "none";
+}
+
+heroSpan.onclick = function() {
     classMenu.style.display = "none";
 }
 
 window.onclick = function(event) {
-    if (event.target == classMenu) {
+    if (event.target === classMenu) {
         classMenu.style.display = "none";
+    }
+    else if (event.target === artMenu) {
+        artMenu.style.display = "none";
     }
 }
 
@@ -81,10 +89,20 @@ function menuSwap(character) {
 
     if (characterType === "party") {
         classMenu = document.getElementById("classModal");
-        span = document.getElementById("class-close");
     }
     else if (characterType === "hero") {
         classMenu = document.getElementById("heroModal");
-        span = document.getElementById("hero-close");
     } 
+}
+
+var artMenu = document.getElementById("art-agnus-modal");
+var artSpan = document.getElementById("art-agnus-close");
+var artButton = document.getElementById("art-agnus");
+
+artButton.onclick = function() {
+    artMenu.style.display = "block";
+}
+
+artSpan.onclick = function() {
+    artMenu.style.display = "none";
 }
