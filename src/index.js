@@ -96,13 +96,26 @@ function menuSwap(character) {
 }
 
 var artMenu = document.getElementById("art-agnus-modal");
-var artSpan = document.getElementById("art-agnus-close");
-var artButton = document.getElementById("art-agnus");
+var artAgnusSpan = document.getElementById("art-agnus-close");
+var artKevesSpan = document.getElementById("art-keves-close");
 
-artButton.onclick = function() {
-    artMenu.style.display = "block";
+function openArtMenu(art) {
+    let artType = art.getAttribute("data-art-type");
+
+    if (artType === "agnus") {
+        artMenu = document.getElementById("art-agnus-modal");
+        artMenu.style.display = "block";
+    }
+    else if (artType === "keves") {
+        artMenu = document.getElementById("art-keves-modal");
+        artMenu.style.display = "block";
+    }
 }
 
-artSpan.onclick = function() {
+artAgnusSpan.onclick = function() {
+    artMenu.style.display = "none";
+}
+
+artKevesSpan.onclick = function() {
     artMenu.style.display = "none";
 }
