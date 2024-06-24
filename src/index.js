@@ -11,7 +11,7 @@ const portraitsImages = [
     { name: "Eunie Ouroboros", src: "img/portraits/ouroboros/EunieOuroborosPortrait.png" },
     { name: "Taion Ouroboros", src: "img/portraits/ouroboros/TaionOuroborosPortrait.png" },
     { name: "Lanz Ouroboros", src: "img/portraits/ouroboros/LanzOuroborosPortrait.png" },
-    { name: "Sena Ouroboros", src: "img/portraits/ouroboros/SenaOuroborosPortrait.png" },
+    { name: "Sena Ouroboros", src: "img/portraits/ouroboros/SenaOuroborosPortrait.png" }
  ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -91,4 +91,82 @@ artAgnusSpan.onclick = function() {
 
 artKevesSpan.onclick = function() {
     artMenu.style.display = "none";
+}
+
+const classIcons = [
+    { name: "Swordfighter", src: "img/classes/Swordfighter.png" },
+    { name: "Zephyr", src: "img/classes/Zephyr.png" },
+    { name: "Medic Gunner", src: "img/classes/MedicGunner.png" },
+    { name: "Tactician", src: "img/classes/Tactician.png" },
+    { name: "Heavy Guard", src: "img/classes/HeavyGuard.png" },
+    { name: "Ogre", src: "img/classes/Ogre.png" },
+    { name: "Flash Fencer", src: "img/classes/FlashFencer.png" },
+    { name: "War Medic", src: "img/classes/WarMedic.png" },
+    { name: "Guardian Commander", src: "img/classes/GuardianCommander.png" },
+    { name: "Thaumaturge", src: "img/classes/Thaumaturge.png" },
+    { name: "Yumsmith", src: "img/classes/Yumsmith.png" },
+    { name: "Full Metal Jaguar", src: "img/classes/FullMetalJaguar.png" },
+    { name: "Strategos", src: "img/classes/Strategos.png" },
+    { name: "Stalker", src: "img/classes/Stalker.png" },
+    { name: "Lone Exile", src: "img/classes/LoneExile.png" },
+    { name: "Incursor", src: "img/classes/Incursor.png" },
+    { name: "Lost Vanguard", src: "img/classes/LostVanguard.png" },
+    { name: "Signifer", src: "img/classes/Signifer.png" },
+    { name: "Soulhacker", src: "img/classes/Soulhacker.png" },
+    { name: "Martial Artist", src: "img/classes/MartialArtist.png" },
+    { name: "Troubadour", src: "img/classes/Troubadour.png" },
+    { name: "Seraph", src: "img/classes/Seraph.png" },
+    { name: "Machine Assassin", src: "img/classes/MachineAssassin.png" },
+    { name: "Lifesage", src: "img/classes/Lifesage.png" },
+    { name: "Royal Summoner", src: "img/classes/RoyalSummoner.png" },
+    { name: "Noponic Champion", src: "img/classes/NoponicChampion.png" },
+    { name: "Lapidarist", src: "img/classes/Lapidarist.png" }
+];
+
+for (let index = 0; index < classIcons.length; index++) {
+    const div = document.createElement("div");
+    div.className = "modal-icon";
+    const image = document.createElement("img");
+    image.src = classIcons[index].src;
+
+    div.appendChild(image);
+    const element = document.getElementById("classList");
+    element.appendChild(div);
+}
+
+const heroIcons = [
+    { name: "Ethel", src: "img/heroes/ethel-select.png" },
+    { name: "Valdi", src: "img/heroes/valdi-select.png" },
+    { name: "Zeon", src: "img/heroes/zeon-select.png" },
+    { name: "Teach", src: "img/heroes/teach-select.png" },
+    { name: "Riku & Manana", src: "img/heroes/riku-manana-select.png" },
+    { name: "Gray", src: "img/heroes/gray-select.png" },
+    { name: "Isurd", src: "img/heroes/isurd-select.png" },
+    { name: "Juniper", src: "img/heroes/juniper-select.png" },
+    { name: "Ashera", src: "img/heroes/ashera-select.png" },
+    { name: "Alexandria", src: "img/heroes/alexandria-select.png" },
+    { name: "Monica", src: "img/heroes/monica-select.png" },
+    { name: "Fiona", src: "img/heroes/fiona-select.png" },
+    { name: "Triton", src: "img/heroes/triton-select.png" },
+    { name: "Ghondor", src: "img/heroes/ghondor-select.png" },
+    { name: "Miyabi", src: "img/heroes/miyabi-select.png" },
+    { name: "Cammuravi", src: "img/heroes/cammuravi-select.png" },
+    { name: "Segiri", src: "img/heroes/segiri-select.png" },
+    { name: "Nia", src: "img/heroes/nia-select.png" },
+    { name: "Melia", src: "img/heroes/melia-select.png" },
+    { name: "Ino", src: "img/heroes/ino-select.png" },
+    { name: "Masha", src: "img/heroes/masha-select.png" },
+    { name: "Shulk", src: "img/heroes/shulk-select.png" },
+    { name: "Rex", src: "img/heroes/rex-select.png" }
+];
+
+for (let index = 0; index < heroIcons.length; index++) {
+    const div = document.createElement("div");
+    div.className = "modal-icon";
+    const image = document.createElement("img");
+    image.src = heroIcons[index].src;
+
+    div.appendChild(image);
+    const element = document.getElementById("heroList");
+    element.appendChild(div);
 }
