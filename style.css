@@ -1,14 +1,19 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    font-size: 1em;
+    font-family: Arial, sans-serif !important;
+    font-size: 1em !important;
     color: white;
     background-image: url('img/bg.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+
+    h1 {
+        font-size: 1.17em;
+        font-weight: bold;
+    }
 
     *::-webkit-scrollbar {
         width: 5px;
@@ -193,6 +198,7 @@ body {
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 10px;
 }
 
 #masterArts {
