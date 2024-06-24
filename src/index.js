@@ -1,60 +1,33 @@
+const portraitsImages = [
+    { name: "Noah", src: "img/portraits/NoahPortrait.png" },
+    { name: "Mio", src: "img/portraits/MioPortrait.png" },
+    { name: "Eunie", src: "img/portraits/EuniePortrait.png" },
+    { name: "Taion", src: "img/portraits/TaionPortrait.png" },
+    { name: "Lanz", src: "img/portraits/LanzPortrait.png" },
+    { name: "Sena", src: "img/portraits/SenaPortrait.png" },
+    { name: "Hero", src: "img/portraits/heroes/EthelPortrait.png" },
+    { name: "Noah Ouroboros", src: "img/portraits/ouroboros/NoahOuroborosPortrait.png" },
+    { name: "Mio Ouroboros", src: "img/portraits/ouroboros/MioOuroborosPortrait.png" },
+    { name: "Eunie Ouroboros", src: "img/portraits/ouroboros/EunieOuroborosPortrait.png" },
+    { name: "Taion Ouroboros", src: "img/portraits/ouroboros/TaionOuroborosPortrait.png" },
+    { name: "Lanz Ouroboros", src: "img/portraits/ouroboros/LanzOuroborosPortrait.png" },
+    { name: "Sena Ouroboros", src: "img/portraits/ouroboros/SenaOuroborosPortrait.png" },
+ ];
+
 document.addEventListener("DOMContentLoaded", () => {
     const portrait = document.getElementById("currentCharacter");
-    const buttonNoah = document.getElementById("buttonNoah");
-    const buttonMio = document.getElementById("buttonMio");
-    const buttonEunie = document.getElementById("buttonEunie");
-    const buttonTaion = document.getElementById("buttonTaion");
-    const buttonLanz = document.getElementById("buttonLanz");
-    const buttonSena = document.getElementById("buttonSena");
-    const buttonHero = document.getElementById("buttonHero");
+    const buttons = document.getElementsByClassName("icon");
 
-    const buttonNoahOuroboros = document.getElementById("buttonNoahOuroboros");
-    const buttonMioOuroboros = document.getElementById("buttonMioOuroboros");
-    const buttonEunieOuroboros = document.getElementById("buttonEunieOuroboros");
-    const buttonTaionOuroboros = document.getElementById("buttonTaionOuroboros");
-    const buttonLanzOuroboros = document.getElementById("buttonLanzOuroboros");
-    const buttonSenaOuroboros = document.getElementById("buttonSenaOuroboros");
-
-    buttonNoah.addEventListener("click", () => {
-        portrait.src = "img/portraits/NoahPortrait.png";
-    });
-    buttonMio.addEventListener("click", () => {
-        portrait.src = "img/portraits/MioPortrait.png";
-    });
-    buttonEunie.addEventListener("click", () => {
-        portrait.src = "img/portraits/EuniePortrait.png";
-    });
-    buttonTaion.addEventListener("click", () => {
-        portrait.src = "img/portraits/TaionPortrait.png";
-    });
-    buttonLanz.addEventListener("click", () => {
-        portrait.src = "img/portraits/LanzPortrait.png";
-    });
-    buttonSena.addEventListener("click", () => {
-        portrait.src = "img/portraits/SenaPortrait.png";
-    });
-    buttonHero.addEventListener("click", () => {
-        portrait.src = "img/portraits/heroes/EthelPortrait.png";
-    });
-
-    buttonNoahOuroboros.addEventListener("click", () => {
-        portrait.src = "img/portraits/ouroboros/NoahOuroborosPortrait.png";
-    });
-    buttonMioOuroboros.addEventListener("click", () => {
-        portrait.src = "img/portraits/ouroboros/MioOuroborosPortrait.png";
-    });
-    buttonEunieOuroboros.addEventListener("click", () => {
-        portrait.src = "img/portraits/ouroboros/EunieOuroborosPortrait.png";
-    });
-    buttonTaionOuroboros.addEventListener("click", () => {
-        portrait.src = "img/portraits/ouroboros/TaionOuroborosPortrait.png";
-    });
-    buttonLanzOuroboros.addEventListener("click", () => {
-        portrait.src = "img/portraits/ouroboros/LanzOuroborosPortrait.png";
-    });
-    buttonSenaOuroboros.addEventListener("click", () => {
-        portrait.src = "img/portraits/ouroboros/SenaOuroborosPortrait.png";
-    });
+    for (let index = 0; index < buttons.length; index++) {
+        if (index >= portraitsImages.length){
+           return;
+        }
+        buttons[index].setAttribute("data-portrait-img",portraitsImages[index].src);
+        buttons[index].addEventListener("click", () => {
+           const portraitImg = buttons[index].getAttribute("data-portrait-img");
+           portrait.src = portraitImg;
+        })
+    }
 });
 
 var classMenu = document.getElementById("classModal");
