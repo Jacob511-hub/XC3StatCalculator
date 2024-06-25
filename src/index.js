@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 var classMenu = document.getElementById("classModal");
 var classButton = document.getElementById("classButton");
 var classSpan = document.getElementById("class-close");
-var heroSpan = document.getElementById("hero-close");
 
 classButton.onclick = function() {
     classMenu.style.display = "block";
@@ -42,11 +41,6 @@ classButton.onclick = function() {
 classSpan.onclick = function() {
     classMenu.style.display = "none";
 }
-
-heroSpan.onclick = function() {
-    classMenu.style.display = "none";
-}
-
 window.onclick = function(event) {
     if (event.target === classMenu) {
         classMenu.style.display = "none";
@@ -54,43 +48,6 @@ window.onclick = function(event) {
     else if (event.target === artMenu) {
         artMenu.style.display = "none";
     }
-}
-
-// This function swaps between the Class and Hero select menus
-function menuSwap(character) {
-    let characterType = character.getAttribute("data-character-type");
-
-    if (characterType === "party") {
-        classMenu = document.getElementById("classModal");
-    }
-    else if (characterType === "hero") {
-        classMenu = document.getElementById("heroModal");
-    } 
-}
-
-var artMenu = document.getElementById("art-agnus-modal");
-var artAgnusSpan = document.getElementById("art-agnus-close");
-var artKevesSpan = document.getElementById("art-keves-close");
-
-function openArtMenu(art) {
-    let artType = art.getAttribute("data-art-type");
-
-    if (artType === "agnus") {
-        artMenu = document.getElementById("art-agnus-modal");
-        artMenu.style.display = "block";
-    }
-    else if (artType === "keves") {
-        artMenu = document.getElementById("art-keves-modal");
-        artMenu.style.display = "block";
-    }
-}
-
-artAgnusSpan.onclick = function() {
-    artMenu.style.display = "none";
-}
-
-artKevesSpan.onclick = function() {
-    artMenu.style.display = "none";
 }
 
 const classIcons = [
@@ -123,17 +80,6 @@ const classIcons = [
     { name: "Lapidarist", src: "img/classes/Lapidarist.png" }
 ];
 
-for (let index = 0; index < classIcons.length; index++) {
-    const div = document.createElement("div");
-    div.className = "modal-icon";
-    const image = document.createElement("img");
-    image.src = classIcons[index].src;
-
-    div.appendChild(image);
-    const element = document.getElementById("classList");
-    element.appendChild(div);
-}
-
 const heroIcons = [
     { name: "Ethel", src: "img/heroes/ethel-select.png" },
     { name: "Valdi", src: "img/heroes/valdi-select.png" },
@@ -160,13 +106,66 @@ const heroIcons = [
     { name: "Rex", src: "img/heroes/rex-select.png" }
 ];
 
-for (let index = 0; index < heroIcons.length; index++) {
-    const div = document.createElement("div");
-    div.className = "modal-icon";
-    const image = document.createElement("img");
-    image.src = heroIcons[index].src;
+let list = classIcons;
+populateMenu();
 
-    div.appendChild(image);
-    const element = document.getElementById("heroList");
-    element.appendChild(div);
+// This function swaps between the Class and Hero select menus
+function menuSwap(character) {
+    let characterType = character.getAttribute("data-character-type");
+
+    if (characterType === "party") {
+        clearMenu()
+        list = classIcons;
+        populateMenu();
+    }
+    else if (characterType === "hero") {
+        clearMenu()
+        list = heroIcons;
+        populateMenu();
+    }
+}
+
+function clearMenu() {
+    for (let index = 0; index < list.length; index++) {
+        let parent = document.getElementById("classList");
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+function populateMenu() {
+    for (let index = 0; index < list.length; index++) {
+        const div = document.createElement("div");
+        div.className = "modal-icon";
+        const image = document.createElement("img");
+        image.src = list[index].src;
+
+        div.appendChild(image);
+        const element = document.getElementById("classList");
+        element.appendChild(div);
+    }
+}
+
+var artMenu = document.getElementById("art-agnus-modal");
+var artAgnusSpan = document.getElementById("art-agnus-close");
+var artKevesSpan = document.getElementById("art-keves-close");
+
+function openArtMenu(art) {
+    let artType = art.getAttribute("data-art-type");
+
+    if (artType === "agnus") {
+        artMenu = document.getElementById("art-agnus-modal");
+        artMenu.style.display = "block";
+    }
+    else if (artType === "keves") {
+        artMenu = document.getElementById("art-keves-modal");
+        artMenu.style.display = "block";
+    }
+}
+
+artAgnusSpan.onclick = function() {
+    artMenu.style.display = "none";
+}
+
+artKevesSpan.onclick = function() {
+    artMenu.style.display = "none";
 }
