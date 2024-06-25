@@ -22,9 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (index >= portraitsImages.length){
            return;
         }
-        buttons[index].setAttribute("data-portrait-img",portraitsImages[index].src);
         buttons[index].addEventListener("click", () => {
-           const portraitImg = buttons[index].getAttribute("data-portrait-img");
+           const portraitImg = portraitsImages[index].src
            portrait.src = portraitImg;
         })
     }
@@ -106,12 +105,37 @@ const heroIcons = [
     { name: "Rex", src: "img/heroes/rex-select.png" }
 ];
 
+const heroPortraits = [
+    { name: "Ethel", src: "img/portraits/heroes/EthelPortrait.png" },
+    { name: "Valdi", src: "img/portraits/heroes/ValdiPortrait.png" },
+    { name: "Zeon", src: "img/portraits/heroes/ZeonPortrait.png" },
+    { name: "Teach", src: "img/portraits/heroes/TeachPortrait.png" },
+    { name: "Riku & Manana", src: "img/portraits/heroes/RikuMananaPortrait.png" },
+    { name: "Gray", src: "img/portraits/heroes/GrayPortrait.png" },
+    { name: "Isurd", src: "img/portraits/heroes/IsurdPortrait.png" },
+    { name: "Juniper", src: "img/portraits/heroes/JuniperPortrait.png" },
+    { name: "Ashera", src: "img/portraits/heroes/AsheraPortrait.png" },
+];
+
+const heroButtons = [
+    { name: "Ethel", src: "img/party/heroes/EthelParty.png" },
+    { name: "Valdi", src: "img/party/heroes/ValdiParty.png" },
+    { name: "Zeon", src: "img/party/heroes/ZeonParty.png" },
+    { name: "Teach", src: "img/party/heroes/TeachParty.png" },
+    { name: "Riku & Manana", src: "img/party/heroes/RikuMananaParty.png" },
+    { name: "Gray", src: "img/party/heroes/GrayParty.png" },
+    { name: "Isurd", src: "img/party/heroes/IsurdParty.png" },
+    { name: "Juniper", src: "img/party/heroes/JuniperParty.png" },
+    { name: "Ashera", src: "img/party/heroes/AsheraParty.png" },
+];
+
 let list = classIcons;
 populateMenu();
+let characterType = document.getElementById("buttonNoah").getAttribute("data-character-type");
 
 // This function swaps between the Class and Hero select menus
 function menuSwap(character) {
-    let characterType = character.getAttribute("data-character-type");
+    characterType = character.getAttribute("data-character-type");
 
     if (characterType === "party") {
         clearMenu()
@@ -132,6 +156,9 @@ function clearMenu() {
     }
 }
 
+const portrait = document.getElementById("currentCharacter");
+const heroButton = document.getElementById("buttonHero");
+
 function populateMenu() {
     for (let index = 0; index < list.length; index++) {
         const div = document.createElement("div");
@@ -142,6 +169,18 @@ function populateMenu() {
         div.appendChild(image);
         const element = document.getElementById("classList");
         element.appendChild(div);
+        div.addEventListener("click", () => {
+            if (characterType === "party") {
+                return;
+            }
+            else if (characterType === "hero") {
+                const portraitImg = heroPortraits[index].src;
+                portrait.src = portraitImg;
+                const buttonImage = heroButtons[index].src;
+                heroButton.src = buttonImage;
+                portraitsImages[6].src = portraitImg;
+            }
+        })
     }
 }
 
