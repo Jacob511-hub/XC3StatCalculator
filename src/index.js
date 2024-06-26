@@ -29,6 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+var frToggle = document.getElementById("fr-toggle-button");
+const bg1 = 'url("img/bg.png")';
+const bg2 = 'url("img/bg-fr.png")';
+let currentBackgroundImage = bg1;
+
+frToggle.onclick = function() {
+    console.log(currentBackgroundImage);
+    if (currentBackgroundImage === bg1) {
+        document.body.style.backgroundImage = bg2;
+        currentBackgroundImage = bg2;
+    }
+    else {
+        document.body.style.backgroundImage = bg1;
+        currentBackgroundImage = bg1;
+    }
+}
+
 var classMenu = document.getElementById("classModal");
 var classButton = document.getElementById("classButton");
 var classSpan = document.getElementById("class-close");

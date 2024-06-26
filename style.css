@@ -42,8 +42,9 @@ body {
 }
 
 #party {
-    display: grid;
-    grid-template-columns: [first] 54% [line2] 46% [end];
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -83,6 +84,7 @@ body {
     max-width: 650px;
     justify-self: end;
     align-items: center;
+    justify-content: flex-end;
 }
 
 #characterPortrait {
@@ -259,6 +261,24 @@ body {
 
 .icon img {
     max-width: 100px;
+    width: 100%;
+    height: auto;
+}
+
+.fr-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.fr-button:hover {
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.8));
+    transition: filter 0.3s ease-in-out;
+}
+
+.fr-button img {
+    max-width: 50px;
     width: 100%;
     height: auto;
 }
