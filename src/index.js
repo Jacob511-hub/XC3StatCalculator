@@ -115,6 +115,20 @@ const heroPortraits = [
     { name: "Isurd", src: "img/portraits/heroes/IsurdPortrait.png" },
     { name: "Juniper", src: "img/portraits/heroes/JuniperPortrait.png" },
     { name: "Ashera", src: "img/portraits/heroes/AsheraPortrait.png" },
+    { name: "Alexandria", src: "img/portraits/heroes/AlexandriaPortrait.png" },
+    { name: "Monica", src: "img/portraits/heroes/MonicaPortrait.png" },
+    { name: "Fiona", src: "img/portraits/heroes/FionaPortrait.png" },
+    { name: "Triton", src: "img/portraits/heroes/TritonPortrait.png" },
+    { name: "Ghondor", src: "img/portraits/heroes/GhondorPortrait.png" },
+    { name: "Miyabi", src: "img/portraits/heroes/MiyabiPortrait.png" },
+    { name: "Cammuravi", src: "img/portraits/heroes/CammuraviPortrait.png" },
+    { name: "Segiri", src: "img/portraits/heroes/SegiriPortrait.png" },
+    { name: "Nia", src: "img/portraits/heroes/NiaPortrait.png" },
+    { name: "Melia", src: "img/portraits/heroes/MeliaPortrait.png" },
+    { name: "Ino", src: "img/portraits/heroes/InoPortrait.png" },
+    { name: "Masha", src: "img/portraits/heroes/MashaPortrait.png" },
+    { name: "Shulk", src: "img/portraits/heroes/ShulkPortrait.png" },
+    { name: "Rex", src: "img/portraits/heroes/RexPortrait.png" }
 ];
 
 const heroButtons = [
@@ -127,6 +141,20 @@ const heroButtons = [
     { name: "Isurd", src: "img/party/heroes/IsurdParty.png" },
     { name: "Juniper", src: "img/party/heroes/JuniperParty.png" },
     { name: "Ashera", src: "img/party/heroes/AsheraParty.png" },
+    { name: "Alexandria", src: "img/party/heroes/AlexandriaParty.png" },
+    { name: "Monica", src: "img/party/heroes/MonicaParty.png" },
+    { name: "Fiona", src: "img/party/heroes/FionaParty.png" },
+    { name: "Triton", src: "img/party/heroes/TritonParty.png" },
+    { name: "Ghondor", src: "img/party/heroes/GhondorParty.png" },
+    { name: "Miyabi", src: "img/party/heroes/MiyabiParty.png" },
+    { name: "Cammuravi", src: "img/party/heroes/CammuraviParty.png" },
+    { name: "Segiri", src: "img/party/heroes/SegiriParty.png" },
+    { name: "Nia", src: "img/party/heroes/NiaParty.png" },
+    { name: "Melia", src: "img/party/heroes/MeliaParty.png" },
+    { name: "Ino", src: "img/party/heroes/InoParty.png" },
+    { name: "Masha", src: "img/party/heroes/MashaParty.png" },
+    { name: "Shulk", src: "img/party/heroes/ShulkParty.png" },
+    { name: "Rex", src: "img/party/heroes/RexParty.png" }
 ];
 
 let list = classIcons;
