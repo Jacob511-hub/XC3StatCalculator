@@ -189,7 +189,7 @@ function menuSwap(character) {
     }
     else if (characterType === "hero") {
         clearMenu()
-        list = heroIcons;
+        list = heroIcons;buttonHero
         populateMenu();
     }
 }
@@ -202,7 +202,7 @@ function clearMenu() {
 }
 
 const portrait = document.getElementById("currentCharacter");
-const heroButton = document.getElementById("buttonHero");
+const heroButtonImg = document.getElementById("buttonHeroImg");
 
 function populateMenu() {
     for (let index = 0; index < list.length; index++) {
@@ -222,8 +222,9 @@ function populateMenu() {
                 const portraitImg = heroPortraits[index].src;
                 portrait.src = portraitImg;
                 const buttonImage = heroButtons[index].src;
-                heroButton.src = buttonImage;
+                heroButtonImg.src = buttonImage;
                 portraitsImages[6].src = portraitImg;
+                $('#buttonHero').attr('title', heroButtons[index].name).tooltip('dispose').tooltip();
             }
         })
     }
