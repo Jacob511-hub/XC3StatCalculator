@@ -464,9 +464,10 @@ body {
 
 .artSlot {
     display: flex;
+    position: relative;
     align-items: baseline;
     justify-content: left;
-    height: auto;
+    height: 50px;
     width: 50px;
     cursor: pointer;
 }
@@ -474,6 +475,30 @@ body {
 .artSlot img {
     width: 100%;
     height: auto;
+}
+
+.artSlotModal {
+    display: flex;
+    position: relative;
+    align-items: baseline;
+    justify-content: left;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.artSlotModal img {
+    width: 100%;
+    height: auto;
+}
+
+.art-features {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .talentSlot {

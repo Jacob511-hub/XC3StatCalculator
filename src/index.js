@@ -35,7 +35,6 @@ const bg2 = 'url("img/bg-fr.png")';
 let currentBackgroundImage = bg1;
 
 frToggle.onclick = function() {
-    console.log(currentBackgroundImage);
     if (currentBackgroundImage === bg1) {
         document.body.style.backgroundImage = bg2;
         currentBackgroundImage = bg2;
@@ -51,6 +50,8 @@ var classButton = document.getElementById("classButton");
 var classSpan = document.getElementById("class-close");
 
 classButton.onclick = function() {
+    clearMenu();
+    populateMenu();
     classMenu.style.display = "block";
 }
 
@@ -61,9 +62,9 @@ window.onclick = function(event) {
     if (event.target === classMenu) {
         classMenu.style.display = "none";
     }
-    else if (event.target === artMenu) {
-        artMenu.style.display = "none";
-    }
+    // else if (event.target === artMenu) {
+    //     artMenu.style.display = "none";
+    // }
 }
 
 const classIcons = [
@@ -183,20 +184,16 @@ function menuSwap(character) {
     characterType = character.getAttribute("data-character-type");
 
     if (characterType === "party") {
-        clearMenu()
         list = classIcons;
-        populateMenu();
     }
     else if (characterType === "hero") {
-        clearMenu()
-        list = heroIcons;buttonHero
-        populateMenu();
+        list = heroIcons;
     }
 }
 
 function clearMenu() {
-    for (let index = 0; index < list.length; index++) {
-        let parent = document.getElementById("classList");
+    let parent = document.getElementById("classList");
+    while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
 }
@@ -230,27 +227,57 @@ function populateMenu() {
     }
 }
 
-var artMenu = document.getElementById("art-agnus-modal");
-var artAgnusSpan = document.getElementById("art-agnus-close");
-var artKevesSpan = document.getElementById("art-keves-close");
+const artsSwordfighter = [
+    { name: "Ground Beat", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Air Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Sword Strike", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-break.png", aoe: "img/arts/art-blank.png"},
+    { name: "Edge Thrust", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/art-blank.png", aoe: "img/arts/art-blank.png"},
+    { name: "Shadow Eye", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/art-blank.png", aoe: "img/arts/art-blank.png"},
+];
 
-function openArtMenu(art) {
-    let artType = art.getAttribute("data-art-type");
+const arts = document.getElementsByClassName("artSlot");
+let artList = artsSwordfighter;
 
-    if (artType === "agnus") {
-        artMenu = document.getElementById("art-agnus-modal");
-        artMenu.style.display = "block";
-    }
-    else if (artType === "keves") {
-        artMenu = document.getElementById("art-keves-modal");
-        artMenu.style.display = "block";
-    }
+for (let index = 0; index < arts.length; index++) {
+    arts[index].addEventListener("click", () => {
+        artsMenu();
+     })
 }
 
-artAgnusSpan.onclick = function() {
-    artMenu.style.display = "none";
+function artsMenu() {
+    clearMenu();
+    populateMenuArts();
+    classMenu.style.display = "block";
 }
 
-artKevesSpan.onclick = function() {
-    artMenu.style.display = "none";
+function populateMenuArts() {
+    for (let index = 0; index < artList.length; index++) {
+        const modalIcon = document.createElement("div");
+        modalIcon.className = "modal-icon";
+        const artSlot = document.createElement("div");
+        artSlot.className = "artSlotModal";
+        $(artSlot).attr('title', artList[index].name).tooltip('dispose').tooltip();
+
+        const image1 = document.createElement("img");
+        image1.className = "art-features";
+        const image2 = document.createElement("img");
+        image2.className = "art-features";
+        const image3 = document.createElement("img");
+        image3.className = "art-features";
+        const image4 = document.createElement("img");
+        image4.className = "art-features";
+
+        image1.src = artList[index].recharge;
+        image2.src = artList[index].type;
+        image3.src = artList[index].reaction;
+        image4.src = artList[index].aoe;
+
+        modalIcon.appendChild(artSlot);
+        artSlot.appendChild(image1);
+        artSlot.appendChild(image2);
+        artSlot.appendChild(image3);
+        artSlot.appendChild(image4);
+        const element = document.getElementById("classList");
+        element.appendChild(modalIcon);
+    }
 }
