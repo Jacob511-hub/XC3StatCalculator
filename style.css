@@ -227,6 +227,14 @@ body {
     margin-left: 50px;
 }
 
+#artContainerTalent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 250px;
+}
+
 #classArts {
     display: flex;
     flex-direction: row;
@@ -511,9 +519,10 @@ body {
 
 .talentSlot {
     display: flex;
+    position: relative;
     align-items: baseline;
     justify-content: left;
-    height: auto;
+    height: 70px;
     width: 70px;
     cursor: pointer;
 }
