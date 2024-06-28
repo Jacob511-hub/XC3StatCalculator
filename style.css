@@ -208,7 +208,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 170px;
+    align-items: flex-start;
 }
 
 #artContainerLeft {
@@ -216,6 +216,7 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-right: 50px;
 }
 
 #artContainerRight {
@@ -223,6 +224,7 @@ body {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    margin-left: 50px;
 }
 
 #classArts {
@@ -238,7 +240,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     margin-left: auto;
-    width: 170px;
+    align-items: flex-end;
 }
 
 #talentArt {
@@ -456,6 +458,12 @@ body {
 .info-text-3 {
     margin: 0%;
     padding: 10px;
+}
+
+.info-text-arts {
+    margin: 0%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .skillSlot {

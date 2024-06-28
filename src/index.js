@@ -62,9 +62,6 @@ window.onclick = function(event) {
     if (event.target === classMenu) {
         classMenu.style.display = "none";
     }
-    // else if (event.target === artMenu) {
-    //     artMenu.style.display = "none";
-    // }
 }
 
 const classIcons = [
@@ -236,11 +233,14 @@ const artsSwordfighter = [
 ];
 
 const arts = document.getElementsByClassName("artSlot");
+const artNames = document.getElementsByClassName("info-text-arts");
 let artList = artsSwordfighter;
+let classArt = 0;
 
 for (let index = 0; index < arts.length; index++) {
     arts[index].addEventListener("click", () => {
         artsMenu();
+        classArt = index;
      })
 }
 
@@ -258,26 +258,35 @@ function populateMenuArts() {
         artSlot.className = "artSlotModal";
         $(artSlot).attr('title', artList[index].name).tooltip('dispose').tooltip();
 
-        const image1 = document.createElement("img");
-        image1.className = "art-features";
-        const image2 = document.createElement("img");
-        image2.className = "art-features";
-        const image3 = document.createElement("img");
-        image3.className = "art-features";
-        const image4 = document.createElement("img");
-        image4.className = "art-features";
+        let artImage = new Array(4);
 
-        image1.src = artList[index].recharge;
-        image2.src = artList[index].type;
-        image3.src = artList[index].reaction;
-        image4.src = artList[index].aoe;
+        for (let indexA = 0; indexA < 4; indexA++) {
+            artImage[indexA] = document.createElement("img");
+            artImage[indexA].className = "art-features";
+        }
+        artImage[0].src = artList[index].recharge;
+        artImage[1].src = artList[index].type;
+        artImage[2].src = artList[index].reaction;
+        artImage[3].src = artList[index].aoe;
 
         modalIcon.appendChild(artSlot);
-        artSlot.appendChild(image1);
-        artSlot.appendChild(image2);
-        artSlot.appendChild(image3);
-        artSlot.appendChild(image4);
+
+        for (let indexA = 0; indexA < 4; indexA++) {
+            artSlot.appendChild(artImage[indexA]);
+        }
         const element = document.getElementById("classList");
         element.appendChild(modalIcon);
+
+        modalIcon.addEventListener("click", () => {
+            let parent = arts[classArt];
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+            for (let indexA = 0; indexA < 4; indexA++) {
+                arts[classArt].appendChild(artImage[indexA].cloneNode(true));
+            }
+            artNames[classArt].textContent = artList[index].name;
+            classMenu.style.display = "none";
+        })
     }
 }
