@@ -172,7 +172,7 @@ const heroButtons = [
     { name: "Rex", src: "img/party/heroes/RexParty.png" }
 ];
 
-let list = classIcons;
+let menuList= classIcons;
 populateMenu();
 let characterType = document.getElementById("buttonNoah").getAttribute("data-character-type");
 
@@ -181,10 +181,10 @@ function menuSwap(character) {
     characterType = character.getAttribute("data-character-type");
 
     if (characterType === "party") {
-        list = classIcons;
+        menuList= classIcons;
     }
     else if (characterType === "hero") {
-        list = heroIcons;
+        menuList= heroIcons;
     }
 }
 
@@ -199,11 +199,11 @@ const portrait = document.getElementById("currentCharacter");
 const heroButtonImg = document.getElementById("buttonHeroImg");
 
 function populateMenu() {
-    for (let index = 0; index < list.length; index++) {
+    for (let index = 0; index < menuList.length; index++) {
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
-        image.src = list[index].src;
+        image.src = menuList[index].src;
 
         div.appendChild(image);
         const element = document.getElementById("classList");
@@ -251,7 +251,7 @@ const talentArts = [
     { name: "Divine Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
     { name: "Element Genesis", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
     { name: "Shining Refrain", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Pride of Place", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"}
+    { name: "Pride of Place", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"}
 ];
 
 const talentArtsNoah = [
@@ -298,6 +298,8 @@ function artsMenu() {
 
 function populateMenuArts() {
     let artName = artNames[classArt];
+    const artKeys = Object.keys(noahConfig.arts);
+    const key = artKeys[classArt];
     if (classArt < 6) {
         artList = artsSwordfighter;
         parent = arts[classArt];
@@ -333,14 +335,79 @@ function populateMenuArts() {
         element.appendChild(modalIcon);
 
         modalIcon.addEventListener("click", () => {
+            artName.textContent = artList[index].name;
+            const value = artList[index].name;
+            modifyCharacter(key, value);
+            
             while (parent.firstChild) {
                 parent.removeChild(parent.firstChild);
             }
             for (let indexA = 0; indexA < 4; indexA++) {
                 parent.appendChild(artImage[indexA].cloneNode(true));
             }
-            artName.textContent = artList[index].name;
             classMenu.style.display = "none";
         })
     }
 }
+
+let noahConfig = {
+    "class": "Swordfighter",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Ground Beat",
+        "art_class_2": "Air Slash",
+        "art_class_3": "Shadow Eye",
+        "art_talent": "Overclock Buster"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+window.onload = function setConfig() {
+    if (!localStorage.getItem("noahConfig")) {
+        localStorage.setItem("noahConfig", JSON.stringify(noahConfig));
+    }
+    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_class_1);
+    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_class_2);
+    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_class_3);
+    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_master_1);
+    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_master_2);
+    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_master_3);
+    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_talent);
+}
+
+function getConfig() {
+    return JSON.parse(localStorage.getItem("noahConfig"));
+}
+
+function updateObject(event) {
+    const{key, value} = event.detail;
+    let obj = getConfig();
+    obj[key] = value;
+    localStorage.setItem("noahConfig", JSON.stringify(obj));
+}
+
+function modifyCharacter(key, value) {
+    const updateCharacter = new CustomEvent("updateCharacter", {
+        detail: {key, value}
+    });
+    document.dispatchEvent(updateCharacter);
+}
+
+document.addEventListener("updateCharacter", updateObject);
