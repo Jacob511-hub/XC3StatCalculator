@@ -379,17 +379,65 @@ let noahConfig = {
         "accessory_3": null,
     }
 }
+
+function artLoad(slotNumber, loadedArtName) {
+    let slot = arts[slotNumber];
+    let loadedArt;
+    let item;
+    if (slotNumber === 6) {
+        slot = talentArt;
+        artList = talentArts;
+    }
+    else {
+        slot = arts[slotNumber];
+        artList = artsSwordfighter;
+    }
+
+    if (loadedArtName === undefined) {
+        return;
+    }
+    else {
+        item = artList.findIndex(item => item.name === loadedArtName);
+        loadedArt = artList[item];
+    }
+
+    while (slot.firstChild) {
+        slot.removeChild(slot.firstChild);
+    }
+
+    let artImage = new Array(4);
+
+    for (let indexA = 0; indexA < 4; indexA++) {
+        artImage[indexA] = document.createElement("img");
+        artImage[indexA].className = "art-features";
+    }
+
+    artImage[0].src = loadedArt.recharge;
+    artImage[1].src = loadedArt.type;
+    artImage[2].src = loadedArt.reaction;
+    artImage[3].src = loadedArt.aoe;
+
+    for (let indexA = 0; indexA < 4; indexA++) {
+        slot.appendChild(artImage[indexA]);
+    }
+    
+    let artName = artNames[slotNumber];
+    artName.textContent = artList[item].name;
+}
+
 window.onload = function setConfig() {
     if (!localStorage.getItem("noahConfig")) {
         localStorage.setItem("noahConfig", JSON.stringify(noahConfig));
     }
-    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_class_1);
-    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_class_2);
-    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_class_3);
-    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_master_1);
-    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_master_2);
-    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_master_3);
-    console.log(JSON.parse(localStorage.getItem("noahConfig")).art_talent);
+    let noahStored = localStorage.getItem("noahConfig");
+
+    artLoad(0, JSON.parse(noahStored).art_master_1);
+    artLoad(1, JSON.parse(noahStored).art_master_2);
+    artLoad(2, JSON.parse(noahStored).art_master_3);
+    artLoad(3, JSON.parse(noahStored).art_class_1);
+    artLoad(4, JSON.parse(noahStored).art_class_2);
+    artLoad(5, JSON.parse(noahStored).art_class_3);
+    artLoad(6, JSON.parse(noahStored).art_talent);
 }
 
 function getConfig() {
