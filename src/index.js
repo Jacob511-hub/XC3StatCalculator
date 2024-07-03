@@ -337,7 +337,8 @@ function populateMenuArts() {
         modalIcon.addEventListener("click", () => {
             artName.textContent = artList[index].name;
             const value = artList[index].name;
-            modifyCharacter(key, value);
+            let obj = getConfig();
+            modifyCharacter(key, value, obj, obj.arts);
             
             while (parent.firstChild) {
                 parent.removeChild(parent.firstChild);
@@ -380,6 +381,156 @@ let noahConfig = {
     }
 }
 
+let mioConfig = {
+    "class": "Zephyr",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Butterfly Blade",
+        "art_class_2": "Air Fang",
+        "art_class_3": "Wide Slash",
+        "art_talent": "Gemini Strike"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let eunieConfig = {
+    "class": "Medic Gunner",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Myopic Screen",
+        "art_class_2": "Group Heal",
+        "art_class_3": "Ether Cannon",
+        "art_talent": "Healing Ring"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let taionConfig = {
+    "class": "Tactician",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Dark Banner",
+        "art_class_2": "Overfall",
+        "art_class_3": "Stormy Skies",
+        "art_talent": "Tidal Wave"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let lanzConfig = {
+    "class": "Heavy Guard",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Bull Rush",
+        "art_class_2": "Variable Turret",
+        "art_class_3": "Crash Out",
+        "art_talent": "Mad Taunt"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let senaConfig = {
+    "class": "Ogre",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Big Impact",
+        "art_class_2": "Hammerhead",
+        "art_class_3": "Giant Swing",
+        "art_talent": "Pressure Drop"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
 function artLoad(slotNumber, loadedArtName) {
     let slot = arts[slotNumber];
     let loadedArt;
@@ -393,7 +544,7 @@ function artLoad(slotNumber, loadedArtName) {
         artList = artsSwordfighter;
     }
 
-    if (loadedArtName === undefined) {
+    if (loadedArtName === null) {
         return;
     }
     else {
@@ -431,13 +582,13 @@ window.onload = function setConfig() {
     }
     let noahStored = localStorage.getItem("noahConfig");
 
-    artLoad(0, JSON.parse(noahStored).art_master_1);
-    artLoad(1, JSON.parse(noahStored).art_master_2);
-    artLoad(2, JSON.parse(noahStored).art_master_3);
-    artLoad(3, JSON.parse(noahStored).art_class_1);
-    artLoad(4, JSON.parse(noahStored).art_class_2);
-    artLoad(5, JSON.parse(noahStored).art_class_3);
-    artLoad(6, JSON.parse(noahStored).art_talent);
+    artLoad(0, JSON.parse(noahStored).arts.art_master_1);
+    artLoad(1, JSON.parse(noahStored).arts.art_master_2);
+    artLoad(2, JSON.parse(noahStored).arts.art_master_3);
+    artLoad(3, JSON.parse(noahStored).arts.art_class_1);
+    artLoad(4, JSON.parse(noahStored).arts.art_class_2);
+    artLoad(5, JSON.parse(noahStored).arts.art_class_3);
+    artLoad(6, JSON.parse(noahStored).arts.art_talent);
 }
 
 function getConfig() {
@@ -445,15 +596,14 @@ function getConfig() {
 }
 
 function updateObject(event) {
-    const{key, value} = event.detail;
-    let obj = getConfig();
-    obj[key] = value;
-    localStorage.setItem("noahConfig", JSON.stringify(obj));
+    const{key, value, obj, objNest} = event.detail;
+    objNest[key] = value;
+    localStorage.setItem(("noahConfig"), JSON.stringify(obj));
 }
 
-function modifyCharacter(key, value) {
+function modifyCharacter(key, value, obj, objNest) {
     const updateCharacter = new CustomEvent("updateCharacter", {
-        detail: {key, value}
+        detail: {key, value, obj, objNest}
     });
     document.dispatchEvent(updateCharacter);
 }
