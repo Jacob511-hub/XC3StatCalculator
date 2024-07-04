@@ -219,10 +219,67 @@ function populateMenu() {
                 heroButtonImg.src = buttonImage;
                 portraitsImages[6].src = portraitImg;
                 $('#buttonHero').attr('title', heroButtons[index].name).tooltip('dispose').tooltip();
+                classMenu.style.display = "none";
             }
         })
     }
 }
+
+const skillsMaster = [
+    { name: "Cypher Edge", src: "img/skills/skill-4.png"},
+    { name: "Covert Attack", src: "img/skills/skill-13.png"},
+    { name: "Split-Second Counter", src: "img/skills/skill-19.png"},
+    { name: "Stormy Gale", src: "img/skills/skill-10.png"},
+    { name: "Ninja Healer", src: "img/skills/skill-13.png"},
+    { name: "Eternal Formation", src: "img/skills/skill-21.png"},
+    { name: "Ethereal Ability", src: "img/skills/skill-30.png"},
+    { name: "Inevitable Evitability", src: "img/skills/skill-10.png"},
+    { name: "Defensive Soul", src: "img/skills/skill-7.png"},
+    { name: "Tenacious Blocker", src: "img/skills/skill-5.png"},
+    { name: "Fighting Prowess", src: "img/skills/skill-29.png"},
+    { name: "Dynamite Spirit", src: "img/skills/skill-11.png"},
+    { name: "Critical Strike", src: "img/skills/skill-4.png"},
+    { name: "Capable Hands", src: "img/skills/skill-32.png"},
+    { name: "Healing License", src: "img/skills/skill-24.png"},
+    { name: "Antibody System", src: "img/skills/skill-13.png"},
+    { name: "Protector's Pride", src: "img/skills/skill-18.png"},
+    { name: "Mind for Guarding", src: "img/skills/skill-7.png"},
+    { name: "Ultimate Qigong", src: "img/skills/skill-34.png"},
+    { name: "Life-Saving Fists", src: "img/skills/skill-14.png"},
+    { name: "Sappy-Sappy Drain!", src: "img/skills/skill-44.png"},
+    { name: "Slicey Dicey!", src: "img/skills/skill-22.png"},
+    { name: "Postioning Pro", src: "img/skills/skill-1.png"},
+    { name: "Shock Shot", src: "img/skills/skill-38.png"},
+    { name: "Strengthening Gambit", src: "img/skills/skill-21.png"},
+    { name: "Preemptive Gambit", src: "img/skills/skill-23.png"},
+    { name: "Evasion Expertise", src: "img/skills/skill-10.png"},
+    { name: "Swift Death", src: "img/skills/skill-11.png"},
+    { name: "Natural Selection", src: "img/skills/skill-12.png"},
+    { name: "Maniac", src: "img/skills/skill-11.png"},
+    { name: "Vigilance", src: "img/skills/skill-14.png"},
+    { name: "Eye for Weak Points", src: "img/skills/skill-4.png"},
+    { name: "Now That's Tactics!", src: "img/skills/skill-1.png"},
+    { name: "Come an' Get Me!", src: "img/skills/skill-13.png"},
+    { name: "All About Support", src: "img/skills/skill-1.png"},
+    { name: "We Can Do Better", src: "img/skills/skill-2.png"},
+    { name: "Soul Hack", src: "img/skills/skill-1.png"},
+    { name: "Feline Righting Reflex", src: "img/skills/skill-41.png"},
+    { name: "Frenzied Combo", src: "img/skills/skill-18.png"},
+    { name: "Dance of Barrages", src: "img/skills/skill-4.png"},
+    { name: "Swiftsong", src: "img/skills/skill-40.png"},
+    { name: "Greatest Warrior", src: "img/skills/skill-43.png"},
+    { name: "Universal Annihilation", src: "img/skills/skill-11.png"},
+    { name: "Cursed Edge", src: "img/skills/skill-11.png"},
+    { name: "Anti-Erosion System", src: "img/skills/skill-44.png"},
+    { name: "Enhanced Cellular Stimulus", src: "img/skills/skill-46.png"},
+    { name: "Abundant Oceans", src: "img/skills/skill-39.png"},
+    { name: "Fortified Ether Guard", src: "img/skills/skill-8.png"},
+    { name: "Essence of Ether", src: "img/skills/skill-31.png"},
+    { name: "Nanomachine Repair", src: "img/skills/skill-45.png"},
+    { name: "Overclock", src: "img/skills/skill-18.png"},
+    { name: "Ring a' la Mode", src: "img/skills/skill-1.png"},
+    { name: "Beaming Edge", src: "img/skills/skill-4.png"}
+];
 
 const talentArts = [
     { name: "Overclock Buster", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
@@ -270,6 +327,53 @@ const artsSwordfighter = [
     { name: "Edge Thrust", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
     { name: "Shadow Eye", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
 ];
+
+const skills = document.getElementsByClassName("skillSlot");
+let skillSlot = 0;
+
+for (let index = 0; index < 3; index++) {
+    skills[index + 4].addEventListener("click", () => {
+        skillSlot = index;
+        skillsMenu();
+     })
+}
+
+function skillsMenu() {
+    clearMenu();
+    populateMenuSkills();
+    classMenu.style.display = "block";
+}
+
+function populateMenuSkills() {
+    let parent = skills[skillSlot + 4];
+    for (let index = 0; index < skillsMaster.length; index++) {
+        const div = document.createElement("div");
+        div.className = "modal-icon";
+        const image = document.createElement("img");
+        image.src = skillsMaster[index].src;
+
+        div.appendChild(image);
+        const element = document.getElementById("classList");
+        element.appendChild(div);
+        $(div).attr('title', skillsMaster[index].name).tooltip('dispose').tooltip();
+        
+        div.addEventListener("click", () => {
+            $(parent).attr('title', skillsMaster[index].name).tooltip('dispose').tooltip();
+
+            const skillKeys = Object.keys(noahConfig.skills);
+            const key = skillKeys[skillSlot];
+            const value = skillsMaster[index].name;
+            let obj = getConfig();
+            modifyCharacter(key, value, obj, obj.skills);
+            
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+            parent.appendChild(image.cloneNode(true));
+            classMenu.style.display = "none";
+            })
+    }
+}
 
 const arts = document.getElementsByClassName("artSlot");
 const artNames = document.getElementsByClassName("info-text-arts");
@@ -531,6 +635,28 @@ let senaConfig = {
     }
 }
 
+function skillLoad(slotNumber, loadedSkillName) {
+    let slot = skills[slotNumber];
+    let loadedSkill;
+    let item;
+
+    if (loadedSkillName === null) {
+        return;
+    }
+    else {
+        item = skillsMaster.findIndex(item => item.name === loadedSkillName);
+        loadedSkill = skillsMaster[item];
+    }
+
+    while (slot.firstChild) {
+        slot.removeChild(slot.firstChild);
+    }
+    const image = document.createElement("img");
+    image.src = loadedSkill.src;
+    slot.appendChild(image);
+    $(slot).attr('title', loadedSkill.name).tooltip('dispose').tooltip();
+}
+
 function artLoad(slotNumber, loadedArtName) {
     let slot = arts[slotNumber];
     let loadedArt;
@@ -581,6 +707,10 @@ window.onload = function setConfig() {
         localStorage.setItem("noahConfig", JSON.stringify(noahConfig));
     }
     let noahStored = localStorage.getItem("noahConfig");
+
+    skillLoad(4, JSON.parse(noahStored).skills.skill_1);
+    skillLoad(5, JSON.parse(noahStored).skills.skill_2);
+    skillLoad(6, JSON.parse(noahStored).skills.skill_3);
 
     artLoad(0, JSON.parse(noahStored).arts.art_master_1);
     artLoad(1, JSON.parse(noahStored).arts.art_master_2);

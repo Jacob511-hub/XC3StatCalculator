@@ -409,6 +409,11 @@ body {
     height: auto;
     width: 100px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-icon:hover {
+    background-color: #cc7f19;
 }
 
 .modal-icon img {
