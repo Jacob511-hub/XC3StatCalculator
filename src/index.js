@@ -730,6 +730,13 @@ function skillLoad(slotNumber, loadedSkillName) {
     let item;
 
     if (loadedSkillName === null) {
+        while (slot.firstChild) {
+            slot.removeChild(slot.firstChild);
+        }
+        const image = document.createElement("img");
+        image.src = "img/skills/skill-0.png";
+        slot.appendChild(image);
+        $(slot).attr('title', "None").tooltip('dispose').tooltip();
         return;
     }
     else {
@@ -748,6 +755,7 @@ function skillLoad(slotNumber, loadedSkillName) {
 
 function artLoad(slotNumber, loadedArtName) {
     let slot = arts[slotNumber];
+    let artName = artNames[slotNumber];
     let loadedArt;
     let item;
     if (slotNumber === 6) {
@@ -760,6 +768,14 @@ function artLoad(slotNumber, loadedArtName) {
     }
 
     if (loadedArtName === null) {
+        artName.textContent = "None";
+        while (slot.firstChild) {
+            slot.removeChild(slot.firstChild);
+        }
+        let artImage = document.createElement("img");
+        artImage.src = "img/arts/recharge/art-agnus.png";
+        artImage.className = "art-features";
+        slot.appendChild(artImage);
         return;
     }
     else {
@@ -787,7 +803,6 @@ function artLoad(slotNumber, loadedArtName) {
         slot.appendChild(artImage[indexA]);
     }
     
-    let artName = artNames[slotNumber];
     artName.textContent = artList[item].name;
 }
 
