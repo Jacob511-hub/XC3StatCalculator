@@ -14,9 +14,207 @@ const portraitsImages = [
     { name: "Sena Ouroboros", src: "img/portraits/ouroboros/SenaOuroborosPortrait.png" }
  ];
 
+ let noahConfig = {
+    "class": "Swordfighter",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Ground Beat",
+        "art_class_2": "Air Slash",
+        "art_class_3": "Shadow Eye",
+        "art_talent": "Overclock Buster"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let mioConfig = {
+    "class": "Zephyr",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Butterfly Blade",
+        "art_class_2": "Air Fang",
+        "art_class_3": "Wide Slash",
+        "art_talent": "Gemini Strike"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let eunieConfig = {
+    "class": "Medic Gunner",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Myopic Screen",
+        "art_class_2": "Group Heal",
+        "art_class_3": "Ether Cannon",
+        "art_talent": "Healing Ring"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let taionConfig = {
+    "class": "Tactician",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Dark Banner",
+        "art_class_2": "Overfall",
+        "art_class_3": "Stormy Skies",
+        "art_talent": "Tidal Wave"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let lanzConfig = {
+    "class": "Heavy Guard",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Bull Rush",
+        "art_class_2": "Variable Turret",
+        "art_class_3": "Crash Out",
+        "art_talent": "Mad Taunt"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let senaConfig = {
+    "class": "Ogre",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Big Impact",
+        "art_class_2": "Hammerhead",
+        "art_class_3": "Giant Swing",
+        "art_talent": "Pressure Drop"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
+let currentCharacter = "noahConfig";
+
 document.addEventListener("DOMContentLoaded", () => {
     const portrait = document.getElementById("currentCharacter");
     const buttons = document.getElementsByClassName("icon");
+
+    let characterConfigs = {
+        "noahConfig": noahConfig,
+        "mioConfig": mioConfig,
+        "eunieConfig": eunieConfig,
+        "taionConfig": taionConfig,
+        "lanzConfig": lanzConfig,
+        "senaConfig": senaConfig,
+    };
+
+    for (const key in characterConfigs) {
+        if (characterConfigs.hasOwnProperty(key) && !localStorage.getItem(key)) {
+            localStorage.setItem(key, JSON.stringify(characterConfigs[key]));
+        }
+    }
+    characterLoad(localStorage.getItem(currentCharacter));
 
     for (let index = 0; index < buttons.length; index++) {
         if (index >= portraitsImages.length){
@@ -25,9 +223,40 @@ document.addEventListener("DOMContentLoaded", () => {
         buttons[index].addEventListener("click", () => {
            const portraitImg = portraitsImages[index].src
            portrait.src = portraitImg;
+           const characters = Object.keys(characterConfigs);
+           currentCharacter = characters[index];
+           classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+           characterLoad(localStorage.getItem(currentCharacter));
         })
     }
 });
+
+function getArtsByClass(characterStored) {
+    const artsMap = {
+        "Swordfighter": artsSwordfighter,
+        "Zephyr": artsZephyr,
+        "Medic Gunner": artsMedicGunner,
+        "Tactician": artsTactician,
+        "Heavy Guard": artsHeavyGuard,
+        "Ogre": artsOgre
+    };
+    
+    return artsMap[JSON.parse(characterStored).class];
+}
+
+function characterLoad(characterStored) {
+    skillLoad(4, JSON.parse(characterStored).skills.skill_1);
+    skillLoad(5, JSON.parse(characterStored).skills.skill_2);
+    skillLoad(6, JSON.parse(characterStored).skills.skill_3);
+
+    artLoad(0, JSON.parse(characterStored).arts.art_master_1);
+    artLoad(1, JSON.parse(characterStored).arts.art_master_2);
+    artLoad(2, JSON.parse(characterStored).arts.art_master_3);
+    artLoad(3, JSON.parse(characterStored).arts.art_class_1);
+    artLoad(4, JSON.parse(characterStored).arts.art_class_2);
+    artLoad(5, JSON.parse(characterStored).arts.art_class_3);
+    artLoad(6, JSON.parse(characterStored).arts.art_talent);
+}
 
 var frToggle = document.getElementById("fr-toggle-button");
 const bg1 = 'url("img/bg.png")';
@@ -328,6 +557,46 @@ const artsSwordfighter = [
     { name: "Shadow Eye", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
 ];
 
+const artsZephyr = [
+    { name: "Butterfly Blade", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Air Fang", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Wide Slash", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Glow Ring", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Speed Demon", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+];
+
+const artsMedicGunner = [
+    { name: "Myopic Screen", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-daze.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Group Heal", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-heal.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Power Ring", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Ether Cannon", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Vortex", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+];
+
+const artsTactician = [
+    { name: "Overfall", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Stormy Skies", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-heal.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Hazy Figure", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Avenging Eagle", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Dark Banner", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+];
+
+const artsHeavyGuard = [
+    { name: "Bull Rush", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-topple.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Crash Out", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Uppercut Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Variable Turret", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Solid Stance", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+];
+
+const artsOgre = [
+    { name: "Big Impact", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blowdown.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Hammerhead", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Giant Swing", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-knockback.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Cannonball", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Maximum Voltage", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+];
+
 const skills = document.getElementsByClassName("skillSlot");
 let skillSlot = 0;
 
@@ -379,7 +648,7 @@ const arts = document.getElementsByClassName("artSlot");
 const artNames = document.getElementsByClassName("info-text-arts");
 const talentArt = document.getElementById("talentArtIcon");
 
-let artList = artsSwordfighter;
+let classArts = artsSwordfighter;
 let classArt = 0;
 
 for (let index = 0; index < arts.length; index++) {
@@ -405,7 +674,7 @@ function populateMenuArts() {
     const artKeys = Object.keys(noahConfig.arts);
     const key = artKeys[classArt];
     if (classArt < 6) {
-        artList = artsSwordfighter;
+        artList = classArts;
         parent = arts[classArt];
     }
     else if (classArt === 6) {
@@ -455,186 +724,6 @@ function populateMenuArts() {
     }
 }
 
-let noahConfig = {
-    "class": "Swordfighter",
-    "level": "99",
-    "rank": "20",
-    "skills": {
-        "skill_1": null,
-        "skill_2": null,
-        "skill_3": null
-    },
-    "arts": {
-        "art_master_1": null,
-        "art_master_2": null,
-        "art_master_3": null,
-        "art_class_1": "Ground Beat",
-        "art_class_2": "Air Slash",
-        "art_class_3": "Shadow Eye",
-        "art_talent": "Overclock Buster"
-    },
-    "gems": {
-        "gem_1": null,
-        "gem_1": null,
-        "gem_1": null,
-    },
-    "accessories": {
-        "accessory_1": null,
-        "accessory_2": null,
-        "accessory_3": null,
-    }
-}
-
-let mioConfig = {
-    "class": "Zephyr",
-    "level": "99",
-    "rank": "20",
-    "skills": {
-        "skill_1": null,
-        "skill_2": null,
-        "skill_3": null
-    },
-    "arts": {
-        "art_master_1": null,
-        "art_master_2": null,
-        "art_master_3": null,
-        "art_class_1": "Butterfly Blade",
-        "art_class_2": "Air Fang",
-        "art_class_3": "Wide Slash",
-        "art_talent": "Gemini Strike"
-    },
-    "gems": {
-        "gem_1": null,
-        "gem_1": null,
-        "gem_1": null,
-    },
-    "accessories": {
-        "accessory_1": null,
-        "accessory_2": null,
-        "accessory_3": null,
-    }
-}
-
-let eunieConfig = {
-    "class": "Medic Gunner",
-    "level": "99",
-    "rank": "20",
-    "skills": {
-        "skill_1": null,
-        "skill_2": null,
-        "skill_3": null
-    },
-    "arts": {
-        "art_master_1": null,
-        "art_master_2": null,
-        "art_master_3": null,
-        "art_class_1": "Myopic Screen",
-        "art_class_2": "Group Heal",
-        "art_class_3": "Ether Cannon",
-        "art_talent": "Healing Ring"
-    },
-    "gems": {
-        "gem_1": null,
-        "gem_1": null,
-        "gem_1": null,
-    },
-    "accessories": {
-        "accessory_1": null,
-        "accessory_2": null,
-        "accessory_3": null,
-    }
-}
-
-let taionConfig = {
-    "class": "Tactician",
-    "level": "99",
-    "rank": "20",
-    "skills": {
-        "skill_1": null,
-        "skill_2": null,
-        "skill_3": null
-    },
-    "arts": {
-        "art_master_1": null,
-        "art_master_2": null,
-        "art_master_3": null,
-        "art_class_1": "Dark Banner",
-        "art_class_2": "Overfall",
-        "art_class_3": "Stormy Skies",
-        "art_talent": "Tidal Wave"
-    },
-    "gems": {
-        "gem_1": null,
-        "gem_1": null,
-        "gem_1": null,
-    },
-    "accessories": {
-        "accessory_1": null,
-        "accessory_2": null,
-        "accessory_3": null,
-    }
-}
-
-let lanzConfig = {
-    "class": "Heavy Guard",
-    "level": "99",
-    "rank": "20",
-    "skills": {
-        "skill_1": null,
-        "skill_2": null,
-        "skill_3": null
-    },
-    "arts": {
-        "art_master_1": null,
-        "art_master_2": null,
-        "art_master_3": null,
-        "art_class_1": "Bull Rush",
-        "art_class_2": "Variable Turret",
-        "art_class_3": "Crash Out",
-        "art_talent": "Mad Taunt"
-    },
-    "gems": {
-        "gem_1": null,
-        "gem_1": null,
-        "gem_1": null,
-    },
-    "accessories": {
-        "accessory_1": null,
-        "accessory_2": null,
-        "accessory_3": null,
-    }
-}
-
-let senaConfig = {
-    "class": "Ogre",
-    "level": "99",
-    "rank": "20",
-    "skills": {
-        "skill_1": null,
-        "skill_2": null,
-        "skill_3": null
-    },
-    "arts": {
-        "art_master_1": null,
-        "art_master_2": null,
-        "art_master_3": null,
-        "art_class_1": "Big Impact",
-        "art_class_2": "Hammerhead",
-        "art_class_3": "Giant Swing",
-        "art_talent": "Pressure Drop"
-    },
-    "gems": {
-        "gem_1": null,
-        "gem_1": null,
-        "gem_1": null,
-    },
-    "accessories": {
-        "accessory_1": null,
-        "accessory_2": null,
-        "accessory_3": null,
-    }
-}
-
 function skillLoad(slotNumber, loadedSkillName) {
     let slot = skills[slotNumber];
     let loadedSkill;
@@ -667,7 +756,7 @@ function artLoad(slotNumber, loadedArtName) {
     }
     else {
         slot = arts[slotNumber];
-        artList = artsSwordfighter;
+        artList = classArts;
     }
 
     if (loadedArtName === null) {
@@ -702,33 +791,14 @@ function artLoad(slotNumber, loadedArtName) {
     artName.textContent = artList[item].name;
 }
 
-window.onload = function setConfig() {
-    if (!localStorage.getItem("noahConfig")) {
-        localStorage.setItem("noahConfig", JSON.stringify(noahConfig));
-    }
-    let noahStored = localStorage.getItem("noahConfig");
-
-    skillLoad(4, JSON.parse(noahStored).skills.skill_1);
-    skillLoad(5, JSON.parse(noahStored).skills.skill_2);
-    skillLoad(6, JSON.parse(noahStored).skills.skill_3);
-
-    artLoad(0, JSON.parse(noahStored).arts.art_master_1);
-    artLoad(1, JSON.parse(noahStored).arts.art_master_2);
-    artLoad(2, JSON.parse(noahStored).arts.art_master_3);
-    artLoad(3, JSON.parse(noahStored).arts.art_class_1);
-    artLoad(4, JSON.parse(noahStored).arts.art_class_2);
-    artLoad(5, JSON.parse(noahStored).arts.art_class_3);
-    artLoad(6, JSON.parse(noahStored).arts.art_talent);
-}
-
 function getConfig() {
-    return JSON.parse(localStorage.getItem("noahConfig"));
+    return JSON.parse(localStorage.getItem(currentCharacter));
 }
 
 function updateObject(event) {
     const{key, value, obj, objNest} = event.detail;
     objNest[key] = value;
-    localStorage.setItem(("noahConfig"), JSON.stringify(obj));
+    localStorage.setItem((currentCharacter), JSON.stringify(obj));
 }
 
 function modifyCharacter(key, value, obj, objNest) {
