@@ -195,10 +195,12 @@ let senaConfig = {
 }
 
 let currentCharacter = "noahConfig";
+let classArts;
 
 document.addEventListener("DOMContentLoaded", () => {
     const portrait = document.getElementById("currentCharacter");
     const buttons = document.getElementsByClassName("icon");
+    classArts = getArtsByClass(localStorage.getItem(currentCharacter));
 
     let characterConfigs = {
         "noahConfig": noahConfig,
@@ -226,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
            const characters = Object.keys(characterConfigs);
            currentCharacter = characters[index];
            classArts = getArtsByClass(localStorage.getItem(currentCharacter));
-           classSkills = getSkillsByClass(localStorage.getItem(currentCharacter));
+           getSkillsByClass(localStorage.getItem(currentCharacter));
            characterLoad(localStorage.getItem(currentCharacter));
         })
     }
@@ -268,6 +270,8 @@ function getSkillsByClass(characterStored) {
 }
 
 function characterLoad(characterStored) {
+    classLoad(JSON.parse(characterStored).class);
+
     skillLoad(4, JSON.parse(characterStored).skills.skill_1);
     skillLoad(5, JSON.parse(characterStored).skills.skill_2);
     skillLoad(6, JSON.parse(characterStored).skills.skill_3);
@@ -462,7 +466,15 @@ function populateMenu() {
         element.appendChild(div);
         div.addEventListener("click", () => {
             if (characterType === "party") {
-                
+                const key = "class";
+                const value = menuList[index].name;
+                obj = getConfig();
+                modifyCharacter(key, value, obj, obj);
+                getSkillsByClass(localStorage.getItem(currentCharacter));
+                classButton.replaceChild(image, classButton.childNodes[0]);
+                let className = document.getElementById("class-name");
+                className.textContent = menuList[index].name;
+                artChangeClassSwap();
                 classMenu.style.display = "none";
             }
             else if (characterType === "hero") {
@@ -666,8 +678,6 @@ const artsOgre = [
 const skills = document.getElementsByClassName("skillSlot");
 let skillSlot = 0;
 
-let classSkills = skillsSwordfighter;
-
 for (let index = 0; index < 3; index++) {
     skills[index + 4].addEventListener("click", () => {
         skillSlot = index;
@@ -716,7 +726,7 @@ const arts = document.getElementsByClassName("artSlot");
 const artNames = document.getElementsByClassName("info-text-arts");
 const talentArt = document.getElementById("talentArtIcon");
 
-let classArts = artsSwordfighter;
+// let classArts = artsSwordfighter;
 let classArt = 0;
 
 for (let index = 0; index < arts.length; index++) {
@@ -826,6 +836,7 @@ function artLoad(slotNumber, loadedArtName) {
     let artName = artNames[slotNumber];
     let loadedArt;
     let item;
+    let artList;
     if (slotNumber === 6) {
         slot = talentArt;
         artList = talentArts;
@@ -872,6 +883,31 @@ function artLoad(slotNumber, loadedArtName) {
     }
     
     artName.textContent = artList[item].name;
+}
+
+function classLoad(currentClass) {
+    item = classIcons.findIndex(item => item.name === currentClass);
+    const image = document.createElement("img");
+    image.src = classIcons[item].src;
+    getSkillsByClass(localStorage.getItem(currentCharacter));
+    classButton.replaceChild(image, classButton.childNodes[0]);
+    let className = document.getElementById("class-name");
+    className.textContent = currentClass;
+}
+
+function artChangeClassSwap() {
+    classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+    const artKeys = Object.keys(noahConfig.arts);
+    
+    for (let index = 3; index < 6; index++) {
+        const key = artKeys[index];
+        const value = classArts[index-3].name;
+        let obj = getConfig();
+        modifyCharacter(key, value, obj, obj.arts);
+    }
+    artLoad(3, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_1);
+    artLoad(4, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_2);
+    artLoad(5, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_3);
 }
 
 function getConfig() {

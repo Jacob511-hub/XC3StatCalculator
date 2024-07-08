@@ -157,6 +157,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    min-width: 300px;
 }
 
 #classInfo {
@@ -364,7 +365,7 @@ body {
     display: flex;
     align-items: baseline;
     justify-content: left;
-    height: auto;
+    height: 70px;
     width: 70px;
     cursor: pointer;
 }
