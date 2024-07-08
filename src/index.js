@@ -226,6 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
            const characters = Object.keys(characterConfigs);
            currentCharacter = characters[index];
            classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+           classSkills = getSkillsByClass(localStorage.getItem(currentCharacter));
            characterLoad(localStorage.getItem(currentCharacter));
         })
     }
@@ -242,6 +243,28 @@ function getArtsByClass(characterStored) {
     };
     
     return artsMap[JSON.parse(characterStored).class];
+}
+
+function getSkillsByClass(characterStored) {
+    const skillsMap = {
+        "Swordfighter": skillsSwordfighter,
+        "Zephyr": skillsZephyr,
+        "Medic Gunner": skillsMedicGunner,
+        "Tactician": skillsTactician,
+        "Heavy Guard": skillsHeavyGuard,
+        "Ogre": skillsOgre
+    };
+    
+    let currentSkills = skillsMap[JSON.parse(characterStored).class];
+
+    for (let index = 0; index < currentSkills.length; index++) {
+        let slot = skills[index];
+        const image = document.createElement("img");
+        image.src = currentSkills[index].src;
+        slot.removeChild(slot.firstChild);
+        slot.appendChild(image);
+        $(skills[index]).attr('title', currentSkills[index].name).tooltip('dispose').tooltip();
+    };
 }
 
 function characterLoad(characterStored) {
@@ -439,7 +462,8 @@ function populateMenu() {
         element.appendChild(div);
         div.addEventListener("click", () => {
             if (characterType === "party") {
-                return;
+                
+                classMenu.style.display = "none";
             }
             else if (characterType === "hero") {
                 const portraitImg = heroPortraits[index].src;
@@ -453,6 +477,48 @@ function populateMenu() {
         })
     }
 }
+
+const skillsSwordfighter = [
+    { name: "Cypher Edge", src: "img/skills/skill-4.png"},
+    { name: "Sharp Eye", src: "img/skills/skill-9.png"},
+    { name: "Covert Attack", src: "img/skills/skill-13.png"},
+    { name: "Inspirit", src: "img/skills/skill-11.png"},
+];
+
+const skillsZephyr = [
+    { name: "Stormy Gale", src: "img/skills/skill-10.png"},
+    { name: "I'll Defend You", src: "img/skills/skill-28.png"},
+    { name: "Split-Second Counter", src: "img/skills/skill-19.png"},
+    { name: "Ether's Sanctuary", src: "img/skills/skill-8.png"},
+];
+
+const skillsMedicGunner = [
+    { name: "Eternal Formation", src: "img/skills/skill-21.png"},
+    { name: "Medical Mind", src: "img/skills/skill-3.png"},
+    { name: "Speedy Recovery", src: "img/skills/skill-26.png"},
+    { name: "Ninja Healer", src: "img/skills/skill-13.png"},
+];
+
+const skillsTactician = [
+    { name: "Ethereal Ability", src: "img/skills/skill-30.png"},
+    { name: "Shieldrender", src: "img/skills/skill-6.png"},
+    { name: "Eternal Curse", src: "img/skills/skill-21.png"},
+    { name: "Inevitable Evitability", src: "img/skills/skill-10.png"},
+];
+
+const skillsHeavyGuard = [
+    { name: "Defensive Soul", src: "img/skills/skill-7.png"},
+    { name: "I'll Protect You", src: "img/skills/skill-5.png"},
+    { name: "Tenacious Blocker", src: "img/skills/skill-5.png"},
+    { name: "Aggravator", src: "img/skills/skill-13.png"},
+];
+
+const skillsOgre = [
+    { name: "Fighting Prowess", src: "img/skills/skill-29.png"},
+    { name: "Insult to Injury", src: "img/skills/skill-11.png"},
+    { name: "Dynamite Spirit", src: "img/skills/skill-11.png"},
+    { name: "Fury Smash", src: "img/skills/skill-15.png"},
+];
 
 const skillsMaster = [
     { name: "Cypher Edge", src: "img/skills/skill-4.png"},
@@ -469,8 +535,8 @@ const skillsMaster = [
     { name: "Dynamite Spirit", src: "img/skills/skill-11.png"},
     { name: "Critical Strike", src: "img/skills/skill-4.png"},
     { name: "Capable Hands", src: "img/skills/skill-32.png"},
-    { name: "Healing License", src: "img/skills/skill-24.png"},
-    { name: "Antibody System", src: "img/skills/skill-13.png"},
+    { name: "Healing License", src: "img/skills/skill-17.png"},
+    { name: "Antibody System", src: "img/skills/skill-24.png"},
     { name: "Protector's Pride", src: "img/skills/skill-18.png"},
     { name: "Mind for Guarding", src: "img/skills/skill-7.png"},
     { name: "Ultimate Qigong", src: "img/skills/skill-34.png"},
@@ -494,8 +560,8 @@ const skillsMaster = [
     { name: "Soul Hack", src: "img/skills/skill-1.png"},
     { name: "Feline Righting Reflex", src: "img/skills/skill-41.png"},
     { name: "Frenzied Combo", src: "img/skills/skill-18.png"},
-    { name: "Dance of Barrages", src: "img/skills/skill-4.png"},
-    { name: "Swiftsong", src: "img/skills/skill-40.png"},
+    { name: "Dance of Barrages", src: "img/skills/skill-40.png"},
+    { name: "Swiftsong", src: "img/skills/skill-10.png"},
     { name: "Greatest Warrior", src: "img/skills/skill-43.png"},
     { name: "Universal Annihilation", src: "img/skills/skill-11.png"},
     { name: "Cursed Edge", src: "img/skills/skill-11.png"},
@@ -599,6 +665,8 @@ const artsOgre = [
 
 const skills = document.getElementsByClassName("skillSlot");
 let skillSlot = 0;
+
+let classSkills = skillsSwordfighter;
 
 for (let index = 0; index < 3; index++) {
     skills[index + 4].addEventListener("click", () => {
