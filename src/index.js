@@ -196,11 +196,11 @@ let senaConfig = {
 
 let currentCharacter = "noahConfig";
 let classArts;
+let masterArts;
 
 document.addEventListener("DOMContentLoaded", () => {
     const portrait = document.getElementById("currentCharacter");
     const buttons = document.getElementsByClassName("icon");
-    classArts = getArtsByClass(localStorage.getItem(currentCharacter));
 
     let characterConfigs = {
         "noahConfig": noahConfig,
@@ -216,6 +216,8 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem(key, JSON.stringify(characterConfigs[key]));
         }
     }
+    classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+    masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     characterLoad(localStorage.getItem(currentCharacter));
 
     for (let index = 0; index < buttons.length; index++) {
@@ -228,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
            const characters = Object.keys(characterConfigs);
            currentCharacter = characters[index];
            classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+           masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
            getSkillsByClass(localStorage.getItem(currentCharacter));
            characterLoad(localStorage.getItem(currentCharacter));
         })
@@ -242,6 +245,19 @@ function getArtsByClass(characterStored) {
         "Tactician": artsTactician,
         "Heavy Guard": artsHeavyGuard,
         "Ogre": artsOgre
+    };
+    
+    return artsMap[JSON.parse(characterStored).class];
+}
+
+function getMasterArtsByClass(characterStored) {
+    const artsMap = {
+        "Swordfighter": artsMasterAgnus,
+        "Zephyr": artsMasterKeves,
+        "Medic Gunner": artsMasterAgnus,
+        "Tactician": artsMasterKeves,
+        "Heavy Guard": artsMasterAgnus,
+        "Ogre": artsMasterKeves
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -533,6 +549,7 @@ const skillsOgre = [
 ];
 
 const skillsMaster = [
+    { name: "None", src: "img/skills/skill-0.png"},
     { name: "Cypher Edge", src: "img/skills/skill-4.png"},
     { name: "Covert Attack", src: "img/skills/skill-13.png"},
     { name: "Split-Second Counter", src: "img/skills/skill-19.png"},
@@ -675,6 +692,66 @@ const artsOgre = [
     { name: "Maximum Voltage", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
 ];
 
+const artsMasterKeves = [
+    { name: "None", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/reaction/art-blank.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Ground Beat", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Shadow Eye", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Myopic Screen", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-daze.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Ether Cannon", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Crash Out", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Solid Stance", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Hidden Thorn", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Cross Impact", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Multi Blast", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Advanced Cooldown", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Noble Taunt", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Shield Bash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-topple.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Energy Grenade", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Flashback", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-break.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Demolition", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Quickdraw", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Gale Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Soaring Tempest", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-launch.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Tyrant Cross", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Fatal Bite", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Summon Element", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Elemental Discharge", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Rigid Slicer", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Vivid Carve", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"}
+];
+
+const artsMasterAgnus = [
+    { name: "None", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/reaction/art-blank.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Wide Slash", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Glow Ring", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Dark Banner", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Overfall", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Giant Swing", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-knockback.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Maximum Voltage", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Violent Flurry", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Spearpoint Thrust", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "No Love Lost", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Hornet", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Staying Power", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Night Hunt", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Aerial Slash", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Glitter Stream", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-break.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Shield Wall", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-defend.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Mighty Beat", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Aureole", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Resonant Flag", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Impulse Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Jackal Claw", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Way Home", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-burst.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Ring o' Roses", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Flamelord", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Crimson Lance", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-topple.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Hydro Blast", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blowdown.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Aqua Mind", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Lustrous Spike", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Tri-Slash", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-break.png", aoe: "img/arts/aoe/art-blank.png"}
+];
+
 const skills = document.getElementsByClassName("skillSlot");
 let skillSlot = 0;
 
@@ -726,7 +803,6 @@ const arts = document.getElementsByClassName("artSlot");
 const artNames = document.getElementsByClassName("info-text-arts");
 const talentArt = document.getElementById("talentArtIcon");
 
-// let classArts = artsSwordfighter;
 let classArt = 0;
 
 for (let index = 0; index < arts.length; index++) {
@@ -751,7 +827,11 @@ function populateMenuArts() {
     let artName = artNames[classArt];
     const artKeys = Object.keys(noahConfig.arts);
     const key = artKeys[classArt];
-    if (classArt < 6) {
+    if (classArt < 3) {
+        artList = masterArts;
+        parent = arts[classArt];
+    }
+    else if (3 <= classArt && classArt < 6) {
         artList = classArts;
         parent = arts[classArt];
     }
@@ -837,13 +917,18 @@ function artLoad(slotNumber, loadedArtName) {
     let loadedArt;
     let item;
     let artList;
-    if (slotNumber === 6) {
-        slot = talentArt;
-        artList = talentArts;
+
+    if (slotNumber < 3){
+        slot = arts[slotNumber];
+        artList = masterArts;
     }
-    else {
+    else if (3 <= slotNumber && slotNumber < 6){
         slot = arts[slotNumber];
         artList = classArts;
+    }
+    else if (slotNumber === 6) {
+        slot = talentArt;
+        artList = talentArts;
     }
 
     if (loadedArtName === null) {
@@ -852,7 +937,9 @@ function artLoad(slotNumber, loadedArtName) {
             slot.removeChild(slot.firstChild);
         }
         let artImage = document.createElement("img");
-        artImage.src = "img/arts/recharge/art-agnus.png";
+        item = artList.findIndex(item => item.name === "None");
+        loadedArt = artList[item];
+        artImage.src = loadedArt.recharge;
         artImage.className = "art-features";
         slot.appendChild(artImage);
         return;
@@ -897,14 +984,24 @@ function classLoad(currentClass) {
 
 function artChangeClassSwap() {
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+    masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     const artKeys = Object.keys(noahConfig.arts);
-    
+
+    for (let index = 0; index < 3; index++) {
+        const key = artKeys[index];
+        const value = "None";
+        let obj = getConfig();
+        modifyCharacter(key, value, obj, obj.arts);
+    }
     for (let index = 3; index < 6; index++) {
         const key = artKeys[index];
         const value = classArts[index-3].name;
         let obj = getConfig();
         modifyCharacter(key, value, obj, obj.arts);
     }
+    artLoad(0, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_master_1);
+    artLoad(1, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_master_2);
+    artLoad(2, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_master_3);
     artLoad(3, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_1);
     artLoad(4, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_2);
     artLoad(5, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_3);
