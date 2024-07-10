@@ -831,7 +831,15 @@ function populateMenuArts() {
         artList = classArts;
     }
     else if (classArt === 6) {
-        artList = talentArts;
+        if (currentCharacter === "noahConfig") {
+            artList = talentArtsNoah.concat(talentArts);
+        }
+        else if (currentCharacter === "mioConfig") {
+            artList = talentArtsMio.concat(talentArts);
+        }
+        else {
+            artList = talentArts;
+        }
     }
     for (let index = 0; index < artList.length; index++) {
         const modalIcon = document.createElement("div");
@@ -924,7 +932,15 @@ function artLoad(slotNumber, loadedArtName) {
     }
     else if (slotNumber === 6) {
         slot = talentArt;
-        artList = talentArts;
+        if (currentCharacter === "noahConfig") {
+            artList = talentArtsNoah.concat(talentArts);
+        }
+        else if (currentCharacter === "mioConfig") {
+            artList = talentArtsMio.concat(talentArts);
+        }
+        else {
+            artList = talentArts;
+        }
     }
 
     if (loadedArtName === null) {
