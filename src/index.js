@@ -824,20 +824,14 @@ function artsMenu() {
 }
 
 function populateMenuArts() {
-    let artName = artNames[classArt];
-    const artKeys = Object.keys(noahConfig.arts);
-    const key = artKeys[classArt];
     if (classArt < 3) {
         artList = masterArts;
-        parent = arts[classArt];
     }
     else if (3 <= classArt && classArt < 6) {
         artList = classArts;
-        parent = arts[classArt];
     }
     else if (classArt === 6) {
         artList = talentArts;
-        parent = talentArt;
     }
     for (let index = 0; index < artList.length; index++) {
         const modalIcon = document.createElement("div");
@@ -866,17 +860,19 @@ function populateMenuArts() {
         element.appendChild(modalIcon);
 
         modalIcon.addEventListener("click", () => {
-            artName.textContent = artList[index].name;
-            const value = artList[index].name;
             let obj = getConfig();
+            const value = artList[index].name;
+            const artKeys = Object.keys(obj.arts);
+            const key = artKeys[classArt];
+            for (let indexA = 0; indexA < artKeys.length; indexA++) {
+                if (obj.arts[artKeys[indexA]] === artList[index].name && obj.arts[artKeys[indexA]] != "None") {
+                    console.log(obj.arts[artKeys[indexA]])
+                    artLoad(indexA, obj.arts[artKeys[classArt]]);
+                    modifyCharacter(artKeys[indexA], obj.arts[artKeys[classArt]], obj, obj.arts);
+                }
+            }
+            artLoad(classArt, artList[index].name);
             modifyCharacter(key, value, obj, obj.arts);
-            
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-            }
-            for (let indexA = 0; indexA < 4; indexA++) {
-                parent.appendChild(artImage[indexA].cloneNode(true));
-            }
             classMenu.style.display = "none";
         })
     }
@@ -982,6 +978,7 @@ function classLoad(currentClass) {
     className.textContent = currentClass;
 }
 
+// This function is called when the character's Class is changed, updating the list of selectable Arts
 function artChangeClassSwap() {
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
@@ -999,12 +996,7 @@ function artChangeClassSwap() {
         let obj = getConfig();
         modifyCharacter(key, value, obj, obj.arts);
     }
-    artLoad(0, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_master_1);
-    artLoad(1, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_master_2);
-    artLoad(2, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_master_3);
-    artLoad(3, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_1);
-    artLoad(4, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_2);
-    artLoad(5, JSON.parse(localStorage.getItem(currentCharacter)).arts.art_class_3);
+    characterLoad(localStorage.getItem(currentCharacter));
 }
 
 function getConfig() {
