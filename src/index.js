@@ -245,7 +245,11 @@ function getArtsByClass(characterStored) {
         "Medic Gunner": artsMedicGunner,
         "Tactician": artsTactician,
         "Heavy Guard": artsHeavyGuard,
-        "Ogre": artsOgre
+        "Ogre": artsOgre,
+        "Flash Fencer": artsFlashFencer,
+        "War Medic": artsWarMedic,
+        "Guardian Commander": artsGuardianCommander,
+        "Thaumaturge": artsThaumaturge,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -258,7 +262,11 @@ function getMasterArtsByClass(characterStored) {
         "Medic Gunner": artsMasterAgnus,
         "Tactician": artsMasterKeves,
         "Heavy Guard": artsMasterAgnus,
-        "Ogre": artsMasterKeves
+        "Ogre": artsMasterKeves,
+        "Flash Fencer": artsMasterAgnus,
+        "War Medic": artsMasterAgnus,
+        "Guardian Commander": artsMasterAgnus,
+        "Thaumaturge": artsMasterKeves,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -271,7 +279,11 @@ function getSkillsByClass(characterStored) {
         "Medic Gunner": skillsMedicGunner,
         "Tactician": skillsTactician,
         "Heavy Guard": skillsHeavyGuard,
-        "Ogre": skillsOgre
+        "Ogre": skillsOgre,
+        "Flash Fencer": skillsFlashFencer,
+        "War Medic": skillsWarMedic,
+        "Guardian Commander": skillsGuardianCommander,
+        "Thaumaturge": skillsThaumaturge,
     };
     
     currentSkills = skillsMap[JSON.parse(characterStored).class];
@@ -508,9 +520,9 @@ function populateMenu() {
 }
 
 const skillsSwordfighter = [
-    { name: "Cypher Edge", src: "img/skills/skill-4.png"},
     { name: "Sharp Eye", src: "img/skills/skill-9.png"},
     { name: "Covert Attack", src: "img/skills/skill-13.png"},
+    { name: "Cypher Edge", src: "img/skills/skill-4.png"},
     { name: "Inspirit", src: "img/skills/skill-11.png"},
 ];
 
@@ -522,10 +534,10 @@ const skillsZephyr = [
 ];
 
 const skillsMedicGunner = [
-    { name: "Eternal Formation", src: "img/skills/skill-21.png"},
     { name: "Medical Mind", src: "img/skills/skill-3.png"},
     { name: "Speedy Recovery", src: "img/skills/skill-26.png"},
     { name: "Ninja Healer", src: "img/skills/skill-13.png"},
+    { name: "Eternal Formation", src: "img/skills/skill-21.png"},
 ];
 
 const skillsTactician = [
@@ -538,15 +550,43 @@ const skillsTactician = [
 const skillsHeavyGuard = [
     { name: "Defensive Soul", src: "img/skills/skill-7.png"},
     { name: "I'll Protect You", src: "img/skills/skill-5.png"},
-    { name: "Tenacious Blocker", src: "img/skills/skill-5.png"},
     { name: "Aggravator", src: "img/skills/skill-13.png"},
+    { name: "Tenacious Blocker", src: "img/skills/skill-5.png"},
 ];
 
 const skillsOgre = [
-    { name: "Fighting Prowess", src: "img/skills/skill-29.png"},
     { name: "Insult to Injury", src: "img/skills/skill-11.png"},
-    { name: "Dynamite Spirit", src: "img/skills/skill-11.png"},
     { name: "Fury Smash", src: "img/skills/skill-15.png"},
+    { name: "Fighting Prowess", src: "img/skills/skill-29.png"},
+    { name: "Dynamite Spirit", src: "img/skills/skill-11.png"},
+];
+
+const skillsFlashFencer = [
+    { name: "First Move Wins", src: "img/skills/skill-3.png"},
+    { name: "Fighting Instinct", src: "img/skills/skill-32.png"},
+    { name: "Critical Strike", src: "img/skills/skill-4.png"},
+    { name: "Capable Hands", src: "img/skills/skill-32.png"},
+];
+
+const skillsWarMedic = [
+    { name: "Recovery Engine", src: "img/skills/skill-2.png"},
+    { name: "Rescue License", src: "img/skills/skill-26.png"},
+    { name: "Healing License", src: "img/skills/skill-17.png"},
+    { name: "Antibody System", src: "img/skills/skill-24.png"},
+];
+
+const skillsGuardianCommander = [
+    { name: "I'll Help", src: "img/skills/skill-13.png"},
+    { name: "Soldier's Potential", src: "img/skills/skill-33.png"},
+    { name: "Protector's Pride", src: "img/skills/skill-18.png"},
+    { name: "Mind for Guarding", src: "img/skills/skill-7.png"},
+];
+
+const skillsThaumaturge = [
+    { name: "Wheel of Rebirth", src: "img/skills/skill-2.png"},
+    { name: "Qinggong", src: "img/skills/skill-10.png"},
+    { name: "Ultimate Qigong", src: "img/skills/skill-34.png"},
+    { name: "Life-Saving Fists", src: "img/skills/skill-14.png"},
 ];
 
 const skillsMaster = [
@@ -691,6 +731,38 @@ const artsOgre = [
     { name: "Giant Swing", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-knockback.png", aoe: "img/arts/aoe/art-blank.png"},
     { name: "Cannonball", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
     { name: "Maximum Voltage", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+];
+
+const artsFlashFencer = [
+    { name: "Cross Impact", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Null Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Hidden Thorn", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Revolution Edge", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Acceleration", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+];
+
+const artsWarMedic = [
+    { name: "Heal Bullet", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-heal.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Multi Blast", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Advanced Cooldown", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Cure Bullet", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-heal.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Vital Bullet", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+];
+
+const artsGuardianCommander = [
+    { name: "Noble Taunt", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Shield Bash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-topple.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Falcon Swoop", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Grand Protection", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Imperial Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+];
+
+const artsThaumaturge = [
+    { name: "Rank Splitter", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Violent Flurry", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Divine Protection", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Leaping Current", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-heal.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Spearpoint Thrust", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
 ];
 
 const artsMasterKeves = [
