@@ -197,6 +197,7 @@ let senaConfig = {
 let currentCharacter = "noahConfig";
 let classArts;
 let masterArts;
+let currentSkills;
 
 document.addEventListener("DOMContentLoaded", () => {
     const portrait = document.getElementById("currentCharacter");
@@ -273,7 +274,7 @@ function getSkillsByClass(characterStored) {
         "Ogre": skillsOgre
     };
     
-    let currentSkills = skillsMap[JSON.parse(characterStored).class];
+    currentSkills = skillsMap[JSON.parse(characterStored).class];
 
     for (let index = 0; index < currentSkills.length; index++) {
         let slot = skills[index];
@@ -771,6 +772,16 @@ function skillsMenu() {
 function populateMenuSkills() {
     let parent = skills[skillSlot + 4];
     for (let index = 0; index < skillsMaster.length; index++) {
+        let skip = false;
+        for (let indexA = 0; indexA < 4; indexA++) {
+            if (skillsMaster[index].name === currentSkills[indexA].name) {
+                skip = true;
+                break;
+            }
+        }
+        if (skip) {
+            continue;
+        }
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
@@ -994,11 +1005,12 @@ function classLoad(currentClass) {
     className.textContent = currentClass;
 }
 
-// This function is called when the character's Class is changed, updating the list of selectable Arts
+// This function is called when the character's Class is changed, updating the list of selectable Arts and wiping set Master Skills
 function artChangeClassSwap() {
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     const artKeys = Object.keys(noahConfig.arts);
+    const skillKeys = Object.keys(noahConfig.skills);
 
     for (let index = 0; index < 3; index++) {
         const key = artKeys[index];
@@ -1011,6 +1023,12 @@ function artChangeClassSwap() {
         const value = classArts[index-3].name;
         let obj = getConfig();
         modifyCharacter(key, value, obj, obj.arts);
+    }
+    for (let index = 0; index < 3; index++) {
+        const key = skillKeys[index];
+        const value = "None";
+        let obj = getConfig();
+        modifyCharacter(key, value, obj, obj.skills);
     }
     characterLoad(localStorage.getItem(currentCharacter));
 }
