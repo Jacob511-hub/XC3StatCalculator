@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "taionConfig": taionConfig,
         "lanzConfig": lanzConfig,
         "senaConfig": senaConfig,
+        "heroConfig": heroConfig,
     };
 
     for (const key in characterConfigs) {
@@ -24,6 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     characterLoad(localStorage.getItem(currentCharacter));
+
+    let currentHero = localStorage.getItem("heroConfig");
+    const heroIndex = heroIcons.findIndex(obj => obj.name === JSON.parse(currentHero).class);
+    const buttonImage = heroIcons[heroIndex].buttonSrc;
+    heroButtonImg.src = buttonImage;
 
     for (let index = 0; index < buttons.length; index++) {
         if (index >= portraitsImages.length){
@@ -54,6 +60,9 @@ function getArtsByClass(characterStored) {
         "War Medic": artsWarMedic,
         "Guardian Commander": artsGuardianCommander,
         "Thaumaturge": artsThaumaturge,
+
+        "Ethel": artsEthel,
+        "Valdi": artsValdi,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -88,6 +97,9 @@ function getSkillsByClass(characterStored) {
         "War Medic": skillsWarMedic,
         "Guardian Commander": skillsGuardianCommander,
         "Thaumaturge": skillsThaumaturge,
+
+        "Ethel": skillsFlashFencer,
+        "Valdi": skillsWarMedic,
     };
     
     currentSkills = skillsMap[JSON.parse(characterStored).class];
@@ -154,7 +166,6 @@ window.onclick = function(event) {
 }
 
 let menuList= classIcons;
-populateMenu();
 let characterType = document.getElementById("buttonNoah").getAttribute("data-character-type");
 
 // This function swaps between the Class and Hero select menus
@@ -203,6 +214,15 @@ function populateMenu() {
                 classMenu.style.display = "none";
             }
             else if (characterType === "hero") {
+                const key = "class";
+                const value = menuList[index].name;
+                obj = getConfig();
+                modifyCharacter(key, value, obj, obj);
+                getSkillsByClass(localStorage.getItem(currentCharacter));
+                classButton.replaceChild(image, classButton.childNodes[0]);
+                let className = document.getElementById("class-name");
+                className.textContent = menuList[index].name;
+                artChangeClassSwap();
                 const portraitImg = heroIcons[index].portraitSrc;
                 portrait.src = portraitImg;
                 const buttonImage = heroIcons[index].buttonSrc;
@@ -219,10 +239,10 @@ const skills = document.getElementsByClassName("skillSlot");
 let skillSlot = 0;
 
 for (let index = 0; index < 3; index++) {
-    skills[index + 4].addEventListener("click", () => {
+    skills[index + 4].addEventListener("click", function() {
         skillSlot = index;
         skillsMenu();
-     })
+    })
 }
 
 function skillsMenu() {
@@ -279,13 +299,16 @@ const talentArt = document.getElementById("talentArtIcon");
 let classArt = 0;
 
 for (let index = 0; index < arts.length; index++) {
-    arts[index].addEventListener("click", () => {
+    arts[index].addEventListener("click", function() {
         classArt = index;
         artsMenu();
      })
 }
 
 talentArt.addEventListener("click", () => {
+    if (currentCharacter === "heroConfig") {
+        return;
+    }
     classArt = 6;
     artsMenu();
  })
@@ -298,7 +321,12 @@ function artsMenu() {
 
 function populateMenuArts() {
     if (classArt < 3) {
-        artList = masterArts;
+        if (currentCharacter === "heroConfig") {
+            return;
+        }
+        else {
+            artList = masterArts;
+        }
     }
     else if (3 <= classArt && classArt < 6) {
         artList = classArts;
@@ -367,6 +395,9 @@ function skillLoad(slotNumber, loadedSkillName) {
         while (slot.firstChild) {
             slot.removeChild(slot.firstChild);
         }
+        if (currentCharacter === "heroConfig") {
+            return;
+        }
         const image = document.createElement("img");
         image.src = "img/skills/skill-0.png";
         slot.appendChild(image);
@@ -416,10 +447,14 @@ function artLoad(slotNumber, loadedArtName) {
     }
 
     if (loadedArtName === null) {
-        artName.textContent = "None";
         while (slot.firstChild) {
             slot.removeChild(slot.firstChild);
         }
+        if (currentCharacter === "heroConfig") {
+            artName.textContent = "";
+            return;
+        }
+        artName.textContent = "None";
         let artImage = document.createElement("img");
         item = artList.findIndex(item => item.name === "None");
         loadedArt = artList[item];
@@ -457,13 +492,29 @@ function artLoad(slotNumber, loadedArtName) {
 }
 
 function classLoad(currentClass) {
-    item = classIcons.findIndex(item => item.name === currentClass);
-    const image = document.createElement("img");
-    image.src = classIcons[item].src;
-    getSkillsByClass(localStorage.getItem(currentCharacter));
-    classButton.replaceChild(image, classButton.childNodes[0]);
-    let className = document.getElementById("class-name");
-    className.textContent = currentClass;
+    if (currentCharacter === "heroConfig") {
+        item = heroIcons.findIndex(item => item.name === currentClass);
+        const image = document.createElement("img");
+        image.src = heroIcons[item].src;
+        const portraitImg = heroIcons[item].portraitSrc;
+        portrait.src = portraitImg;
+        const buttonImage = heroIcons[item].buttonSrc;
+        heroButtonImg.src = buttonImage;
+        portraitsImages[6].src = portraitImg;
+        getSkillsByClass(localStorage.getItem(currentCharacter));
+        classButton.replaceChild(image, classButton.childNodes[0]);
+        let className = document.getElementById("class-name");
+        className.textContent = currentClass;
+    }
+    else {
+        item = classIcons.findIndex(item => item.name === currentClass);
+        const image = document.createElement("img");
+        image.src = classIcons[item].src;
+        getSkillsByClass(localStorage.getItem(currentCharacter));
+        classButton.replaceChild(image, classButton.childNodes[0]);
+        let className = document.getElementById("class-name");
+        className.textContent = currentClass;
+    }
 }
 
 // This function is called when the character's Class is changed, updating the list of selectable Arts and wiping set Master Skills
@@ -474,8 +525,11 @@ function artChangeClassSwap() {
     const skillKeys = Object.keys(noahConfig.skills);
 
     for (let index = 0; index < 3; index++) {
+        let value = "None";
+        if (currentCharacter === "heroConfig") {
+            value = null;
+        }
         const key = artKeys[index];
-        const value = "None";
         let obj = getConfig();
         modifyCharacter(key, value, obj, obj.arts);
     }
@@ -486,8 +540,11 @@ function artChangeClassSwap() {
         modifyCharacter(key, value, obj, obj.arts);
     }
     for (let index = 0; index < 3; index++) {
+        let value = "None";
+        if (currentCharacter === "heroConfig") {
+            value = null;
+        }
         const key = skillKeys[index];
-        const value = "None";
         let obj = getConfig();
         modifyCharacter(key, value, obj, obj.skills);
     }

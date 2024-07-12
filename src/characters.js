@@ -178,6 +178,36 @@ let senaConfig = {
     }
 }
 
+let heroConfig = {
+    "class": "Ethel",
+    "level": "99",
+    "rank": "20",
+    "skills": {
+        "skill_1": null,
+        "skill_2": null,
+        "skill_3": null
+    },
+    "arts": {
+        "art_master_1": null,
+        "art_master_2": null,
+        "art_master_3": null,
+        "art_class_1": "Cross Impact",
+        "art_class_2": "Swallowtail",
+        "art_class_3": "Silver Cyclone",
+        "art_talent": "Saber Strike"
+    },
+    "gems": {
+        "gem_1": null,
+        "gem_1": null,
+        "gem_1": null,
+    },
+    "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    }
+}
+
 const portraitsImages = [
     { name: "Noah", src: "img/portraits/NoahPortrait.png" },
     { name: "Mio", src: "img/portraits/MioPortrait.png" },
