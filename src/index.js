@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroIndex = heroIcons.findIndex(obj => obj.name === JSON.parse(currentHero).class);
     const buttonImage = heroIcons[heroIndex].buttonSrc;
     heroButtonImg.src = buttonImage;
+    $('#buttonHero').attr('title', heroIcons[heroIndex].name).tooltip('dispose').tooltip();
 
     for (let index = 0; index < buttons.length; index++) {
         if (index >= portraitsImages.length){
@@ -314,6 +315,11 @@ talentArt.addEventListener("click", () => {
  })
 
 function artsMenu() {
+    if (classArt < 3) {
+        if (currentCharacter === "heroConfig") {
+            return;
+        }
+    }
     clearMenu();
     populateMenuArts();
     classMenu.style.display = "block";
@@ -321,12 +327,7 @@ function artsMenu() {
 
 function populateMenuArts() {
     if (classArt < 3) {
-        if (currentCharacter === "heroConfig") {
-            return;
-        }
-        else {
-            artList = masterArts;
-        }
+        artList = masterArts;
     }
     else if (3 <= classArt && classArt < 6) {
         artList = classArts;
@@ -343,6 +344,9 @@ function populateMenuArts() {
         }
     }
     for (let index = 0; index < artList.length; index++) {
+        if (currentCharacter === "heroConfig" && index === 5) {
+            continue;
+        }
         const modalIcon = document.createElement("div");
         modalIcon.className = "modal-icon";
         const artSlot = document.createElement("div");
@@ -441,6 +445,9 @@ function artLoad(slotNumber, loadedArtName) {
         else if (currentCharacter === "mioConfig") {
             artList = talentArtsMio.concat(talentArts);
         }
+        else if (currentCharacter === "heroConfig") {
+            artList = classArts;
+        }
         else {
             artList = talentArts;
         }
@@ -523,6 +530,13 @@ function artChangeClassSwap() {
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     const artKeys = Object.keys(noahConfig.arts);
     const skillKeys = Object.keys(noahConfig.skills);
+
+    if (currentCharacter === "heroConfig") {
+        let value = classArts[5].name;
+        const key = artKeys[6];
+        let obj = getConfig();
+        modifyCharacter(key, value, obj, obj.arts);
+    }
 
     for (let index = 0; index < 3; index++) {
         let value = "None";
