@@ -210,8 +210,6 @@ function populateMenu() {
             const value = menuList[index].name;
             obj = getConfig();
             modifyCharacter(key, value, obj, obj);
-            getSkillsByClass(localStorage.getItem(currentCharacter));
-            classButton.replaceChild(image, classButton.childNodes[0]);
             let className = document.getElementById("class-name");
             className.textContent = menuList[index].name;
             artChangeClassSwap();
@@ -502,17 +500,21 @@ function artLoad(slotNumber, loadedArtName) {
 }
 
 function classLoad(currentClass) {
+    while (classButton.children[1]) {
+        classButton.removeChild(classButton.children[1]);
+    }
     if (currentCharacter === "heroConfig") {
         item = heroIcons.findIndex(item => item.name === currentClass);
         const image = document.createElement("img");
         image.src = heroIcons[item].src;
+        image.className = "classSymbol";
         const portraitImg = heroIcons[item].portraitSrc;
         portrait.src = portraitImg;
         const buttonImage = heroIcons[item].buttonSrc;
         heroButtonImg.src = buttonImage;
         portraitsImages[6].src = portraitImg;
         getSkillsByClass(localStorage.getItem(currentCharacter));
-        classButton.replaceChild(image, classButton.childNodes[0]);
+        classButton.appendChild(image);
         let className = document.getElementById("class-name");
         className.textContent = currentClass;
     }
@@ -520,8 +522,9 @@ function classLoad(currentClass) {
         item = classIcons.findIndex(item => item.name === currentClass);
         const image = document.createElement("img");
         image.src = classIcons[item].src;
+        image.className = "classSymbol";
         getSkillsByClass(localStorage.getItem(currentCharacter));
-        classButton.replaceChild(image, classButton.childNodes[0]);
+        classButton.appendChild(image);
         let className = document.getElementById("class-name");
         className.textContent = currentClass;
     }

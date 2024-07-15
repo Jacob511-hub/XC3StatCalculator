@@ -362,12 +362,17 @@ body {
 }
 
 .classIcon {
+    position: relative;
     display: flex;
     align-items: baseline;
     justify-content: left;
     height: 70px;
     width: 70px;
     cursor: pointer;
+}
+
+.classSymbol {
+    position: absolute;
 }
 
 .classIcon img {
