@@ -64,6 +64,8 @@ function getArtsByClass(characterStored) {
 
         "Ethel": artsEthel,
         "Valdi": artsValdi,
+        "Zeon": artsZeon,
+        "Teach": artsTeach,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -101,6 +103,8 @@ function getSkillsByClass(characterStored) {
 
         "Ethel": skillsFlashFencer,
         "Valdi": skillsWarMedic,
+        "Zeon": skillsGuardianCommander,
+        "Teach": skillsThaumaturge,
     };
     
     currentSkills = skillsMap[JSON.parse(characterStored).class];
@@ -202,36 +206,25 @@ function populateMenu() {
         const element = document.getElementById("classList");
         element.appendChild(div);
         div.addEventListener("click", () => {
-            if (characterType === "party") {
-                const key = "class";
-                const value = menuList[index].name;
-                obj = getConfig();
-                modifyCharacter(key, value, obj, obj);
-                getSkillsByClass(localStorage.getItem(currentCharacter));
-                classButton.replaceChild(image, classButton.childNodes[0]);
-                let className = document.getElementById("class-name");
-                className.textContent = menuList[index].name;
-                artChangeClassSwap();
-                classMenu.style.display = "none";
-            }
-            else if (characterType === "hero") {
-                const key = "class";
-                const value = menuList[index].name;
-                obj = getConfig();
-                modifyCharacter(key, value, obj, obj);
-                getSkillsByClass(localStorage.getItem(currentCharacter));
-                classButton.replaceChild(image, classButton.childNodes[0]);
-                let className = document.getElementById("class-name");
-                className.textContent = menuList[index].name;
-                artChangeClassSwap();
+            const key = "class";
+            const value = menuList[index].name;
+            obj = getConfig();
+            modifyCharacter(key, value, obj, obj);
+            getSkillsByClass(localStorage.getItem(currentCharacter));
+            classButton.replaceChild(image, classButton.childNodes[0]);
+            let className = document.getElementById("class-name");
+            className.textContent = menuList[index].name;
+            artChangeClassSwap();
+
+            if (characterType === "hero") {
                 const portraitImg = heroIcons[index].portraitSrc;
                 portrait.src = portraitImg;
                 const buttonImage = heroIcons[index].buttonSrc;
                 heroButtonImg.src = buttonImage;
                 portraitsImages[6].src = portraitImg;
                 $('#buttonHero').attr('title', heroIcons[index].name).tooltip('dispose').tooltip();
-                classMenu.style.display = "none";
             }
+            classMenu.style.display = "none";
         })
     }
 }
@@ -282,6 +275,16 @@ function populateMenuSkills() {
             const key = skillKeys[skillSlot];
             const value = skillsMaster[index].name;
             let obj = getConfig();
+
+            for (let indexA = 0; indexA < skillKeys.length; indexA++) {
+                console.log(obj.skills[skillKeys[indexA]])
+                console.log(skillsMaster[index].name)
+                if (obj.skills[skillKeys[indexA]] === skillsMaster[index].name && obj.skills[skillKeys[indexA]] != "None") {
+                    skillLoad(indexA + 4, obj.skills[skillKeys[skillSlot]]);
+                    modifyCharacter(skillKeys[indexA], obj.skills[skillKeys[skillSlot]], obj, obj.skills);
+                }
+            }
+
             modifyCharacter(key, value, obj, obj.skills);
             
             while (parent.firstChild) {
