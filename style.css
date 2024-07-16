@@ -348,6 +348,40 @@ body {
     cursor: pointer;
 }
 
+.gemsMenu {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.gemsMenuContent {
+    background-image: url('img/bg-menu.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 5% auto;
+    border: 10px solid #2c2c2c;
+    width: 900px;
+    height: 70%;
+    animation: dropdown 0.4s;
+    display: flex;
+    flex-direction: column;
+}
+
+.gem-list {
+    display: grid;
+    grid-template-columns: [first] auto [line2] auto [line3] auto [line4] auto [line5] auto [line6] auto [line7] auto [line8] auto [line9] auto [line10] auto [line11] auto [end];
+    grid-template-rows: [row1-start] auto [row1-end] auto [third-line] auto [last-line];
+    gap: 10px;
+    justify-content: space-around;
+    overflow-y: auto;
+}
+
 .accessory {
     display: flex;
     align-items: center;
@@ -392,7 +426,10 @@ body {
 }
 
 .classMenuContent {
-    background-color: #4c4c4c;
+    background-image: url('img/bg-menu.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin: 5% auto;
     border: 10px solid #2c2c2c;
     width: 400px;
@@ -425,6 +462,10 @@ body {
 .modal-icon img {
     width: 100%;
     height: auto;
+}
+
+.modal-icon-gem {
+    width: 70px;
 }
 
 .classMenuHeader {

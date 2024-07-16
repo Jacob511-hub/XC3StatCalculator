@@ -168,13 +168,16 @@ frToggle.onclick = function() {
     }
 }
 
-var classMenu = document.getElementById("classModal");
-var classButton = document.getElementById("classButton");
-var classSpan = document.getElementById("class-close");
+let classMenu = document.getElementById("classModal");
+let classButton = document.getElementById("classButton");
+let classSpan = document.getElementById("class-close");
+let parent = document.getElementById("classList");
 
 classButton.onclick = function() {
+    parent = document.getElementById("classList");
     clearMenu();
     populateMenu();
+    classMenu = document.getElementById("classModal");
     classMenu.style.display = "block";
 }
 
@@ -203,7 +206,6 @@ function menuSwap(character) {
 }
 
 function clearMenu() {
-    let parent = document.getElementById("classList");
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
@@ -258,8 +260,10 @@ for (let index = 0; index < 3; index++) {
 }
 
 function skillsMenu() {
+    parent = document.getElementById("classList");
     clearMenu();
     populateMenuSkills();
+    classMenu = document.getElementById("classModal");
     classMenu.style.display = "block";
 }
 
@@ -341,8 +345,10 @@ function artsMenu() {
             return;
         }
     }
+    parent = document.getElementById("classList");
     clearMenu();
     populateMenuArts();
+    classMenu = document.getElementById("classModal");
     classMenu.style.display = "block";
 }
 
@@ -408,6 +414,77 @@ function populateMenuArts() {
             modifyCharacter(key, value, obj, obj.arts);
             classMenu.style.display = "none";
         })
+    }
+}
+
+// var gemsMenu = document.getElementById("gemsModal");
+const gemButtons = document.getElementsByClassName("gem");
+
+let gemSelect = 0;
+
+for (let index = 0; index < gemButtons.length; index++) {
+    gemButtons[index].addEventListener("click", function() {
+        parent = document.getElementById("gemList");
+        clearMenu();
+        gemSelect = index;
+        classMenu = document.getElementById("gemsModal");
+        populateMenuGems();
+        classMenu.style.display = "block";
+     })
+}
+
+function populateMenuGems() {
+    let parent = gemButtons[gemSelect];
+    for (let index = 0; index < gems.length; index++) {
+        const div = document.createElement("div");
+        div.className = "modal-icon";
+        div.classList.add("modal-icon-gem");
+        const image = document.createElement("img");
+        image.src = gems[index].src;
+
+        div.appendChild(image);
+        const element = document.getElementById("gemList");
+        element.appendChild(div);
+        $(div).attr('title', gems[index].name).tooltip('dispose').tooltip();
+
+        for (let index = 0; index < gemRanks.length; index++) {
+            const div = document.createElement("div");
+            div.className = "modal-icon";
+            div.classList.add("modal-icon-gem");
+            const image = document.createElement("img");
+            image.src = gemRanks[index].src;
+    
+            div.appendChild(image);
+            const element = document.getElementById("gemList");
+            element.appendChild(div);
+            $(div).attr('title', gemRanks[index].name).tooltip('dispose').tooltip();
+        }
+        
+        // div.addEventListener("click", () => {
+        //     $(parent).attr('title', skillsMaster[index].name).tooltip('dispose').tooltip();
+
+        //     const skillKeys = Object.keys(noahConfig.skills);
+        //     const key = skillKeys[skillSlot];
+        //     const value = skillsMaster[index].name;
+        //     let obj = getConfig();
+
+        //     for (let indexA = 0; indexA < skillKeys.length; indexA++) {
+        //         console.log(obj.skills[skillKeys[indexA]])
+        //         console.log(skillsMaster[index].name)
+        //         if (obj.skills[skillKeys[indexA]] === skillsMaster[index].name && obj.skills[skillKeys[indexA]] != "None") {
+        //             skillLoad(indexA + 4, obj.skills[skillKeys[skillSlot]]);
+        //             modifyCharacter(skillKeys[indexA], obj.skills[skillKeys[skillSlot]], obj, obj.skills);
+        //         }
+        //     }
+
+        //     modifyCharacter(key, value, obj, obj.skills);
+            
+        //     while (parent.firstChild) {
+        //         parent.removeChild(parent.firstChild);
+        //     }
+        //     parent.appendChild(image.cloneNode(true));
+        //     classMenu.style.display = "none";
+        // })
     }
 }
 
