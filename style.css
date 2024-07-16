@@ -504,6 +504,10 @@ body {
     height: auto;
 }
 
+.fade {
+    opacity: 0.5;
+}
+
 .artSlotModal {
     display: flex;
     position: relative;

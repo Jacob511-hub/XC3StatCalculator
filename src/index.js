@@ -83,6 +83,11 @@ function getMasterArtsByClass(characterStored) {
         "War Medic": artsMasterAgnus,
         "Guardian Commander": artsMasterAgnus,
         "Thaumaturge": artsMasterKeves,
+
+        "Ethel": artsMasterAgnus,
+        "Valdi": artsMasterAgnus,
+        "Zeon": artsMasterAgnus,
+        "Teach": artsMasterKeves,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -232,6 +237,9 @@ let skillSlot = 0;
 
 for (let index = 0; index < 3; index++) {
     skills[index + 4].addEventListener("click", function() {
+        if (currentCharacter === "heroConfig") {
+            return;
+        }
         skillSlot = index;
         skillsMenu();
     })
@@ -400,11 +408,11 @@ function skillLoad(slotNumber, loadedSkillName) {
         while (slot.firstChild) {
             slot.removeChild(slot.firstChild);
         }
-        if (currentCharacter === "heroConfig") {
-            return;
-        }
         const image = document.createElement("img");
         image.src = "img/skills/skill-0.png";
+        if (currentCharacter === "heroConfig") {
+            image.classList.add("fade");
+        }
         slot.appendChild(image);
         $(slot).attr('title', "None").tooltip('dispose').tooltip();
         return;
@@ -458,16 +466,15 @@ function artLoad(slotNumber, loadedArtName) {
         while (slot.firstChild) {
             slot.removeChild(slot.firstChild);
         }
-        if (currentCharacter === "heroConfig") {
-            artName.textContent = "";
-            return;
-        }
         artName.textContent = "None";
         let artImage = document.createElement("img");
         item = artList.findIndex(item => item.name === "None");
         loadedArt = artList[item];
         artImage.src = loadedArt.recharge;
         artImage.className = "art-features";
+        if (currentCharacter === "heroConfig") {
+            artImage.classList.add("fade");
+        }
         slot.appendChild(artImage);
         return;
     }
