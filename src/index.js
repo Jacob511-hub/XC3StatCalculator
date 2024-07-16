@@ -61,11 +61,15 @@ function getArtsByClass(characterStored) {
         "War Medic": artsWarMedic,
         "Guardian Commander": artsGuardianCommander,
         "Thaumaturge": artsThaumaturge,
+        "Yumsmith": artsYumsmith,
+        "Full Metal Jaguar": artsFullMetalJaguar,
 
         "Ethel": artsEthel,
         "Valdi": artsValdi,
         "Zeon": artsZeon,
         "Teach": artsTeach,
+        "Riku & Manana": artsRikuManana,
+        "Gray": artsGray,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -83,11 +87,15 @@ function getMasterArtsByClass(characterStored) {
         "War Medic": artsMasterAgnus,
         "Guardian Commander": artsMasterAgnus,
         "Thaumaturge": artsMasterKeves,
+        "Yumsmith": artsMasterAgnus,
+        "Full Metal Jaguar": artsMasterAgnus,
 
         "Ethel": artsMasterAgnus,
         "Valdi": artsMasterAgnus,
         "Zeon": artsMasterAgnus,
         "Teach": artsMasterKeves,
+        "Riku & Manana": artsMasterAgnus,
+        "Gray": artsMasterAgnus,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -105,11 +113,15 @@ function getSkillsByClass(characterStored) {
         "War Medic": skillsWarMedic,
         "Guardian Commander": skillsGuardianCommander,
         "Thaumaturge": skillsThaumaturge,
+        "Yumsmith": skillsYumsmith,
+        "Full Metal Jaguar": skillsFullMetalJaguar,
 
         "Ethel": skillsFlashFencer,
         "Valdi": skillsWarMedic,
         "Zeon": skillsGuardianCommander,
         "Teach": skillsThaumaturge,
+        "Riku & Manana": skillsYumsmith,
+        "Gray": skillsGray,
     };
     
     currentSkills = skillsMap[JSON.parse(characterStored).class];

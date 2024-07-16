@@ -68,6 +68,27 @@ const skillsThaumaturge = [
     { name: "Life-Saving Fists", src: "img/skills/skill-14.png"},
 ];
 
+const skillsYumsmith = [
+    { name: "Bangsplosion!", src: "img/skills/skill-22.png"},
+    { name: "Sappy-Sappy Drain!", src: "img/skills/skill-44.png"},
+    { name: "Slicey-Dicey!", src: "img/skills/skill-22.png"},
+    { name: "Preppy-Preppy Link!", src: "img/skills/skill-35.png"},
+];
+
+const skillsFullMetalJaguar = [
+    { name: "Sixth Sense", src: "img/skills/skill-38.png"},
+    { name: "Positioning Pro", src: "img/skills/skill-1.png"},
+    { name: "Shock Shot", src: "img/skills/skill-38.png"},
+    { name: "Bullet Symphony", src: "img/skills/skill-37.png"},
+];
+
+const skillsGray = [
+    { name: "Sixth Sense", src: "img/skills/skill-38.png"},
+    { name: "Precision Shot", src: "img/skills/skill-14.png"},
+    { name: "Shock Shot", src: "img/skills/skill-38.png"},
+    { name: "Bullet Symphony", src: "img/skills/skill-37.png"},
+];
+
 const skillsMaster = [
     { name: "None", src: "img/skills/skill-0.png"},
     { name: "Cypher Edge", src: "img/skills/skill-4.png"},
