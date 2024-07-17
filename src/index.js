@@ -150,6 +150,10 @@ function characterLoad(characterStored) {
     artLoad(4, JSON.parse(characterStored).arts.art_class_2);
     artLoad(5, JSON.parse(characterStored).arts.art_class_3);
     artLoad(6, JSON.parse(characterStored).arts.art_talent);
+
+    gemLoad(0, JSON.parse(characterStored).gems.gem_1, JSON.parse(characterStored).ranks.gem_1);
+    gemLoad(1, JSON.parse(characterStored).gems.gem_2, JSON.parse(characterStored).ranks.gem_2);
+    gemLoad(2, JSON.parse(characterStored).gems.gem_3, JSON.parse(characterStored).ranks.gem_3);
 }
 
 var frToggle = document.getElementById("fr-toggle-button");
@@ -170,7 +174,7 @@ frToggle.onclick = function() {
 
 let classMenu = document.getElementById("classModal");
 let classButton = document.getElementById("classButton");
-let classSpan = document.getElementById("class-close");
+const classSpan = document.getElementsByClassName("close");
 let parent = document.getElementById("classList");
 
 classButton.onclick = function() {
@@ -181,9 +185,12 @@ classButton.onclick = function() {
     classMenu.style.display = "block";
 }
 
-classSpan.onclick = function() {
-    classMenu.style.display = "none";
+for (let index = 0; index < classSpan.length; index++) {
+    classSpan[index].addEventListener("click", function() {
+        classMenu.style.display = "none";
+    })
 }
+
 window.onclick = function(event) {
     if (event.target === classMenu) {
         classMenu.style.display = "none";
@@ -299,8 +306,6 @@ function populateMenuSkills() {
             let obj = getConfig();
 
             for (let indexA = 0; indexA < skillKeys.length; indexA++) {
-                console.log(obj.skills[skillKeys[indexA]])
-                console.log(skillsMaster[index].name)
                 if (obj.skills[skillKeys[indexA]] === skillsMaster[index].name && obj.skills[skillKeys[indexA]] != "None") {
                     skillLoad(indexA + 4, obj.skills[skillKeys[skillSlot]]);
                     modifyCharacter(skillKeys[indexA], obj.skills[skillKeys[skillSlot]], obj, obj.skills);
@@ -417,74 +422,92 @@ function populateMenuArts() {
     }
 }
 
-// var gemsMenu = document.getElementById("gemsModal");
 const gemButtons = document.getElementsByClassName("gem");
 
 let gemSelect = 0;
 
 for (let index = 0; index < gemButtons.length; index++) {
     gemButtons[index].addEventListener("click", function() {
+        if (currentCharacter === "heroConfig") {
+            return;
+        }
         parent = document.getElementById("gemList");
         clearMenu();
         gemSelect = index;
         classMenu = document.getElementById("gemsModal");
         populateMenuGems();
         classMenu.style.display = "block";
-     })
+    })
+    gemButtons[index].addEventListener("contextmenu", function(event) {
+        if (currentCharacter === "heroConfig") {
+            return;
+        }
+        event.preventDefault();
+        gemLoad(index, null, null);
+        const gemKeys = Object.keys(noahConfig.gems);
+        let obj = getConfig();
+        modifyCharacter(gemKeys[index], null, obj, obj.gems);
+    })
 }
 
 function populateMenuGems() {
     let parent = gemButtons[gemSelect];
     for (let index = 0; index < gems.length; index++) {
-        const div = document.createElement("div");
-        div.className = "modal-icon";
-        div.classList.add("modal-icon-gem");
-        const image = document.createElement("img");
-        image.src = gems[index].src;
+        let currentRank = 9;
+        const modalIcon = document.createElement("div");
+        modalIcon.className = "modal-icon";
+        modalIcon.classList.add("modal-icon-gem");
 
-        div.appendChild(image);
+        const gemType = document.createElement("img");
+        gemType.src = gems[index].src;
+        gemType.className = "gem-features";
+        const gemRank = document.createElement("img");
+        gemRank.src = gemRanks[currentRank].src;
+        gemRank.className = "gem-features";
+
+        modalIcon.appendChild(gemType);
+        modalIcon.appendChild(gemRank);
+
         const element = document.getElementById("gemList");
-        element.appendChild(div);
-        $(div).attr('title', gems[index].name).tooltip('dispose').tooltip();
+        element.appendChild(modalIcon);
+        $(modalIcon).attr('title', gems[index].name).tooltip('dispose').tooltip();
 
-        for (let index = 0; index < gemRanks.length; index++) {
-            const div = document.createElement("div");
-            div.className = "modal-icon";
-            div.classList.add("modal-icon-gem");
-            const image = document.createElement("img");
-            image.src = gemRanks[index].src;
-    
-            div.appendChild(image);
-            const element = document.getElementById("gemList");
-            element.appendChild(div);
-            $(div).attr('title', gemRanks[index].name).tooltip('dispose').tooltip();
-        }
-        
-        // div.addEventListener("click", () => {
-        //     $(parent).attr('title', skillsMaster[index].name).tooltip('dispose').tooltip();
+        modalIcon.addEventListener("contextmenu", function(event) {
+            event.preventDefault()
+            currentRank = currentRank + 1;
+            if (currentRank > 9) {
+                currentRank = 0;
+            }
+            gemRank.src = gemRanks[currentRank].src;
+        })
 
-        //     const skillKeys = Object.keys(noahConfig.skills);
-        //     const key = skillKeys[skillSlot];
-        //     const value = skillsMaster[index].name;
-        //     let obj = getConfig();
+        modalIcon.addEventListener("click", () => {
+            const gemKeys = Object.keys(noahConfig.gems);
+            const rankKeys = Object.keys(noahConfig.ranks);
+            const key1 = gemKeys[gemSelect];
+            const key2 = rankKeys[gemSelect];
+            const value1 = gems[index].name;
+            const value2 = gemRanks[currentRank].name;
+            let obj = getConfig();
 
-        //     for (let indexA = 0; indexA < skillKeys.length; indexA++) {
-        //         console.log(obj.skills[skillKeys[indexA]])
-        //         console.log(skillsMaster[index].name)
-        //         if (obj.skills[skillKeys[indexA]] === skillsMaster[index].name && obj.skills[skillKeys[indexA]] != "None") {
-        //             skillLoad(indexA + 4, obj.skills[skillKeys[skillSlot]]);
-        //             modifyCharacter(skillKeys[indexA], obj.skills[skillKeys[skillSlot]], obj, obj.skills);
-        //         }
-        //     }
+            for (let indexA = 0; indexA < gemKeys.length; indexA++) {
+                if (obj.gems[gemKeys[indexA]] === gems[index].name && obj.gems[gemKeys[indexA]] != "None") {
+                    gemLoad(indexA, obj.gems[gemKeys[gemSelect]], obj.ranks[rankKeys[gemSelect]]);
+                    modifyCharacter(gemKeys[indexA], obj.gems[gemKeys[gemSelect]], obj, obj.gems);
+                }
+            }
 
-        //     modifyCharacter(key, value, obj, obj.skills);
-            
-        //     while (parent.firstChild) {
-        //         parent.removeChild(parent.firstChild);
-        //     }
-        //     parent.appendChild(image.cloneNode(true));
-        //     classMenu.style.display = "none";
-        // })
+            modifyCharacter(key1, value1, obj, obj.gems);
+            modifyCharacter(key2, value2, obj, obj.ranks);
+
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+            parent.appendChild(gemType.cloneNode(true));
+            parent.appendChild(gemRank.cloneNode(true));
+
+            classMenu.style.display = "none";
+        })
     }
 }
 
@@ -624,6 +647,42 @@ function classLoad(currentClass) {
         let className = document.getElementById("class-name");
         className.textContent = currentClass;
     }
+}
+
+function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
+    let slot = gemButtons[slotNumber];
+    let loadedType;
+    let loadedRank;
+    let type;
+    let rank;
+
+    if (loadedGemType === null) {
+        while (slot.firstChild) {
+            slot.removeChild(slot.firstChild);
+        }
+        const image = document.createElement("img");
+        image.src = "img/equipment/gems/gemOutline.png";
+        slot.appendChild(image);
+        return;
+    }
+    else {
+        type = gems.findIndex(type => type.name === loadedGemType);
+        loadedType = gems[type];
+        rank = gemRanks.findIndex(rank => rank.name === loadedGemRank);
+        loadedRank = gemRanks[rank];
+    }
+
+    while (slot.firstChild) {
+        slot.removeChild(slot.firstChild);
+    }
+    const image1 = document.createElement("img");
+    image1.src = loadedType.src;
+    image1.className = "gem-features";
+    const image2 = document.createElement("img");
+    image2.src = loadedRank.src;
+    image2.className = "gem-features";
+    slot.appendChild(image1);
+    slot.appendChild(image2);
 }
 
 // This function is called when the character's Class is changed, updating the list of selectable Arts and wiping set Master Skills

@@ -1,7 +1,7 @@
  let noahConfig = {
     "class": "Swordfighter",
     "level": "99",
-    "rank": "20",
+    "class_rank": "20",
     "skills": {
         "skill_1": null,
         "skill_2": null,
@@ -18,8 +18,13 @@
     },
     "gems": {
         "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
+    },
+    "ranks": {
         "gem_1": null,
-        "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
     },
     "accessories": {
         "accessory_1": null,
@@ -31,7 +36,7 @@
 let mioConfig = {
     "class": "Zephyr",
     "level": "99",
-    "rank": "20",
+    "class_rank": "20",
     "skills": {
         "skill_1": null,
         "skill_2": null,
@@ -48,8 +53,13 @@ let mioConfig = {
     },
     "gems": {
         "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
+    },
+    "ranks": {
         "gem_1": null,
-        "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
     },
     "accessories": {
         "accessory_1": null,
@@ -61,7 +71,7 @@ let mioConfig = {
 let eunieConfig = {
     "class": "Medic Gunner",
     "level": "99",
-    "rank": "20",
+    "class_rank": "20",
     "skills": {
         "skill_1": null,
         "skill_2": null,
@@ -78,8 +88,13 @@ let eunieConfig = {
     },
     "gems": {
         "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
+    },
+    "ranks": {
         "gem_1": null,
-        "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
     },
     "accessories": {
         "accessory_1": null,
@@ -91,7 +106,7 @@ let eunieConfig = {
 let taionConfig = {
     "class": "Tactician",
     "level": "99",
-    "rank": "20",
+    "class_rank": "20",
     "skills": {
         "skill_1": null,
         "skill_2": null,
@@ -108,8 +123,13 @@ let taionConfig = {
     },
     "gems": {
         "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
+    },
+    "ranks": {
         "gem_1": null,
-        "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
     },
     "accessories": {
         "accessory_1": null,
@@ -121,7 +141,7 @@ let taionConfig = {
 let lanzConfig = {
     "class": "Heavy Guard",
     "level": "99",
-    "rank": "20",
+    "class_rank": "20",
     "skills": {
         "skill_1": null,
         "skill_2": null,
@@ -138,8 +158,13 @@ let lanzConfig = {
     },
     "gems": {
         "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
+    },
+    "ranks": {
         "gem_1": null,
-        "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
     },
     "accessories": {
         "accessory_1": null,
@@ -151,7 +176,7 @@ let lanzConfig = {
 let senaConfig = {
     "class": "Ogre",
     "level": "99",
-    "rank": "20",
+    "class_rank": "20",
     "skills": {
         "skill_1": null,
         "skill_2": null,
@@ -168,8 +193,13 @@ let senaConfig = {
     },
     "gems": {
         "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
+    },
+    "ranks": {
         "gem_1": null,
-        "gem_1": null,
+        "gem_2": null,
+        "gem_3": null,
     },
     "accessories": {
         "accessory_1": null,
@@ -181,7 +211,7 @@ let senaConfig = {
 let heroConfig = {
     "class": "Ethel",
     "level": "99",
-    "rank": "20",
+    "class_rank": "20",
     "skills": {
         "skill_1": null,
         "skill_2": null,
@@ -197,9 +227,14 @@ let heroConfig = {
         "art_talent": "Saber Strike"
     },
     "gems": {
-        "gem_1": null,
-        "gem_1": null,
-        "gem_1": null,
+        "gem_1": "Doublestrike",
+        "gem_2": "Empowered Combo",
+        "gem_3": "Analyze Weakness",
+    },
+    "ranks": {
+        "gem_1": "Rank X",
+        "gem_2": "Rank X",
+        "gem_3": "Rank X",
     },
     "accessories": {
         "accessory_1": null,
