@@ -89,6 +89,20 @@ const skillsGray = [
     { name: "Bullet Symphony", src: "img/skills/skill-37.png"},
 ];
 
+const skillsStrategos = [
+    { name: "Prowess Gambit", src: "img/skills/skill-11.png"},
+    { name: "Sapping Gambit", src: "img/skills/skill-21.png"},
+    { name: "Strengthening Gambit", src: "img/skills/skill-21.png"},
+    { name: "Preemption Gambit", src: "img/skills/skill-23.png"},
+];
+
+const skillsStalker = [
+    { name: "Swift Death", src: "img/skills/skill-11.png"},
+    { name: "In Cold Blood", src: "img/skills/skill-25.png"},
+    { name: "Evasion Expertise", src: "img/skills/skill-10.png"},
+    { name: "Serene Heart", src: "img/skills/skill-13.png"},
+];
+
 const skillsMaster = [
     { name: "None", src: "img/skills/skill-0.png"},
     { name: "Cypher Edge", src: "img/skills/skill-4.png"},
@@ -116,7 +130,7 @@ const skillsMaster = [
     { name: "Postioning Pro", src: "img/skills/skill-1.png"},
     { name: "Shock Shot", src: "img/skills/skill-38.png"},
     { name: "Strengthening Gambit", src: "img/skills/skill-21.png"},
-    { name: "Preemptive Gambit", src: "img/skills/skill-23.png"},
+    { name: "Preemption Gambit", src: "img/skills/skill-23.png"},
     { name: "Evasion Expertise", src: "img/skills/skill-10.png"},
     { name: "Swift Death", src: "img/skills/skill-11.png"},
     { name: "Natural Selection", src: "img/skills/skill-12.png"},
