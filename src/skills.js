@@ -103,6 +103,13 @@ const skillsStalker = [
     { name: "Serene Heart", src: "img/skills/skill-13.png"},
 ];
 
+const skillsLoneExile = [
+    { name: "Goading Attack", src: "img/skills/skill-13.png"},
+    { name: "Maniac", src: "img/skills/skill-11.png"},
+    { name: "Returning the Favor", src: "img/skills/skill-36.png"},
+    { name: "Natural Selection", src: "img/skills/skill-12.png"},
+];
+
 const skillsMaster = [
     { name: "None", src: "img/skills/skill-0.png"},
     { name: "Cypher Edge", src: "img/skills/skill-4.png"},

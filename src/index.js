@@ -68,6 +68,7 @@ function getStatsByClass(characterStored) {
         "Full Metal Jaguar": statsFullMetalJaguar,
         "Strategos": statsStrategos,
         "Stalker": statsStalker,
+        "Lone Exile": statsLoneExile,
 
         "Ethel": statsFlashFencer,
         "Valdi": statsWarMedic,
@@ -77,8 +78,8 @@ function getStatsByClass(characterStored) {
         "Gray": statsFullMetalJaguar,
         "Isurd": statsStrategos,
         "Juniper": statsStalker,
+        "Ashera": statsLoneExile,
     };
-    console.log(statsMap[JSON.parse(characterStored).class])
 
     classStats = statsMap[JSON.parse(characterStored).class];
     calculateStats(characterStored);
@@ -119,6 +120,7 @@ function getArtsByClass(characterStored) {
         "Full Metal Jaguar": artsFullMetalJaguar,
         "Strategos": artsStrategos,
         "Stalker": artsStalker,
+        "Lone Exile": artsLoneExile,
 
         "Ethel": artsEthel,
         "Valdi": artsValdi,
@@ -127,7 +129,8 @@ function getArtsByClass(characterStored) {
         "Riku & Manana": artsRikuManana,
         "Gray": artsGray,
         "Isurd": artsIsurd,
-        "Juniper": artsJuniper
+        "Juniper": artsJuniper,
+        "Ashera": artsAshera,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -149,6 +152,7 @@ function getMasterArtsByClass(characterStored) {
         "Full Metal Jaguar": artsMasterAgnus,
         "Strategos": artsMasterKeves,
         "Stalker": artsMasterKeves,
+        "Lone Exile": artsMasterAgnus,
 
         "Ethel": artsMasterAgnus,
         "Valdi": artsMasterAgnus,
@@ -158,6 +162,7 @@ function getMasterArtsByClass(characterStored) {
         "Gray": artsMasterAgnus,
         "Isurd": artsMasterKeves,
         "Juniper": artsMasterKeves,
+        "Ashera": artsMasterAgnus,
     };
     
     return artsMap[JSON.parse(characterStored).class];
@@ -179,6 +184,7 @@ function getSkillsByClass(characterStored) {
         "Full Metal Jaguar": skillsFullMetalJaguar,
         "Strategos": skillsStrategos,
         "Stalker": skillsStalker,
+        "Lone Exile": skillsLoneExile,
 
         "Ethel": skillsFlashFencer,
         "Valdi": skillsWarMedic,
@@ -188,6 +194,7 @@ function getSkillsByClass(characterStored) {
         "Gray": skillsGray,
         "Isurd": skillsStrategos,
         "Juniper": skillsStalker,
+        "Ashera": skillsLoneExile
     };
     
     currentSkills = skillsMap[JSON.parse(characterStored).class];

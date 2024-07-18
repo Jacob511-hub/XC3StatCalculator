@@ -235,3 +235,20 @@ const statsStalker = {
         "block": 6,
     }
 }
+
+const statsLoneExile = {
+    "class_stats": {
+        "hp": 1.10,
+        "attack": 0.95,
+        "healing_power": 0.15,
+        "dexterity": 1.10,
+        "agility": 1.25,
+        "physical_defense": 35,
+        "ether_defense": 50,
+    },
+    "weapon_stats": {
+        "attack": 534,
+        "critical": 24,
+        "block": 30,
+    }
+}
