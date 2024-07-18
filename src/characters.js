@@ -30,6 +30,13 @@
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
+    },
+    "stats": {
+        "hp": 6994,
+        "attack": 388,
+        "healing_power": 368,
+        "dexterity": 310,
+        "agility": 215,
     }
 }
 
@@ -65,6 +72,13 @@ let mioConfig = {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
+    },
+    "stats": {
+        "hp": 6754,
+        "attack": 361,
+        "healing_power": 341,
+        "dexterity": 306,
+        "agility": 234,
     }
 }
 
@@ -100,6 +114,13 @@ let eunieConfig = {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
+    },
+    "stats": {
+        "hp": 6364,
+        "attack": 346,
+        "healing_power": 409,
+        "dexterity": 298,
+        "agility": 223,
     }
 }
 
@@ -135,6 +156,13 @@ let taionConfig = {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
+    },
+    "stats": {
+        "hp": 6371,
+        "attack": 368,
+        "healing_power": 381,
+        "dexterity": 325,
+        "agility": 197,
     }
 }
 
@@ -170,6 +198,13 @@ let lanzConfig = {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
+    },
+    "stats": {
+        "hp": 7755,
+        "attack": 392,
+        "healing_power": 329,
+        "dexterity": 297,
+        "agility": 204,
     }
 }
 
@@ -205,6 +240,13 @@ let senaConfig = {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
+    },
+    "stats": {
+        "hp": 7125,
+        "attack": 398,
+        "healing_power": 346,
+        "dexterity": 282,
+        "agility": 216,
     }
 }
 
@@ -240,6 +282,13 @@ let heroConfig = {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
+    },
+    "stats": {
+        "hp": 6638,
+        "attack": 404,
+        "healing_power": 343,
+        "dexterity": 311,
+        "agility": 223,
     }
 }
 

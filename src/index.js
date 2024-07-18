@@ -1,4 +1,5 @@
 let currentCharacter = "noahConfig";
+let classStats;
 let classArts;
 let masterArts;
 let currentSkills;
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem(key, JSON.stringify(characterConfigs[key]));
         }
     }
+    classStats = getStatsByClass(localStorage.getItem(currentCharacter));
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     characterLoad(localStorage.getItem(currentCharacter));
@@ -41,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
            portrait.src = portraitImg;
            const characters = Object.keys(characterConfigs);
            currentCharacter = characters[index];
+           getStatsByClass(localStorage.getItem(currentCharacter));
            classArts = getArtsByClass(localStorage.getItem(currentCharacter));
            masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
            getSkillsByClass(localStorage.getItem(currentCharacter));
@@ -48,6 +51,36 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 });
+
+function getStatsByClass(characterStored) {
+    const statsMap = {
+        "Swordfighter": statsSwordfighter,
+        "Zephyr": statsZephyr,
+    };
+    console.log(statsMap[JSON.parse(characterStored).class])
+
+    classStats = statsMap[JSON.parse(characterStored).class];
+    calculateStats(characterStored);
+}
+
+function calculateStats(characterStored) {
+    let hp = Math.floor((JSON.parse(characterStored).stats.hp) * classStats["class_stats"]["hp"]);
+    let attack = Math.floor((JSON.parse(characterStored).stats.attack) * classStats["class_stats"]["attack"] + classStats["weapon_stats"]["attack"]);
+    let healingPower = Math.floor((JSON.parse(characterStored).stats.healing_power) * classStats["class_stats"]["healing_power"]);
+    let dexterity = Math.floor((JSON.parse(characterStored).stats.dexterity) * classStats["class_stats"]["dexterity"]);
+    let agility = Math.floor((JSON.parse(characterStored).stats.agility) * classStats["class_stats"]["agility"]);
+    let critical = classStats["weapon_stats"]["critical"] + "%";
+    let block = classStats["weapon_stats"]["block"] + "%";
+    let defensePhysical = classStats["class_stats"]["physical_defense"] + "%";
+    let defenseEther = classStats["class_stats"]["ether_defense"] + "%";
+
+    let newStats = [hp, attack, healingPower, dexterity, agility, critical, block, defensePhysical, defenseEther];
+    const currentStats = document.getElementsByClassName("stats-text");
+
+    for(index = 0; index < newStats.length; index++) {
+        currentStats[index].textContent = newStats[index];
+    }
+}
 
 function getArtsByClass(characterStored) {
     const artsMap = {
@@ -250,7 +283,7 @@ function populateMenu() {
             modifyCharacter(key, value, obj, obj);
             let className = document.getElementById("class-name");
             className.textContent = menuList[index].name;
-            artChangeClassSwap();
+            classSwap();
 
             if (characterType === "hero") {
                 const portraitImg = heroIcons[index].portraitSrc;
@@ -698,7 +731,8 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
 }
 
 // This function is called when the character's Class is changed, updating the list of selectable Arts and wiping set Master Skills
-function artChangeClassSwap() {
+function classSwap() {
+    getStatsByClass(localStorage.getItem(currentCharacter));
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     const artKeys = Object.keys(noahConfig.arts);
