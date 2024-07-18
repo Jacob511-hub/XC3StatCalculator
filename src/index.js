@@ -56,6 +56,27 @@ function getStatsByClass(characterStored) {
     const statsMap = {
         "Swordfighter": statsSwordfighter,
         "Zephyr": statsZephyr,
+        "Medic Gunner": statsMedicGunner,
+        "Tactician": statsTactician,
+        "Heavy Guard": statsHeavyGuard,
+        "Ogre": statsOgre,
+        "Flash Fencer": statsFlashFencer,
+        "War Medic": statsWarMedic,
+        "Guardian Commander": statsGuardianCommander,
+        "Thaumaturge": statsThaumaturge,
+        "Yumsmith": statsYumsmith,
+        "Full Metal Jaguar": statsFullMetalJaguar,
+        "Strategos": statsStrategos,
+        "Stalker": statsStalker,
+
+        "Ethel": statsFlashFencer,
+        "Valdi": statsWarMedic,
+        "Zeon": statsGuardianCommander,
+        "Teach": statsThaumaturge,
+        "Riku & Manana": statsYumsmith,
+        "Gray": statsFullMetalJaguar,
+        "Isurd": statsStrategos,
+        "Juniper": statsStalker,
     };
     console.log(statsMap[JSON.parse(characterStored).class])
 
