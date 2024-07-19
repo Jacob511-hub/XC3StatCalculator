@@ -227,6 +227,10 @@ function characterLoad(characterStored) {
     gemLoad(0, JSON.parse(characterStored).gems.gem_1, JSON.parse(characterStored).ranks.gem_1);
     gemLoad(1, JSON.parse(characterStored).gems.gem_2, JSON.parse(characterStored).ranks.gem_2);
     gemLoad(2, JSON.parse(characterStored).gems.gem_3, JSON.parse(characterStored).ranks.gem_3);
+
+    accessoryLoad(0, JSON.parse(characterStored).accessories.accessory_1, JSON.parse(characterStored).rarities.accessory_1);
+    accessoryLoad(1, JSON.parse(characterStored).accessories.accessory_2, JSON.parse(characterStored).rarities.accessory_2);
+    accessoryLoad(2, JSON.parse(characterStored).accessories.accessory_3, JSON.parse(characterStored).rarities.accessory_3);
 }
 
 var frToggle = document.getElementById("fr-toggle-button");
@@ -584,6 +588,102 @@ function populateMenuGems() {
     }
 }
 
+const accessoryButtons = document.getElementsByClassName("accessory");
+
+let accessorySelect = 0;
+
+for (let index = 0; index < accessoryButtons.length; index++) {
+    accessoryButtons[index].addEventListener("click", function() {
+        parent = document.getElementById("accessoryList");
+        clearMenu();
+        accessorySelect = index;
+        classMenu = document.getElementById("accessoriesModal");
+        populateMenuAccessories();
+        classMenu.style.display = "block";
+    })
+    accessoryButtons[index].addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+        accessoryLoad(index, null, null);
+        const accessoryKeys = Object.keys(noahConfig.accessories);
+        let obj = getConfig();
+        modifyCharacter(accessoryKeys[index], null, obj, obj.accessories);
+    })
+}
+
+function populateMenuAccessories() {
+    let parent = accessoryButtons[accessorySelect];
+    console.log(parent)
+    for (let index = 0; index < accessories.length; index++) {
+        let currentRarity = 2;
+        const modalIcon = document.createElement("div");
+        modalIcon.className = "modal-icon";
+        modalIcon.classList.add("modal-icon-accessory");
+
+        const accessorySlot = document.createElement("img");
+        accessorySlot.src = "img/equipment/accessories/accessory-slot.png";
+        accessorySlot.className = "accessory-features";
+        const accessoryRarity = document.createElement("img");
+        accessoryRarity.src = "img/equipment/accessories/accessory-legendary.png";
+        accessoryRarity.className = "accessory-features";
+        const accessoryType = document.createElement("img");
+        accessoryType.src = accessories[index].src;
+        accessoryType.className = "accessory-features";
+        const accessoryName = document.createElement("h1");
+        accessoryName.textContent = accessories[index].name;
+        accessoryName.className = "accessory-text";
+        
+        modalIcon.appendChild(accessorySlot);
+        modalIcon.appendChild(accessoryRarity);
+        modalIcon.appendChild(accessoryType);
+        modalIcon.appendChild(accessoryName);
+
+        const element = document.getElementById("accessoryList");
+        element.appendChild(modalIcon);
+
+        modalIcon.addEventListener("contextmenu", function(event) {
+            event.preventDefault()
+            currentRarity = currentRarity + 1;
+
+            if (currentRarity > 2) {
+                currentRarity = 0;
+            }
+            accessoryRarity.src = rarities[currentRarity].src;
+        })
+
+        modalIcon.addEventListener("click", () => {
+            const accessoryKeys = Object.keys(noahConfig.accessories);
+            const rarityKeys = Object.keys(noahConfig.rarities);
+            const key1 = accessoryKeys[accessorySelect];
+            const key2 = rarityKeys[accessorySelect];
+            const value1 = accessories[index].name;
+            const value2 = rarities[currentRarity].name;
+            let obj = getConfig();
+
+            for (let indexA = 0; indexA < accessoryKeys.length; indexA++) {
+                if (obj.accessories[accessoryKeys[indexA]] === accessories[index].name && obj.accessories[accessoryKeys[indexA]] != "None") {
+                    accessoryLoad(indexA, obj.accessories[accessoryKeys[accessorySelect]], obj.rarities[rarityKeys[accessorySelect]]);
+                    modifyCharacter(accessoryKeys[indexA], obj.accessories[accessoryKeys[accessorySelect]], obj, obj.accessories);
+                }
+            }
+
+            modifyCharacter(key1, value1, obj, obj.accessories);
+            modifyCharacter(key2, value2, obj, obj.rarities);
+
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+            accessoryName.classList.add("accessory-text-2");
+
+            parent.appendChild(accessorySlot.cloneNode(true));
+            parent.appendChild(accessoryType.cloneNode(true));
+            parent.appendChild(accessoryRarity.cloneNode(true));
+            parent.appendChild(accessoryName.cloneNode(true));
+
+            classMenu.style.display = "none";
+        })
+    }
+}
+
 function skillLoad(slotNumber, loadedSkillName) {
     let slot = skills[slotNumber];
     let loadedSkill;
@@ -756,6 +856,52 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     image2.className = "gem-features";
     slot.appendChild(image1);
     slot.appendChild(image2);
+}
+
+function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
+    let slot = accessoryButtons[slotNumber];
+    let loadedType;
+    let loadedRarity;
+    let type;
+    let rarity;
+
+    if (loadedAccessoryType === null) {
+        while (slot.firstChild) {
+            slot.removeChild(slot.firstChild);
+        }
+        const image = document.createElement("img");
+        image.src = "img/equipment/accessories/accessory-slot.png";
+        slot.appendChild(image);
+        return;
+    }
+    else {
+        type = accessories.findIndex(type => type.name === loadedAccessoryType);
+        loadedType = accessories[type];
+        rarity = rarities.findIndex(rarity => rarity.name === loadedAccessoryRarity);
+        loadedRarity = rarities[rarity];
+    }
+
+    while (slot.firstChild) {
+        slot.removeChild(slot.firstChild);
+    }
+    const accessorySlot = document.createElement("img");
+    accessorySlot.src = "img/equipment/accessories/accessory-slot.png";
+    accessorySlot.className = "accessory-features";
+    const image1 = document.createElement("img");
+    image1.src = loadedType.src;
+    image1.className = "accessory-features";
+    const image2 = document.createElement("img");
+    image2.src = loadedRarity.src;
+    image2.className = "accessory-features";
+    const name = document.createElement("h1");
+    name.textContent = loadedType.name;
+    name.className = "accessory-text";
+    name.classList.add("accessory-text-2");
+
+    slot.appendChild(accessorySlot);
+    slot.appendChild(image1);
+    slot.appendChild(image2);
+    slot.appendChild(name);
 }
 
 // This function is called when the character's Class is changed, updating the list of selectable Arts and wiping set Master Skills

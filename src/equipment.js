@@ -33,3 +33,21 @@ const gemRanks = [
     { name: "Rank IX", src: "img/equipment/gems/gem-rank-ix.png"},
     { name: "Rank X", src: "img/equipment/gems/gem-rank-x.png"},
 ];
+
+const accessories = [
+    { name: "Titanium Temple Guard", src: "img/equipment/accessories/accessory-hat.png"},
+    { name: "Carbon Gloves", src: "img/equipment/accessories/accessory-gloves.png"},
+    { name: "Titanium Support", src: "img/equipment/accessories/accessory-vest.png"},
+    { name: "Solid Weak Guard", src: "img/equipment/accessories/accessory-shoes.png"},
+    { name: "Ceramic Belt", src: "img/equipment/accessories/accessory-belt.png"},
+    { name: "Memory Locket", src: "img/equipment/accessories/accessory-choker.png"},
+    { name: "Shackle Ring", src: "img/equipment/accessories/accessory-jewelry.png"},
+    { name: "Fraternal Badge", src: "img/equipment/accessories/accessory-medal.png"},
+    { name: "Archsage's Flower Fan", src: "img/equipment/accessories/accessory-other.png"},
+];
+
+const rarities = [
+    { name: "Common", src: "img/equipment/accessories/accessory-common.png"},
+    { name: "Rare", src: "img/equipment/accessories/accessory-rare.png"},
+    { name: "Legendary", src: "img/equipment/accessories/accessory-legendary.png"},
+]

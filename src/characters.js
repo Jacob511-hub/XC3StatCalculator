@@ -31,6 +31,11 @@
         "accessory_2": null,
         "accessory_3": null,
     },
+    "rarities": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    },
     "stats": {
         "hp": 6994,
         "attack": 388,
@@ -69,6 +74,11 @@ let mioConfig = {
         "gem_3": null,
     },
     "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    },
+    "rarities": {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
@@ -115,6 +125,11 @@ let eunieConfig = {
         "accessory_2": null,
         "accessory_3": null,
     },
+    "rarities": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    },
     "stats": {
         "hp": 6364,
         "attack": 346,
@@ -153,6 +168,11 @@ let taionConfig = {
         "gem_3": null,
     },
     "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    },
+    "rarities": {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
@@ -199,6 +219,11 @@ let lanzConfig = {
         "accessory_2": null,
         "accessory_3": null,
     },
+    "rarities": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    },
     "stats": {
         "hp": 7755,
         "attack": 392,
@@ -241,6 +266,11 @@ let senaConfig = {
         "accessory_2": null,
         "accessory_3": null,
     },
+    "rarities": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    },
     "stats": {
         "hp": 7125,
         "attack": 398,
@@ -279,6 +309,11 @@ let heroConfig = {
         "gem_3": "Rank X",
     },
     "accessories": {
+        "accessory_1": null,
+        "accessory_2": null,
+        "accessory_3": null,
+    },
+    "rarities": {
         "accessory_1": null,
         "accessory_2": null,
         "accessory_3": null,
