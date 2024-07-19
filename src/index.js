@@ -612,7 +612,6 @@ for (let index = 0; index < accessoryButtons.length; index++) {
 
 function populateMenuAccessories() {
     let parent = accessoryButtons[accessorySelect];
-    console.log(parent)
     for (let index = 0; index < accessories.length; index++) {
         let currentRarity = 2;
         const modalIcon = document.createElement("div");
@@ -913,10 +912,21 @@ function classSwap() {
     const skillKeys = Object.keys(noahConfig.skills);
 
     if (currentCharacter === "heroConfig") {
-        let value = classArts[5].name;
-        const key = artKeys[6];
+        let valueArts = classArts[5].name;
+        const keyArts = artKeys[6];
         let obj = getConfig();
-        modifyCharacter(key, value, obj, obj.arts);
+        modifyCharacter(keyArts, valueArts, obj, obj.arts);
+
+        item = heroIcons.findIndex(item => item.name === obj.class);
+        const statKeys = Object.keys(heroConfig.stats);
+        const statsArray = ["hp", "attack", "healing_power", "dexterity", "agility"]
+
+        for (let index = 0; index < statKeys.length; index++) {
+            const keyStats = statKeys[index];
+            let valueStats = heroIcons[item][statsArray[index]];
+            modifyCharacter(keyStats, valueStats, obj, obj.stats);
+            getStatsByClass(localStorage.getItem(currentCharacter));
+        }
     }
 
     for (let index = 0; index < 3; index++) {

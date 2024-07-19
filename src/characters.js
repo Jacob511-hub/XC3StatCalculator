@@ -344,8 +344,8 @@ const portraitsImages = [
  ];
 
  const heroIcons = [
-    { name: "Ethel", src: "img/heroes/ethel-select.png", portraitSrc: "img/portraits/heroes/EthelPortrait.png", buttonSrc: "img/party/heroes/EthelParty.png" },
-    { name: "Valdi", src: "img/heroes/valdi-select.png", portraitSrc: "img/portraits/heroes/ValdiPortrait.png", buttonSrc: "img/party/heroes/ValdiParty.png" },
+    { name: "Ethel", src: "img/heroes/ethel-select.png", portraitSrc: "img/portraits/heroes/EthelPortrait.png", buttonSrc: "img/party/heroes/EthelParty.png", hp: 6638, attack: 404, healing_power: 343, dexterity: 311, agility: 223},
+    { name: "Valdi", src: "img/heroes/valdi-select.png", portraitSrc: "img/portraits/heroes/ValdiPortrait.png", buttonSrc: "img/party/heroes/ValdiParty.png", hp: 6763, attack: 363, healing_power: 404, dexterity: 311, agility: 201},
     { name: "Zeon", src: "img/heroes/zeon-select.png", portraitSrc: "img/portraits/heroes/ZeonPortrait.png", buttonSrc: "img/party/heroes/ZeonParty.png" },
     { name: "Teach", src: "img/heroes/teach-select.png", portraitSrc: "img/portraits/heroes/TeachPortrait.png", buttonSrc: "img/party/heroes/TeachParty.png" },
     { name: "Riku & Manana", src: "img/heroes/riku-manana-select.png", portraitSrc: "img/portraits/heroes/RikuMananaPortrait.png", buttonSrc: "img/party/heroes/RikuMananaParty.png" },
