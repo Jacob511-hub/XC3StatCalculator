@@ -29,7 +29,7 @@ const gemRanks = [
     { name: "Rank V", src: "img/equipment/gems/gem-rank-v.png"},
     { name: "Rank VI", src: "img/equipment/gems/gem-rank-vi.png"},
     { name: "Rank VII", src: "img/equipment/gems/gem-rank-vii.png"},
-    { name: "Rank VIII", src: "img/equipment/gems/gem-rank-vii.png"},
+    { name: "Rank VIII", src: "img/equipment/gems/gem-rank-viii.png"},
     { name: "Rank IX", src: "img/equipment/gems/gem-rank-ix.png"},
     { name: "Rank X", src: "img/equipment/gems/gem-rank-x.png"},
 ];
