@@ -215,6 +215,27 @@ const skillsMasterDriver = [
     { name: "Flash and Flame", src: "img/skills/skill-4.png"},
 ];
 
+const skillsLuckySevenAttacker = [
+    { name: "Cut In Half", src: "img/skills/skill-27.png"},
+    { name: "Opening Stand", src: "img/skills/skill-18.png"},
+    { name: "Realm of the Master", src: "img/skills/skill-4.png"},
+    { name: "Silent Sword", src: "img/skills/skill-13.png"},
+];
+
+const skillsLuckySevenDefender = [
+    { name: "Flash of Avoidance", src: "img/skills/skill-19.png"},
+    { name: "I Will Take Over", src: "img/skills/skill-13.png"},
+    { name: "Never Again", src: "img/skills/skill-10.png"},
+    { name: "Unwavering Will", src: "img/skills/skill-33.png"},
+];
+
+const skillsLuckySevenHealer = [
+    { name: "Encouragement", src: "img/skills/skill-26.png"},
+    { name: "Extinguishing Bloodlust", src: "img/skills/skill-13.png"},
+    { name: "Indomitable Will", src: "img/skills/skill-1.png"},
+    { name: "Sword of Protection", src: "img/skills/skill-11.png"},
+];
+
 const skillsMaster = [
     { name: "None", src: "img/skills/skill-0.png"},
     { name: "Cypher Edge", src: "img/skills/skill-4.png"},

@@ -575,3 +575,54 @@ const statsMasterDriver = {
         "block": 8,
     }
 }
+
+const statsLuckySevenAttacker = {
+    "class_stats": {
+        "hp": 0.90,
+        "attack": 1.40,
+        "healing_power": 0.50,
+        "dexterity": 1.50,
+        "agility": 1.00,
+        "physical_defense": 30,
+        "ether_defense": 30,
+    },
+    "weapon_stats": {
+        "attack": 686,
+        "critical": 50,
+        "block": 50,
+    }
+}
+
+const statsLuckySevenDefender = {
+    "class_stats": {
+        "hp": 1.20,
+        "attack": 1.00,
+        "healing_power": 0.50,
+        "dexterity": 1.50,
+        "agility": 1.40,
+        "physical_defense": 60,
+        "ether_defense": 60,
+    },
+    "weapon_stats": {
+        "attack": 686,
+        "critical": 50,
+        "block": 50,
+    }
+}
+
+const statsLuckySevenHealer = {
+    "class_stats": {
+        "hp": 0.80,
+        "attack": 0.90,
+        "healing_power": 1.50,
+        "dexterity": 1.50,
+        "agility": 1.00,
+        "physical_defense": 20,
+        "ether_defense": 40,
+    },
+    "weapon_stats": {
+        "attack": 686,
+        "critical": 50,
+        "block": 50,
+    }
+}
