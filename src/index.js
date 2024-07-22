@@ -674,8 +674,8 @@ function populateMenuAccessories() {
             accessoryName.classList.add("accessory-text-2");
 
             parent.appendChild(accessorySlot.cloneNode(true));
-            parent.appendChild(accessoryType.cloneNode(true));
             parent.appendChild(accessoryRarity.cloneNode(true));
+            parent.appendChild(accessoryType.cloneNode(true));
             parent.appendChild(accessoryName.cloneNode(true));
 
             classMenu.style.display = "none";
@@ -898,8 +898,8 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     name.classList.add("accessory-text-2");
 
     slot.appendChild(accessorySlot);
-    slot.appendChild(image1);
     slot.appendChild(image2);
+    slot.appendChild(image1);
     slot.appendChild(name);
 }
 
