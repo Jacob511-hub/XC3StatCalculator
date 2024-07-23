@@ -157,6 +157,36 @@ const artsLoneExile = [
     { name: "Jaws of Death", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
 ];
 
+const artsLuckySevenAttacker = [
+    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+];
+
+const artsLuckySevenDefender = [
+    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+];
+
+const artsLuckySevenHealer = [
+    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
+    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+];
+
 const artsMasterKeves = [
     { name: "None", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/reaction/art-blank.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
     { name: "Ground Beat", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},

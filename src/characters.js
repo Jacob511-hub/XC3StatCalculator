@@ -398,3 +398,9 @@ const classIcons = [
     { name: "Noponic Champion", src: "img/classes/NoponicChampion.png" },
     { name: "Lapidarist", src: "img/classes/Lapidarist.png" }
 ];
+
+const luckySevenIcons = [
+    { name: "Lucky Seven (Attacker)", src: "img/classes/LuckySevenAttacker.png" },
+    { name: "Lucky Seven (Defender)", src: "img/classes/LuckySevenDefender.png" },
+    { name: "Lucky Seven (Healer)", src: "img/classes/LuckySevenHealer.png" },
+];

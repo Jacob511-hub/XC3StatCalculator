@@ -70,6 +70,10 @@ function getStatsByClass(characterStored) {
         "Stalker": statsStalker,
         "Lone Exile": statsLoneExile,
 
+        "Lucky Seven (Attacker)": statsLuckySevenAttacker,
+        "Lucky Seven (Defender)": statsLuckySevenDefender,
+        "Lucky Seven (Healer)": statsLuckySevenHealer,
+
         "Ethel": statsFlashFencer,
         "Valdi": statsWarMedic,
         "Zeon": statsGuardianCommander,
@@ -122,6 +126,10 @@ function getArtsByClass(characterStored) {
         "Stalker": artsStalker,
         "Lone Exile": artsLoneExile,
 
+        "Lucky Seven (Attacker)": artsLuckySevenAttacker,
+        "Lucky Seven (Defender)": artsLuckySevenDefender,
+        "Lucky Seven (Healer)": artsLuckySevenHealer,
+
         "Ethel": artsEthel,
         "Valdi": artsValdi,
         "Zeon": artsZeon,
@@ -153,6 +161,10 @@ function getMasterArtsByClass(characterStored) {
         "Strategos": artsMasterKeves,
         "Stalker": artsMasterKeves,
         "Lone Exile": artsMasterAgnus,
+
+        "Lucky Seven (Attacker)": artsLuckySevenAttacker,
+        "Lucky Seven (Defender)": artsLuckySevenDefender,
+        "Lucky Seven (Healer)": artsLuckySevenHealer,
 
         "Ethel": artsMasterAgnus,
         "Valdi": artsMasterAgnus,
@@ -186,6 +198,10 @@ function getSkillsByClass(characterStored) {
         "Stalker": skillsStalker,
         "Lone Exile": skillsLoneExile,
 
+        "Lucky Seven (Attacker)": skillsLuckySevenAttacker,
+        "Lucky Seven (Defender)": skillsLuckySevenDefender,
+        "Lucky Seven (Healer)": skillsLuckySevenHealer,
+
         "Ethel": skillsFlashFencer,
         "Valdi": skillsWarMedic,
         "Zeon": skillsGuardianCommander,
@@ -208,6 +224,42 @@ function getSkillsByClass(characterStored) {
         $(skills[index]).attr('title', currentSkills[index].name).tooltip('dispose').tooltip();
     };
 }
+
+function getClassRole(characterStored) {
+    const roleMap = {
+        "Swordfighter": "Attacker",
+        "Zephyr": "Defender",
+        "Medic Gunner": "Healer",
+        "Tactician": "Healer",
+        "Heavy Guard": "Defender",
+        "Ogre": "Attacker",
+        "Flash Fencer": "Attacker",
+        "War Medic": "Healer",
+        "Guardian Commander": "Defender",
+        "Thaumaturge": "Healer",
+        "Yumsmith": "Attacker",
+        "Full Metal Jaguar": "Attacker",
+        "Strategos": "Healer",
+        "Stalker": "Attacker",
+        "Lone Exile": "Defender",
+
+        "Lucky Seven (Attacker)": "Attacker",
+        "Lucky Seven (Defender)": "Defender",
+        "Lucky Seven (Healer)": "Healer",
+
+        "Ethel": "Attacker",
+        "Valdi": "Attacker",
+        "Zeon": "Defender",
+        "Teach": "Healer",
+        "Riku & Manana": "Attacker",
+        "Gray": "Attacker",
+        "Isurd": "Healer",
+        "Juniper": "Attacker",
+        "Ashera": "Defender"
+    };
+
+    return roleMap[JSON.parse(characterStored).class];
+};
 
 function characterLoad(characterStored) {
     classLoad(JSON.parse(characterStored).class);
@@ -335,7 +387,8 @@ let skillSlot = 0;
 
 for (let index = 0; index < 3; index++) {
     skills[index + 4].addEventListener("click", function() {
-        if (currentCharacter === "heroConfig") {
+        let obj = getConfig();
+        if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
             return;
         }
         skillSlot = index;
@@ -408,13 +461,18 @@ let classArt = 0;
 
 for (let index = 0; index < arts.length; index++) {
     arts[index].addEventListener("click", function() {
+        let obj =getConfig();
+        if (obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
+            return;
+        }
         classArt = index;
         artsMenu();
      })
 }
 
 talentArt.addEventListener("click", () => {
-    if (currentCharacter === "heroConfig") {
+    let obj =getConfig();
+    if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
         return;
     }
     classArt = 6;
@@ -423,7 +481,7 @@ talentArt.addEventListener("click", () => {
 
 function artsMenu() {
     if (classArt < 3) {
-        if (currentCharacter === "heroConfig") {
+        if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
             return;
         }
     }
@@ -469,9 +527,9 @@ function populateMenuArts() {
             artImage[indexA].className = "art-features";
         }
         artImage[0].src = artList[index].recharge;
-        artImage[1].src = artList[index].type;
-        artImage[2].src = artList[index].reaction;
-        artImage[3].src = artList[index].aoe;
+        artImage[1].src = artList[index].reaction;
+        artImage[2].src = artList[index].aoe;
+        artImage[3].src = artList[index].type;
 
         modalIcon.appendChild(artSlot);
 
@@ -687,14 +745,15 @@ function skillLoad(slotNumber, loadedSkillName) {
     let slot = skills[slotNumber];
     let loadedSkill;
     let item;
+    let obj = getConfig();
 
-    if (loadedSkillName === null) {
+    if (loadedSkillName === null || loadedSkillName === "None") {
         while (slot.firstChild) {
             slot.removeChild(slot.firstChild);
         }
         const image = document.createElement("img");
         image.src = "img/skills/skill-0.png";
-        if (currentCharacter === "heroConfig") {
+        if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
             image.classList.add("fade");
         }
         slot.appendChild(image);
@@ -721,6 +780,7 @@ function artLoad(slotNumber, loadedArtName) {
     let loadedArt;
     let item;
     let artList;
+    let obj = getConfig();
 
     if (slotNumber < 3){
         slot = arts[slotNumber];
@@ -733,7 +793,12 @@ function artLoad(slotNumber, loadedArtName) {
     else if (slotNumber === 6) {
         slot = talentArt;
         if (currentCharacter === "noahConfig") {
-            artList = talentArtsNoah.concat(talentArts);
+            if (obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
+                artList = classArts;
+            }
+            else {
+                artList = talentArtsNoah.concat(talentArts);
+            }
         }
         else if (currentCharacter === "mioConfig") {
             artList = talentArtsMio.concat(talentArts);
@@ -779,14 +844,44 @@ function artLoad(slotNumber, loadedArtName) {
     }
 
     artImage[0].src = loadedArt.recharge;
-    artImage[1].src = loadedArt.type;
-    artImage[2].src = loadedArt.reaction;
-    artImage[3].src = loadedArt.aoe;
+    artImage[1].src = loadedArt.reaction;
+    artImage[2].src = loadedArt.aoe;
+    artImage[3].src = loadedArt.type;
+
+    if (obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
+        artImage[3].classList.add("unlimited-sword-icons");
+    }
 
     for (let indexA = 0; indexA < 4; indexA++) {
         slot.appendChild(artImage[indexA]);
     }
-    
+
+    if (artList[item].name === "Unlimited Sword") {
+        artName.classList.add("unlimited-sword-text");
+        artName.onclick = function() {
+            const key = "class";
+            const role = getClassRole(localStorage.getItem(currentCharacter));
+            let value;
+            if (role === "Attacker") {
+                value = "Lucky Seven (Attacker)";
+            }
+            else if (role === "Defender") {
+                value = "Lucky Seven (Defender)";
+            }
+            else if (role === "Healer") {
+                value = "Lucky Seven (Healer)";
+            }
+            modifyCharacter(key, value, obj, obj);
+            let className = document.getElementById("class-name");
+            className.textContent = obj.class;
+            classSwap();
+        }
+    }
+    else {
+        artName.classList.remove("unlimited-sword-text");
+        artName.onclick = null;
+    }
+
     artName.textContent = artList[item].name;
 }
 
@@ -804,6 +899,16 @@ function classLoad(currentClass) {
         const buttonImage = heroIcons[item].buttonSrc;
         heroButtonImg.src = buttonImage;
         portraitsImages[6].src = portraitImg;
+        getSkillsByClass(localStorage.getItem(currentCharacter));
+        classButton.appendChild(image);
+        let className = document.getElementById("class-name");
+        className.textContent = currentClass;
+    }
+    else if (currentClass === "Lucky Seven (Attacker)" || currentClass === "Lucky Seven (Defender)" || currentClass === "Lucky Seven (Healer)") {
+        item = luckySevenIcons.findIndex(item => item.name === currentClass);
+        const image = document.createElement("img");
+        image.src = luckySevenIcons[item].src;
+        image.className = "classSymbol";
         getSkillsByClass(localStorage.getItem(currentCharacter));
         classButton.appendChild(image);
         let className = document.getElementById("class-name");
@@ -905,6 +1010,7 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
 
 // This function is called when the character's Class is changed, updating the list of selectable Arts and wiping set Master Skills
 function classSwap() {
+    let characterStored = localStorage.getItem(currentCharacter);
     getStatsByClass(localStorage.getItem(currentCharacter));
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
@@ -928,10 +1034,25 @@ function classSwap() {
             getStatsByClass(localStorage.getItem(currentCharacter));
         }
     }
+    else if (JSON.parse(characterStored).class === "Lucky Seven (Attacker)" || JSON.parse(characterStored).class === "Lucky Seven (Defender)" || JSON.parse(characterStored).class === "Lucky Seven (Healer)") {
+        let valueArts = classArts[6].name;
+        const keyArts = artKeys[6];
+        let obj = getConfig();
+        modifyCharacter(keyArts, valueArts, obj, obj.arts);
+    }
+    else if (JSON.parse(characterStored).arts.art_talent === "Final Lucky Seven") {
+        let valueArts = "Unlimited Sword";
+        const keyArts = artKeys[6];
+        let obj = getConfig();
+        modifyCharacter(keyArts, valueArts, obj, obj.arts);
+    }
 
     for (let index = 0; index < 3; index++) {
         let value = "None";
-        if (currentCharacter === "heroConfig") {
+        if (JSON.parse(characterStored).class === "Lucky Seven (Attacker)" || JSON.parse(characterStored).class === "Lucky Seven (Defender)" || JSON.parse(characterStored).class === "Lucky Seven (Healer)") {
+            value = classArts[index + 3].name;
+        }
+        else if (currentCharacter === "heroConfig") {
             value = null;
         }
         const key = artKeys[index];

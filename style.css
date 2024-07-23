@@ -608,6 +608,16 @@ body {
     padding-right: 10px;
 }
 
+.unlimited-sword-text {
+    color: #cc7f19;
+    cursor: pointer;
+    animation: pulse-shadow-text 2s infinite linear;
+}
+
+.unlimited-sword-icons {
+    animation: pulse-shadow 1.5s infinite linear;
+}
+
 .skillSlot {
     cursor: pointer;
 }
@@ -673,4 +683,28 @@ body {
 @keyframes dropdown {
     from {transform: translateY(-50px); opacity: 0;}
     to {transform: translateY(0); opacity: 1;}
+}
+
+@keyframes pulse-shadow {
+    0% {
+        filter: drop-shadow(0px 0px 0px #ffffff00);
+    }
+    50% {
+        filter: drop-shadow(0px 0px 10px #ffffff);
+    }
+    100% {
+        filter: drop-shadow(0px 0px 0px #ffffff00);
+    }
+}
+
+@keyframes pulse-shadow-text {
+    0% {
+        text-shadow: 0px 0px 0px #ffffff00;
+    }
+    50% {
+        text-shadow: 0px 0px 10px #ffffff;
+    }
+    100% {
+        text-shadow: 0px 0px 0px #ffffff00;
+    }
 }
