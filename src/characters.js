@@ -388,7 +388,7 @@ const classIcons = [
     { name: "Incursor", src: "img/classes/Incursor.png" },
     { name: "Lost Vanguard", src: "img/classes/LostVanguard.png" },
     { name: "Signifer", src: "img/classes/Signifer.png" },
-    { name: "Soulhacker", src: "img/classes/Soulhacker.png" },
+    { name: "Soulhacker (Power)", src: "img/classes/Soulhacker.png" },
     { name: "Martial Artist", src: "img/classes/MartialArtist.png" },
     { name: "Troubadour", src: "img/classes/Troubadour.png" },
     { name: "Seraph", src: "img/classes/Seraph.png" },
@@ -403,4 +403,13 @@ const luckySevenIcons = [
     { name: "Lucky Seven (Attacker)", src: "img/classes/LuckySevenAttacker.png" },
     { name: "Lucky Seven (Defender)", src: "img/classes/LuckySevenDefender.png" },
     { name: "Lucky Seven (Healer)", src: "img/classes/LuckySevenHealer.png" },
+];
+
+const SoulhackerRoles = [
+    { name: "Soulhacker (Power)", role: "Power Soul", src: "img/skills/skill-3.png", class: "img/classes/Soulhacker.png"},
+    { name: "Soulhacker (Strike)", role: "Strike Soul", src: "img/skills/skill-3.png", class: "img/classes/Soulhacker.png" },
+    { name: "Soulhacker (Tough)", role: "Tough Soul", src: "img/skills/skill-5.png", class: "img/classes/Soulhacker.png" },
+    { name: "Soulhacker (Dodge)", role: "Dodge Soul", src: "img/skills/skill-5.png", class: "img/classes/Soulhacker.png" },
+    { name: "Soulhacker (Heal)", role: "Healing Soul", src: "img/skills/skill-2.png", class: "img/classes/Soulhacker.png" },
+    { name: "Soulhacker (Balanced)", role: "Balanced Soul", src: "img/skills/skill-2.png", class: "img/classes/Soulhacker.png" },
 ];

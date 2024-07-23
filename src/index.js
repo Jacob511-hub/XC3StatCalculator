@@ -39,15 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
            return;
         }
         buttons[index].addEventListener("click", () => {
-           const portraitImg = portraitsImages[index].src
-           portrait.src = portraitImg;
-           const characters = Object.keys(characterConfigs);
-           currentCharacter = characters[index];
-           getStatsByClass(localStorage.getItem(currentCharacter));
-           classArts = getArtsByClass(localStorage.getItem(currentCharacter));
-           masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
-           getSkillsByClass(localStorage.getItem(currentCharacter));
-           characterLoad(localStorage.getItem(currentCharacter));
+            const portraitImg = portraitsImages[index].src
+            portrait.src = portraitImg;
+            const characters = Object.keys(characterConfigs);
+            currentCharacter = characters[index];
+            getStatsByClass(localStorage.getItem(currentCharacter));
+            classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+            masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
+            getSkillsByClass(localStorage.getItem(currentCharacter));
+            characterLoad(localStorage.getItem(currentCharacter));
         })
     }
 });
@@ -69,6 +69,13 @@ function getStatsByClass(characterStored) {
         "Strategos": statsStrategos,
         "Stalker": statsStalker,
         "Lone Exile": statsLoneExile,
+
+        "Soulhacker (Power)": statsSoulhackerPower,
+        "Soulhacker (Strike)": statsSoulhackerStrike,
+        "Soulhacker (Tough)": statsSoulhackerTough,
+        "Soulhacker (Dodge)": statsSoulhackerDodge,
+        "Soulhacker (Heal)": statsSoulhackerHeal,
+        "Soulhacker (Balanced)": statsSoulhackerBalanced,
 
         "Lucky Seven (Attacker)": statsLuckySevenAttacker,
         "Lucky Seven (Defender)": statsLuckySevenDefender,
@@ -126,6 +133,13 @@ function getArtsByClass(characterStored) {
         "Stalker": artsStalker,
         "Lone Exile": artsLoneExile,
 
+        "Soulhacker (Power)": artsSoulhackerA,
+        "Soulhacker (Strike)": artsSoulhackerA,
+        "Soulhacker (Tough)": artsSoulhackerA,
+        "Soulhacker (Dodge)": artsSoulhackerA,
+        "Soulhacker (Heal)": artsSoulhackerA,
+        "Soulhacker (Balanced)": artsSoulhackerA,
+
         "Lucky Seven (Attacker)": artsLuckySevenAttacker,
         "Lucky Seven (Defender)": artsLuckySevenDefender,
         "Lucky Seven (Healer)": artsLuckySevenHealer,
@@ -161,6 +175,13 @@ function getMasterArtsByClass(characterStored) {
         "Strategos": artsMasterKeves,
         "Stalker": artsMasterKeves,
         "Lone Exile": artsMasterAgnus,
+
+        "Soulhacker (Power)": artsSoulhackerB,
+        "Soulhacker (Strike)": artsSoulhackerB,
+        "Soulhacker (Tough)": artsSoulhackerB,
+        "Soulhacker (Dodge)": artsSoulhackerB,
+        "Soulhacker (Heal)": artsSoulhackerB,
+        "Soulhacker (Balanced)": artsSoulhackerB,
 
         "Lucky Seven (Attacker)": artsLuckySevenAttacker,
         "Lucky Seven (Defender)": artsLuckySevenDefender,
@@ -198,6 +219,13 @@ function getSkillsByClass(characterStored) {
         "Stalker": skillsStalker,
         "Lone Exile": skillsLoneExile,
 
+        "Soulhacker (Power)": skillsSoulhackerClass,
+        "Soulhacker (Strike)": skillsSoulhackerClass,
+        "Soulhacker (Tough)": skillsSoulhackerClass,
+        "Soulhacker (Dodge)": skillsSoulhackerClass,
+        "Soulhacker (Heal)": skillsSoulhackerClass,
+        "Soulhacker (Balanced)": skillsSoulhackerClass,
+
         "Lucky Seven (Attacker)": skillsLuckySevenAttacker,
         "Lucky Seven (Defender)": skillsLuckySevenDefender,
         "Lucky Seven (Healer)": skillsLuckySevenHealer,
@@ -215,13 +243,26 @@ function getSkillsByClass(characterStored) {
     
     currentSkills = skillsMap[JSON.parse(characterStored).class];
 
-    for (let index = 0; index < currentSkills.length; index++) {
+    for (let index = 0; index < 4; index++) {
         let slot = skills[index];
         const image = document.createElement("img");
         image.src = currentSkills[index].src;
         slot.removeChild(slot.firstChild);
         slot.appendChild(image);
         $(skills[index]).attr('title', currentSkills[index].name).tooltip('dispose').tooltip();
+        if (currentSkills === skillsSoulhackerClass) {
+            skills[1].addEventListener("click", function() {
+                menuList = SoulhackerRoles;
+                parent = document.getElementById("classList");
+                clearMenu();
+                populateMenu();
+                classMenu = document.getElementById("classModal");
+                classMenu.style.display = "block";
+            })
+            if (index > 1) {
+                image.classList.add("fade");
+            }
+        }
     };
 }
 
@@ -308,6 +349,7 @@ let parent = document.getElementById("classList");
 
 classButton.onclick = function() {
     parent = document.getElementById("classList");
+    menuSwap();
     clearMenu();
     populateMenu();
     classMenu = document.getElementById("classModal");
@@ -330,14 +372,12 @@ let menuList= classIcons;
 let characterType = document.getElementById("buttonNoah").getAttribute("data-character-type");
 
 // This function swaps between the Class and Hero select menus
-function menuSwap(character) {
-    characterType = character.getAttribute("data-character-type");
-
-    if (characterType === "party") {
-        menuList= classIcons;
-    }
-    else if (characterType === "hero") {
+function menuSwap() {
+    if (currentCharacter === "heroConfig") {
         menuList= heroIcons;
+    }
+    else {
+        menuList= classIcons;
     }
 }
 
@@ -396,7 +436,16 @@ for (let index = 0; index < 3; index++) {
     })
 }
 
+let skillList = skillsMaster;
+
 function skillsMenu() {
+    let obj = getConfig();
+    if (SoulhackerRoles.some(item => item.name === obj.class)) {
+        skillList = skillsSoulhacker;
+    }
+    else {
+        skillList = skillsMaster;
+    }
     parent = document.getElementById("classList");
     clearMenu();
     populateMenuSkills();
@@ -406,10 +455,10 @@ function skillsMenu() {
 
 function populateMenuSkills() {
     let parent = skills[skillSlot + 4];
-    for (let index = 0; index < skillsMaster.length; index++) {
+    for (let index = 0; index < skillList.length; index++) {
         let skip = false;
         for (let indexA = 0; indexA < 4; indexA++) {
-            if (skillsMaster[index].name === currentSkills[indexA].name) {
+            if (skillList[index].name === currentSkills[indexA].name && currentSkills[indexA].name != "None") {
                 skip = true;
                 break;
             }
@@ -420,23 +469,23 @@ function populateMenuSkills() {
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
-        image.src = skillsMaster[index].src;
+        image.src = skillList[index].src;
 
         div.appendChild(image);
         const element = document.getElementById("classList");
         element.appendChild(div);
-        $(div).attr('title', skillsMaster[index].name).tooltip('dispose').tooltip();
+        $(div).attr('title', skillList[index].name).tooltip('dispose').tooltip();
         
         div.addEventListener("click", () => {
-            $(parent).attr('title', skillsMaster[index].name).tooltip('dispose').tooltip();
+            $(parent).attr('title', skillList[index].name).tooltip('dispose').tooltip();
 
             const skillKeys = Object.keys(noahConfig.skills);
             const key = skillKeys[skillSlot];
-            const value = skillsMaster[index].name;
+            const value = skillList[index].name;
             let obj = getConfig();
 
             for (let indexA = 0; indexA < skillKeys.length; indexA++) {
-                if (obj.skills[skillKeys[indexA]] === skillsMaster[index].name && obj.skills[skillKeys[indexA]] != "None") {
+                if (obj.skills[skillKeys[indexA]] === skillList[index].name && obj.skills[skillKeys[indexA]] != "None") {
                     skillLoad(indexA + 4, obj.skills[skillKeys[skillSlot]]);
                     modifyCharacter(skillKeys[indexA], obj.skills[skillKeys[skillSlot]], obj, obj.skills);
                 }
@@ -461,7 +510,7 @@ let classArt = 0;
 
 for (let index = 0; index < arts.length; index++) {
     arts[index].addEventListener("click", function() {
-        let obj =getConfig();
+        let obj = getConfig();
         if (obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
             return;
         }
@@ -472,7 +521,7 @@ for (let index = 0; index < arts.length; index++) {
 
 talentArt.addEventListener("click", () => {
     let obj =getConfig();
-    if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
+    if (currentCharacter === "heroConfig" || SoulhackerRoles.some(item => item.name === obj.class) || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
         return;
     }
     classArt = 6;
@@ -761,8 +810,8 @@ function skillLoad(slotNumber, loadedSkillName) {
         return;
     }
     else {
-        item = skillsMaster.findIndex(item => item.name === loadedSkillName);
-        loadedSkill = skillsMaster[item];
+        item = skillList.findIndex(item => item.name === loadedSkillName);
+        loadedSkill = skillList[item];
     }
 
     while (slot.firstChild) {
@@ -886,44 +935,50 @@ function artLoad(slotNumber, loadedArtName) {
 }
 
 function classLoad(currentClass) {
+    let image;
     while (classButton.children[1]) {
         classButton.removeChild(classButton.children[1]);
     }
     if (currentCharacter === "heroConfig") {
         item = heroIcons.findIndex(item => item.name === currentClass);
-        const image = document.createElement("img");
+        image = document.createElement("img");
         image.src = heroIcons[item].src;
-        image.className = "classSymbol";
         const portraitImg = heroIcons[item].portraitSrc;
         portrait.src = portraitImg;
         const buttonImage = heroIcons[item].buttonSrc;
         heroButtonImg.src = buttonImage;
         portraitsImages[6].src = portraitImg;
         getSkillsByClass(localStorage.getItem(currentCharacter));
-        classButton.appendChild(image);
-        let className = document.getElementById("class-name");
-        className.textContent = currentClass;
     }
     else if (currentClass === "Lucky Seven (Attacker)" || currentClass === "Lucky Seven (Defender)" || currentClass === "Lucky Seven (Healer)") {
         item = luckySevenIcons.findIndex(item => item.name === currentClass);
-        const image = document.createElement("img");
+        image = document.createElement("img");
         image.src = luckySevenIcons[item].src;
-        image.className = "classSymbol";
         getSkillsByClass(localStorage.getItem(currentCharacter));
-        classButton.appendChild(image);
-        let className = document.getElementById("class-name");
-        className.textContent = currentClass;
+    }
+    else if (SoulhackerRoles.some(obj => obj.name === currentClass)) {
+        item = SoulhackerRoles.findIndex(item => item.name === currentClass);
+        image = document.createElement("img");
+        image.src = SoulhackerRoles[item].class;
+        getSkillsByClass(localStorage.getItem(currentCharacter));
+
+        let slot = skills[1];
+        let imageSkill = document.createElement("img");
+        imageSkill.src = SoulhackerRoles[item].src;
+        slot.removeChild(slot.firstChild);
+        slot.appendChild(imageSkill);
+        $(skills[1]).attr('title', SoulhackerRoles[item].role).tooltip('dispose').tooltip();
     }
     else {
         item = classIcons.findIndex(item => item.name === currentClass);
-        const image = document.createElement("img");
+        image = document.createElement("img");
         image.src = classIcons[item].src;
-        image.className = "classSymbol";
         getSkillsByClass(localStorage.getItem(currentCharacter));
-        classButton.appendChild(image);
-        let className = document.getElementById("class-name");
-        className.textContent = currentClass;
     }
+    image.className = "classSymbol";
+    classButton.appendChild(image);
+    let className = document.getElementById("class-name");
+    className.textContent = currentClass;
 }
 
 function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
@@ -1016,11 +1071,11 @@ function classSwap() {
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     const artKeys = Object.keys(noahConfig.arts);
     const skillKeys = Object.keys(noahConfig.skills);
+    let obj = getConfig();
 
     if (currentCharacter === "heroConfig") {
         let valueArts = classArts[5].name;
         const keyArts = artKeys[6];
-        let obj = getConfig();
         modifyCharacter(keyArts, valueArts, obj, obj.arts);
 
         item = heroIcons.findIndex(item => item.name === obj.class);
@@ -1034,16 +1089,19 @@ function classSwap() {
             getStatsByClass(localStorage.getItem(currentCharacter));
         }
     }
+    else if (SoulhackerRoles.some(item => item.name === obj.class)) {
+        let valueArts = talentArts[18].name;
+        const keyArts = artKeys[6];
+        modifyCharacter(keyArts, valueArts, obj, obj.arts);
+    }
     else if (JSON.parse(characterStored).class === "Lucky Seven (Attacker)" || JSON.parse(characterStored).class === "Lucky Seven (Defender)" || JSON.parse(characterStored).class === "Lucky Seven (Healer)") {
         let valueArts = classArts[6].name;
         const keyArts = artKeys[6];
-        let obj = getConfig();
         modifyCharacter(keyArts, valueArts, obj, obj.arts);
     }
     else if (JSON.parse(characterStored).arts.art_talent === "Final Lucky Seven") {
         let valueArts = "Unlimited Sword";
         const keyArts = artKeys[6];
-        let obj = getConfig();
         modifyCharacter(keyArts, valueArts, obj, obj.arts);
     }
 
@@ -1056,13 +1114,11 @@ function classSwap() {
             value = null;
         }
         const key = artKeys[index];
-        let obj = getConfig();
         modifyCharacter(key, value, obj, obj.arts);
     }
     for (let index = 3; index < 6; index++) {
         const key = artKeys[index];
         const value = classArts[index-3].name;
-        let obj = getConfig();
         modifyCharacter(key, value, obj, obj.arts);
     }
     for (let index = 0; index < 3; index++) {
@@ -1071,7 +1127,6 @@ function classSwap() {
             value = null;
         }
         const key = skillKeys[index];
-        let obj = getConfig();
         modifyCharacter(key, value, obj, obj.skills);
     }
     characterLoad(localStorage.getItem(currentCharacter));

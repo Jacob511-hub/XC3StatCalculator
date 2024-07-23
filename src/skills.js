@@ -131,6 +131,13 @@ const skillsSignifer = [
     { name: "We Can Do Better", src: "img/skills/skill-2.png"},
 ];
 
+const skillsSoulhackerClass = [
+    { name: "Soul Hack", src: "img/skills/skill-1.png"},
+    { name: "Power Soul", src: "img/skills/skill-3.png"},
+    { name: "None", src: "img/skills/skill-0.png"},
+    { name: "None", src: "img/skills/skill-0.png"},
+];
+
 const skillsFiona = [
     { name: "Cheer Up, Everyone", src: "img/skills/skill-39.png"},
     { name: "I've Got Your Backs", src: "img/skills/skill-21.png"},
@@ -294,6 +301,7 @@ const skillsMaster = [
 ];
 
 const skillsSoulhacker = [
+    { name: "None", src: "img/skills/skill-0.png"},
     { name: "Acceleating Attacks", src: "img/skills/skill-11.png"},
     { name: "Accelerator Organ", src: "img/skills/skill-9.png"},
     { name: "Action Reaction", src: "img/skills/skill-18.png"},
