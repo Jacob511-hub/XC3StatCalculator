@@ -729,6 +729,7 @@ function populateMenuArts() {
 }
 
 const gemButtons = document.getElementsByClassName("gem");
+const gemText = document.getElementsByClassName("gem-text");
 
 let gemSelect = 0;
 
@@ -749,10 +750,11 @@ for (let index = 0; index < gemButtons.length; index++) {
             return;
         }
         event.preventDefault();
-        gemLoad(index, null, null);
         const gemKeys = Object.keys(noahConfig.gems);
         let obj = getConfig();
         modifyCharacter(gemKeys[index], null, obj, obj.gems);
+        gemLoad(index, null, null);
+        characterLoad(localStorage.getItem(currentCharacter));
     })
 }
 
@@ -811,8 +813,10 @@ function populateMenuGems() {
             }
             parent.appendChild(gemType.cloneNode(true));
             parent.appendChild(gemRank.cloneNode(true));
+            gemText[gemSelect].textContent = obj.gems[gemKeys[gemSelect]];
 
             classMenu.style.display = "none";
+            characterLoad(localStorage.getItem(currentCharacter));
         })
     }
 }
@@ -836,6 +840,7 @@ for (let index = 0; index < accessoryButtons.length; index++) {
         const accessoryKeys = Object.keys(noahConfig.accessories);
         let obj = getConfig();
         modifyCharacter(accessoryKeys[index], null, obj, obj.accessories);
+        characterLoad(localStorage.getItem(currentCharacter));
     })
 }
 
@@ -908,6 +913,7 @@ function populateMenuAccessories() {
             parent.appendChild(accessoryName.cloneNode(true));
 
             classMenu.style.display = "none";
+            characterLoad(localStorage.getItem(currentCharacter));
         })
     }
 }
@@ -1117,6 +1123,7 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
         const image = document.createElement("img");
         image.src = "img/equipment/gems/gemOutline.png";
         slot.appendChild(image);
+        gemText[slotNumber].textContent = "None";
         return;
     }
     else {
@@ -1137,6 +1144,8 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     image2.className = "gem-features";
     slot.appendChild(image1);
     slot.appendChild(image2);
+
+    gemText[slotNumber].textContent = loadedType.name;
 }
 
 function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
