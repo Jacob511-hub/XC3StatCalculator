@@ -641,7 +641,7 @@ for (let index = 0; index < arts.length; index++) {
 }
 
 talentArt.addEventListener("click", () => {
-    let obj =getConfig();
+    let obj = getConfig();
     if (currentCharacter === "heroConfig" || SoulhackerRoles.some(item => item.name === obj.class) || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
         return;
     }
@@ -650,6 +650,7 @@ talentArt.addEventListener("click", () => {
  })
 
 function artsMenu() {
+    let obj = getConfig();
     if (classArt < 3) {
         if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
             return;
@@ -1201,14 +1202,21 @@ function classSwap() {
 
         item = heroIcons.findIndex(item => item.name === obj.class);
         const statKeys = Object.keys(heroConfig.stats);
-        const statsArray = ["hp", "attack", "healing_power", "dexterity", "agility"]
+        const statsArray = ["hp", "attack", "healing_power", "dexterity", "agility"];
+        const gemKeys = Object.keys(heroConfig.gems);
+        const gemsArray = ["gem_1", "gem_2", "gem_3"];
 
         for (let index = 0; index < statKeys.length; index++) {
             const keyStats = statKeys[index];
             let valueStats = heroIcons[item][statsArray[index]];
             modifyCharacter(keyStats, valueStats, obj, obj.stats);
-            getStatsByClass(localStorage.getItem(currentCharacter));
         }
+        for (let index = 0; index < gemKeys.length; index++) {
+            const keyGems = gemKeys[index];
+            let valueGems = heroIcons[item][gemsArray[index]];
+            modifyCharacter(keyGems, valueGems, obj, obj.gems);
+        }
+        getStatsByClass(localStorage.getItem(currentCharacter));
     }
     else if (SoulhackerRoles.some(item => item.name === obj.class)) {
         let valueArts = talentArts[18].name;
