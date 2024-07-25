@@ -5,7 +5,7 @@ const gems = [
     { name: "Brimming Spirit", src: "img/equipment/gems/gem-blue.png"},
     { name: "Perilous Presence", src: "img/equipment/gems/gem-blue.png"},
     { name: "Steelcleaver", src: "img/equipment/gems/gem-red.png"},
-    { name: "Accuracte Grace", src: "img/equipment/gems/gem-red.png"},
+    { name: "Accurate Grace", src: "img/equipment/gems/gem-red.png"},
     { name: "Analyze Weakness", src: "img/equipment/gems/gem-red.png"},
     { name: "Swelling Scourge", src: "img/equipment/gems/gem-red.png"},
     { name: "Refined Incantation", src: "img/equipment/gems/gem-red.png"},

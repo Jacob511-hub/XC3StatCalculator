@@ -90,9 +90,11 @@ body {
 
 #characterPortrait {
     display: flex;
-    padding-right: 10px;
-    padding-left: 10px;
+    position: relative;
     height: 100%;
+    width: 100%;
+    max-height: 480px;
+    max-width: 200px;
     justify-content: flex-start;
     align-self: start;
 }
@@ -297,6 +299,9 @@ body {
 
 .portrait {
     display: flex;
+    top: 0;
+    left: 0;
+    position: absolute;
     align-items: center;
     justify-content: center;
     height: 100%;
@@ -306,6 +311,17 @@ body {
 .portrait img {
     width: auto;
     height: 100%;
+}
+
+.portrait-text {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: auto;
+    bottom: 38px;
+    right: 10px;
 }
 
 .statIcon {
@@ -512,11 +528,12 @@ body {
     height: auto;
     width: 100px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 15px;
+    transition: background-color 0.2s;
 }
 
 .modal-icon:hover {
-    background-color: #cc7f19;
+    background-color:#cc7e19;
 }
 
 .modal-icon img {

@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
             masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
             getSkillsByClass(localStorage.getItem(currentCharacter));
             characterLoad(localStorage.getItem(currentCharacter));
+            let characterName = document.getElementById("character-name");
+            characterName.textContent = portraitsImages[index].name;
+            if (currentCharacter === "heroConfig") {
+                characterName.textContent = heroIcons[heroIndex].name;
+            }
         })
     }
 });
@@ -537,6 +542,8 @@ function populateMenu() {
                 heroButtonImg.src = buttonImage;
                 portraitsImages[6].src = portraitImg;
                 $('#buttonHero').attr('title', heroIcons[index].name).tooltip('dispose').tooltip();
+                let characterName = document.getElementById("character-name");
+                characterName.textContent = heroIcons[index].name;
             }
             classMenu.style.display = "none";
         })
@@ -1077,6 +1084,9 @@ function classLoad(currentClass) {
         heroButtonImg.src = buttonImage;
         portraitsImages[6].src = portraitImg;
         getSkillsByClass(localStorage.getItem(currentCharacter));
+        $('#buttonHero').attr('title', heroIcons[item].name).tooltip('dispose').tooltip();
+        let characterName = document.getElementById("character-name");
+        characterName.textContent = heroIcons[item].name;
     }
     else if (currentClass === "Lucky Seven (Attacker)" || currentClass === "Lucky Seven (Defender)" || currentClass === "Lucky Seven (Healer)") {
         item = luckySevenIcons.findIndex(item => item.name === currentClass);
