@@ -737,6 +737,7 @@ function populateMenuArts() {
 
 const gemButtons = document.getElementsByClassName("gem");
 const gemText = document.getElementsByClassName("gem-text");
+const gemRemove = document.getElementsByClassName("gem-remove");
 
 let gemSelect = 0;
 
@@ -752,11 +753,10 @@ for (let index = 0; index < gemButtons.length; index++) {
         populateMenuGems();
         classMenu.style.display = "block";
     })
-    gemButtons[index].addEventListener("contextmenu", function(event) {
+    gemRemove[index].addEventListener("click", function() {
         if (currentCharacter === "heroConfig") {
             return;
         }
-        event.preventDefault();
         const gemKeys = Object.keys(noahConfig.gems);
         let obj = getConfig();
         modifyCharacter(gemKeys[index], null, obj, obj.gems);
@@ -829,6 +829,7 @@ function populateMenuGems() {
 }
 
 const accessoryButtons = document.getElementsByClassName("accessory");
+const accessoryRemove = document.getElementsByClassName("accessory-remove");
 
 let accessorySelect = 0;
 
@@ -841,8 +842,7 @@ for (let index = 0; index < accessoryButtons.length; index++) {
         populateMenuAccessories();
         classMenu.style.display = "block";
     })
-    accessoryButtons[index].addEventListener("contextmenu", function(event) {
-        event.preventDefault();
+    accessoryRemove[index].addEventListener("click", function() {
         accessoryLoad(index, null, null);
         const accessoryKeys = Object.keys(noahConfig.accessories);
         let obj = getConfig();
@@ -1126,6 +1126,13 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     let type;
     let rank;
 
+    if (currentCharacter === "heroConfig") {
+        gemRemove[slotNumber].classList.add("fade");
+    }
+    else {
+        gemRemove[slotNumber].classList.remove("fade");
+    }
+
     if (loadedGemType === null) {
         while (slot.firstChild) {
             slot.removeChild(slot.firstChild);
@@ -1164,6 +1171,13 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     let loadedRarity;
     let type;
     let rarity;
+
+    if (currentCharacter === "heroConfig") {
+        gemRemove[slotNumber].classList.add("fade");
+    }
+    else {
+        gemRemove[slotNumber].classList.remove("fade");
+    }
 
     if (loadedAccessoryType === null) {
         while (slot.firstChild) {

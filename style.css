@@ -366,6 +366,16 @@ body {
     width: 96px;
 }
 
+.gem-remove {
+    display: flex;
+    position: absolute;
+    color: #000000a4;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 70px;
+    cursor: pointer;
+}
+
 .gem img {
     width: auto;
     height: 100%;
@@ -416,6 +426,13 @@ body {
     grid-auto-flow: column;
 }
 
+.accessory-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .accessory {
     display: flex;
     position: relative;
@@ -429,6 +446,16 @@ body {
 .accessory img {
     width: auto;
     height: 100%;
+}
+
+.accessory-remove {
+    display: flex;
+    position: absolute;
+    color: #000000a4;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 60px;
+    cursor: pointer;
 }
 
 .accessory-features {
@@ -661,7 +688,8 @@ body {
 }
 
 .fade {
-    opacity: 0.5;
+    opacity: 0.4;
+    cursor: context-menu;
 }
 
 .artSlotModal {
