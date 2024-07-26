@@ -766,12 +766,15 @@ for (let index = 0; index < gemButtons.length; index++) {
 }
 
 function populateMenuGems() {
-    let parent = gemButtons[gemSelect];
     for (let index = 0; index < gems.length; index++) {
         let currentRank = 9;
         const modalIcon = document.createElement("div");
         modalIcon.className = "modal-icon";
         modalIcon.classList.add("modal-icon-gem");
+
+        const gemContainer = document.createElement("div");
+        gemContainer.className = "gem-features";
+        gemContainer.classList.add("gem-features-shift");
 
         const gemType = document.createElement("img");
         gemType.src = gems[index].src;
@@ -780,15 +783,30 @@ function populateMenuGems() {
         gemRank.src = gemRanks[currentRank].src;
         gemRank.className = "gem-features";
 
-        modalIcon.appendChild(gemType);
-        modalIcon.appendChild(gemRank);
+        const prev = document.createElement("span");
+        prev.className = "icon-prev";
+        const next = document.createElement("span");
+        next.className = "icon-next";
+
+        modalIcon.appendChild(gemContainer);
+        gemContainer.appendChild(gemType);
+        gemContainer.appendChild(gemRank);
+        modalIcon.appendChild(prev);
+        modalIcon.appendChild(next);
 
         const element = document.getElementById("gemList");
         element.appendChild(modalIcon);
-        $(modalIcon).attr('title', gems[index].name).tooltip('dispose').tooltip();
+        $(gemContainer).attr('title', gems[index].name).tooltip('dispose').tooltip();
 
-        modalIcon.addEventListener("contextmenu", function(event) {
-            event.preventDefault()
+        prev.addEventListener("click", () => {
+            currentRank = currentRank - 1;
+            if (currentRank < 0) {
+                currentRank = 9;
+            }
+            gemRank.src = gemRanks[currentRank].src;
+        })
+
+        next.addEventListener("click", () => {
             currentRank = currentRank + 1;
             if (currentRank > 9) {
                 currentRank = 0;
@@ -796,7 +814,7 @@ function populateMenuGems() {
             gemRank.src = gemRanks[currentRank].src;
         })
 
-        modalIcon.addEventListener("click", () => {
+        gemContainer.addEventListener("click", () => {
             const gemKeys = Object.keys(noahConfig.gems);
             const rankKeys = Object.keys(noahConfig.ranks);
             const key1 = gemKeys[gemSelect];
@@ -815,12 +833,7 @@ function populateMenuGems() {
             modifyCharacter(key1, value1, obj, obj.gems);
             modifyCharacter(key2, value2, obj, obj.ranks);
 
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-            }
-            parent.appendChild(gemType.cloneNode(true));
-            parent.appendChild(gemRank.cloneNode(true));
-            gemText[gemSelect].textContent = obj.gems[gemKeys[gemSelect]];
+            gemLoad(gemSelect, obj.gems[gemKeys[gemSelect]], obj.ranks[rankKeys[gemSelect]]);
 
             classMenu.style.display = "none";
             characterLoad(localStorage.getItem(currentCharacter));
