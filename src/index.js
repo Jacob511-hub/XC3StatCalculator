@@ -125,6 +125,8 @@ function getStatsByClass(characterStored) {
     calculateStats(characterStored);
 }
 
+const currentStats = document.getElementsByClassName("stats-text");
+
 function calculateStats(characterStored) {
     let hp = Math.floor((JSON.parse(characterStored).stats.hp) * classStats["class_stats"]["hp"]);
     let attack = Math.floor((JSON.parse(characterStored).stats.attack) * classStats["class_stats"]["attack"] + classStats["weapon_stats"]["attack"]);
@@ -137,7 +139,6 @@ function calculateStats(characterStored) {
     let defenseEther = classStats["class_stats"]["ether_defense"] + "%";
 
     let newStats = [hp, attack, healingPower, dexterity, agility, critical, block, defensePhysical, defenseEther];
-    const currentStats = document.getElementsByClassName("stats-text");
 
     for(index = 0; index < newStats.length; index++) {
         currentStats[index].textContent = newStats[index];
