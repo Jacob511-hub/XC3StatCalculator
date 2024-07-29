@@ -1,8 +1,11 @@
-function damage() {
+function damage(damageRatio) {
+    if (damageRatio === undefined) {
+        return;
+    }
     statAttack = parseInt(currentStats[1].textContent);
     weaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
     weaponStability = 0.02;
-    powerMultiplier = (200) / 100;
+    powerMultiplier = (damageRatio) / 100;
     multiHitCorrection = 1 / (1);
     MultiplierGroup1 = [0.00];
     MultiplierGroup2 = [0.00];
@@ -35,5 +38,6 @@ function damage() {
                   * difficultyMultiplier
                   * (((Math.floor(Math.random() * 21)) / 100) + 0.90)
 
+    console.log(Math.min(9999999, Math.max(1, Math.floor(uncapped_damage))))
     return Math.min(9999999, Math.max(1, Math.floor(uncapped_damage)));
 }

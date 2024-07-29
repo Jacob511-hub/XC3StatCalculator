@@ -3,6 +3,7 @@ let classStats;
 let classArts;
 let masterArts;
 let currentSkills;
+let ratio = new Array(7);
 
 document.addEventListener("DOMContentLoaded", () => {
     const portrait = document.getElementById("currentCharacter");
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem(key, JSON.stringify(characterConfigs[key]));
         }
     }
-    classStats = getStatsByClass(localStorage.getItem(currentCharacter));
+    getStatsByClass(localStorage.getItem(currentCharacter));
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     characterLoad(localStorage.getItem(currentCharacter));
@@ -451,6 +452,10 @@ function characterLoad(characterStored) {
     accessoryLoad(0, JSON.parse(characterStored).accessories.accessory_1, JSON.parse(characterStored).rarities.accessory_1);
     accessoryLoad(1, JSON.parse(characterStored).accessories.accessory_2, JSON.parse(characterStored).rarities.accessory_2);
     accessoryLoad(2, JSON.parse(characterStored).accessories.accessory_3, JSON.parse(characterStored).rarities.accessory_3);
+
+    for(index = 0; index < 7; index++) {
+        damage(ratio[index]);
+    }
 }
 
 var frToggle = document.getElementById("fr-toggle-button");
@@ -615,12 +620,12 @@ function populateMenuSkills() {
 
             for (let indexA = 0; indexA < skillKeys.length; indexA++) {
                 if (obj.skills[skillKeys[indexA]] === skillList[index].name && obj.skills[skillKeys[indexA]] != "None") {
-                    skillLoad(indexA + 4, obj.skills[skillKeys[skillSlot]]);
                     modifyCharacter(skillKeys[indexA], obj.skills[skillKeys[skillSlot]], obj, obj.skills);
                 }
             }
 
             modifyCharacter(key, value, obj, obj.skills);
+            characterLoad(localStorage.getItem(currentCharacter));
             
             while (parent.firstChild) {
                 parent.removeChild(parent.firstChild);
@@ -729,8 +734,8 @@ function populateMenuArts() {
                     modifyCharacter(artKeys[indexA], obj.arts[artKeys[classArt]], obj, obj.arts);
                 }
             }
-            artLoad(classArt, artList[index].name);
             modifyCharacter(key, value, obj, obj.arts);
+            characterLoad(localStorage.getItem(currentCharacter));
             classMenu.style.display = "none";
         })
     }
@@ -761,7 +766,6 @@ for (let index = 0; index < gemButtons.length; index++) {
         const gemKeys = Object.keys(noahConfig.gems);
         let obj = getConfig();
         modifyCharacter(gemKeys[index], null, obj, obj.gems);
-        gemLoad(index, null, null);
         characterLoad(localStorage.getItem(currentCharacter));
     })
 }
@@ -833,8 +837,6 @@ function populateMenuGems() {
 
             modifyCharacter(key1, value1, obj, obj.gems);
             modifyCharacter(key2, value2, obj, obj.ranks);
-
-            gemLoad(gemSelect, obj.gems[gemKeys[gemSelect]], obj.ranks[rankKeys[gemSelect]]);
 
             classMenu.style.display = "none";
             characterLoad(localStorage.getItem(currentCharacter));
@@ -1091,7 +1093,8 @@ function artLoad(slotNumber, loadedArtName) {
         artName.onclick = null;
     }
 
-    artName.textContent = artList[item].name;
+    ratio[slotNumber] = loadedArt.ratio;
+    artName.textContent = loadedArt.name;
 }
 
 function classLoad(currentClass) {
