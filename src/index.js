@@ -797,7 +797,7 @@ function populateMenuGems() {
 
         const element = document.getElementById("gemList");
         element.appendChild(modalIcon);
-        $(gemContainer).attr('title', gems[index].name).tooltip('dispose').tooltip();
+        $(gemContainer).attr('title', gems[index].name).tooltip('dispose').tooltip(({placement: 'top'}));
 
         prev.addEventListener("click", () => {
             currentRank = currentRank - 1;
@@ -866,12 +866,15 @@ for (let index = 0; index < accessoryButtons.length; index++) {
 }
 
 function populateMenuAccessories() {
-    let parent = accessoryButtons[accessorySelect];
     for (let index = 0; index < accessories.length; index++) {
         let currentRarity = 2;
         const modalIcon = document.createElement("div");
         modalIcon.className = "modal-icon";
         modalIcon.classList.add("modal-icon-accessory");
+
+        const accessoryContainer = document.createElement("div");
+        accessoryContainer.className = "accessory-features";
+        accessoryContainer.classList.add("accessory-features-menu");
 
         const accessorySlot = document.createElement("img");
         accessorySlot.src = "img/equipment/accessories/accessory-slot.png";
@@ -885,17 +888,33 @@ function populateMenuAccessories() {
         const accessoryName = document.createElement("h1");
         accessoryName.textContent = accessories[index].name;
         accessoryName.className = "accessory-text";
-        
-        modalIcon.appendChild(accessorySlot);
-        modalIcon.appendChild(accessoryRarity);
-        modalIcon.appendChild(accessoryType);
-        modalIcon.appendChild(accessoryName);
+
+        const prev = document.createElement("span");
+        prev.className = "icon-prev";
+        const next = document.createElement("span");
+        next.className = "icon-next";
+
+        modalIcon.appendChild(accessoryContainer);
+        accessoryContainer.appendChild(accessorySlot);
+        accessoryContainer.appendChild(accessoryRarity);
+        accessoryContainer.appendChild(accessoryType);
+        accessoryContainer.appendChild(accessoryName);
+        modalIcon.appendChild(prev);
+        modalIcon.appendChild(next);
 
         const element = document.getElementById("accessoryList");
         element.appendChild(modalIcon);
 
-        modalIcon.addEventListener("contextmenu", function(event) {
-            event.preventDefault()
+        prev.addEventListener("click", () => {
+            currentRarity = currentRarity - 1;
+
+            if (currentRarity < 0) {
+                currentRarity = 2;
+            }
+            accessoryRarity.src = rarities[currentRarity].src;
+        })
+
+        next.addEventListener("click", () => {
             currentRarity = currentRarity + 1;
 
             if (currentRarity > 2) {
@@ -904,7 +923,7 @@ function populateMenuAccessories() {
             accessoryRarity.src = rarities[currentRarity].src;
         })
 
-        modalIcon.addEventListener("click", () => {
+        accessoryContainer.addEventListener("click", () => {
             const accessoryKeys = Object.keys(noahConfig.accessories);
             const rarityKeys = Object.keys(noahConfig.rarities);
             const key1 = accessoryKeys[accessorySelect];
@@ -923,15 +942,7 @@ function populateMenuAccessories() {
             modifyCharacter(key1, value1, obj, obj.accessories);
             modifyCharacter(key2, value2, obj, obj.rarities);
 
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-            }
-            accessoryName.classList.add("accessory-text-2");
-
-            parent.appendChild(accessorySlot.cloneNode(true));
-            parent.appendChild(accessoryRarity.cloneNode(true));
-            parent.appendChild(accessoryType.cloneNode(true));
-            parent.appendChild(accessoryName.cloneNode(true));
+            accessoryLoad(accessorySelect, obj.accessories[accessoryKeys[gemSelect]], obj.rarities[rarityKeys[gemSelect]]);
 
             classMenu.style.display = "none";
             characterLoad(localStorage.getItem(currentCharacter));
