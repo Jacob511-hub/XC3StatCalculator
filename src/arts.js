@@ -1,56 +1,56 @@
 const talentArts = [
-    { name: "Overclock Buster", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 1050},
-    { name: "Gemini Strike", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Healing Ring", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
-    { name: "Tidal Wave", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Mad Taunt", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Pressure Drop", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-launch.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Saber Strike", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Technical Heal", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-heal.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Deflector Field", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-defend.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Demise Thrust", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-burst.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Sword of Valor", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Violent Streak", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Soulfire", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Refreshing Rain", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Blossom Dance", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Supreme Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Thunder Steel", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Cry of Faith", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Final Countdown", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Raging Force", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Glittering Melody", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Empyrean Salvo", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Viral Vector", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Divine Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Element Genesis", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Shining Refrain", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Pride of Place", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"}
+    { name: "Overclock Buster", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 1050, attribute: "physical"},
+    { name: "Gemini Strike", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 700, attribute: "physical"},
+    { name: "Healing Ring", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-field.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png", ratio: 0, attribute: "field"},
+    { name: "Tidal Wave", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 700, attribute: "ether"},
+    { name: "Mad Taunt", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 0, attribute: "buff"},
+    { name: "Pressure Drop", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-launch.png", aoe: "img/arts/aoe/art-blank.png", ratio: 700, attribute: "physical"},
+    { name: "Saber Strike", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-blank.png", ratio: 525, attribute: "physical"},
+    { name: "Technical Heal", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-heal.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 250, attribute: "heal"},
+    { name: "Deflector Field", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-defend.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0, attribute: "buff"},
+    { name: "Demise Thrust", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-burst.png", aoe: "img/arts/aoe/art-blank.png", ratio: 700, attribute: "physical"},
+    { name: "Sword of Valor", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 1050, attribute: "physical"},
+    { name: "Violent Streak", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 700, attribute: "ether"},
+    { name: "Soulfire", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 700, attribute: "ether"},
+    { name: "Refreshing Rain", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 700, attribute: "ether"},
+    { name: "Blossom Dance", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 700, attribute: "physical"},
+    { name: "Supreme Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 700, attribute: "physical"},
+    { name: "Thunder Steel", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 700, attribute: "ether"},
+    { name: "Cry of Faith", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0, attribute: "buff"},
+    { name: "Final Countdown", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 500, attribute: "physical"},
+    { name: "Raging Force", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 700, attribute: "physical"},
+    { name: "Glittering Melody", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0, attribute: "buff"},
+    { name: "Empyrean Salvo", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 700, attribute: "physical"},
+    { name: "Viral Vector", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 700, attribute: "physical"},
+    { name: "Divine Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 1050, attribute: "ether"},
+    { name: "Element Genesis", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 1050, attribute: "physical"},
+    { name: "Shining Refrain", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 700, attribute: "physical"},
+    { name: "Pride of Place", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png", ratio: 560, attribute: "ether"}
 ];
 
 const talentArtsNoah = [
-    { name: "Infinity Blade", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Unlimited Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"}
+    { name: "Infinity Blade", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 1000, attribute: "physical"},
+    { name: "Unlimited Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0, attribute: "buff"}
 ];
 
 const talentArtsMio = [
-    { name: "Dominion Flower", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-burst.png", aoe: "img/arts/aoe/art-aoe-attack.png"}
+    { name: "Dominion Flower", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-burst.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 750, attribute: "ether"}
 ];
 
 const artsSwordfighter = [
-    { name: "Ground Beat", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 440},
-    { name: "Sword Strike", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-break.png", aoe: "img/arts/aoe/art-blank.png", ratio: 225},
-    { name: "Edge Thrust", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 180},
-    { name: "Air Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 425},
-    { name: "Shadow Eye", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0},
+    { name: "Ground Beat", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 440, attribute: "physical"},
+    { name: "Sword Strike", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-break.png", aoe: "img/arts/aoe/art-blank.png", ratio: 225, attribute: "physical"},
+    { name: "Edge Thrust", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 180, attribute: "physical"},
+    { name: "Air Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 425, attribute: "physical"},
+    { name: "Shadow Eye", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0, attribute: "buff"},
 ];
 
 const artsZephyr = [
-    { name: "Butterfly Blade", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Air Fang", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Wide Slash", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Glow Ring", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Speed Demon", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Butterfly Blade", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 165, attribute: "physical"},
+    { name: "Air Fang", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 250, attribute: "physical"},
+    { name: "Wide Slash", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 360, attribute: "physical"},
+    { name: "Glow Ring", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 310, attribute: "physical"},
+    { name: "Speed Demon", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0, attribute: "stance"},
 ];
 
 const artsMedicGunner = [
@@ -86,11 +86,11 @@ const artsOgre = [
 ];
 
 const artsFlashFencer = [
-    { name: "Cross Impact", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Null Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Hidden Thorn", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Revolution Edge", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
-    { name: "Acceleration", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png"},
+    { name: "Cross Impact", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 180, attribute: "physical"},
+    { name: "Null Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 275, attribute: "physical"},
+    { name: "Hidden Thorn", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 440, attribute: "physical"},
+    { name: "Revolution Edge", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 255, attribute: "physical"},
+    { name: "Acceleration", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0, attribute: "buff"},
 ];
 
 const artsWarMedic = [
@@ -318,33 +318,33 @@ const artsLapidarist = [
 ];
 
 const artsLuckySevenAttacker = [
-    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 360, attribute: "ether"},
+    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 680, attribute: "ether"},
+    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 680, attribute: "ether"},
+    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 0, attribute: "buff"},
+    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 800, attribute: "ether"},
+    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-attacker.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 800, attribute: "ether"},
+    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 1750, attribute: "physical"},
 ];
 
 const artsLuckySevenDefender = [
-    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 360, attribute: "ether"},
+    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 680, attribute: "ether"},
+    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 680, attribute: "ether"},
+    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 0, attribute: "buff"},
+    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 800, attribute: "ether"},
+    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-defender.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 800, attribute: "ether"},
+    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 1750, attribute: "physical"},
 ];
 
 const artsLuckySevenHealer = [
-    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png"},
-    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
-    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png"},
+    { name: "Gravity Blow", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-gravity-blow.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 360, attribute: "ether"},
+    { name: "Dimension Ripper", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-dimension-ripper.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 680, attribute: "ether"},
+    { name: "Tachyon Slash", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-tachyon-slash-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 680, attribute: "ether"},
+    { name: "Power Raiser", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-power-raiser-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-field.png", ratio: 0, attribute: "field"},
+    { name: "Night Breaker", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-night-breaker-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 800, attribute: "ether"},
+    { name: "Harmonic Wave", recharge: "img/arts/recharge/art-agnus.png", type: "img/arts/type/art-harmonic-wave-healer.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 800, attribute: "ether"},
+    { name: "Final Lucky Seven", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-final-lucky-seven.png", reaction: "img/arts/reaction/art-smash.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 1750, attribute: "physical"},
 ];
 
 const artsMasterKeves = [

@@ -4,6 +4,9 @@ let classArts;
 let masterArts;
 let currentSkills;
 let ratio = new Array(7);
+let attribute = new Array(7);
+let stability;
+let damagePrint = document.getElementsByClassName("damage-text");
 
 document.addEventListener("DOMContentLoaded", () => {
     const portrait = document.getElementById("currentCharacter");
@@ -454,7 +457,7 @@ function characterLoad(characterStored) {
     accessoryLoad(2, JSON.parse(characterStored).accessories.accessory_3, JSON.parse(characterStored).rarities.accessory_3);
 
     for(index = 0; index < 7; index++) {
-        damage(ratio[index]);
+        damagePrint[index].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
     }
 }
 
@@ -1094,6 +1097,7 @@ function artLoad(slotNumber, loadedArtName) {
     }
 
     ratio[slotNumber] = loadedArt.ratio;
+    attribute[slotNumber] = loadedArt.attribute;
     artName.textContent = loadedArt.name;
 }
 
@@ -1121,6 +1125,7 @@ function classLoad(currentClass) {
         image = document.createElement("img");
         image.src = luckySevenIcons[item].src;
         getSkillsByClass(localStorage.getItem(currentCharacter));
+        stability = luckySevenIcons[item].stability;
     }
     else if (SoulhackerRoles.some(obj => obj.name === currentClass)) {
         item = SoulhackerRoles.findIndex(item => item.name === currentClass);
@@ -1134,12 +1139,14 @@ function classLoad(currentClass) {
         slot.removeChild(slot.firstChild);
         slot.appendChild(imageSkill);
         $(skills[1]).attr('title', SoulhackerRoles[item].role).tooltip('dispose').tooltip();
+        stability = SoulhackerRoles[item].stability;
     }
     else {
         item = classIcons.findIndex(item => item.name === currentClass);
         image = document.createElement("img");
         image.src = classIcons[item].src;
         getSkillsByClass(localStorage.getItem(currentCharacter));
+        stability = classIcons[item].stability;
     }
     image.className = "classSymbol";
     classButton.appendChild(image);
