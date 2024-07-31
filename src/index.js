@@ -463,7 +463,15 @@ function characterLoad(characterStored) {
     accessoryLoad(2, JSON.parse(characterStored).accessories.accessory_3, JSON.parse(characterStored).rarities.accessory_3);
 
     for(index = 0; index < 7; index++) {
-        damagePrint[index].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
+        if (attribute[index] === "physical" || attribute[index] === "ether") {
+            damagePrint[index].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
+        }
+        else if (attribute[index] === "heal") {
+            damagePrint[index].textContent = (artNames[index].textContent + ": " + heal(ratio[index], 0.00) + " - " + (heal(ratio[index], 0.04) + 2.0));
+        }
+        else if (attribute[index] === "buff" || attribute[index] === "field" || attribute[index] === undefined) {
+            damagePrint[index].textContent = (artNames[index].textContent + ": " + 0);
+        }
     }
 }
 
