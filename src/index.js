@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     getStatsByClass(localStorage.getItem(currentCharacter));
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
-    characterLoad(localStorage.getItem(currentCharacter));
+    let obj = getConfig();
+    characterLoad(obj);
 
     let currentHero = localStorage.getItem("heroConfig");
     const heroIndex = heroIcons.findIndex(obj => obj.name === JSON.parse(currentHero).class);
@@ -47,11 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
             portrait.src = portraitImg;
             const characters = Object.keys(characterConfigs);
             currentCharacter = characters[index];
+            obj = getConfig();
             getStatsByClass(localStorage.getItem(currentCharacter));
             classArts = getArtsByClass(localStorage.getItem(currentCharacter));
             masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
             getSkillsByClass(localStorage.getItem(currentCharacter));
-            characterLoad(localStorage.getItem(currentCharacter));
+            characterLoad(obj);
             let characterName = document.getElementById("character-name");
             characterName.textContent = portraitsImages[index].name;
             if (currentCharacter === "heroConfig") {
@@ -126,27 +128,32 @@ function getStatsByClass(characterStored) {
     };
 
     classStats = statsMap[JSON.parse(characterStored).class];
-    calculateStats(characterStored);
 }
 
 const currentStats = document.getElementsByClassName("stats-text");
 
 function calculateStats(characterStored) {
-    let hp = Math.floor((JSON.parse(characterStored).stats.hp) * classStats["class_stats"]["hp"]);
-    let attack = Math.floor((JSON.parse(characterStored).stats.attack) * classStats["class_stats"]["attack"] + classStats["weapon_stats"]["attack"]);
-    let healingPower = Math.floor((JSON.parse(characterStored).stats.healing_power) * classStats["class_stats"]["healing_power"]);
-    let dexterity = Math.floor((JSON.parse(characterStored).stats.dexterity) * classStats["class_stats"]["dexterity"]);
-    let agility = Math.floor((JSON.parse(characterStored).stats.agility) * classStats["class_stats"]["agility"]);
-    let critical = classStats["weapon_stats"]["critical"] + "%";
-    let block = classStats["weapon_stats"]["block"] + "%";
-    let defensePhysical = classStats["class_stats"]["physical_defense"] + "%";
-    let defenseEther = classStats["class_stats"]["ether_defense"] + "%";
+    getStatsAdditives();
+    getStatsMultipliers();
+    let hp = Math.floor((characterStored.stats.hp) * classStats["class_stats"]["hp"] + hpAdditivesSum);
+    let attack = Math.floor((characterStored.stats.attack) * classStats["class_stats"]["attack"] + classStats["weapon_stats"]["attack"] + attackAdditivesSum);
+    let healingPower = Math.floor((characterStored.stats.healing_power) * classStats["class_stats"]["healing_power"] + healingAdditivesSum);
+    let dexterity = Math.floor((characterStored.stats.dexterity) * classStats["class_stats"]["dexterity"] + dexterityAdditivesSum);
+    let agility = Math.floor((characterStored.stats.agility) * classStats["class_stats"]["agility"] + agilityAdditivesSum);
+    let critical = classStats["weapon_stats"]["critical"] + critAdditivesSum + "%";
+    let block = classStats["weapon_stats"]["block"] + blockAdditivesSum + "%";
+    let defensePhysical = classStats["class_stats"]["physical_defense"] + physicalAdditivesSum + "%";
+    let defenseEther = classStats["class_stats"]["ether_defense"] + etherAdditivesSum + "%";
 
     let newStats = [hp, attack, healingPower, dexterity, agility, critical, block, defensePhysical, defenseEther];
 
     for(index = 0; index < newStats.length; index++) {
         currentStats[index].textContent = newStats[index];
     }
+}
+
+function getStatsMultipliers() {
+
 }
 
 function getArtsByClass(characterStored) {
@@ -440,27 +447,29 @@ function getClassRole(characterStored) {
 };
 
 function characterLoad(characterStored) {
-    classLoad(JSON.parse(characterStored).class);
+    classLoad(characterStored.class);
 
-    skillLoad(4, JSON.parse(characterStored).skills.skill_1);
-    skillLoad(5, JSON.parse(characterStored).skills.skill_2);
-    skillLoad(6, JSON.parse(characterStored).skills.skill_3);
+    skillLoad(4, characterStored.skills.skill_1);
+    skillLoad(5, characterStored.skills.skill_2);
+    skillLoad(6, characterStored.skills.skill_3);
 
-    artLoad(0, JSON.parse(characterStored).arts.art_master_1);
-    artLoad(1, JSON.parse(characterStored).arts.art_master_2);
-    artLoad(2, JSON.parse(characterStored).arts.art_master_3);
-    artLoad(3, JSON.parse(characterStored).arts.art_class_1);
-    artLoad(4, JSON.parse(characterStored).arts.art_class_2);
-    artLoad(5, JSON.parse(characterStored).arts.art_class_3);
-    artLoad(6, JSON.parse(characterStored).arts.art_talent);
+    artLoad(0, characterStored.arts.art_master_1);
+    artLoad(1, characterStored.arts.art_master_2);
+    artLoad(2, characterStored.arts.art_master_3);
+    artLoad(3, characterStored.arts.art_class_1);
+    artLoad(4, characterStored.arts.art_class_2);
+    artLoad(5, characterStored.arts.art_class_3);
+    artLoad(6, characterStored.arts.art_talent);
 
-    gemLoad(0, JSON.parse(characterStored).gems.gem_1, JSON.parse(characterStored).ranks.gem_1);
-    gemLoad(1, JSON.parse(characterStored).gems.gem_2, JSON.parse(characterStored).ranks.gem_2);
-    gemLoad(2, JSON.parse(characterStored).gems.gem_3, JSON.parse(characterStored).ranks.gem_3);
+    gemLoad(0, characterStored.gems.gem_1, characterStored.ranks.gem_1);
+    gemLoad(1, characterStored.gems.gem_2, characterStored.ranks.gem_2);
+    gemLoad(2, characterStored.gems.gem_3, characterStored.ranks.gem_3);
 
-    accessoryLoad(0, JSON.parse(characterStored).accessories.accessory_1, JSON.parse(characterStored).rarities.accessory_1);
-    accessoryLoad(1, JSON.parse(characterStored).accessories.accessory_2, JSON.parse(characterStored).rarities.accessory_2);
-    accessoryLoad(2, JSON.parse(characterStored).accessories.accessory_3, JSON.parse(characterStored).rarities.accessory_3);
+    accessoryLoad(0, characterStored.accessories.accessory_1, characterStored.rarities.accessory_1);
+    accessoryLoad(1, characterStored.accessories.accessory_2, characterStored.rarities.accessory_2);
+    accessoryLoad(2, characterStored.accessories.accessory_3, characterStored.rarities.accessory_3);
+
+    calculateStats(characterStored);
 
     for(index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
@@ -642,7 +651,7 @@ function populateMenuSkills() {
             }
 
             modifyCharacter(key, value, obj, obj.skills);
-            characterLoad(localStorage.getItem(currentCharacter));
+            characterLoad(obj);
             
             while (parent.firstChild) {
                 parent.removeChild(parent.firstChild);
@@ -764,7 +773,7 @@ function populateMenuArts() {
                 }
             }
             modifyCharacter(key, value, obj, obj.arts);
-            characterLoad(localStorage.getItem(currentCharacter));
+            characterLoad(obj);
             classMenu.style.display = "none";
         })
     }
@@ -795,7 +804,7 @@ for (let index = 0; index < gemButtons.length; index++) {
         const gemKeys = Object.keys(noahConfig.gems);
         let obj = getConfig();
         modifyCharacter(gemKeys[index], null, obj, obj.gems);
-        characterLoad(localStorage.getItem(currentCharacter));
+        characterLoad(obj);
     })
 }
 
@@ -868,7 +877,7 @@ function populateMenuGems() {
             modifyCharacter(key2, value2, obj, obj.ranks);
 
             classMenu.style.display = "none";
-            characterLoad(localStorage.getItem(currentCharacter));
+            characterLoad(obj);
         })
     }
 }
@@ -892,7 +901,7 @@ for (let index = 0; index < accessoryButtons.length; index++) {
         const accessoryKeys = Object.keys(noahConfig.accessories);
         let obj = getConfig();
         modifyCharacter(accessoryKeys[index], null, obj, obj.accessories);
-        characterLoad(localStorage.getItem(currentCharacter));
+        characterLoad(obj);
     })
 }
 
@@ -976,7 +985,7 @@ function populateMenuAccessories() {
             accessoryLoad(accessorySelect, obj.accessories[accessoryKeys[gemSelect]], obj.rarities[rarityKeys[gemSelect]]);
 
             classMenu.style.display = "none";
-            characterLoad(localStorage.getItem(currentCharacter));
+            characterLoad(obj);
         })
     }
 }
@@ -1127,6 +1136,7 @@ function artLoad(slotNumber, loadedArtName) {
     artName.textContent = loadedArt.name;
 }
 
+// Loads the details regarding the character's current class, including the class icon and class skills
 function classLoad(currentClass) {
     let image;
     while (classButton.children[1]) {
@@ -1178,6 +1188,7 @@ function classLoad(currentClass) {
     classButton.appendChild(image);
     let className = document.getElementById("class-name");
     className.textContent = currentClass;
+    getStatsByClass(localStorage.getItem(currentCharacter));
 }
 
 function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
@@ -1282,7 +1293,6 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
 // This function is called when the character's Class is changed, updating the list of selectable Arts and wiping set Master Skills
 function classSwap() {
     let characterStored = localStorage.getItem(currentCharacter);
-    getStatsByClass(localStorage.getItem(currentCharacter));
     classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     const artKeys = Object.keys(noahConfig.arts);
@@ -1352,7 +1362,7 @@ function classSwap() {
         const key = skillKeys[index];
         modifyCharacter(key, value, obj, obj.skills);
     }
-    characterLoad(localStorage.getItem(currentCharacter));
+    characterLoad(obj);
 }
 
 function getConfig() {

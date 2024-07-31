@@ -1,10 +1,10 @@
 const gems = [
-    { name: "Tailwind", src: "img/equipment/gems/gem-blue.png"},
+    { name: "Tailwind", src: "img/equipment/gems/gem-blue.png", boostType: "additive", boostStat: "agility", boostAmount: 35},
     { name: "Steel Protection", src: "img/equipment/gems/gem-blue.png"},
     { name: "Ultimate Counter", src: "img/equipment/gems/gem-blue.png"},
     { name: "Brimming Spirit", src: "img/equipment/gems/gem-blue.png"},
     { name: "Perilous Presence", src: "img/equipment/gems/gem-blue.png"},
-    { name: "Steelcleaver", src: "img/equipment/gems/gem-red.png"},
+    { name: "Steelcleaver", src: "img/equipment/gems/gem-red.png", boostType: "additive", boostStat: "attack", boostAmount: 70},
     { name: "Accurate Grace", src: "img/equipment/gems/gem-red.png"},
     { name: "Analyze Weakness", src: "img/equipment/gems/gem-red.png"},
     { name: "Swelling Scourge", src: "img/equipment/gems/gem-red.png"},
