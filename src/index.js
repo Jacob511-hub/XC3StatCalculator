@@ -392,6 +392,12 @@ function getClassRole(characterStored) {
         "Incursor": "Attacker",
         "Lost Vanguard": "Defender",
         "Signifer": "Healer",
+        "Soulhacker (Power)": "Attacker",
+        "Soulhacker (Strike)": "Attacker",
+        "Soulhacker (Tough)": "Defender",
+        "Soulhacker (Dodge)": "Defender",
+        "Soulhacker (Heal)": "Healer",
+        "Soulhacker (Balanced)": "Healer",
         "Martial Artist": "Attacker",
         "Troubadour": "Healer",
         "Seraph": "Attacker",
@@ -658,7 +664,7 @@ for (let index = 0; index < arts.length; index++) {
 
 talentArt.addEventListener("click", () => {
     let obj = getConfig();
-    if (currentCharacter === "heroConfig" || SoulhackerRoles.some(item => item.name === obj.class) || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
+    if (currentCharacter === "heroConfig" || (SoulhackerRoles.some(item => item.name === obj.class) && currentCharacter != "noahConfig" && currentCharacter != "mioConfig") || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
         return;
     }
     classArt = 6;
@@ -688,10 +694,22 @@ function populateMenuArts() {
     }
     else if (classArt === 6) {
         if (currentCharacter === "noahConfig") {
-            artList = talentArtsNoah.concat(talentArts);
+            let obj = getConfig();
+            if (SoulhackerRoles.some(item => item.name === obj.class)) {
+                artList = talentArtsNoah.concat(talentArts[18]);
+            }
+            else {
+                artList = talentArtsNoah.concat(talentArts);
+            }
         }
         else if (currentCharacter === "mioConfig") {
-            artList = talentArtsMio.concat(talentArts);
+            let obj = getConfig();
+            if (SoulhackerRoles.some(item => item.name === obj.class)) {
+                artList = talentArtsMio.concat(talentArts[18]);
+            }
+            else {
+                artList = talentArtsMio.concat(talentArts);
+            }
         }
         else {
             artList = talentArts;
