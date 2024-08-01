@@ -2,6 +2,17 @@ let MultiplierGroup1Sum;
 let MultiplierGroup2Sum;
 let MultiplierGroup3Sum;
 
+const flags = {
+    "auto": false,
+    "fusion": false,
+};
+
+function setFlag(flagName, value) {
+    if (flags.hasOwnProperty(flagName)) {
+        flags[flagName] = value;
+    }
+}
+
 function getDamageMultipliers() {
     let MultiplierGroup1 = [];
     let MultiplierGroup2 = [];
@@ -23,7 +34,10 @@ function getDamageMultipliers() {
             continue;
         }
         else if (gems[gem].boostType === "multiplierDamage") {
-            multipliersMap[gems[gem].group].push(gems[gem].boostAmount);
+            const flagSet = gems[gem].flags.some(flag => flags[flag]);
+            if (flagSet) {
+                multipliersMap[gems[gem].group].push(gems[gem].boostAmount);
+            }
         }
     }
     for (index = 0; index < accessoryKeys.length; index++) {
@@ -32,7 +46,10 @@ function getDamageMultipliers() {
             continue;
         }
         else if (accessories[accessory].boostType === "multiplierDamage") {
-            multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
+            const flagSet = accessories[accessory].flags.some(flag => flags[flag]);
+            if (flagSet) {
+                multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
+            }
         }
     }
 

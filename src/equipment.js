@@ -49,7 +49,7 @@ const accessories = [
     { name: "Iovis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "agility", boostAmount: 40},
     { name: "Mercurii Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "crit", boostAmount: 60},
     { name: "Martis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "block", boostAmount: 60},
-    { name: "Lunae Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplierDamage", group: "1", boostAmount: 100},
+    { name: "Lunae Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplierDamage", group: "1", flags: ["fusion"], boostAmount: 100},
     { name: "Veneris Rings", src: "img/equipment/accessories/accessory-jewelry.png"},
 ];
 

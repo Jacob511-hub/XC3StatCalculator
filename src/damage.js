@@ -7,6 +7,7 @@ function damage(damageRatio, attribute, weaponStability, range) {
     powerMultiplier = (damageRatio) / 100;
     multiHitCorrection = 1 / (2);
     DamageReductionGroup = [0.00];
+
     let defenseMultiplierPhysical = 1 - (0.00 - (0.50 + 0.32));
     let defenseMultiplierEther = 1 - (0.00);
     let defenseMultiplier;
@@ -16,6 +17,7 @@ function damage(damageRatio, attribute, weaponStability, range) {
     else if (attribute === "ether") {
         defenseMultiplier = defenseMultiplierEther;
     }
+
     critMultiplier = 1.25 + 0.70 + 0.50 + 0.50 + (0.50 * (1 + 0.50 + 0.35));
     blockedMultiplier = 1;
     comboMultiplier = 1;
@@ -27,9 +29,9 @@ function damage(damageRatio, attribute, weaponStability, range) {
 
     uncapped_damage = (statAttack + Math.floor(weaponAttack * weaponStability))
                   * powerMultiplier * multiHitCorrection
-                  * (1 + MultiplierGroup1Sum)
-                  * (1 + MultiplierGroup2Sum)
-                  * (1 + MultiplierGroup3Sum)
+                  * (1 + (MultiplierGroup1Sum)/100)
+                  * (1 + (MultiplierGroup2Sum)/100)
+                  * (1 + (MultiplierGroup3Sum)/100)
                   * (1 - DamageReductionGroup.reduce((acc, currentValue) => acc + currentValue, 0))
                   * defenseMultiplier
                   * critMultiplier
