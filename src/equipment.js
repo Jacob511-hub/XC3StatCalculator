@@ -44,6 +44,13 @@ const accessories = [
     { name: "Shackle Ring", src: "img/equipment/accessories/accessory-jewelry.png"},
     { name: "Fraternal Badge", src: "img/equipment/accessories/accessory-medal.png"},
     { name: "Archsage's Flower Fan", src: "img/equipment/accessories/accessory-other.png"},
+    { name: "Saturni Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "attack", boostAmount: 40},
+    { name: "Solis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "healing", boostAmount: 40},
+    { name: "Iovis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "agility", boostAmount: 40},
+    { name: "Mercurii Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "crit", boostAmount: 60},
+    { name: "Martis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "block", boostAmount: 60},
+    { name: "Lunae Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplierDamage", group: "1", boostAmount: 100},
+    { name: "Veneris Rings", src: "img/equipment/accessories/accessory-jewelry.png"},
 ];
 
 const rarities = [

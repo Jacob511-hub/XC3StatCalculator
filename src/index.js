@@ -466,6 +466,7 @@ function characterLoad(characterStored) {
     accessoryLoad(2, characterStored.accessories.accessory_3, characterStored.rarities.accessory_3);
 
     calculateStats(characterStored);
+    getDamageMultipliers();
 
     for(index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
