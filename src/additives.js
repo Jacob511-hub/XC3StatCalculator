@@ -33,6 +33,7 @@ function getStatsAdditives() {
 
     let obj = getConfig();
     const gemKeys = Object.keys(noahConfig.gems);
+    const accessoryKeys = Object.keys(noahConfig.accessories);
 
     for (index = 0; index < gemKeys.length; index++) {
         let gem = gems.findIndex(gem => gem.name === obj.gems[gemKeys[index]]);
@@ -43,6 +44,16 @@ function getStatsAdditives() {
             additivesMap[gems[gem].boostStat].push(gems[gem].boostAmount);
         }
     }
+    for (index = 0; index < accessoryKeys.length; index++) {
+        let accessory = accessories.findIndex(accessory => accessory.name === obj.gems[accessoryKeys[index]]);
+        if (accessory === -1) {
+            continue;
+        }
+        else if (accessories[accessory].boostType === "additive") {
+            additivesMap[accessories[accessory].boostStat].push(accessories[accessory].boostAmount);
+        }
+    }
+    
     hpAdditivesSum = hpAdditives.reduce((acc, currentValue) => acc + currentValue, 0);
     attackAdditivesSum = attackAdditives.reduce((acc, currentValue) => acc + currentValue, 0);
     healingAdditivesSum = healingAdditives.reduce((acc, currentValue) => acc + currentValue, 0);

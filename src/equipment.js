@@ -35,7 +35,7 @@ const gemRanks = [
 ];
 
 const accessories = [
-    { name: "Titanium Temple Guard", src: "img/equipment/accessories/accessory-hat.png"},
+    { name: "Titanium Temple Guard", src: "img/equipment/accessories/accessory-hat.png", boostType: "multiplier", boostStat: "hp", boostAmount: 32},
     { name: "Carbon Gloves", src: "img/equipment/accessories/accessory-gloves.png"},
     { name: "Titanium Support", src: "img/equipment/accessories/accessory-vest.png"},
     { name: "Solid Weak Guard", src: "img/equipment/accessories/accessory-shoes.png"},
