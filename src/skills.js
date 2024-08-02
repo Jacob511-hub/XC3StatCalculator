@@ -79,7 +79,7 @@ const skillsFullMetalJaguar = [
     { name: "Sixth Sense", src: "img/skills/skill-38.png"},
     { name: "Positioning Pro", src: "img/skills/skill-1.png"},
     { name: "Shock Shot", src: "img/skills/skill-38.png"},
-    { name: "Bullet Symphony", src: "img/skills/skill-37.png"},
+    { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flag: "hitsSuccessive", boostIncrement: 20, boostMax: 255},
 ];
 
 const skillsGray = [

@@ -9,11 +9,21 @@ const flags = {
     "unique": false,
 };
 
-function setFlag(flagName, value) {
+function setFlag(flagName) {
     if (flags.hasOwnProperty(flagName)) {
-        flags[flagName] = value;
+        flags[flagName] = !flags[flagName];
     }
 }
+
+function calculateIncremental(input, maxValue, increment) {
+    const value = (input) * increment;
+  
+    if (value > maxValue) {
+      return maxValue;
+    }
+  
+    return value;
+  }
 
 function getDamageMultipliers() {
     let MultiplierGroup1 = [];
@@ -24,6 +34,11 @@ function getDamageMultipliers() {
         "1": MultiplierGroup1,
         "2": MultiplierGroup2,
         "3": MultiplierGroup3,
+    }
+
+    const incrementalsMap = {
+        "hitsSuccessive": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "enemiesNumber": 10 //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
     }
 
     let obj = getConfig();
@@ -62,6 +77,11 @@ function getDamageMultipliers() {
                 multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
             }
         }
+        else if (accessories[accessory].boostType === "multiplierDamageIncremental") {
+            const input = incrementalsMap[accessories[accessory].flag];
+            const value = calculateIncremental(input, accessories[accessory].boostMax, accessories[accessory].boostIncrement)
+            multipliersMap[accessories[accessory].group].push(value);
+        }
     }
     for (index = 0; index < skillsClassMaster.length; index++) {
         let skill = allSkills.findIndex(skill => skill.name === skillsClassMaster[index]);
@@ -73,6 +93,11 @@ function getDamageMultipliers() {
             if (flagSet) {
                 multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
             }
+        }
+        else if (allSkills[skill].boostType === "multiplierDamageIncremental") {
+            const input = incrementalsMap[allSkills[skill].flag];
+            const value = calculateIncremental(input, allSkills[skill].boostMax, allSkills[skill].boostIncrement)
+            multipliersMap[allSkills[skill].group].push(value);
         }
     }
 

@@ -51,6 +51,7 @@ const accessories = [
     { name: "Martis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "block", boostAmount: 60},
     { name: "Lunae Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplierDamage", group: "1", flags: ["fusion"], boostAmount: 100},
     { name: "Veneris Rings", src: "img/equipment/accessories/accessory-jewelry.png"},
+    { name: "Accomplished Necklace", src: "img/equipment/accessories/accessory-choker.png", boostType: "multiplierDamageIncremental", group: "1", flag: "enemiesNumber", boostIncrement: 30, boostMax: 200},
 ];
 
 const rarities = [
