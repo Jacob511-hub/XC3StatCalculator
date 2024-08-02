@@ -2,6 +2,16 @@ let MultiplierGroup1Sum;
 let MultiplierGroup2Sum;
 let MultiplierGroup3Sum;
 
+let characters = [
+    "noahConfig",
+    "mioConfig",
+    "eunieConfig",
+    "taionConfig",
+    "lanzConfig",
+    "senaConfig",
+    "heroConfig",
+];
+
 const flags = {
     "auto": false,
     "fusion": false,
@@ -98,6 +108,16 @@ function getDamageMultipliers() {
             const input = incrementalsMap[allSkills[skill].flag];
             const value = calculateIncremental(input, allSkills[skill].boostMax, allSkills[skill].boostIncrement)
             multipliersMap[allSkills[skill].group].push(value);
+        }
+    }
+    for (index = 0; index < characters.length; index++) {
+        let character = JSON.parse(localStorage.getItem(characters[index]));
+        if (character.class === "Royal Summoner" || character.class === "Melia" || [character.skills.skill_1, character.skills.skill_2, character.skills.skill_3].includes("Essence of Ether")) {
+            MultiplierGroup1.push(30)
+            break;
+        }
+        else {
+            continue;
         }
     }
 
