@@ -5,6 +5,8 @@ let MultiplierGroup3Sum;
 const flags = {
     "auto": false,
     "fusion": false,
+    "boss": false,
+    "unique": false,
 };
 
 function setFlag(flagName, value) {
@@ -27,6 +29,15 @@ function getDamageMultipliers() {
     let obj = getConfig();
     const gemKeys = Object.keys(noahConfig.gems);
     const accessoryKeys = Object.keys(noahConfig.accessories);
+    const skillsMasterKeys = Object.keys(noahConfig.skills);
+    let skillsClassMaster = [];
+    for (index = 0; index < 4; index++) {
+        skillsClassMaster.push(currentSkills[index].name);
+    }
+    for (index = 0; index < 3; index++) {
+        skillsClassMaster.push(obj.skills[skillsMasterKeys[index]]);
+    }
+    const allSkills = currentSkills.concat(skillList);
 
     for (index = 0; index < gemKeys.length; index++) {
         let gem = gems.findIndex(gem => gem.name === obj.gems[gemKeys[index]]);
@@ -49,6 +60,18 @@ function getDamageMultipliers() {
             const flagSet = accessories[accessory].flags.some(flag => flags[flag]);
             if (flagSet) {
                 multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
+            }
+        }
+    }
+    for (index = 0; index < skillsClassMaster.length; index++) {
+        let skill = allSkills.findIndex(skill => skill.name === skillsClassMaster[index]);
+        if (skill === -1) {
+            continue;
+        }
+        else if (allSkills[skill].boostType === "multiplierDamage") {
+            const flagSet = allSkills[skill].flags.some(flag => flags[flag]);
+            if (flagSet) {
+                multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
             }
         }
     }

@@ -34,6 +34,15 @@ function getStatsMultipliers() {
     let obj = getConfig();
     const gemKeys = Object.keys(noahConfig.gems);
     const accessoryKeys = Object.keys(noahConfig.accessories);
+    const skillsMasterKeys = Object.keys(noahConfig.skills);
+    let skillsClassMaster = [];
+    for (index = 0; index < 4; index++) {
+        skillsClassMaster.push(currentSkills[index].name);
+    }
+    for (index = 0; index < 3; index++) {
+        skillsClassMaster.push(obj.skills[skillsMasterKeys[index]]);
+    }
+    const allSkills = currentSkills.concat(skillList);
 
     for (index = 0; index < gemKeys.length; index++) {
         let gem = gems.findIndex(gem => gem.name === obj.gems[gemKeys[index]]);
@@ -51,6 +60,15 @@ function getStatsMultipliers() {
         }
         else if (accessories[accessory].boostType === "multiplier") {
             multipliersMap[accessories[accessory].boostStat].push(accessories[accessory].boostAmount);
+        }
+    }
+    for (index = 0; index < skillsClassMaster.length; index++) {
+        let skill = allSkills.findIndex(skill => skill.name === skillsClassMaster[index]);
+        if (skill === -1) {
+            continue;
+        }
+        else if (allSkills[skill].boostType === "multiplier") {
+            multipliersMap[allSkills[skill].boostStat].push(allSkills[skill].boostAmount);
         }
     }
     

@@ -598,13 +598,6 @@ for (let index = 0; index < 3; index++) {
 let skillList = skillsMaster;
 
 function skillsMenu() {
-    let obj = getConfig();
-    if (SoulhackerRoles.some(item => item.name === obj.class)) {
-        skillList = skillsSoulhacker;
-    }
-    else {
-        skillList = skillsMaster;
-    }
     parent = document.getElementById("classList");
     clearMenu();
     populateMenuSkills();
@@ -1167,6 +1160,7 @@ function classLoad(currentClass) {
         image = document.createElement("img");
         image.src = SoulhackerRoles[item].class;
         getSkillsByClass(localStorage.getItem(currentCharacter));
+        skillList = skillsSoulhacker;
 
         let slot = skills[1];
         let imageSkill = document.createElement("img");
@@ -1182,6 +1176,7 @@ function classLoad(currentClass) {
         image.src = classIcons[item].src;
         getSkillsByClass(localStorage.getItem(currentCharacter));
         stability = classIcons[item].stability;
+        skillList = skillsMaster;
     }
     image.className = "classSymbol";
     classButton.appendChild(image);

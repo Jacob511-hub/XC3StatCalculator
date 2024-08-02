@@ -1,8 +1,8 @@
 const skillsSwordfighter = [
-    { name: "Sharp Eye", src: "img/skills/skill-9.png"},
+    { name: "Sharp Eye", src: "img/skills/skill-9.png", boostType: "multiplier", boostStat: "dexterity", boostAmount: 50},
     { name: "Covert Attack", src: "img/skills/skill-13.png"},
-    { name: "Cypher Edge", src: "img/skills/skill-4.png"},
-    { name: "Inspirit", src: "img/skills/skill-11.png"},
+    { name: "Cypher Edge", src: "img/skills/skill-4.png", boostType: "multiplier", boostStat: "crit", boostAmount: 50},
+    { name: "Inspirit", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["boss", "unique"], boostAmount: 150},
 ];
 
 const skillsZephyr = [
@@ -245,7 +245,7 @@ const skillsLuckySevenHealer = [
 
 const skillsMaster = [
     { name: "None", src: "img/skills/skill-0.png"},
-    { name: "Cypher Edge", src: "img/skills/skill-4.png"},
+    { name: "Cypher Edge", src: "img/skills/skill-4.png", boostType: "multiplier", boostStat: "crit", boostAmount: 50},
     { name: "Covert Attack", src: "img/skills/skill-13.png"},
     { name: "Split-Second Counter", src: "img/skills/skill-19.png"},
     { name: "Stormy Gale", src: "img/skills/skill-10.png"},
