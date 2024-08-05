@@ -63,3 +63,19 @@ function heal(healRatio, range) {
     
     return Math.min(9999999, Math.max(1, Math.floor((uncapped_heal + (uncapped_heal * range)))));
 }
+
+function printDamage() {
+    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1);
+
+    for(index = 0; index < 7; index++) {
+        if (attribute[index] === "physical" || attribute[index] === "ether") {
+            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
+        }
+        else if (attribute[index] === "heal") {
+            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + heal(ratio[index], 0.00) + " - " + (heal(ratio[index], 0.04) + 2.0));
+        }
+        else if (attribute[index] === "buff" || attribute[index] === "field" || attribute[index] === undefined) {
+            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + 0);
+        }
+    }
+}

@@ -24,11 +24,19 @@ const flags = {
     "attackUpPlayer": false,
     "awakeningPlayer": false,
     "awakeningEnemy": false,
+    "criticalPlusPlayer": false,
+    "powerChargePlayer": false,
+    "attackDownPlayer": false,
+    "reduceAll": false,
 };
 
 function setFlag(flagName) {
     if (flags.hasOwnProperty(flagName)) {
         flags[flagName] = !flags[flagName];
+        let obj = getConfig();
+        calculateStats(obj);
+        getDamageMultipliers();
+        printDamage();
     }
 }
 

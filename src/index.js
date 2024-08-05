@@ -467,20 +467,7 @@ function characterLoad(characterStored) {
 
     calculateStats(characterStored);
     getDamageMultipliers();
-
-    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1);
-
-    for(index = 0; index < 7; index++) {
-        if (attribute[index] === "physical" || attribute[index] === "ether") {
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
-        }
-        else if (attribute[index] === "heal") {
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + heal(ratio[index], 0.00) + " - " + (heal(ratio[index], 0.04) + 2.0));
-        }
-        else if (attribute[index] === "buff" || attribute[index] === "field" || attribute[index] === undefined) {
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + 0);
-        }
-    }
+    printDamage();
 }
 
 var frToggle = document.getElementById("fr-toggle-button");
@@ -497,6 +484,15 @@ frToggle.onclick = function() {
         document.body.style.backgroundImage = bg1;
         currentBackgroundImage = bg1;
     }
+}
+
+const buffIcons = document.getElementsByClassName("buffIcon");
+
+for (let index = 0; index < buffIcons.length; index++) {
+    buffIcons[index].addEventListener("click", function() {
+        const image = buffIcons[index].querySelector('img');
+        image.classList.toggle('brighten');
+    })
 }
 
 let classMenu = document.getElementById("classModal");

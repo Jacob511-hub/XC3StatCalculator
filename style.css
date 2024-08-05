@@ -363,6 +363,12 @@ body {
     width: auto;
     height: 100%;
     cursor: pointer;
+    filter: brightness(50%);
+    transition: filter 0.3s ease;
+}
+
+.buffIcon img.brighten {
+    filter: brightness(100%);
 }
 
 .gemContainer {
