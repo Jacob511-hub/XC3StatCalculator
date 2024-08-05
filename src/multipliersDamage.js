@@ -1,6 +1,8 @@
 let MultiplierGroup1Sum;
 let MultiplierGroup2Sum;
 let MultiplierGroup3Sum;
+let ReductionGroupSum;
+let CriticalGroupSum;
 
 let characters = [
     "noahConfig",
@@ -17,6 +19,11 @@ const flags = {
     "fusion": false,
     "boss": false,
     "unique": false,
+    "critical": false,
+
+    "attackUpPlayer": false,
+    "awakeningPlayer": false,
+    "awakeningEnemy": false,
 };
 
 function setFlag(flagName) {
@@ -33,17 +40,21 @@ function calculateIncremental(input, maxValue, increment) {
     }
   
     return value;
-  }
+}
 
 function getDamageMultipliers() {
     let MultiplierGroup1 = [];
     let MultiplierGroup2 = [];
     let MultiplierGroup3 = [];
+    let ReductionGroup = [];
+    let CriticalGroup = [];
 
     const multipliersMap = {
         "1": MultiplierGroup1,
         "2": MultiplierGroup2,
         "3": MultiplierGroup3,
+        "reduction": ReductionGroup,
+        "critical": CriticalGroup,
     }
 
     const incrementalsMap = {
@@ -120,8 +131,24 @@ function getDamageMultipliers() {
             continue;
         }
     }
+    for (index = 0; index < buffs.length; index++) {
+        if (buffs[index].boostType === "multiplierDamage") {
+            const flagSet = buffs[index].flags.some(flag => flags[flag]);
+            if (flagSet) {
+                multipliersMap[buffs[index].group].push(buffs[index].boostAmount);
+            }
+        }
+    }
 
     MultiplierGroup1Sum = MultiplierGroup1.reduce((acc, currentValue) => acc + currentValue, 0);
     MultiplierGroup2Sum = MultiplierGroup2.reduce((acc, currentValue) => acc + currentValue, 0);
     MultiplierGroup3Sum = MultiplierGroup3.reduce((acc, currentValue) => acc + currentValue, 0);
+    ReductionGroupSum = ReductionGroup.reduce((acc, currentValue) => acc + currentValue, 0);
+
+    if (flags["critical"]) {
+        CriticalGroupSum = 25 + (CriticalGroup.reduce((acc, currentValue) => acc + currentValue, 0));
+    }
+    else {
+        CriticalGroupSum = 0;
+    }
 }

@@ -4,9 +4,8 @@ function damage(damageRatio, attribute, weaponStability, range) {
     }
     statAttack = parseInt(currentStats[1].textContent) + 22;
     weaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
-    powerMultiplier = (damageRatio) / 100;
-    multiHitCorrection = 1 / (2);
-    DamageReductionGroup = [0.00];
+    powerMultiplier = (damageRatio)/100;
+    multiHitCorrection = 1/(1);
 
     let defenseMultiplierPhysical = 1 - (0.00 - (0.50 + 0.32));
     let defenseMultiplierEther = 1 - (0.00);
@@ -18,7 +17,6 @@ function damage(damageRatio, attribute, weaponStability, range) {
         defenseMultiplier = defenseMultiplierEther;
     }
 
-    critMultiplier = 1.25 + 0.70 + 0.50 + 0.50 + (0.50 * (1 + 0.50 + 0.35));
     blockedMultiplier = 1;
     comboMultiplier = 1;
     shackleRingMultiplier = 1;
@@ -32,9 +30,9 @@ function damage(damageRatio, attribute, weaponStability, range) {
                   * (1 + (MultiplierGroup1Sum)/100)
                   * (1 + (MultiplierGroup2Sum)/100)
                   * (1 + (MultiplierGroup3Sum)/100)
-                  * (1 - DamageReductionGroup.reduce((acc, currentValue) => acc + currentValue, 0))
+                  * (1 - (ReductionGroupSum)/100)
+                  * (1 + (CriticalGroupSum)/100)
                   * defenseMultiplier
-                  * critMultiplier
                   * blockedMultiplier 
                   * comboMultiplier
                   * shackleRingMultiplier

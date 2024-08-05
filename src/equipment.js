@@ -6,7 +6,7 @@ const gems = [
     { name: "Perilous Presence", src: "img/equipment/gems/gem-blue.png"},
     { name: "Steelcleaver", src: "img/equipment/gems/gem-red.png", boostType: "additive", boostStat: "attack", boostAmount: 70},
     { name: "Accurate Grace", src: "img/equipment/gems/gem-red.png"},
-    { name: "Analyze Weakness", src: "img/equipment/gems/gem-red.png"},
+    { name: "Analyze Weakness", src: "img/equipment/gems/gem-red.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 70},
     { name: "Swelling Scourge", src: "img/equipment/gems/gem-red.png"},
     { name: "Refined Incantation", src: "img/equipment/gems/gem-red.png"},
     { name: "Lifebearer", src: "img/equipment/gems/gem-green.png"},

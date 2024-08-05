@@ -43,7 +43,7 @@ const skillsOgre = [
 const skillsFlashFencer = [
     { name: "First Move Wins", src: "img/skills/skill-3.png"},
     { name: "Fighting Instinct", src: "img/skills/skill-32.png"},
-    { name: "Critical Strike", src: "img/skills/skill-4.png"},
+    { name: "Critical Strike", src: "img/skills/skill-4.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 50},
     { name: "Capable Hands", src: "img/skills/skill-32.png"},
 ];
 
@@ -257,7 +257,7 @@ const skillsMaster = [
     { name: "Tenacious Blocker", src: "img/skills/skill-5.png"},
     { name: "Fighting Prowess", src: "img/skills/skill-29.png"},
     { name: "Dynamite Spirit", src: "img/skills/skill-11.png"},
-    { name: "Critical Strike", src: "img/skills/skill-4.png"},
+    { name: "Critical Strike", src: "img/skills/skill-4.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 50},
     { name: "Capable Hands", src: "img/skills/skill-32.png"},
     { name: "Healing License", src: "img/skills/skill-17.png"},
     { name: "Antibody System", src: "img/skills/skill-24.png"},
