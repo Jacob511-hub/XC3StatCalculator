@@ -2,13 +2,15 @@ function damage(damageRatio, attribute, weaponStability, range) {
     if (damageRatio === undefined || damageRatio === 0) {
         return 0;
     }
-    statAttack = parseInt(currentStats[1].textContent) + 22;
+    statAttack = parseInt(currentStats[1].textContent);
     weaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
     powerMultiplier = (damageRatio)/100;
     multiHitCorrection = 1/(1);
 
-    let defenseMultiplierPhysical = 1 - (0.00 - (0.50 + 0.32));
-    let defenseMultiplierEther = 1 - (0.00);
+    let defenseEnemyPhysical = document.getElementById('enemy-physical-defense').value;
+    let defenseEnemyEther = document.getElementById('enemy-ether-defense').value;;
+    let defenseMultiplierPhysical = defenseEnemyPhysical - DefenseReductionPhysicalGroupSum;
+    let defenseMultiplierEther = defenseEnemyEther - DefenseReductionEtherGroupSum;
     let defenseMultiplier;
     if (attribute === "physical") {
         defenseMultiplier = defenseMultiplierPhysical;
@@ -37,9 +39,9 @@ function damage(damageRatio, attribute, weaponStability, range) {
                   * (1 + (MultiplierGroup1Sum)/100)
                   * (1 + (MultiplierGroup2Sum)/100)
                   * (1 + (MultiplierGroup3Sum)/100)
-                  * (1 - (ReductionGroupSum)/100)
+                  * (1 - (DamageReductionGroupSum)/100)
                   * (1 + (CriticalGroupSum)/100)
-                  * defenseMultiplier
+                  * (1 - (defenseMultiplier)/100)
                   * blockedMultiplier 
                   * comboMultiplier
                   * shackleRingMultiplier

@@ -136,6 +136,15 @@
                         <div class="buffIcon"><img src="img\statuses\fields\art-follow-up.png" data-toggle="tooltip" data-placement="top" title="Art Follow-Up" alt="Art Follow-Up"></div>
                         <div class="buffIcon"><img src="img\statuses\fields\defender.png" data-toggle="tooltip" data-placement="top" title="Defender" alt="Defender"></div>
                     </div>
+                    <h1 class="info-text-3">Enemy Defenses</h1>
+                    <div class="number-fields">
+                        <h1 class="info-text-3 smaller-text">Physical Defense: </h1>
+                        <input class="number-input" type="number" id="enemy-physical-defense" min="0" max="100" value="0" oninput="recalculate()">
+                    </div>
+                    <div class="number-fields">
+                        <h1 class="info-text-3 smaller-text">Ether Defense: </h1>
+                        <input class="number-input" type="number" id="enemy-ether-defense" min="0" max="100" value="0" oninput="recalculate()">
+                    </div>
                 </div>
                 <div id="damageNumbers">
                     <h1 class="damage-text">None</h1>

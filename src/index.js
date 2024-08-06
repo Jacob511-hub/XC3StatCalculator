@@ -465,7 +465,12 @@ function characterLoad(characterStored) {
     accessoryLoad(1, characterStored.accessories.accessory_2, characterStored.rarities.accessory_2);
     accessoryLoad(2, characterStored.accessories.accessory_3, characterStored.rarities.accessory_3);
 
-    calculateStats(characterStored);
+    recalculate();
+}
+
+function recalculate() {
+    let obj = getConfig();
+    calculateStats(obj);
     getDamageMultipliers();
     printDamage();
 }

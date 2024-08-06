@@ -1,7 +1,9 @@
 let MultiplierGroup1Sum;
 let MultiplierGroup2Sum;
 let MultiplierGroup3Sum;
-let ReductionGroupSum;
+let DamageReductionGroupSum;
+let DefenseReductionPhysicalGroupSum;
+let DefenseReductionEtherGroupSum;
 let CriticalGroupSum;
 
 let characters = [
@@ -15,6 +17,7 @@ let characters = [
 ];
 
 const flags = {
+    "none": true,
     "auto": false,
     "fusion": false,
     "boss": false,
@@ -40,10 +43,7 @@ const flags = {
 function setFlag(flagName) {
     if (flags.hasOwnProperty(flagName)) {
         flags[flagName] = !flags[flagName];
-        let obj = getConfig();
-        calculateStats(obj);
-        getDamageMultipliers();
-        printDamage();
+        recalculate();
     }
 }
 
@@ -61,14 +61,18 @@ function getDamageMultipliers() {
     let MultiplierGroup1 = [];
     let MultiplierGroup2 = [];
     let MultiplierGroup3 = [];
-    let ReductionGroup = [];
+    let DamageReductionGroup = [];
+    let DefenseReductionPhysicalGroup = [];
+    let DefenseReductionEtherGroup = [];
     let CriticalGroup = [];
 
     const multipliersMap = {
         "1": MultiplierGroup1,
         "2": MultiplierGroup2,
         "3": MultiplierGroup3,
-        "reduction": ReductionGroup,
+        "damageReduction": DamageReductionGroup,
+        "defenseReductionPhysical": DefenseReductionPhysicalGroup,
+        "defenseReductionEther": DefenseReductionEtherGroup,
         "critical": CriticalGroup,
     }
 
@@ -81,14 +85,15 @@ function getDamageMultipliers() {
     const gemKeys = Object.keys(noahConfig.gems);
     const accessoryKeys = Object.keys(noahConfig.accessories);
     const skillsMasterKeys = Object.keys(noahConfig.skills);
+    const allSkills = currentSkills.concat(skillList);
     let skillsClassMaster = [];
+
     for (index = 0; index < 4; index++) {
         skillsClassMaster.push(currentSkills[index].name);
     }
     for (index = 0; index < 3; index++) {
         skillsClassMaster.push(obj.skills[skillsMasterKeys[index]]);
     }
-    const allSkills = currentSkills.concat(skillList);
 
     for (index = 0; index < gemKeys.length; index++) {
         let gem = gems.findIndex(gem => gem.name === obj.gems[gemKeys[index]]);
@@ -158,7 +163,9 @@ function getDamageMultipliers() {
     MultiplierGroup1Sum = MultiplierGroup1.reduce((acc, currentValue) => acc + currentValue, 0);
     MultiplierGroup2Sum = MultiplierGroup2.reduce((acc, currentValue) => acc + currentValue, 0);
     MultiplierGroup3Sum = MultiplierGroup3.reduce((acc, currentValue) => acc + currentValue, 0);
-    ReductionGroupSum = ReductionGroup.reduce((acc, currentValue) => acc + currentValue, 0);
+    DamageReductionGroupSum = DamageReductionGroup.reduce((acc, currentValue) => acc + currentValue, 0);
+    DefenseReductionPhysicalGroupSum = DefenseReductionPhysicalGroup.reduce((acc, currentValue) => acc + currentValue, 0);
+    DefenseReductionEtherGroupSum = DefenseReductionEtherGroup.reduce((acc, currentValue) => acc + currentValue, 0);
 
     if (flags["critical"]) {
         CriticalGroupSum = 25 + (CriticalGroup.reduce((acc, currentValue) => acc + currentValue, 0));

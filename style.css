@@ -354,6 +354,22 @@ body {
     flex-wrap: wrap;
 }
 
+.number-fields {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.number-input {
+    margin: 10px;
+}
+
+.smaller-text {
+    font-size: 1em;
+}
+
 .buffIcon {
     height: 50px;
     width: auto;

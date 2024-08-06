@@ -64,7 +64,7 @@ const skillsGuardianCommander = [
 const skillsThaumaturge = [
     { name: "Wheel of Rebirth", src: "img/skills/skill-2.png"},
     { name: "Qinggong", src: "img/skills/skill-10.png"},
-    { name: "Ultimate Qigong", src: "img/skills/skill-34.png"},
+    { name: "Ultimate Qigong", src: "img/skills/skill-34.png", boostType: "multiplierDamage", group: "defenseReductionPhysical", flags: ["none"], boostAmount: 50},
     { name: "Life-Saving Fists", src: "img/skills/skill-14.png"},
 ];
 
@@ -170,7 +170,7 @@ const skillsSeraph = [
     { name: "Beast Mode", src: "img/skills/skill-1.png"},
     { name: "Got the Guts", src: "img/skills/skill-11.png"},
     { name: "Greatest Warrior", src: "img/skills/skill-43.png"},
-    { name: "Universal Annihilation", src: "img/skills/skill-11.png"},
+    { name: "Universal Annihilation", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy", "launchEnemy"], boostAmount: 150},
 ];
 
 const skillsMachineAssassin = [
@@ -263,7 +263,7 @@ const skillsMaster = [
     { name: "Antibody System", src: "img/skills/skill-24.png"},
     { name: "Protector's Pride", src: "img/skills/skill-18.png"},
     { name: "Mind for Guarding", src: "img/skills/skill-7.png"},
-    { name: "Ultimate Qigong", src: "img/skills/skill-34.png"},
+    { name: "Ultimate Qigong", src: "img/skills/skill-34.png", boostType: "multiplierDamage", group: "defenseReductionPhysical", flags: ["none"], boostAmount: 50},
     { name: "Life-Saving Fists", src: "img/skills/skill-14.png"},
     { name: "Sappy-Sappy Drain!", src: "img/skills/skill-44.png"},
     { name: "Slicey Dicey!", src: "img/skills/skill-22.png"},
@@ -287,7 +287,7 @@ const skillsMaster = [
     { name: "Dance of Barrages", src: "img/skills/skill-40.png"},
     { name: "Swiftsong", src: "img/skills/skill-10.png"},
     { name: "Greatest Warrior", src: "img/skills/skill-43.png"},
-    { name: "Universal Annihilation", src: "img/skills/skill-11.png"},
+    { name: "Universal Annihilation", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy", "launchEnemy"], boostAmount: 150},
     { name: "Cursed Edge", src: "img/skills/skill-11.png"},
     { name: "Anti-Erosion System", src: "img/skills/skill-44.png"},
     { name: "Enhanced Cellular Stimulus", src: "img/skills/skill-46.png"},
