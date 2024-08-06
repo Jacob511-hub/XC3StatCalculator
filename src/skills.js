@@ -34,7 +34,7 @@ const skillsHeavyGuard = [
 ];
 
 const skillsOgre = [
-    { name: "Insult to Injury", src: "img/skills/skill-11.png"},
+    { name: "Insult to Injury", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy"], boostAmount: 150},
     { name: "Fury Smash", src: "img/skills/skill-15.png"},
     { name: "Fighting Prowess", src: "img/skills/skill-29.png"},
     { name: "Dynamite Spirit", src: "img/skills/skill-11.png"},

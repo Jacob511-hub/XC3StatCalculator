@@ -77,19 +77,19 @@
                 <div id="statuses">
                     <h1 class="info-text-3">Player Buffs</h1>
                     <div class="buffs">
-                        <div class="buffIcon" id="attackUpPlayer" onclick="setFlag(this.id)"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
+                        <div class="buffIcon" id="attackUpPlayer"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
                         <div class="buffIcon"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
                         <div class="buffIcon"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
                         <div class="buffIcon"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
                         <div class="buffIcon"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
-                        <div class="buffIcon" id="criticalPlusPlayer" onclick="setFlag(this.id)"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
-                        <div class="buffIcon" id="powerChargePlayer" onclick="setFlag(this.id)"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
+                        <div class="buffIcon" id="criticalPlusPlayer"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
+                        <div class="buffIcon" id="powerChargePlayer"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
                         <div class="buffIcon"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
-                        <div class="buffIcon" id="awakeningPlayer" onclick="setFlag(this.id)"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
+                        <div class="buffIcon" id="awakeningPlayer"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
                     </div>
                     <h1 class="info-text-3">Player Debuffs</h1>
                     <div class="buffs">
-                        <div class="buffIcon" id="attackDownPlayer" onclick="setFlag(this.id)"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
+                        <div class="buffIcon" id="attackDownPlayer"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
                         <div class="buffIcon"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
                         <div class="buffIcon"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
                         <div class="buffIcon"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
@@ -106,7 +106,7 @@
                         <div class="buffIcon"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
                         <div class="buffIcon"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
                         <div class="buffIcon"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
-                        <div class="buffIcon" id="awakeningEnemy" onclick="setFlag(this.id)"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
+                        <div class="buffIcon" id="awakeningEnemy"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
                     </div>
                     <h1 class="info-text-3">Enemy Debuffs</h1>
                     <div class="buffs">
@@ -115,13 +115,16 @@
                         <div class="buffIcon"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
                         <div class="buffIcon"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
                         <div class="buffIcon"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
-                        <div class="buffIcon" id="reduceAll" onclick="setFlag(this.id)"><img src="img\statuses\debuffs\reduce-all.png" data-toggle="tooltip" data-placement="top" title="Reduce All" alt="Reduce All"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\break.png" data-toggle="tooltip" data-placement="top" title="Break" alt="Break"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\topple.png" data-toggle="tooltip" data-placement="top" title="Topple" alt="Topple"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\launch.png" data-toggle="tooltip" data-placement="top" title="Launch" alt="Launch"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\daze.png" data-toggle="tooltip" data-placement="top" title="Daze" alt="Daze"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\smash.png" data-toggle="tooltip" data-placement="top" title="Smash" alt="Smash"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\burst.png" data-toggle="tooltip" data-placement="top" title="Burst" alt="Burst"></div>
+                        <div class="buffIcon" id="reduceAll"><img src="img\statuses\debuffs\reduce-all.png" data-toggle="tooltip" data-placement="top" title="Reduce All" alt="Reduce All"></div>
+                    </div>
+                    <h1 class="info-text-3">Enemy Combo</h1>
+                    <div class="buffs">
+                        <div class="reactionIcon" id="breakEnemy"><img src="img\statuses\debuffs\break.png" data-toggle="tooltip" data-placement="top" title="Break" alt="Break"></div>
+                        <div class="reactionIcon" id="toppleEnemy"><img src="img\statuses\debuffs\topple.png" data-toggle="tooltip" data-placement="top" title="Topple" alt="Topple"></div>
+                        <div class="reactionIcon" id="launchEnemy"><img src="img\statuses\debuffs\launch.png" data-toggle="tooltip" data-placement="top" title="Launch" alt="Launch"></div>
+                        <div class="reactionIcon" id="dazeEnemy"><img src="img\statuses\debuffs\daze.png" data-toggle="tooltip" data-placement="top" title="Daze" alt="Daze"></div>
+                        <div class="reactionIcon" id="smashEnemy"><img src="img\statuses\debuffs\smash.png" data-toggle="tooltip" data-placement="top" title="Smash" alt="Smash"></div>
+                        <div class="reactionIcon" id="burstEnemy"><img src="img\statuses\debuffs\burst.png" data-toggle="tooltip" data-placement="top" title="Burst" alt="Burst"></div>
                     </div>
                     <h1 class="info-text-3">Fields</h1>
                     <div class="buffs">

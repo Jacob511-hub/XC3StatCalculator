@@ -28,6 +28,13 @@ const flags = {
     "powerChargePlayer": false,
     "attackDownPlayer": false,
     "reduceAll": false,
+
+    "breakEnemy": false,
+    "toppleEnemy": false,
+    "dazeEnemy": false,
+    "launchEnemy": false,
+    "burstEnemy": false,
+    "smashEnemy": false,
 };
 
 function setFlag(flagName) {

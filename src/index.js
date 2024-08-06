@@ -492,6 +492,28 @@ for (let index = 0; index < buffIcons.length; index++) {
     buffIcons[index].addEventListener("click", function() {
         const image = buffIcons[index].querySelector('img');
         image.classList.toggle('brighten');
+        setFlag(buffIcons[index].id)
+    })
+}
+
+const reactionIcons = document.getElementsByClassName("reactionIcon");
+
+for (let index = 0; index < reactionIcons.length; index++) {
+    reactionIcons[index].addEventListener("click", function() {
+        const image = reactionIcons[index].querySelector('img');
+        image.classList.toggle('brighten');
+        setFlag(reactionIcons[index].id)
+        
+        for (let index2 = 0; index2 < reactionIcons.length; index2++) {
+            const image2 = reactionIcons[index2].querySelector('img');
+            if (image2 === image) {
+                continue;
+            }
+            else if (image2 !== image && flags[reactionIcons[index2].id]) {
+                image2.classList.remove('brighten');
+                setFlag(reactionIcons[index2].id)
+            }
+        }
     })
 }
 

@@ -18,7 +18,14 @@ function damage(damageRatio, attribute, weaponStability, range) {
     }
 
     blockedMultiplier = 1;
-    comboMultiplier = 1;
+
+    let comboMultiplier;
+    if (flags["launchEnemy"]) {
+        comboMultiplier = 1.25;
+    }
+    else {
+        comboMultiplier = 1;
+    }
     shackleRingMultiplier = 1;
     fusionDamageMultiplier = 1;
     chainAttackMultiplier = 1;
