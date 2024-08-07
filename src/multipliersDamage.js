@@ -5,6 +5,9 @@ let DamageReductionGroupSum;
 let DefenseReductionPhysicalGroupSum;
 let DefenseReductionEtherGroupSum;
 let CriticalGroupSum;
+let artMultiplierGroup1Sum;
+let artMultiplierGroup2Sum;
+let artMultiplierGroup3Sum;
 
 let characters = [
     "noahConfig",
@@ -20,9 +23,10 @@ const flags = {
     "none": true,
     "auto": false,
     "fusion": false,
+    "cancel": false,
+    "critical": false,
     "boss": false,
     "unique": false,
-    "critical": false,
 
     "attackUpPlayer": false,
     "awakeningPlayer": false,
@@ -38,6 +42,15 @@ const flags = {
     "launchEnemy": false,
     "burstEnemy": false,
     "smashEnemy": false,
+
+    "enemyTerrestrial": false,
+    "enemyAquatic": false,
+    "enemyAerial": false,
+    "enemyKeves": false,
+    "enemyAgnus": false,
+    "enemyLostNumbers": false,
+    "enemyMachines": false,
+    "enemyMoebius": false,
 };
 
 function setFlag(flagName) {
@@ -55,6 +68,45 @@ function calculateIncremental(input, maxValue, increment) {
     }
   
     return value;
+}
+
+function artMultiplier(index) {
+    let obj = getConfig();
+    const artKeys = Object.keys(noahConfig.arts);
+    let classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+    let masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
+    const allArts = classArts.concat(masterArts, talentArts);
+
+    let artMultiplierGroup1 = [];
+    let artMultiplierGroup2 = [];
+    let artMultiplierGroup3 = [];
+
+    const artMultipliersMap = {
+        "1": artMultiplierGroup1,
+        "2": artMultiplierGroup2,
+        "3": artMultiplierGroup3,
+    }
+
+    if (index === null || obj.arts[artKeys[index]] === null || obj.arts[artKeys[index]] === "None") {
+        artMultiplierGroup1Sum = 0;
+        artMultiplierGroup2Sum = 0;
+        artMultiplierGroup3Sum = 0;
+        return;
+    }
+    
+    let art = allArts.findIndex(art => art.name === obj.arts[artKeys[index]]);
+    if (art === -1) {
+        return;
+    }
+    else if (allArts[art].boostType === "multiplierDamage") {
+        const flagSet = allArts[art].flags.some(flag => flags[flag]);
+        if (flagSet) {
+            artMultipliersMap[allArts[art].group].push(allArts[art].boostAmount);
+        }
+    }
+    artMultiplierGroup1Sum = artMultiplierGroup1.reduce((acc, currentValue) => acc + currentValue, 0);
+    artMultiplierGroup2Sum = artMultiplierGroup2.reduce((acc, currentValue) => acc + currentValue, 0);
+    artMultiplierGroup3Sum = artMultiplierGroup3.reduce((acc, currentValue) => acc + currentValue, 0);
 }
 
 function getDamageMultipliers() {
@@ -78,7 +130,13 @@ function getDamageMultipliers() {
 
     const incrementalsMap = {
         "hitsSuccessive": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "enemiesNumber": 10 //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "enemiesNumber": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "crits": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "buffsApplied": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "debuffsApplied": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "cancels": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "buffsUser": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
     }
 
     let obj = getConfig();

@@ -36,9 +36,9 @@ function damage(damageRatio, attribute, weaponStability, range) {
 
     uncapped_damage = (statAttack + Math.floor(weaponAttack * weaponStability))
                   * powerMultiplier * multiHitCorrection
-                  * (1 + (MultiplierGroup1Sum)/100)
-                  * (1 + (MultiplierGroup2Sum)/100)
-                  * (1 + (MultiplierGroup3Sum)/100)
+                  * (1 + (MultiplierGroup1Sum + artMultiplierGroup1Sum)/100)
+                  * (1 + (MultiplierGroup2Sum + artMultiplierGroup2Sum)/100)
+                  * (1 + (MultiplierGroup3Sum + artMultiplierGroup3Sum)/100)
                   * (1 - (DamageReductionGroupSum)/100)
                   * (1 + (CriticalGroupSum)/100)
                   * (1 - (defenseMultiplier)/100)
@@ -74,10 +74,12 @@ function heal(healRatio, range) {
 }
 
 function printDamage() {
+    artMultiplier(null);
     damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1);
 
     for(index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
+            artMultiplier(index);
             damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
         }
         else if (attribute[index] === "heal") {

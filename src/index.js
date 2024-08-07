@@ -494,33 +494,41 @@ frToggle.onclick = function() {
 const buffIcons = document.getElementsByClassName("buffIcon");
 
 for (let index = 0; index < buffIcons.length; index++) {
-    buffIcons[index].addEventListener("click", function() {
-        const image = buffIcons[index].querySelector('img');
-        image.classList.toggle('brighten');
-        setFlag(buffIcons[index].id)
-    })
+    if (buffIcons[index].classList.length === 1) {
+        buffIcons[index].addEventListener("click", function() {
+            const image = buffIcons[index].querySelector('img');
+            image.classList.toggle('brighten');
+            setFlag(buffIcons[index].id)
+        })
+    }
 }
 
 const reactionIcons = document.getElementsByClassName("reactionIcon");
+const typeIcons = document.getElementsByClassName("typeIcon");
 
-for (let index = 0; index < reactionIcons.length; index++) {
-    reactionIcons[index].addEventListener("click", function() {
-        const image = reactionIcons[index].querySelector('img');
-        image.classList.toggle('brighten');
-        setFlag(reactionIcons[index].id)
-        
-        for (let index2 = 0; index2 < reactionIcons.length; index2++) {
-            const image2 = reactionIcons[index2].querySelector('img');
-            if (image2 === image) {
-                continue;
+function singleToggle(icons) {
+    for (let index = 0; index < icons.length; index++) {
+        icons[index].addEventListener("click", function() {
+            const image = icons[index].querySelector('img');
+            image.classList.toggle('brighten');
+            setFlag(icons[index].id)
+            
+            for (let index2 = 0; index2 < icons.length; index2++) {
+                const image2 = icons[index2].querySelector('img');
+                if (image2 === image) {
+                    continue;
+                }
+                else if (image2 !== image && flags[icons[index2].id]) {
+                    image2.classList.remove('brighten');
+                    setFlag(icons[index2].id)
+                }
             }
-            else if (image2 !== image && flags[reactionIcons[index2].id]) {
-                image2.classList.remove('brighten');
-                setFlag(reactionIcons[index2].id)
-            }
-        }
-    })
+        })
+    }
 }
+
+singleToggle(reactionIcons);
+singleToggle(typeIcons);
 
 let classMenu = document.getElementById("classModal");
 let classButton = document.getElementById("classButton");

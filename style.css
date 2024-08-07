@@ -387,23 +387,6 @@ body {
     filter: brightness(100%);
 }
 
-.reactionIcon {
-    height: 50px;
-    width: auto;
-}
-
-.reactionIcon img {
-    width: auto;
-    height: 100%;
-    cursor: pointer;
-    filter: brightness(50%);
-    transition: filter 0.3s ease;
-}
-
-.reactionIcon img.brighten {
-    filter: brightness(100%);
-}
-
 .gemContainer {
     display: flex;
     flex-direction: row;
