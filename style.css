@@ -354,12 +354,16 @@ body {
     flex-wrap: wrap;
 }
 
-.number-fields {
+.horizontal-fields {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: space-between;
+    border-radius: 15px;
+    background-color: #2d2d2d7b;
 }
 
 .number-input {

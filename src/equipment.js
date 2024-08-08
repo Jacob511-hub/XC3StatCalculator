@@ -17,7 +17,7 @@ const gems = [
     { name: "Ironclad", src: "img/equipment/gems/gem-yellow.png"},
     { name: "Steady Striker", src: "img/equipment/gems/gem-yellow.png"},
     { name: "Doublestrike", src: "img/equipment/gems/gem-yellow.png"},
-    { name: "Empowered Combo", src: "img/equipment/gems/gem-yellow.png"},
+    { name: "Empowered Combo", src: "img/equipment/gems/gem-yellow.png", boostType: "multiplierDamage", group: "3", flags: ["cancel"], boostAmount: 75},
     { name: "Disperse Bloodlust", src: "img/equipment/gems/gem-yellow.png"},
 ];
 

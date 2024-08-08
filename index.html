@@ -148,13 +148,22 @@
                         <div class="buffIcon typeIcon" id="enemyMoebius"><img src="img\statuses\types\enemy-moebius.png" data-toggle="tooltip" data-placement="top" title="Moebius" alt="Moebius"></div>
                     </div>
                     <h1 class="info-text-3">Enemy Defenses</h1>
-                    <div class="number-fields">
+                    <div class="horizontal-fields">
                         <h1 class="info-text-3 smaller-text">Physical Defense: </h1>
                         <input class="number-input" type="number" id="enemy-physical-defense" min="0" max="100" value="0" oninput="recalculate()">
                     </div>
-                    <div class="number-fields">
+                    <div class="horizontal-fields">
                         <h1 class="info-text-3 smaller-text">Ether Defense: </h1>
                         <input class="number-input" type="number" id="enemy-ether-defense" min="0" max="100" value="0" oninput="recalculate()">
+                    </div>
+                    <h1 class="info-text-3">Checks</h1>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Critical: </h1>
+                        <div class="buffIcon" id="critical"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Critical Hit?" alt="Critical"></div>
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Cancel: </h1>
+                        <div class="buffIcon" id="cancel"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Canceled?" alt="Cancel"></div>
                     </div>
                 </div>
                 <div id="damageNumbers">
