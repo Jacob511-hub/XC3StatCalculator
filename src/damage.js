@@ -1,4 +1,4 @@
-function damage(damageRatio, attribute, weaponStability, range) {
+function damage(damageRatio, attribute, weaponStability, range, fusionDamageMultiplier) {
     if (damageRatio === undefined || damageRatio === 0) {
         return 0;
     }
@@ -19,7 +19,13 @@ function damage(damageRatio, attribute, weaponStability, range) {
         defenseMultiplier = defenseMultiplierEther;
     }
 
-    blockedMultiplier = 1;
+    let blockedMultiplier;
+    if (flags["enemyBlocked"]) {
+        blockedMultiplier = 0.50;
+    }
+    else {
+        blockedMultiplier = 1;
+    }
 
     let comboMultiplier;
     if (flags["launchEnemy"]) {
@@ -28,8 +34,8 @@ function damage(damageRatio, attribute, weaponStability, range) {
     else {
         comboMultiplier = 1;
     }
+
     shackleRingMultiplier = 1;
-    fusionDamageMultiplier = 1;
     chainAttackMultiplier = 1;
     levelMultiplier = 1;
     difficultyMultiplier = 1;
@@ -75,12 +81,12 @@ function heal(healRatio, range) {
 
 function printDamage() {
     artMultiplier(null);
-    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1);
+    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9, 1) + " - " + damage(60, "physical", stability, 1.1, 1);
 
     for(index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
+            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9, 1) + " - " + damage(ratio[index], attribute[index], stability, 1.1, 1));
         }
         else if (attribute[index] === "heal") {
             damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + heal(ratio[index], 0.00) + " - " + (heal(ratio[index], 0.04) + 2.0));
@@ -88,5 +94,22 @@ function printDamage() {
         else if (attribute[index] === "buff" || attribute[index] === "field" || attribute[index] === undefined) {
             damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + 0);
         }
+    }
+    for(index = 0; index < 3; index++) {
+        let masterArtMin = 0;
+        let masterArtMax = 0;
+        let classArtMin = 0;
+        let classArtMax = 0;
+        if (attribute[index] === "physical" || attribute[index] === "ether") {
+            artMultiplier(index);
+            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9, 1.5);
+            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1, 1.5);
+        }
+        if (attribute[index + 3] === "physical" || attribute[index  + 3] === "ether") {
+            artMultiplier(index);
+            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9, 1.5);
+            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1, 1.5);
+        }
+        damagePrint[index + 8].textContent = (artNames[index].textContent + " + " + artNames[index + 3].textContent + ": " + (masterArtMin + classArtMin) + " - " + (masterArtMax + classArtMax));
     }
 }

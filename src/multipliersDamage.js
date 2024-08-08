@@ -25,6 +25,7 @@ const flags = {
     "fusion": false,
     "cancel": false,
     "critical": false,
+    "enemyBlocked": false,
     "boss": false,
     "unique": false,
 
