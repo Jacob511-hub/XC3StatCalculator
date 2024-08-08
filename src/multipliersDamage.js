@@ -8,6 +8,8 @@ let CriticalGroupSum;
 let artMultiplierGroup1Sum;
 let artMultiplierGroup2Sum;
 let artMultiplierGroup3Sum;
+let fusionBoostSum;
+let fusionDamageMultiplier;
 
 let characters = [
     "noahConfig",
@@ -22,12 +24,12 @@ let characters = [
 const flags = {
     "none": true,
     "auto": false,
-    "fusion": false,
     "cancel": false,
     "critical": false,
     "enemyBlocked": false,
     "boss": false,
     "unique": false,
+    "first30seconds": false,
 
     "attackUpPlayer": false,
     "awakeningPlayer": false,
@@ -69,6 +71,31 @@ function calculateIncremental(input, maxValue, increment) {
     }
   
     return value;
+}
+
+function fusionCheck(flag) {
+    let fusionBoost = [];
+    fusionDamageMultiplier = 1.5;
+    const accessoryKeys = Object.keys(noahConfig.accessories);
+    let obj = getConfig();
+
+    if (flag === true) {
+        for (let index = 0; index < accessoryKeys.length; index++) {
+            let accessory = accessories.findIndex(accessory => accessory.name === obj.accessories[accessoryKeys[index]]);
+
+            if (accessory === -1 || !("flags" in accessories[accessory]) || !(accessories[accessory].flags).includes("fusion")) {
+                fusionBoost.push(0);
+            }
+            else if ((accessories[accessory].flags).includes("fusion")) {
+                fusionBoost.push(accessories[accessory].boostAmount);
+            }
+        }
+        fusionBoostSum = fusionBoost.reduce((acc, currentValue) => acc + currentValue, 0);
+    }
+    else if (flag === false) {
+        fusionDamageMultiplier = 1;
+        fusionBoostSum = 0;
+    }
 }
 
 function artMultiplier(index) {
@@ -138,6 +165,7 @@ function getDamageMultipliers() {
         "cancels": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
         "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
         "buffsUser": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "usedTalents": document.getElementById('used-talents').value
     }
 
     let obj = getConfig();
@@ -178,7 +206,7 @@ function getDamageMultipliers() {
             }
         }
         else if (accessories[accessory].boostType === "multiplierDamageIncremental") {
-            const input = incrementalsMap[accessories[accessory].flag];
+            const input = incrementalsMap[accessories[accessory].flags];
             const value = calculateIncremental(input, accessories[accessory].boostMax, accessories[accessory].boostIncrement)
             multipliersMap[accessories[accessory].group].push(value);
         }
@@ -195,7 +223,7 @@ function getDamageMultipliers() {
             }
         }
         else if (allSkills[skill].boostType === "multiplierDamageIncremental") {
-            const input = incrementalsMap[allSkills[skill].flag];
+            const input = incrementalsMap[allSkills[skill].flags];
             const value = calculateIncremental(input, allSkills[skill].boostMax, allSkills[skill].boostIncrement)
             multipliersMap[allSkills[skill].group].push(value);
         }

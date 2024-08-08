@@ -41,8 +41,8 @@ const skillsOgre = [
 ];
 
 const skillsFlashFencer = [
-    { name: "First Move Wins", src: "img/skills/skill-3.png"},
-    { name: "Fighting Instinct", src: "img/skills/skill-32.png"},
+    { name: "First Move Wins", src: "img/skills/skill-3.png", boostType: "multiplierDamage", group: "1", flags: ["first30seconds"], boostAmount: 50},
+    { name: "Fighting Instinct", src: "img/skills/skill-32.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["usedTalents"], boostIncrement: 50, boostMax: 200},
     { name: "Critical Strike", src: "img/skills/skill-4.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 50},
     { name: "Capable Hands", src: "img/skills/skill-32.png"},
 ];
@@ -79,7 +79,7 @@ const skillsFullMetalJaguar = [
     { name: "Sixth Sense", src: "img/skills/skill-38.png"},
     { name: "Positioning Pro", src: "img/skills/skill-1.png"},
     { name: "Shock Shot", src: "img/skills/skill-38.png"},
-    { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flag: "hitsSuccessive", boostIncrement: 20, boostMax: 255},
+    { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["hitsSuccessive"], boostIncrement: 20, boostMax: 255},
 ];
 
 const skillsGray = [

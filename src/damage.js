@@ -1,4 +1,4 @@
-function damage(damageRatio, attribute, weaponStability, range, fusionDamageMultiplier) {
+function damage(damageRatio, attribute, weaponStability, range) {
     if (damageRatio === undefined || damageRatio === 0) {
         return 0;
     }
@@ -8,7 +8,7 @@ function damage(damageRatio, attribute, weaponStability, range, fusionDamageMult
     multiHitCorrection = 1/(1);
 
     let defenseEnemyPhysical = document.getElementById('enemy-physical-defense').value;
-    let defenseEnemyEther = document.getElementById('enemy-ether-defense').value;;
+    let defenseEnemyEther = document.getElementById('enemy-ether-defense').value;
     let defenseMultiplierPhysical = defenseEnemyPhysical - DefenseReductionPhysicalGroupSum;
     let defenseMultiplierEther = defenseEnemyEther - DefenseReductionEtherGroupSum;
     let defenseMultiplier;
@@ -36,13 +36,14 @@ function damage(damageRatio, attribute, weaponStability, range, fusionDamageMult
     }
 
     shackleRingMultiplier = 1;
-    chainAttackMultiplier = 1;
+
+    let chainAttackMultiplier = document.getElementById('chain-attack-multiplier').value;
     levelMultiplier = 1;
     difficultyMultiplier = 1;
 
     uncapped_damage = (statAttack + Math.floor(weaponAttack * weaponStability))
                   * powerMultiplier * multiHitCorrection
-                  * (1 + (MultiplierGroup1Sum + artMultiplierGroup1Sum)/100)
+                  * (1 + (MultiplierGroup1Sum + artMultiplierGroup1Sum + fusionBoostSum)/100)
                   * (1 + (MultiplierGroup2Sum + artMultiplierGroup2Sum)/100)
                   * (1 + (MultiplierGroup3Sum + artMultiplierGroup3Sum)/100)
                   * (1 - (DamageReductionGroupSum)/100)
@@ -52,7 +53,7 @@ function damage(damageRatio, attribute, weaponStability, range, fusionDamageMult
                   * comboMultiplier
                   * shackleRingMultiplier
                   * fusionDamageMultiplier
-                  * chainAttackMultiplier
+                  * ((chainAttackMultiplier)/100)
                   * levelMultiplier
                   * difficultyMultiplier
 
@@ -81,12 +82,14 @@ function heal(healRatio, range) {
 
 function printDamage() {
     artMultiplier(null);
-    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9, 1) + " - " + damage(60, "physical", stability, 1.1, 1);
+    fusionCheck(false);
+    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1);
 
     for(index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9, 1) + " - " + damage(ratio[index], attribute[index], stability, 1.1, 1));
+            fusionCheck(false);
+            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
         }
         else if (attribute[index] === "heal") {
             damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + heal(ratio[index], 0.00) + " - " + (heal(ratio[index], 0.04) + 2.0));
@@ -96,19 +99,20 @@ function printDamage() {
         }
     }
     for(index = 0; index < 3; index++) {
+        fusionCheck(true);
         let masterArtMin = 0;
         let masterArtMax = 0;
         let classArtMin = 0;
         let classArtMax = 0;
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
-            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9, 1.5);
-            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1, 1.5);
+            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9);
+            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1);
         }
         if (attribute[index + 3] === "physical" || attribute[index  + 3] === "ether") {
             artMultiplier(index);
-            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9, 1.5);
-            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1, 1.5);
+            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9);
+            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1);
         }
         damagePrint[index + 8].textContent = (artNames[index].textContent + " + " + artNames[index + 3].textContent + ": " + (masterArtMin + classArtMin) + " - " + (masterArtMax + classArtMax));
     }
