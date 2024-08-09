@@ -7,7 +7,8 @@ let ratio = new Array(7);
 let attribute = new Array(7);
 let artClass = new Array(7); 
 let stability;
-let damagePrint = document.getElementsByClassName("damage-text");
+let damagePrint = document.querySelectorAll("h1.damage-text");
+let damagePrintBadge = document.querySelectorAll("span.badge-warning");
 
 document.addEventListener("DOMContentLoaded", () => {
     const portrait = document.getElementById("currentCharacter");
@@ -1098,6 +1099,8 @@ function artLoad(slotNumber, loadedArtName) {
             artImage.classList.add("fade");
         }
         slot.appendChild(artImage);
+        ratio[slotNumber] = undefined;
+        attribute[slotNumber] = undefined;
         return;
     }
     else {

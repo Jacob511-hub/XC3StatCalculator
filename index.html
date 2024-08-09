@@ -150,11 +150,11 @@
                     <h1 class="info-text-3">Enemy Defenses</h1>
                     <div class="horizontal-fields">
                         <h1 class="info-text-3 smaller-text">Physical Defense: </h1>
-                        <input class="number-input" type="number" id="enemy-physical-defense" min="0" max="100" value="0" oninput="recalculate()">
+                        <input class="number-input" type="number" id="enemy-physical-defense" min="-100" max="100" value="0" oninput="recalculate()">
                     </div>
                     <div class="horizontal-fields">
                         <h1 class="info-text-3 smaller-text">Ether Defense: </h1>
-                        <input class="number-input" type="number" id="enemy-ether-defense" min="0" max="100" value="0" oninput="recalculate()">
+                        <input class="number-input" type="number" id="enemy-ether-defense" min="-100" max="100" value="0" oninput="recalculate()">
                     </div>
                     <h1 class="info-text-3">Checks</h1>
                     <div class="horizontal-fields">
@@ -182,20 +182,44 @@
                         <h1 class="info-text-3 smaller-text">Talent Arts Used: </h1>
                         <input class="number-input" type="number" id="used-talents" min="0" max="99" value="0" oninput="recalculate()">
                     </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Successive Hits: </h1>
+                        <input class="number-input" type="number" id="hits-successive" min="0" max="99" value="0" oninput="recalculate()">
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Number of Crits: </h1>
+                        <input class="number-input" type="number" id="crits-hit" min="0" max="99" value="0" oninput="recalculate()">
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Buffs Applied: </h1>
+                        <input class="number-input" type="number" id="buffs-applied" min="0" max="99" value="0" oninput="recalculate()">
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Debuffs Applied: </h1>
+                        <input class="number-input" type="number" id="debuffs-applied" min="0" max="99" value="0" oninput="recalculate()">
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Number of Cancels: </h1>
+                        <input class="number-input" type="number" id="cancels-total" min="0" max="99" value="0" oninput="recalculate()">
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Number of Enemies: </h1>
+                        <input class="number-input" type="number" id="enemies-total" min="0" max="99" value="0" oninput="recalculate()">
+                    </div>
                 </div>
                 <div id="damageNumbers">
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
 
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
-                    <h1 class="damage-text">None</h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
+                    <h1 class="damage-text">None <span class="badge badge-pill badge-warning">0</span></h1>
                 </div>
                 <div id="equipment">
                     <div id="gems">

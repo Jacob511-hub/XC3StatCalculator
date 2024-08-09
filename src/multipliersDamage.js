@@ -157,12 +157,12 @@ function getDamageMultipliers() {
     }
 
     const incrementalsMap = {
-        "hitsSuccessive": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "enemiesNumber": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "crits": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "buffsApplied": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "debuffsApplied": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "cancels": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "hitsSuccessive": document.getElementById('hits-successive').value,
+        "enemiesNumber": document.getElementById('enemies-total').value,
+        "crits": document.getElementById('crits-hit').value,
+        "buffsApplied": document.getElementById('buffs-applied').value,
+        "debuffsApplied": document.getElementById('debuffs-applied').value,
+        "cancels": document.getElementById('cancels-total').value,
         "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
         "buffsUser": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
         "usedTalents": document.getElementById('used-talents').value

@@ -129,7 +129,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 300px;
+    width: 400px;
     max-height: 480px;
     height: 100%;
     margin-left: 10px;
@@ -368,6 +368,7 @@ body {
 
 .number-input {
     margin: 10px;
+    width: 70px;
 }
 
 .smaller-text {

@@ -86,7 +86,7 @@ const skillsGray = [
     { name: "Sixth Sense", src: "img/skills/skill-38.png"},
     { name: "Precision Shot", src: "img/skills/skill-14.png"},
     { name: "Shock Shot", src: "img/skills/skill-38.png"},
-    { name: "Bullet Symphony", src: "img/skills/skill-37.png"},
+    { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["hitsSuccessive"], boostIncrement: 20, boostMax: 255},
 ];
 
 const skillsStrategos = [

@@ -94,19 +94,23 @@ function heal(healRatio, range) {
 function printDamage() {
     artMultiplier(null);
     fusionCheck(false);
-    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1, artClass[index]);
+    damagePrint[0].firstChild.textContent = "Auto-Attack: ";
+    damagePrintBadge[0].textContent = (damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1, artClass[index]));
 
     for(let index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
             fusionCheck(false);
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9, artClass[index]) + " - " + damage(ratio[index], attribute[index], stability, 1.1, artClass[index]));
+            damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
+            damagePrintBadge[index + 1].textContent = (damage(ratio[index], attribute[index], 0, 0.9, artClass[index]) + " - " + damage(ratio[index], attribute[index], stability, 1.1, artClass[index]));
         }
         else if (attribute[index] === "heal") {
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + heal(ratio[index], 0.00) + " - " + (heal(ratio[index], 0.04) + 2.0));
+            damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
+            damagePrintBadge[index + 1].textContent = (heal(ratio[index], 0.00) + " - " + (heal(ratio[index], 0.04) + 2.0));
         }
         else if (attribute[index] === "buff" || attribute[index] === "field" || attribute[index] === undefined) {
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + 0);
+            damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
+            damagePrintBadge[index + 1].textContent = 0;
         }
     }
     for (let index = 0; index < 3; index++) {
@@ -126,6 +130,7 @@ function printDamage() {
             classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9, obj.class);
             classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1, obj.class);
         }
-        damagePrint[index + 8].textContent = (artNames[index].textContent + " + " + artNames[index + 3].textContent + ": " + (masterArtMin + classArtMin) + " - " + (masterArtMax + classArtMax));
+        damagePrint[index + 8].firstChild.textContent = (artNames[index].textContent + " + " + artNames[index + 3].textContent + ": ");
+        damagePrintBadge[index + 8].textContent = ((masterArtMin + classArtMin) + " - " + (masterArtMax + classArtMax));
     }
 }
