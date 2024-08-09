@@ -5,6 +5,7 @@ let masterArts;
 let currentSkills;
 let ratio = new Array(7);
 let attribute = new Array(7);
+let artClass = new Array(7); 
 let stability;
 let damagePrint = document.getElementsByClassName("damage-text");
 
@@ -63,70 +64,70 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+const statsMap = {
+    "Swordfighter": statsSwordfighter,
+    "Zephyr": statsZephyr,
+    "Medic Gunner": statsMedicGunner,
+    "Tactician": statsTactician,
+    "Heavy Guard": statsHeavyGuard,
+    "Ogre": statsOgre,
+    "Flash Fencer": statsFlashFencer,
+    "War Medic": statsWarMedic,
+    "Guardian Commander": statsGuardianCommander,
+    "Thaumaturge": statsThaumaturge,
+    "Yumsmith": statsYumsmith,
+    "Full Metal Jaguar": statsFullMetalJaguar,
+    "Strategos": statsStrategos,
+    "Stalker": statsStalker,
+    "Lone Exile": statsLoneExile,
+    "Incursor": statsIncursor,
+    "Lost Vanguard": statsLostVanguard,
+    "Signifer": statsSignifer,
+    "Soulhacker (Power)": statsSoulhackerPower,
+    "Soulhacker (Strike)": statsSoulhackerStrike,
+    "Soulhacker (Tough)": statsSoulhackerTough,
+    "Soulhacker (Dodge)": statsSoulhackerDodge,
+    "Soulhacker (Heal)": statsSoulhackerHeal,
+    "Soulhacker (Balanced)": statsSoulhackerBalanced,
+    "Martial Artist": statsMartialArtist,
+    "Troubadour": statsTroubadour,
+    "Seraph": statsSeraph,
+    "Machine Assassin": statsMachineAssassin,
+    "Lifesage": statsLifesage,
+    "Royal Summoner": statsRoyalSummoner,
+    "Noponic Champion": statsNoponicChampion,
+    "Lapidarist": statsLapidarist,
+
+    "Lucky Seven (Attacker)": statsLuckySevenAttacker,
+    "Lucky Seven (Defender)": statsLuckySevenDefender,
+    "Lucky Seven (Healer)": statsLuckySevenHealer,
+
+    "Ethel": statsFlashFencer,
+    "Valdi": statsWarMedic,
+    "Zeon": statsGuardianCommander,
+    "Teach": statsThaumaturge,
+    "Riku & Manana": statsYumsmith,
+    "Gray": statsFullMetalJaguar,
+    "Isurd": statsStrategos,
+    "Juniper": statsStalker,
+    "Ashera": statsLoneExile,
+    "Alexandria": statsIncursor,
+    "Monica": statsLostVanguard,
+    "Fiona": statsSignifer,
+    "Triton": statsSoulhackerPower,
+    "Ghondor": statsMartialArtist,
+    "Miyabi": statsTroubadour,
+    "Cammuravi": statsSeraph,
+    "Segiri": statsMachineAssassin,
+    "Nia": statsLifesage,
+    "Melia": statsRoyalSummoner,
+    "Ino": statsNoponicChampion,
+    "Masha": statsLapidarist,
+    "Shulk": statsGrandMarshal,
+    "Rex": statsMasterDriver
+};
+
 function getStatsByClass(characterStored) {
-    const statsMap = {
-        "Swordfighter": statsSwordfighter,
-        "Zephyr": statsZephyr,
-        "Medic Gunner": statsMedicGunner,
-        "Tactician": statsTactician,
-        "Heavy Guard": statsHeavyGuard,
-        "Ogre": statsOgre,
-        "Flash Fencer": statsFlashFencer,
-        "War Medic": statsWarMedic,
-        "Guardian Commander": statsGuardianCommander,
-        "Thaumaturge": statsThaumaturge,
-        "Yumsmith": statsYumsmith,
-        "Full Metal Jaguar": statsFullMetalJaguar,
-        "Strategos": statsStrategos,
-        "Stalker": statsStalker,
-        "Lone Exile": statsLoneExile,
-        "Incursor": statsIncursor,
-        "Lost Vanguard": statsLostVanguard,
-        "Signifer": statsSignifer,
-        "Soulhacker (Power)": statsSoulhackerPower,
-        "Soulhacker (Strike)": statsSoulhackerStrike,
-        "Soulhacker (Tough)": statsSoulhackerTough,
-        "Soulhacker (Dodge)": statsSoulhackerDodge,
-        "Soulhacker (Heal)": statsSoulhackerHeal,
-        "Soulhacker (Balanced)": statsSoulhackerBalanced,
-        "Martial Artist": statsMartialArtist,
-        "Troubadour": statsTroubadour,
-        "Seraph": statsSeraph,
-        "Machine Assassin": statsMachineAssassin,
-        "Lifesage": statsLifesage,
-        "Royal Summoner": statsRoyalSummoner,
-        "Noponic Champion": statsNoponicChampion,
-        "Lapidarist": statsLapidarist,
-
-        "Lucky Seven (Attacker)": statsLuckySevenAttacker,
-        "Lucky Seven (Defender)": statsLuckySevenDefender,
-        "Lucky Seven (Healer)": statsLuckySevenHealer,
-
-        "Ethel": statsFlashFencer,
-        "Valdi": statsWarMedic,
-        "Zeon": statsGuardianCommander,
-        "Teach": statsThaumaturge,
-        "Riku & Manana": statsYumsmith,
-        "Gray": statsFullMetalJaguar,
-        "Isurd": statsStrategos,
-        "Juniper": statsStalker,
-        "Ashera": statsLoneExile,
-        "Alexandria": statsIncursor,
-        "Monica": statsLostVanguard,
-        "Fiona": statsSignifer,
-        "Triton": statsSoulhackerPower,
-        "Ghondor": statsMartialArtist,
-        "Miyabi": statsTroubadour,
-        "Cammuravi": statsSeraph,
-        "Segiri": statsMachineAssassin,
-        "Nia": statsLifesage,
-        "Melia": statsRoyalSummoner,
-        "Ino": statsNoponicChampion,
-        "Masha": statsLapidarist,
-        "Shulk": statsGrandMarshal,
-        "Rex": statsMasterDriver
-    };
-
     classStats = statsMap[JSON.parse(characterStored).class];
 }
 
@@ -1156,6 +1157,7 @@ function artLoad(slotNumber, loadedArtName) {
 
     ratio[slotNumber] = loadedArt.ratio;
     attribute[slotNumber] = loadedArt.attribute;
+    artClass[slotNumber] = loadedArt.class;
     artName.textContent = loadedArt.name;
 }
 

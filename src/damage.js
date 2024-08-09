@@ -1,9 +1,20 @@
-function damage(damageRatio, attribute, weaponStability, range) {
+function damage(damageRatio, attribute, weaponStability, range, inheritance) {
     if (damageRatio === undefined || damageRatio === 0) {
         return 0;
     }
-    statAttack = parseInt(currentStats[1].textContent);
-    weaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
+
+    let statAttack = parseInt(currentStats[1].textContent);
+    let classWeaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
+
+    let weaponAttack;
+    if (inheritance === undefined || inheritance === null) {
+        weaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
+    }
+    else {
+        let classSource = statsMap[inheritance]
+        weaponAttack = parseInt(classSource["weapon_stats"]["attack"]);
+    }
+    
     powerMultiplier = (damageRatio)/100;
     multiHitCorrection = 1/(1);
 
@@ -41,7 +52,7 @@ function damage(damageRatio, attribute, weaponStability, range) {
     levelMultiplier = 1;
     difficultyMultiplier = 1;
 
-    uncapped_damage = (statAttack + Math.floor(weaponAttack * weaponStability))
+    uncapped_damage = ((statAttack - classWeaponAttack + weaponAttack) + Math.floor(weaponAttack * weaponStability))
                   * powerMultiplier * multiHitCorrection
                   * (1 + (MultiplierGroup1Sum + artMultiplierGroup1Sum + fusionBoostSum)/100)
                   * (1 + (MultiplierGroup2Sum + artMultiplierGroup2Sum)/100)
@@ -83,13 +94,13 @@ function heal(healRatio, range) {
 function printDamage() {
     artMultiplier(null);
     fusionCheck(false);
-    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1);
+    damagePrint[0].textContent = "Auto-Attack: " + damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1, artClass[index]);
 
-    for(index = 0; index < 7; index++) {
+    for(let index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
             fusionCheck(false);
-            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
+            damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + damage(ratio[index], attribute[index], 0, 0.9, artClass[index]) + " - " + damage(ratio[index], attribute[index], stability, 1.1, artClass[index]));
         }
         else if (attribute[index] === "heal") {
             damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + heal(ratio[index], 0.00) + " - " + (heal(ratio[index], 0.04) + 2.0));
@@ -98,21 +109,22 @@ function printDamage() {
             damagePrint[index + 1].textContent = (artNames[index].textContent + ": " + 0);
         }
     }
-    for(index = 0; index < 3; index++) {
+    for (let index = 0; index < 3; index++) {
         fusionCheck(true);
+        let obj = getConfig();
         let masterArtMin = 0;
         let masterArtMax = 0;
         let classArtMin = 0;
         let classArtMax = 0;
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
-            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9);
-            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1);
+            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9, obj.class);
+            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1, obj.class);
         }
         if (attribute[index + 3] === "physical" || attribute[index  + 3] === "ether") {
             artMultiplier(index);
-            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9);
-            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1);
+            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9, obj.class);
+            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1, obj.class);
         }
         damagePrint[index + 8].textContent = (artNames[index].textContent + " + " + artNames[index + 3].textContent + ": " + (masterArtMin + classArtMin) + " - " + (masterArtMax + classArtMax));
     }
