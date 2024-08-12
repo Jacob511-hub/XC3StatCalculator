@@ -77,45 +77,135 @@
                 <div id="statuses">
                     <h1 class="info-text-3">Player Buffs</h1>
                     <div class="buffs">
-                        <div class="buffIcon" id="attackUpPlayer"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
-                        <div class="buffIcon" id="criticalPlusPlayer"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
-                        <div class="buffIcon" id="powerChargePlayer"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
-                        <div class="buffIcon" id="awakeningPlayer"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="attackUpPlayer"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-attackUpPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="defenseUpPlayer"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-defenseUpPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="accuracyUpPlayer"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-accuracyUpPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="evasionUpPlayer"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-evasionUpPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="critRateUpPlayer"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-critRateUpPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="criticalPlusPlayer"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-criticalPlusPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="powerChargePlayer"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-powerChargePlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="armorVeilPlayer"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-armorVeilPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="awakeningPlayer"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-awakeningPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
                     </div>
                     <h1 class="info-text-3">Player Debuffs</h1>
                     <div class="buffs">
-                        <div class="buffIcon" id="attackDownPlayer"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\flame-clock-low.png" data-toggle="tooltip" data-placement="top" title="Flame Clock Low" alt="Flame Clock Low"></div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="attackDownPlayer"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-attackDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="physicalDefenseDownPlayer"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-physicalDefenseDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="etherDefenseDownPlayer"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-etherDefenseDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="accuracyDownPlayer"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-accuracyDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="evasionDownPlayer"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-evasionDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="flameClockLow"><img src="img\statuses\debuffs\flame-clock-low.png" data-toggle="tooltip" data-placement="top" title="Flame Clock Low" alt="Flame Clock Low"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-flameClockLow" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
                     </div>
                     <h1 class="info-text-3">Enemy Buffs</h1>
                     <div class="buffs">
-                        <div class="buffIcon"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
-                        <div class="buffIcon"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
-                        <div class="buffIcon" id="awakeningEnemy"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="attackUpEnemy"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-attackUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="defenseUpEnemy"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-defenseUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="accuracyUpEnemy"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-accuracyUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="evasionUpEnemy"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-evasionUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="critRateUpEnemy"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-critRateUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="criticalPlusEnemy"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-criticalPlusEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="powerChargeEnemy"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-powerChargeEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="armorVeilEnemy"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-armorVeilEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="awakeningEnemy"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-awakeningEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
                     </div>
                     <h1 class="info-text-3">Enemy Debuffs</h1>
                     <div class="buffs">
-                        <div class="buffIcon"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
-                        <div class="buffIcon"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
-                        <div class="buffIcon" id="reduceAll"><img src="img\statuses\debuffs\reduce-all.png" data-toggle="tooltip" data-placement="top" title="Reduce All" alt="Reduce All"></div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="attackDownEnemy"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-attackDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="physicalDefenseDownEnemy"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-physicalDefenseDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="etherDefenseDownEnemy"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-etherDefenseDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="accuracyDownEnemy"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-accuracyDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="evasionDownEnemy"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-evasionDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
+                        <div class="horizontal-fields">
+                            <div class="buffIcon" id="reduceAll"><img src="img\statuses\debuffs\reduce-all.png" data-toggle="tooltip" data-placement="top" title="Reduce All" alt="Reduce All"></div>
+                            <input class="number-input buff-power" type="number" id="buff-power-reduceAll" min="100" max="300" value="100" oninput="recalculate()">
+                        </div>
                     </div>
                     <h1 class="info-text-3">Enemy Combo</h1>
                     <div class="buffs">

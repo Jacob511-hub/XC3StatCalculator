@@ -156,6 +156,16 @@ function getDamageMultipliers() {
         "critical": CriticalGroup,
     }
 
+    const buffPowerMap = {
+        "attackUpPlayer": document.getElementById('buff-power-attackUpPlayer').value,
+        "awakeningPlayer": document.getElementById('buff-power-awakeningPlayer').value,
+        "awakeningEnemy": document.getElementById('buff-power-awakeningEnemy').value,
+        "criticalPlusPlayer": document.getElementById('buff-power-criticalPlusPlayer').value,
+        "powerChargePlayer": document.getElementById('buff-power-powerChargePlayer').value,
+        "attackDownPlayer": document.getElementById('buff-power-attackDownPlayer').value,
+        "reduceAll": document.getElementById('buff-power-reduceAll').value,
+    }
+
     const incrementalsMap = {
         "hitsSuccessive": document.getElementById('hits-successive').value,
         "enemiesNumber": document.getElementById('enemies-total').value,
@@ -242,7 +252,8 @@ function getDamageMultipliers() {
         if (buffs[index].boostType === "multiplierDamage") {
             const flagSet = buffs[index].flags.some(flag => flags[flag]);
             if (flagSet) {
-                multipliersMap[buffs[index].group].push(buffs[index].boostAmount);
+                let buffPower = buffPowerMap[buffs[index].flags[0]];
+                multipliersMap[buffs[index].group].push(Math.floor((buffs[index].boostAmount) * (buffPower/100)));
             }
         }
     }
