@@ -91,6 +91,12 @@ function heal(healRatio, range) {
     return Math.min(9999999, Math.max(1, Math.floor((uncapped_heal + (uncapped_heal * range)))));
 }
 
+function smashDamage(damage, launchFrames) {
+    let smashMultiplier = 1.5 + (launchFrames * 3 / 100);
+
+    return Math.min(9999999, Math.max(1, Math.floor((damage * smashMultiplier))));
+}
+
 function printDamage() {
     artMultiplier(null);
     fusionCheck(false);

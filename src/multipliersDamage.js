@@ -175,7 +175,8 @@ function getDamageMultipliers() {
         "cancels": document.getElementById('cancels-total').value,
         "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
         "buffsUser": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "usedTalents": document.getElementById('used-talents').value
+        "usedTalents": document.getElementById('used-talents').value,
+        "launchTime": document.getElementById('launch-time').value,
     }
 
     let obj = getConfig();
