@@ -155,29 +155,30 @@ function getDamageMultipliers() {
         "defenseReductionEther": DefenseReductionEtherGroup,
         "critical": CriticalGroup,
     }
+  
+const buffPowerMap = {
+    "attackUpPlayer": document.getElementById('buff-power-attackUpPlayer').value,
+    "awakeningPlayer": document.getElementById('buff-power-awakeningPlayer').value,
+    "awakeningEnemy": document.getElementById('buff-power-awakeningEnemy').value,
+    "criticalPlusPlayer": document.getElementById('buff-power-criticalPlusPlayer').value,
+    "powerChargePlayer": document.getElementById('buff-power-powerChargePlayer').value,
+    "attackDownPlayer": document.getElementById('buff-power-attackDownPlayer').value,
+    "reduceAll": document.getElementById('buff-power-reduceAll').value,
+}
 
-    const buffPowerMap = {
-        "attackUpPlayer": document.getElementById('buff-power-attackUpPlayer').value,
-        "awakeningPlayer": document.getElementById('buff-power-awakeningPlayer').value,
-        "awakeningEnemy": document.getElementById('buff-power-awakeningEnemy').value,
-        "criticalPlusPlayer": document.getElementById('buff-power-criticalPlusPlayer').value,
-        "powerChargePlayer": document.getElementById('buff-power-powerChargePlayer').value,
-        "attackDownPlayer": document.getElementById('buff-power-attackDownPlayer').value,
-        "reduceAll": document.getElementById('buff-power-reduceAll').value,
-    }
-
-    const incrementalsMap = {
-        "hitsSuccessive": document.getElementById('hits-successive').value,
-        "enemiesNumber": document.getElementById('enemies-total').value,
-        "crits": document.getElementById('crits-hit').value,
-        "buffsApplied": document.getElementById('buffs-applied').value,
-        "debuffsApplied": document.getElementById('debuffs-applied').value,
-        "cancels": document.getElementById('cancels-total').value,
-        "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "buffsUser": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-        "usedTalents": document.getElementById('used-talents').value,
-        "launchTime": document.getElementById('launch-time').value,
-    }
+const incrementalsMap = {
+    "hitsSuccessive": document.getElementById('hits-successive').value,
+    "enemiesNumber": document.getElementById('enemies-total').value,
+    "crits": document.getElementById('crits-hit').value,
+    "buffsApplied": document.getElementById('buffs-applied').value,
+    "debuffsApplied": document.getElementById('debuffs-applied').value,
+    "cancels": document.getElementById('cancels-total').value,
+    "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+    "buffsUser": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+    "usedTalents": document.getElementById('used-talents').value,
+    "launchTime": document.getElementById('launch-time').value,
+    "currentHpPlayer": document.getElementById('current-hp-player').value,
+}
 
     let obj = getConfig();
     const gemKeys = Object.keys(noahConfig.gems);
@@ -215,6 +216,16 @@ function getDamageMultipliers() {
             if (flagSet) {
                 multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
             }
+            else if (accessories[accessory].hasOwnProperty("hpThresholdBelow")) {
+                if (incrementalsMap["currentHpPlayer"] <= accessories[accessory].hpThresholdBelow) {
+                    multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
+                }
+            }
+            else if (accessories[accessory].hasOwnProperty("hpThresholdAbove")) {
+                if (incrementalsMap["currentHpPlayer"] >= accessories[accessory].hpThresholdAbove) {
+                    multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
+                }
+            }
         }
         else if (accessories[accessory].boostType === "multiplierDamageIncremental") {
             const input = incrementalsMap[accessories[accessory].flags];
@@ -231,6 +242,16 @@ function getDamageMultipliers() {
             const flagSet = allSkills[skill].flags.some(flag => flags[flag]);
             if (flagSet) {
                 multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
+            }
+            else if (allSkills[skill].hasOwnProperty("hpThresholdBelow")) {
+                if (incrementalsMap["currentHpPlayer"] <= allSkills[skill].hpThresholdBelow) {
+                    multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
+                }
+            }
+            else if (allSkills[skill].hasOwnProperty("hpThresholdAbove")) {
+                if (incrementalsMap["currentHpPlayer"] >= allSkills[skill].hpThresholdAbove) {
+                    multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
+                }
             }
         }
         else if (allSkills[skill].boostType === "multiplierDamageIncremental") {

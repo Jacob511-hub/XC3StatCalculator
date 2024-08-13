@@ -168,7 +168,7 @@ const skillsTroubadour = [
 
 const skillsSeraph = [
     { name: "Beast Mode", src: "img/skills/skill-1.png"},
-    { name: "Got the Guts", src: "img/skills/skill-11.png"},
+    { name: "Got the Guts", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdBelow: 85, boostAmount: 100},
     { name: "Greatest Warrior", src: "img/skills/skill-43.png"},
     { name: "Universal Annihilation", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy", "launchEnemy"], boostAmount: 150},
 ];

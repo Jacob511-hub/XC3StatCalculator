@@ -52,6 +52,8 @@ const accessories = [
     { name: "Lunae Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplierDamage", group: "1", flags: ["fusion"], boostAmount: 100},
     { name: "Veneris Rings", src: "img/equipment/accessories/accessory-jewelry.png"},
     { name: "Accomplished Necklace", src: "img/equipment/accessories/accessory-choker.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["enemiesNumber"], boostIncrement: 30, boostMax: 200},
+    { name: "Scourwind Necklace", src: "img/equipment/accessories/accessory-choker.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdBelow: 30, boostAmount: 40},
+    { name: "Lustrous Armring", src: "img/equipment/accessories/accessory-other.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdAbove: 90, boostAmount: 35},
 ];
 
 const rarities = [
