@@ -54,6 +54,10 @@ const flags = {
     "enemyLostNumbers": false,
     "enemyMachines": false,
     "enemyMoebius": false,
+
+    "positionFront": false,
+    "positionSide": false,
+    "positionBack": false,
 };
 
 function setFlag(flagName) {

@@ -130,6 +130,12 @@ function printDamage() {
             artMultiplier(index);
             masterArtMin = damage(ratio[index], attribute[index], 0, 0.9, obj.class);
             masterArtMax = damage(ratio[index], attribute[index], stability, 1.1, obj.class);
+
+            const artKeys = Object.keys(noahConfig.arts);
+            if (obj.arts[artKeys[index]] === "Quickdraw") {
+                masterArtMin = masterArtMin * 2;
+                masterArtMax = masterArtMax * 2;
+            }
         }
         if (attribute[index + 3] === "physical" || attribute[index  + 3] === "ether") {
             artMultiplier(index);

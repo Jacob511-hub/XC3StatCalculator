@@ -507,6 +507,7 @@ for (let index = 0; index < buffIcons.length; index++) {
 
 const reactionIcons = document.getElementsByClassName("reactionIcon");
 const typeIcons = document.getElementsByClassName("typeIcon");
+const positionIcons = document.getElementsByClassName("positionIcon");
 
 function singleToggle(icons) {
     for (let index = 0; index < icons.length; index++) {
@@ -531,6 +532,7 @@ function singleToggle(icons) {
 
 singleToggle(reactionIcons);
 singleToggle(typeIcons);
+singleToggle(positionIcons);
 
 let classMenu = document.getElementById("classModal");
 let classButton = document.getElementById("classButton");
