@@ -97,6 +97,20 @@ function smashDamage(damage, launchFrames) {
     return Math.min(9999999, Math.max(1, Math.floor((damage * smashMultiplier))));
 }
 
+function getChainArt(currentCharacter) {
+    let obj = getConfig();
+    let heroIndex = artsChain.findIndex(heroIndex => heroIndex.class === obj.class);
+    const chainArts = {
+        "noahConfig": "Brave Assault",
+        "mioConfig": "Lightning Quick",
+        "eunieConfig": "Pinion Primed",
+        "taionConfig": "Art of Subjugation",
+        "lanzConfig": "Tyrant Wave",
+        "senaConfig": "Bombshell Blitz",
+        "heroConfig": artsChain[heroIndex].name,
+    };
+}
+
 function printDamage() {
     artMultiplier(null);
     fusionCheck(false);
@@ -145,4 +159,27 @@ function printDamage() {
         damagePrint[index + 8].firstChild.textContent = (artNames[index].textContent + " + " + artNames[index + 3].textContent + ": ");
         damagePrintBadge[index + 8].textContent = ((masterArtMin + classArtMin) + " - " + (masterArtMax + classArtMax));
     }
+
+    artMultiplier(null);
+    fusionCheck(false);
+    let obj = getConfig();
+    let indexChainArt = 0;
+    if (currentCharacter === "heroConfig") {
+        indexChainArt = artsChain.findIndex(indexChainArt => indexChainArt.character === obj.class);
+    }
+    else {
+        indexChainArt = artsChain.findIndex(indexChainArt => indexChainArt.class === obj.class);
+    }
+    const chainArts = {
+        "noahConfig": "Brave Assault: ",
+        "mioConfig": "Lightning Quick: ",
+        "eunieConfig": "Pinion Primed: ",
+        "taionConfig": "Art of Subjugation: ",
+        "lanzConfig": "Tyrant Wave: ",
+        "senaConfig": "Bombshell Blitz: ",
+        "heroConfig": artsChain[indexChainArt].name + ": ",
+    };
+
+    damagePrint[11].firstChild.textContent = chainArts[currentCharacter];
+    damagePrintBadge[11].textContent = (damage(artsChain[indexChainArt].ratio, artsChain[indexChainArt].attribute, 0, 0.9) + " - " + damage(artsChain[indexChainArt].ratio, artsChain[indexChainArt].attribute, stability, 1.1));
 }
