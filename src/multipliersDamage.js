@@ -267,7 +267,17 @@ const incrementalsMap = {
     for (index = 0; index < characters.length; index++) {
         let character = JSON.parse(localStorage.getItem(characters[index]));
         if (character.class === "Royal Summoner" || character.class === "Melia" || [character.skills.skill_1, character.skills.skill_2, character.skills.skill_3].includes("Essence of Ether")) {
-            MultiplierGroup1.push(30)
+            MultiplierGroup1.push(30);
+            break;
+        }
+        else {
+            continue;
+        }
+    }
+    for (index = 0; index < characters.length; index++) {
+        let character = JSON.parse(localStorage.getItem(characters[index]));
+        if (character.class === "Lapidarist" || character.class === "Masha" || [character.skills.skill_1, character.skills.skill_2, character.skills.skill_3].includes("Beaming Edge")) {
+            CriticalGroup.push(50);
             break;
         }
         else {

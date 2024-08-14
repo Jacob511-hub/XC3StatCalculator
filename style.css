@@ -276,11 +276,29 @@ body {
 }
 
 .icon {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: #00001ca1;
     transition: background-color 0.3s;
+}
+
+.icon::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background-image: url("img/party/party-container.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
 }
 
 .icon:hover {
