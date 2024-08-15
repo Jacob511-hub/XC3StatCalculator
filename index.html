@@ -75,6 +75,10 @@
                     </div>
                 </div>
                 <div id="statuses">
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Player Level: </h1>
+                        <input class="number-input" type="number" id="player-level" min="1" max="99" value="99" oninput="recalculate()">
+                    </div>
                     <h1 class="info-text-3">Player Buffs</h1>
                     <div class="buffs">
                         <div class="horizontal-fields">
@@ -406,7 +410,7 @@
                     </div>
                     <div id="characterLevel">
                         <h1 class="info-text-1">Level:</h1>
-                        <h1 class="info-text-1">99</h1>
+                        <h1 id="level" class="info-text-1">99</h1>
                     </div>
                 </div>
                 <div id="skills">

@@ -1,4 +1,5 @@
  let noahConfig = {
+    "name": "Noah",
     "class": "Swordfighter",
     "level": "99",
     "class_rank": "20",
@@ -46,6 +47,7 @@
 }
 
 let mioConfig = {
+    "name": "Mio",
     "class": "Zephyr",
     "level": "99",
     "class_rank": "20",
@@ -93,6 +95,7 @@ let mioConfig = {
 }
 
 let eunieConfig = {
+    "name": "Eunie",
     "class": "Medic Gunner",
     "level": "99",
     "class_rank": "20",
@@ -140,6 +143,7 @@ let eunieConfig = {
 }
 
 let taionConfig = {
+    "name": "Taion",
     "class": "Tactician",
     "level": "99",
     "class_rank": "20",
@@ -187,6 +191,7 @@ let taionConfig = {
 }
 
 let lanzConfig = {
+    "name": "Lanz",
     "class": "Heavy Guard",
     "level": "99",
     "class_rank": "20",
@@ -234,6 +239,7 @@ let lanzConfig = {
 }
 
 let senaConfig = {
+    "name": "Sena",
     "class": "Ogre",
     "level": "99",
     "class_rank": "20",
@@ -281,6 +287,7 @@ let senaConfig = {
 }
 
 let heroConfig = {
+    "name": "Hero",
     "class": "Ethel",
     "level": "99",
     "class_rank": "20",
@@ -328,13 +335,13 @@ let heroConfig = {
 }
 
 const portraitsImages = [
-    { name: "Noah", src: "img/portraits/NoahPortrait.png" },
-    { name: "Mio", src: "img/portraits/MioPortrait.png" },
-    { name: "Eunie", src: "img/portraits/EuniePortrait.png" },
-    { name: "Taion", src: "img/portraits/TaionPortrait.png" },
-    { name: "Lanz", src: "img/portraits/LanzPortrait.png" },
-    { name: "Sena", src: "img/portraits/SenaPortrait.png" },
-    { name: "Hero", src: "img/portraits/heroes/EthelPortrait.png" },
+    { name: "Noah", src: "img/portraits/NoahPortrait.png", hp1: 350, attack1: 19, healing_power1: 18, dexterity1: 31, agility1: 22, hp99: 6994, attack99: 388, healing_power99: 368, dexterity99: 310, agility99: 215 },
+    { name: "Mio", src: "img/portraits/MioPortrait.png", hp1: 338, attack1: 18, healing_power1: 17, dexterity1: 31, agility1: 23, hp99: 6754, attack99: 361, healing_power99: 341, dexterity99: 306, agility99: 234 },
+    { name: "Eunie", src: "img/portraits/EuniePortrait.png", hp1: 318, attack1: 17, healing_power1: 20, dexterity1: 30, agility1: 22, hp99: 6364, attack99: 346, healing_power99: 409, dexterity99: 298, agility99: 223 },
+    { name: "Taion", src: "img/portraits/TaionPortrait.png", hp1: 319, attack1: 18, healing_power1: 19, dexterity1: 33, agility1: 20, hp99: 6371, attack99: 368, healing_power99: 381, dexterity99: 325, agility99: 197 },
+    { name: "Lanz", src: "img/portraits/LanzPortrait.png", hp1: 388, attack1: 20, healing_power1: 16, dexterity1: 30, agility1: 20, hp99: 7755, attack99: 392, healing_power99: 329, dexterity99: 297, agility99: 204 },
+    { name: "Sena", src: "img/portraits/SenaPortrait.png", hp1: 356, attack1: 20, healing_power1: 17, dexterity1: 28, agility1: 22, hp99: 7125, attack99: 398, healing_power99: 346, dexterity99: 282, agility99: 216 },
+    { name: "Hero", src: "img/portraits/heroes/EthelPortrait.png", hp1: 465, attack1: 28, healing_power1: 24, dexterity1: 31, agility1: 22, hp99: 6638, attack99: 404, healing_power99: 343, dexterity99: 311, agility99: 223 },
     { name: "Noah Ouroboros", src: "img/portraits/ouroboros/NoahOuroborosPortrait.png" },
     { name: "Mio Ouroboros", src: "img/portraits/ouroboros/MioOuroborosPortrait.png" },
     { name: "Eunie Ouroboros", src: "img/portraits/ouroboros/EunieOuroborosPortrait.png" },
@@ -344,8 +351,8 @@ const portraitsImages = [
  ];
 
  const heroIcons = [
-    { name: "Ethel", src: "img/heroes/ethel-select.png", portraitSrc: "img/portraits/heroes/EthelPortrait.png", buttonSrc: "img/party/heroes/EthelParty.png", hp: 6638, attack: 404, healing_power: 343, dexterity: 311, agility: 223, gem_1: "Doublestrike", gem_2: "Empowered Combo", gem_3: "Analyze Weakness", stability: 0.04},
-    { name: "Valdi", src: "img/heroes/valdi-select.png", portraitSrc: "img/portraits/heroes/ValdiPortrait.png", buttonSrc: "img/party/heroes/ValdiParty.png", hp: 6763, attack: 363, healing_power: 404, dexterity: 311, agility: 201, gem_1: "Disperse Bloodlust", gem_2: "Lifebearer", gem_3: "Lifesaving Expertise", stability: 0.02},
+    { name: "Ethel", src: "img/heroes/ethel-select.png", portraitSrc: "img/portraits/heroes/EthelPortrait.png", buttonSrc: "img/party/heroes/EthelParty.png", hp1: 465, attack1: 28, healing_power1: 24, dexterity1: 31, agility1: 22, hp99: 6638, attack99: 404, healing_power99: 343, dexterity99: 311, agility99: 223, gem_1: "Doublestrike", gem_2: "Empowered Combo", gem_3: "Analyze Weakness", stability: 0.04},
+    { name: "Valdi", src: "img/heroes/valdi-select.png", portraitSrc: "img/portraits/heroes/ValdiPortrait.png", buttonSrc: "img/party/heroes/ValdiParty.png", hp1: 338, attack1: 18, healing_power1: 20, dexterity1: 31, agility1: 20, hp99: 6763, attack99: 363, healing_power99: 404, dexterity99: 311, agility99: 201, gem_1: "Disperse Bloodlust", gem_2: "Lifebearer", gem_3: "Lifesaving Expertise", stability: 0.02},
     { name: "Zeon", src: "img/heroes/zeon-select.png", portraitSrc: "img/portraits/heroes/ZeonPortrait.png", buttonSrc: "img/party/heroes/ZeonParty.png", hp: 7614, attack: 361, healing_power: 361, dexterity: 308, agility: 213, gem_1: "Ironclad", gem_2: "Steel Protection", gem_3: "Brimming Spirit", stability: 0.06},
     { name: "Teach", src: "img/heroes/teach-select.png", portraitSrc: "img/portraits/heroes/TeachPortrait.png", buttonSrc: "img/party/heroes/TeachParty.png", hp: 6801, attack: 383, healing_power: 382, dexterity: 307, agility: 221, gem_1: "Steady Striker", gem_2: "Doublestrike", gem_3: "Steelcleaver", stability: 0.08},
     { name: "Riku & Manana", src: "img/heroes/riku-manana-select.png", portraitSrc: "img/portraits/heroes/RikuMananaPortrait.png", buttonSrc: "img/party/heroes/RikuMananaParty.png", hp: 7369, attack: 382, healing_power: 364, dexterity: 309, agility: 197, gem_1: "Disperse Bloodlust", gem_2: "Swelling Scourge", gem_3: "Refined Incantation", stability: 0.10},

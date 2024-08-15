@@ -137,6 +137,35 @@ const currentStats = document.getElementsByClassName("stats-text");
 function calculateStats(characterStored) {
     getStatsAdditives();
     getStatsMultipliers();
+
+    let playerLevel = Number(document.getElementById('player-level').value);
+    let levelDisplay = document.getElementById('level');
+    levelDisplay.textContent = playerLevel;
+    modifyCharacter("level", playerLevel, characterStored, characterStored);
+    let interpolation = (playerLevel - 1)/98;
+    
+    let statsLevel1 = [];
+    let statsLevel99 = [];
+    let stats = ["hp1", "attack1", "healing_power1", "dexterity1", "agility1", "hp99", "attack99", "healing_power99", "dexterity99", "agility99"];
+
+    for (let index = 0; index < 5; index++) {
+        if (currentCharacter !== "heroConfig") {
+            item = portraitsImages.findIndex(item => item.name === characterStored.name);
+            statsLevel1[index] = portraitsImages[item][stats[index]];
+            statsLevel99[index] = portraitsImages[item][stats[index + 5]];
+        }
+        else if (currentCharacter === "heroConfig") {
+            item = heroIcons.findIndex(item => item.name === characterStored.class);
+            statsLevel1[index] = heroIcons[item][stats[index]];
+            statsLevel99[index] = heroIcons[item][stats[index + 5]];
+        }
+
+        let interpolatedValue = parseInt((1 - interpolation) * statsLevel1[index]) + parseInt((interpolation) * statsLevel99[index]);
+        const statKeys = Object.keys(noahConfig.stats);
+        const key = statKeys[index];
+        modifyCharacter(key, interpolatedValue, characterStored, characterStored.stats);
+    }
+
     let hp = Math.floor(Math.floor(characterStored.stats.hp * classStats["class_stats"]["hp"]) * (1 + (hpMultipliersSum / 100)) + hpAdditivesSum);
     let attack = Math.floor(Math.floor(characterStored.stats.attack * classStats["class_stats"]["attack"] + classStats["weapon_stats"]["attack"]) * (1 + (attackMultipliersSum / 100)) + attackAdditivesSum);
     let healingPower = Math.floor(Math.floor(characterStored.stats.healing_power * classStats["class_stats"]["healing_power"]) * (1 + (healingMultipliersSum / 100)) + healingAdditivesSum);
@@ -1342,11 +1371,11 @@ function classSwap() {
         const gemKeys = Object.keys(heroConfig.gems);
         const gemsArray = ["gem_1", "gem_2", "gem_3"];
 
-        for (let index = 0; index < statKeys.length; index++) {
-            const keyStats = statKeys[index];
-            let valueStats = heroIcons[item][statsArray[index]];
-            modifyCharacter(keyStats, valueStats, obj, obj.stats);
-        }
+        // for (let index = 0; index < statKeys.length; index++) {
+        //     const keyStats = statKeys[index];
+        //     let valueStats = heroIcons[item][statsArray[index]];
+        //     modifyCharacter(keyStats, valueStats, obj, obj.stats);
+        // }
         for (let index = 0; index < gemKeys.length; index++) {
             const keyGems = gemKeys[index];
             let valueGems = heroIcons[item][gemsArray[index]];
