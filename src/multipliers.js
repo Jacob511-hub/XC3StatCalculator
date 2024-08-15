@@ -61,6 +61,11 @@ function getStatsMultipliers() {
         else if (accessories[accessory].boostType === "multiplier") {
             multipliersMap[accessories[accessory].boostStat].push(accessories[accessory].boostAmount);
         }
+        else if (accessories[accessory].boostType === "multiplier x3") {
+            multipliersMap[accessories[accessory].boostStat1].push(accessories[accessory].boostAmount1);
+            multipliersMap[accessories[accessory].boostStat2].push(accessories[accessory].boostAmount2);
+            multipliersMap[accessories[accessory].boostStat3].push(accessories[accessory].boostAmount3);
+        }
     }
     for (index = 0; index < skillsClassMaster.length; index++) {
         let skill = allSkills.findIndex(skill => skill.name === skillsClassMaster[index]);

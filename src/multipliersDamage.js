@@ -182,6 +182,7 @@ const incrementalsMap = {
     "usedTalents": document.getElementById('used-talents').value,
     "launchTime": document.getElementById('launch-time').value,
     "currentHpPlayer": document.getElementById('current-hp-player').value,
+    "enemyLevel": document.getElementById('enemy-level').value,
 }
 
     let obj = getConfig();
@@ -230,6 +231,11 @@ const incrementalsMap = {
                     multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
                 }
             }
+            else if (accessories[accessory].hasOwnProperty("levelThreshold")) {
+                if (incrementalsMap["enemyLevel"] > accessories[accessory].levelThreshold) {
+                    multipliersMap[accessories[accessory].group].push(accessories[accessory].boostAmount);
+                }
+            }
         }
         else if (accessories[accessory].boostType === "multiplierDamageIncremental") {
             const input = incrementalsMap[accessories[accessory].flags];
@@ -254,6 +260,11 @@ const incrementalsMap = {
             }
             else if (allSkills[skill].hasOwnProperty("hpThresholdAbove")) {
                 if (incrementalsMap["currentHpPlayer"] >= allSkills[skill].hpThresholdAbove) {
+                    multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
+                }
+            }
+            else if (allSkills[skill].hasOwnProperty("levelThreshold")) {
+                if (incrementalsMap["enemyLevel"] > allSkills[skill].levelThreshold) {
                     multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
                 }
             }

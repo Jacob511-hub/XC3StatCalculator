@@ -105,7 +105,7 @@ const skillsStalker = [
 
 const skillsLoneExile = [
     { name: "Goading Attack", src: "img/skills/skill-13.png"},
-    { name: "Maniac", src: "img/skills/skill-11.png"},
+    { name: "Maniac", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], levelThreshold: 99, boostAmount: 50},
     { name: "Returning the Favor", src: "img/skills/skill-36.png"},
     { name: "Natural Selection", src: "img/skills/skill-12.png"},
 ];
@@ -274,7 +274,7 @@ const skillsMaster = [
     { name: "Evasion Expertise", src: "img/skills/skill-10.png"},
     { name: "Swift Death", src: "img/skills/skill-11.png"},
     { name: "Natural Selection", src: "img/skills/skill-12.png"},
-    { name: "Maniac", src: "img/skills/skill-11.png"},
+    { name: "Maniac", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], levelThreshold: 99, boostAmount: 50},
     { name: "Vigilance", src: "img/skills/skill-14.png"},
     { name: "Eye for Weak Points", src: "img/skills/skill-4.png"},
     { name: "Now That's Tactics!", src: "img/skills/skill-1.png"},

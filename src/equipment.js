@@ -43,7 +43,7 @@ const accessories = [
     { name: "Memory Locket", src: "img/equipment/accessories/accessory-choker.png"},
     { name: "Shackle Ring", src: "img/equipment/accessories/accessory-jewelry.png"},
     { name: "Fraternal Badge", src: "img/equipment/accessories/accessory-medal.png"},
-    { name: "Archsage's Flower Fan", src: "img/equipment/accessories/accessory-other.png"},
+    { name: "Archsage's Flower Fan", src: "img/equipment/accessories/accessory-other.png", boostType: "multiplier x3", boostStat1: "hp", boostAmount1: 30, boostStat2: "attack", boostAmount2: 30, boostStat3: "healing", boostAmount3: 30},
     { name: "Saturni Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "attack", boostAmount: 40},
     { name: "Solis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "healing", boostAmount: 40},
     { name: "Iovis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "agility", boostAmount: 40},
@@ -54,6 +54,10 @@ const accessories = [
     { name: "Accomplished Necklace", src: "img/equipment/accessories/accessory-choker.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["enemiesNumber"], boostIncrement: 30, boostMax: 200},
     { name: "Scourwind Necklace", src: "img/equipment/accessories/accessory-choker.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdBelow: 30, boostAmount: 40},
     { name: "Lustrous Armring", src: "img/equipment/accessories/accessory-other.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdAbove: 90, boostAmount: 35},
+    { name: "Accomplished Earring", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplierDamage", group: "defenseReductionPhysical", flags: ["none"], boostAmount: 35},
+    { name: "Accomplished Hairpiece", src: "img/equipment/accessories/accessory-hat.png", boostType: "multiplierDamage", group: "defenseReductionEther", flags: ["none"], boostAmount: 35},
+    { name: "Warped White Brooch", src: "img/equipment/accessories/accessory-other.png", boostType: "multiplierDamage", group: "defenseReductionPhysical", flags: ["none"], boostAmount: 30},
+    { name: "Warped Black Brooch", src: "img/equipment/accessories/accessory-other.png", boostType: "multiplierDamage", group: "defenseReductionEther", flags: ["none"], boostAmount: 30},
 ];
 
 const rarities = [
