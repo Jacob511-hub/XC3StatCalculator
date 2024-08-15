@@ -1366,16 +1366,9 @@ function classSwap() {
         modifyCharacter(keyArts, valueArts, obj, obj.arts);
 
         item = heroIcons.findIndex(item => item.name === obj.class);
-        const statKeys = Object.keys(heroConfig.stats);
-        const statsArray = ["hp", "attack", "healing_power", "dexterity", "agility"];
         const gemKeys = Object.keys(heroConfig.gems);
         const gemsArray = ["gem_1", "gem_2", "gem_3"];
 
-        // for (let index = 0; index < statKeys.length; index++) {
-        //     const keyStats = statKeys[index];
-        //     let valueStats = heroIcons[item][statsArray[index]];
-        //     modifyCharacter(keyStats, valueStats, obj, obj.stats);
-        // }
         for (let index = 0; index < gemKeys.length; index++) {
             const keyGems = gemKeys[index];
             let valueGems = heroIcons[item][gemsArray[index]];

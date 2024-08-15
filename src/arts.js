@@ -649,4 +649,7 @@ const artsChain = [
     { name: "Radiant Artificer", class: "Lapidarist", character: "Masha", ratio: 1050, attribute: "ether"},
     { name: "Liberation Edge", class: "Grand Marshal", character: "Shulk", ratio: 1050, attribute: "physical"},
     { name: "Deliverance Hew", class: "Master Driver", character: "Rex", ratio: 1050, attribute: "physical"},
+    { name: "Brave Assault", class: "Lucky Seven (Attacker)", character: "Noah", ratio: 1050, attribute: "physical"},
+    { name: "Brave Assault", class: "Lucky Seven (Defender)", character: "Noah", ratio: 1050, attribute: "physical"},
+    { name: "Brave Assault", class: "Lucky Seven (Healer)", character: "Noah", ratio: 1050, attribute: "physical"},
 ];
