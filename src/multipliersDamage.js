@@ -32,11 +32,19 @@ const flags = {
     "first30seconds": false,
 
     "attackUpPlayer": false,
-    "awakeningPlayer": false,
-    "awakeningEnemy": false,
+    "defenseUpPlayer": false,
+    "accuracyUpPlayer": false,
+    "evasionUpPlayer": false,
+    "critRateUpPlayer": false,
     "criticalPlusPlayer": false,
     "powerChargePlayer": false,
+    "armorVeilPlayer": false,
+    "awakeningPlayer": false,
+
     "attackDownPlayer": false,
+
+    "awakeningEnemy": false,
+
     "reduceAll": false,
 
     "breakEnemy": false,
@@ -109,6 +117,9 @@ function artMultiplier(index) {
     let masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     const allArts = classArts.concat(masterArts, talentArts);
 
+    let playerBuffsActive = [flags["attackUpPlayer"], flags["defenseUpPlayer"], flags["accuracyUpPlayer"], flags["evasionUpPlayer"], flags["critRateUpPlayer"], flags["criticalPlusPlayer"], flags["powerChargePlayer"], flags["armorVeilPlayer"], flags["awakeningPlayer"]];
+    let playerBuffsActiveCount = playerBuffsActive.filter(Boolean).length;
+
     let artMultiplierGroup1 = [];
     let artMultiplierGroup2 = [];
     let artMultiplierGroup3 = [];
@@ -117,6 +128,11 @@ function artMultiplier(index) {
         "1": artMultiplierGroup1,
         "2": artMultiplierGroup2,
         "3": artMultiplierGroup3,
+    }
+
+    const incrementalsMapArts = {
+        "buffsUser": playerBuffsActiveCount,
+        "soulHacks": document.getElementById('soul-hacks').value,
     }
 
     if (index === null || obj.arts[artKeys[index]] === null || obj.arts[artKeys[index]] === "None") {
@@ -135,6 +151,11 @@ function artMultiplier(index) {
         if (flagSet) {
             artMultipliersMap[allArts[art].group].push(allArts[art].boostAmount);
         }
+    }
+    else if (allArts[art].boostType === "multiplierDamageIncremental") {
+        const input = incrementalsMapArts[allArts[art].flags];
+        const value = calculateIncremental(input, allArts[art].boostMax, allArts[art].boostIncrement)
+        artMultipliersMap[allArts[art].group].push(value);
     }
     artMultiplierGroup1Sum = artMultiplierGroup1.reduce((acc, currentValue) => acc + currentValue, 0);
     artMultiplierGroup2Sum = artMultiplierGroup2.reduce((acc, currentValue) => acc + currentValue, 0);
@@ -160,30 +181,33 @@ function getDamageMultipliers() {
         "critical": CriticalGroup,
     }
   
-const buffPowerMap = {
-    "attackUpPlayer": document.getElementById('buff-power-attackUpPlayer').value,
-    "awakeningPlayer": document.getElementById('buff-power-awakeningPlayer').value,
-    "awakeningEnemy": document.getElementById('buff-power-awakeningEnemy').value,
-    "criticalPlusPlayer": document.getElementById('buff-power-criticalPlusPlayer').value,
-    "powerChargePlayer": document.getElementById('buff-power-powerChargePlayer').value,
-    "attackDownPlayer": document.getElementById('buff-power-attackDownPlayer').value,
-    "reduceAll": document.getElementById('buff-power-reduceAll').value,
-}
+    const buffPowerMap = {
+        "attackUpPlayer": document.getElementById('buff-power-attackUpPlayer').value,
+        "awakeningPlayer": document.getElementById('buff-power-awakeningPlayer').value,
+        "awakeningEnemy": document.getElementById('buff-power-awakeningEnemy').value,
+        "criticalPlusPlayer": document.getElementById('buff-power-criticalPlusPlayer').value,
+        "powerChargePlayer": document.getElementById('buff-power-powerChargePlayer').value,
+        "attackDownPlayer": document.getElementById('buff-power-attackDownPlayer').value,
+        "reduceAll": document.getElementById('buff-power-reduceAll').value,
+    }
 
-const incrementalsMap = {
-    "hitsSuccessive": document.getElementById('hits-successive').value,
-    "enemiesNumber": document.getElementById('enemies-total').value,
-    "crits": document.getElementById('crits-hit').value,
-    "buffsApplied": document.getElementById('buffs-applied').value,
-    "debuffsApplied": document.getElementById('debuffs-applied').value,
-    "cancels": document.getElementById('cancels-total').value,
-    "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-    "buffsUser": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
-    "usedTalents": document.getElementById('used-talents').value,
-    "launchTime": document.getElementById('launch-time').value,
-    "currentHpPlayer": document.getElementById('current-hp-player').value,
-    "enemyLevel": document.getElementById('enemy-level').value,
-}
+    let playerBuffsActive = [flags["attackUpPlayer"], flags["defenseUpPlayer"], flags["accuracyUpPlayer"], flags["evasionUpPlayer"], flags["critRateUpPlayer"], flags["criticalPlusPlayer"], flags["powerChargePlayer"], flags["armorVeilPlayer"], flags["awakeningPlayer"]];
+    let playerBuffsActiveCount = playerBuffsActive.filter(Boolean).length;
+
+    const incrementalsMap = {
+        "hitsSuccessive": document.getElementById('hits-successive').value,
+        "enemiesNumber": document.getElementById('enemies-total').value,
+        "crits": document.getElementById('crits-hit').value,
+        "buffsApplied": document.getElementById('buffs-applied').value,
+        "debuffsApplied": document.getElementById('debuffs-applied').value,
+        "cancels": document.getElementById('cancels-total').value,
+        "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
+        "buffsUser": playerBuffsActiveCount,
+        "usedTalents": document.getElementById('used-talents').value,
+        "launchTime": document.getElementById('launch-time').value,
+        "currentHpPlayer": document.getElementById('current-hp-player').value,
+        "enemyLevel": document.getElementById('enemy-level').value,
+    }
 
     let obj = getConfig();
     const gemKeys = Object.keys(noahConfig.gems);
