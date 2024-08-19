@@ -260,6 +260,23 @@
                         <h1 class="info-text-3 smaller-text">Level: </h1>
                         <input class="number-input" type="number" id="enemy-level" min="1" max="200" value="99" oninput="recalculate()">
                     </div>
+                    <h1 class="info-text-3">Elementals</h1>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Here I Shall Stand: </h1>
+                        <input class="number-input" type="number" id="hiss-power" min="0" max="50" value="0" oninput="recalculate()">
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Flares Summoned: </h1>
+                        <input class="number-input" type="number" id="summoned-flares" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Earths Summoned: </h1>
+                        <input class="number-input" type="number" id="summoned-earths" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
+                    </div>
+                    <div class="horizontal-fields">
+                        <h1 class="info-text-3 smaller-text">Aquas Summoned: </h1>
+                        <input class="number-input" type="number" id="summoned-aquas" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
+                    </div>
                     <h1 class="info-text-3">Checks</h1>
                     <div class="horizontal-fields">
                         <h1 class="info-text-3 smaller-text">Critical: </h1>

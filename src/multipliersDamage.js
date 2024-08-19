@@ -110,6 +110,24 @@ function fusionCheck(flag) {
     }
 }
 
+function elementalLimit() {
+    let flares = document.getElementById('summoned-flares');
+    let earths = document.getElementById('summoned-earths');
+    let aquas = document.getElementById('summoned-aquas');
+
+    let sum = parseInt(flares.value) + parseInt(earths.value) + parseInt(aquas.value);
+
+    flares.max = 3 - (parseInt(earths.value) + parseInt(aquas.value));
+    earths.max = 3 - (parseInt(flares.value) + parseInt(aquas.value));
+    aquas.max = 3 - (parseInt(flares.value) + parseInt(earths.value));
+
+    if (sum > 3) {
+        if (flares.value > flares.max) flares.value = flares.max;
+        if (earths.value > earths.max) earths.value = earths.max;
+        if (aquas.value > aquas.max) aquas.value = aquas.max;
+    }
+}
+
 function artMultiplier(index) {
     let obj = getConfig();
     const artKeys = Object.keys(noahConfig.arts);
@@ -207,6 +225,10 @@ function getDamageMultipliers() {
         "launchTime": document.getElementById('launch-time').value,
         "currentHpPlayer": document.getElementById('current-hp-player').value,
         "enemyLevel": document.getElementById('enemy-level').value,
+        "summonedFlares": document.getElementById('summoned-flares').value,
+        "summonedEarths": document.getElementById('summoned-earths').value,
+        "summonedAquas": document.getElementById('summoned-aquas').value,
+        "hereIShallStandPower": document.getElementById('hiss-power').value,
     }
 
     let obj = getConfig();
@@ -328,6 +350,7 @@ function getDamageMultipliers() {
             }
         }
     }
+    MultiplierGroup1.push(Math.floor(incrementalsMap["summonedFlares"] * (5) * (1 + (incrementalsMap["hereIShallStandPower"]/100))));
 
     MultiplierGroup1Sum = MultiplierGroup1.reduce((acc, currentValue) => acc + currentValue, 0);
     MultiplierGroup2Sum = MultiplierGroup2.reduce((acc, currentValue) => acc + currentValue, 0);
