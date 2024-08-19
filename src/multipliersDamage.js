@@ -175,6 +175,22 @@ function artMultiplier(index) {
         const value = calculateIncremental(input, allArts[art].boostMax, allArts[art].boostIncrement)
         artMultipliersMap[allArts[art].group].push(value);
     }
+    else if (allArts[art].boostType === "multiplierDamageGenesis") {
+        const summonedFlares = document.getElementById('summoned-flares').value;
+        const summonedEarths = document.getElementById('summoned-earths').value;
+        const summonedAquas = document.getElementById('summoned-aquas').value;
+        const elementalsSummoned = parseInt(summonedFlares) + parseInt(summonedEarths) + parseInt(summonedAquas);
+
+        if (elementalsSummoned === 1) {
+            artMultipliersMap[allArts[art].group].push(allArts[art].boost1);
+        }
+        else if (elementalsSummoned === 2) {
+            artMultipliersMap[allArts[art].group].push(allArts[art].boost2);
+        }
+        else if (elementalsSummoned === 3) {
+            artMultipliersMap[allArts[art].group].push(allArts[art].boost3);
+        }
+    }
     artMultiplierGroup1Sum = artMultiplierGroup1.reduce((acc, currentValue) => acc + currentValue, 0);
     artMultiplierGroup2Sum = artMultiplierGroup2.reduce((acc, currentValue) => acc + currentValue, 0);
     artMultiplierGroup3Sum = artMultiplierGroup3.reduce((acc, currentValue) => acc + currentValue, 0);
@@ -225,6 +241,7 @@ function getDamageMultipliers() {
         "launchTime": document.getElementById('launch-time').value,
         "currentHpPlayer": document.getElementById('current-hp-player').value,
         "enemyLevel": document.getElementById('enemy-level').value,
+        "elementalsDischarged": document.getElementById('elementals-discharged').value,
         "summonedFlares": document.getElementById('summoned-flares').value,
         "summonedEarths": document.getElementById('summoned-earths').value,
         "summonedAquas": document.getElementById('summoned-aquas').value,

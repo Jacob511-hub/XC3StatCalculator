@@ -188,7 +188,7 @@ const skillsLifesage = [
 ];
 
 const skillsRoyalSummoner = [
-    { name: "Elemental Boost", src: "img/skills/skill-20.png"},
+    { name: "Elemental Boost", src: "img/skills/skill-20.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["elementalsDischarged"], boostIncrement: 40, boostMax: 400},
     { name: "Essence of Ether", src: "img/skills/skill-31.png"},
     { name: "Fortified Ether Guard", src: "img/skills/skill-8.png"},
     { name: "Here I Shall Stand", src: "img/skills/skill-20.png"},
