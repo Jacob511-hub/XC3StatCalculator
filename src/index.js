@@ -390,19 +390,22 @@ function getSkillsByClass(characterStored) {
         slot.removeChild(slot.firstChild);
         slot.appendChild(image);
         $(skills[index]).attr('title', currentSkills[index].name).tooltip('dispose').tooltip();
+
         if (currentSkills === skillsSoulhackerClass) {
-            skills[1].addEventListener("click", function() {
+            if (index > 1) {
+                image.classList.add("fade");
+            }
+        }
+        skills[1].addEventListener("click", function() {
+            if (currentSkills === skillsSoulhackerClass) {
                 menuList = SoulhackerRoles;
                 parent = document.getElementById("classList");
                 clearMenu();
                 populateMenu();
                 classMenu = document.getElementById("classModal");
                 classMenu.style.display = "block";
-            })
-            if (index > 1) {
-                image.classList.add("fade");
             }
-        }
+        })
     };
 }
 
