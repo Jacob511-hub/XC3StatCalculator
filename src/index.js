@@ -805,14 +805,24 @@ function populateMenuArts() {
         const container = document.createElement("div");
         container.className = "horizontal-fields";
         container.classList.add("horizontal-fields-modal");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
         const modalIcon = document.createElement("div");
         modalIcon.className = "modal-icon";
         const artSlot = document.createElement("div");
         artSlot.className = "artSlotModal";
+
         const name = document.createElement("h1");
-        name.className = "info-text-3";
+        name.className = "info-text-arts-modal";
         name.textContent = artList[index].name;
-        //$(artSlot).attr('title', artList[index].name).tooltip('dispose').tooltip();
+        
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        variableAmount = artList[index].boostAmount;
+        if (typeof artList[index].description === 'function') {
+            description.textContent = artList[index].description();
+        }
 
         let artImage = new Array(4);
 
@@ -827,7 +837,9 @@ function populateMenuArts() {
 
         modalIcon.appendChild(artSlot);
         container.appendChild(modalIcon);
-        container.appendChild(name);
+        textContainer.appendChild(name);
+        textContainer.appendChild(description);
+        container.appendChild(textContainer);
 
         for (let indexA = 0; indexA < 4; indexA++) {
             artSlot.appendChild(artImage[indexA]);

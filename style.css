@@ -664,8 +664,6 @@ body {
 .class-list {
     display: flex;
     flex-direction: column;
-    /* grid-template-columns: [first] auto [line2] auto [line3] auto [end];
-    grid-template-rows: [row1-start] auto [row1-end] auto [third-line] auto [last-line]; */
     gap: 10px;
     justify-content: space-around;
     align-items: center;
@@ -760,6 +758,12 @@ body {
     background-color: rgba(0,0,0,0.4);
 }
 
+.name-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .info-text-1 {
     margin-top: 0%;
 }
@@ -795,6 +799,11 @@ body {
     margin: 0%;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.info-text-arts-modal {
+    margin: 0%;
+    padding-left: 10px;
 }
 
 .damage-text {
