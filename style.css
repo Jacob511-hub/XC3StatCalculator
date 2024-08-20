@@ -384,6 +384,17 @@ body {
     background-color: #2d2d2d7b;
 }
 
+.horizontal-fields-modal {
+    width: 95%;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.horizontal-fields-modal:hover {
+    background-color: #cc7e19c6;
+}
+
 .number-input {
     margin: 10px;
     width: 70px;
@@ -651,11 +662,13 @@ body {
 }
 
 .class-list {
-    display: grid;
-    grid-template-columns: [first] auto [line2] auto [line3] auto [end];
-    grid-template-rows: [row1-start] auto [row1-end] auto [third-line] auto [last-line];
+    display: flex;
+    flex-direction: column;
+    /* grid-template-columns: [first] auto [line2] auto [line3] auto [end];
+    grid-template-rows: [row1-start] auto [row1-end] auto [third-line] auto [last-line]; */
     gap: 10px;
     justify-content: space-around;
+    align-items: center;
     overflow-y: auto;
 }
 
@@ -664,12 +677,6 @@ body {
     width: 100px;
     cursor: pointer;
     border-radius: 15px;
-    background-color: #00000000;
-    transition: background-color 0.2s;
-}
-
-.modal-icon:hover {
-    background-color: #cc7e19c6;
 }
 
 .modal-icon img {

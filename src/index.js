@@ -616,15 +616,23 @@ const heroButtonImg = document.getElementById("buttonHeroImg");
 
 function populateMenu() {
     for (let index = 0; index < menuList.length; index++) {
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
         image.src = menuList[index].src;
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = menuList[index].name;
 
         div.appendChild(image);
+        container.appendChild(div);
+        container.appendChild(name);
         const element = document.getElementById("classList");
-        element.appendChild(div);
-        div.addEventListener("click", () => {
+        element.appendChild(container);
+        container.addEventListener("click", () => {
             const key = "class";
             const value = menuList[index].name;
             obj = getConfig();
@@ -673,7 +681,6 @@ function skillsMenu() {
 }
 
 function populateMenuSkills() {
-    let parent = skills[skillSlot + 4];
     for (let index = 0; index < skillList.length; index++) {
         let skip = false;
         for (let indexA = 0; indexA < 4; indexA++) {
@@ -685,19 +692,24 @@ function populateMenuSkills() {
         if (skip) {
             continue;
         }
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
         image.src = skillList[index].src;
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = skillList[index].name;
 
         div.appendChild(image);
+        container.appendChild(div);
+        container.appendChild(name);
         const element = document.getElementById("classList");
-        element.appendChild(div);
-        $(div).attr('title', skillList[index].name).tooltip('dispose').tooltip();
+        element.appendChild(container);
         
-        div.addEventListener("click", () => {
-            $(parent).attr('title', skillList[index].name).tooltip('dispose').tooltip();
-
+        container.addEventListener("click", () => {
             const skillKeys = Object.keys(noahConfig.skills);
             const key = skillKeys[skillSlot];
             const value = skillList[index].name;
@@ -711,11 +723,6 @@ function populateMenuSkills() {
 
             modifyCharacter(key, value, obj, obj.skills);
             characterLoad(obj);
-            
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-            }
-            parent.appendChild(image.cloneNode(true));
             classMenu.style.display = "none";
             })
     }
@@ -795,11 +802,17 @@ function populateMenuArts() {
         if (currentCharacter === "heroConfig" && index === 5) {
             continue;
         }
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
         const modalIcon = document.createElement("div");
         modalIcon.className = "modal-icon";
         const artSlot = document.createElement("div");
         artSlot.className = "artSlotModal";
-        $(artSlot).attr('title', artList[index].name).tooltip('dispose').tooltip();
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = artList[index].name;
+        //$(artSlot).attr('title', artList[index].name).tooltip('dispose').tooltip();
 
         let artImage = new Array(4);
 
@@ -813,14 +826,16 @@ function populateMenuArts() {
         artImage[3].src = artList[index].type;
 
         modalIcon.appendChild(artSlot);
+        container.appendChild(modalIcon);
+        container.appendChild(name);
 
         for (let indexA = 0; indexA < 4; indexA++) {
             artSlot.appendChild(artImage[indexA]);
         }
         const element = document.getElementById("classList");
-        element.appendChild(modalIcon);
+        element.appendChild(container);
 
-        modalIcon.addEventListener("click", () => {
+        container.addEventListener("click", () => {
             let obj = getConfig();
             const value = artList[index].name;
             const artKeys = Object.keys(obj.arts);
