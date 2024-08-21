@@ -393,7 +393,7 @@ function getSkillsByClass(characterStored) {
 
         if (currentSkills === skillsSoulhackerClass) {
             if (index > 1) {
-                image.classList.add("fade");
+                image.classList.add("faded-icon");
             }
         }
         skills[1].addEventListener("click", function() {
@@ -1089,7 +1089,7 @@ function skillLoad(slotNumber, loadedSkillName) {
         const image = document.createElement("img");
         image.src = "img/skills/skill-0.png";
         if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
-            image.classList.add("fade");
+            image.classList.add("faded-icon");
         }
         slot.appendChild(image);
         $(slot).attr('title', "None").tooltip('dispose').tooltip();
@@ -1157,7 +1157,7 @@ function artLoad(slotNumber, loadedArtName) {
         artImage.src = loadedArt.recharge;
         artImage.className = "art-features";
         if (currentCharacter === "heroConfig") {
-            artImage.classList.add("fade");
+            artImage.classList.add("faded-icon");
         }
         slot.appendChild(artImage);
         ratio[slotNumber] = undefined;
@@ -1290,10 +1290,10 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     let rank;
 
     if (currentCharacter === "heroConfig") {
-        gemRemove[slotNumber].classList.add("fade");
+        gemRemove[slotNumber].classList.add("faded-icon");
     }
     else {
-        gemRemove[slotNumber].classList.remove("fade");
+        gemRemove[slotNumber].classList.remove("faded-icon");
     }
 
     if (loadedGemType === null) {
@@ -1336,10 +1336,10 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     let rarity;
 
     if (currentCharacter === "heroConfig") {
-        gemRemove[slotNumber].classList.add("fade");
+        gemRemove[slotNumber].classList.add("faded-icon");
     }
     else {
-        gemRemove[slotNumber].classList.remove("fade");
+        gemRemove[slotNumber].classList.remove("faded-icon");
     }
 
     if (loadedAccessoryType === null) {

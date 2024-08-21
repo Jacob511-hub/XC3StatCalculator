@@ -840,7 +840,7 @@ body {
     height: auto;
 }
 
-.fade {
+.faded-icon {
     opacity: 0.4;
     cursor: context-menu;
 }
