@@ -393,7 +393,7 @@ function getSkillsByClass(characterStored) {
 
         if (currentSkills === skillsSoulhackerClass) {
             if (index > 1) {
-                image.classList.add("fade");
+                image.classList.add("faded-icon");
             }
         }
         skills[1].addEventListener("click", function() {
@@ -616,15 +616,23 @@ const heroButtonImg = document.getElementById("buttonHeroImg");
 
 function populateMenu() {
     for (let index = 0; index < menuList.length; index++) {
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
         image.src = menuList[index].src;
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = menuList[index].name;
 
         div.appendChild(image);
+        container.appendChild(div);
+        container.appendChild(name);
         const element = document.getElementById("classList");
-        element.appendChild(div);
-        div.addEventListener("click", () => {
+        element.appendChild(container);
+        container.addEventListener("click", () => {
             const key = "class";
             const value = menuList[index].name;
             obj = getConfig();
@@ -673,7 +681,6 @@ function skillsMenu() {
 }
 
 function populateMenuSkills() {
-    let parent = skills[skillSlot + 4];
     for (let index = 0; index < skillList.length; index++) {
         let skip = false;
         for (let indexA = 0; indexA < 4; indexA++) {
@@ -685,19 +692,24 @@ function populateMenuSkills() {
         if (skip) {
             continue;
         }
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
         image.src = skillList[index].src;
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = skillList[index].name;
 
         div.appendChild(image);
+        container.appendChild(div);
+        container.appendChild(name);
         const element = document.getElementById("classList");
-        element.appendChild(div);
-        $(div).attr('title', skillList[index].name).tooltip('dispose').tooltip();
+        element.appendChild(container);
         
-        div.addEventListener("click", () => {
-            $(parent).attr('title', skillList[index].name).tooltip('dispose').tooltip();
-
+        container.addEventListener("click", () => {
             const skillKeys = Object.keys(noahConfig.skills);
             const key = skillKeys[skillSlot];
             const value = skillList[index].name;
@@ -711,11 +723,6 @@ function populateMenuSkills() {
 
             modifyCharacter(key, value, obj, obj.skills);
             characterLoad(obj);
-            
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-            }
-            parent.appendChild(image.cloneNode(true));
             classMenu.style.display = "none";
             })
     }
@@ -795,11 +802,27 @@ function populateMenuArts() {
         if (currentCharacter === "heroConfig" && index === 5) {
             continue;
         }
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
         const modalIcon = document.createElement("div");
         modalIcon.className = "modal-icon";
         const artSlot = document.createElement("div");
         artSlot.className = "artSlotModal";
-        $(artSlot).attr('title', artList[index].name).tooltip('dispose').tooltip();
+
+        const name = document.createElement("h1");
+        name.className = "info-text-arts-modal";
+        name.textContent = artList[index].name;
+        
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        variableAmount = artList[index].boostAmount;
+        if (typeof artList[index].description === 'function') {
+            description.textContent = artList[index].description();
+        }
 
         let artImage = new Array(4);
 
@@ -813,14 +836,18 @@ function populateMenuArts() {
         artImage[3].src = artList[index].type;
 
         modalIcon.appendChild(artSlot);
+        container.appendChild(modalIcon);
+        textContainer.appendChild(name);
+        textContainer.appendChild(description);
+        container.appendChild(textContainer);
 
         for (let indexA = 0; indexA < 4; indexA++) {
             artSlot.appendChild(artImage[indexA]);
         }
         const element = document.getElementById("classList");
-        element.appendChild(modalIcon);
+        element.appendChild(container);
 
-        modalIcon.addEventListener("click", () => {
+        container.addEventListener("click", () => {
             let obj = getConfig();
             const value = artList[index].name;
             const artKeys = Object.keys(obj.arts);
@@ -1062,7 +1089,7 @@ function skillLoad(slotNumber, loadedSkillName) {
         const image = document.createElement("img");
         image.src = "img/skills/skill-0.png";
         if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
-            image.classList.add("fade");
+            image.classList.add("faded-icon");
         }
         slot.appendChild(image);
         $(slot).attr('title', "None").tooltip('dispose').tooltip();
@@ -1130,7 +1157,7 @@ function artLoad(slotNumber, loadedArtName) {
         artImage.src = loadedArt.recharge;
         artImage.className = "art-features";
         if (currentCharacter === "heroConfig") {
-            artImage.classList.add("fade");
+            artImage.classList.add("faded-icon");
         }
         slot.appendChild(artImage);
         ratio[slotNumber] = undefined;
@@ -1263,10 +1290,10 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     let rank;
 
     if (currentCharacter === "heroConfig") {
-        gemRemove[slotNumber].classList.add("fade");
+        gemRemove[slotNumber].classList.add("faded-icon");
     }
     else {
-        gemRemove[slotNumber].classList.remove("fade");
+        gemRemove[slotNumber].classList.remove("faded-icon");
     }
 
     if (loadedGemType === null) {
@@ -1309,10 +1336,10 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     let rarity;
 
     if (currentCharacter === "heroConfig") {
-        gemRemove[slotNumber].classList.add("fade");
+        gemRemove[slotNumber].classList.add("faded-icon");
     }
     else {
-        gemRemove[slotNumber].classList.remove("fade");
+        gemRemove[slotNumber].classList.remove("faded-icon");
     }
 
     if (loadedAccessoryType === null) {

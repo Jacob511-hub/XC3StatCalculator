@@ -2,6 +2,7 @@
 
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     </head>
@@ -79,269 +80,389 @@
                         <h1 class="info-text-3 smaller-text">Player Level: </h1>
                         <input class="number-input" type="number" id="player-level" min="1" max="99" value="99" oninput="recalculate()">
                     </div>
-                    <h1 class="info-text-3">Player Buffs</h1>
-                    <div class="buffs">
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="attackUpPlayer"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-attackUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="defenseUpPlayer"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-defenseUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="accuracyUpPlayer"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-accuracyUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="evasionUpPlayer"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-evasionUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="critRateUpPlayer"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-critRateUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="criticalPlusPlayer"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-criticalPlusPlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="powerChargePlayer"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-powerChargePlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="armorVeilPlayer"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-armorVeilPlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="awakeningPlayer"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-awakeningPlayer" min="100" max="185" value="100" oninput="recalculate()">
-                        </div>
-                    </div>
-                    <h1 class="info-text-3">Player Debuffs</h1>
-                    <div class="buffs">
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="attackDownPlayer"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-attackDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="physicalDefenseDownPlayer"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-physicalDefenseDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="etherDefenseDownPlayer"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-etherDefenseDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="accuracyDownPlayer"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-accuracyDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="evasionDownPlayer"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-evasionDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="flameClockLow"><img src="img\statuses\debuffs\flame-clock-low.png" data-toggle="tooltip" data-placement="top" title="Flame Clock Low" alt="Flame Clock Low"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-flameClockLow" min="100" max="300" value="100" oninput="recalculate()">
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBuffsPlayer" aria-expanded="true" aria-controls="collapseBuffsPlayer">
+                                Player Buffs
+                            </button>
+                        </h1>
+                        <div id="collapseBuffsPlayer" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="buffs">
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="attackUpPlayer"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-attackUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="defenseUpPlayer"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-defenseUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="accuracyUpPlayer"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-accuracyUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="evasionUpPlayer"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-evasionUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="critRateUpPlayer"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-critRateUpPlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="criticalPlusPlayer"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-criticalPlusPlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="powerChargePlayer"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-powerChargePlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="armorVeilPlayer"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-armorVeilPlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="awakeningPlayer"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-awakeningPlayer" min="100" max="185" value="100" oninput="recalculate()">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <h1 class="info-text-3">Enemy Buffs</h1>
-                    <div class="buffs">
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="attackUpEnemy"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-attackUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="defenseUpEnemy"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-defenseUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="accuracyUpEnemy"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-accuracyUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="evasionUpEnemy"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-evasionUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="critRateUpEnemy"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-critRateUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="criticalPlusEnemy"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-criticalPlusEnemy" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="powerChargeEnemy"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-powerChargeEnemy" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="armorVeilEnemy"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-armorVeilEnemy" min="100" max="300" value="100" oninput="recalculate()">
-                        </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="awakeningEnemy"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-awakeningEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDebuffsPlayer" aria-expanded="true" aria-controls="collapseDebuffsPlayer">
+                                Player Debuffs
+                            </button>
+                        </h1>
+                        <div id="collapseDebuffsPlayer" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="buffs">
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="attackDownPlayer"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-attackDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="physicalDefenseDownPlayer"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-physicalDefenseDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="etherDefenseDownPlayer"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-etherDefenseDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="accuracyDownPlayer"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-accuracyDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="evasionDownPlayer"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-evasionDownPlayer" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="flameClockLow"><img src="img\statuses\debuffs\flame-clock-low.png" data-toggle="tooltip" data-placement="top" title="Flame Clock Low" alt="Flame Clock Low"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-flameClockLow" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <h1 class="info-text-3">Enemy Debuffs</h1>
-                    <div class="buffs">
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="attackDownEnemy"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-attackDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBuffsEnemy" aria-expanded="true" aria-controls="collapseBuffsEnemy">
+                                Enemy Buffs
+                            </button>
+                        </h1>
+                        <div id="collapseBuffsEnemy" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="buffs">
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="attackUpEnemy"><img src="img\statuses\buffs\attack-up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-attackUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="defenseUpEnemy"><img src="img\statuses\buffs\defense-up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-defenseUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="accuracyUpEnemy"><img src="img\statuses\buffs\accuracy-up.png" data-toggle="tooltip" data-placement="top" title="Accuracy Up" alt="Accuracy Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-accuracyUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="evasionUpEnemy"><img src="img\statuses\buffs\evasion-up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-evasionUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="critRateUpEnemy"><img src="img\statuses\buffs\critical-rate-up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-critRateUpEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="criticalPlusEnemy"><img src="img\statuses\buffs\critical-hit-plus.png" data-toggle="tooltip" data-placement="top" title="Critical Hit Plus" alt="Critical Hit Plus"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-criticalPlusEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="powerChargeEnemy"><img src="img\statuses\buffs\power-charge.png" data-toggle="tooltip" data-placement="top" title="Power Charge" alt="Power Charge"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-powerChargeEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="armorVeilEnemy"><img src="img\statuses\buffs\armor-veil.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-armorVeilEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="awakeningEnemy"><img src="img\statuses\buffs\awakening.png" data-toggle="tooltip" data-placement="top" title="Awakening" alt="Awakening"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-awakeningEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="physicalDefenseDownEnemy"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-physicalDefenseDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                    </div>
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDebuffsEnemy" aria-expanded="true" aria-controls="collapseDebuffsEnemy">
+                                Enemy Debuffs
+                            </button>
+                        </h1>
+                        <div id="collapseDebuffsEnemy" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="buffs">
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="attackDownEnemy"><img src="img\statuses\debuffs\attack-down.png" data-toggle="tooltip" data-placement="top" title="Attack Down" alt="Attack Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-attackDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="physicalDefenseDownEnemy"><img src="img\statuses\debuffs\physical-defense-down.png" data-toggle="tooltip" data-placement="top" title="Physical Defense Down" alt="Physical Defense Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-physicalDefenseDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="etherDefenseDownEnemy"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-etherDefenseDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="accuracyDownEnemy"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-accuracyDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="evasionDownEnemy"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-evasionDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                    <div class="horizontal-fields">
+                                        <div class="buffIcon" id="reduceAll"><img src="img\statuses\debuffs\reduce-all.png" data-toggle="tooltip" data-placement="top" title="Reduce All" alt="Reduce All"></div>
+                                        <input class="number-input buff-power" type="number" id="buff-power-reduceAll" min="100" max="300" value="100" oninput="recalculate()">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="etherDefenseDownEnemy"><img src="img\statuses\debuffs\ether-defense-down.png" data-toggle="tooltip" data-placement="top" title="Ether Defense Down" alt="Ether Defense Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-etherDefenseDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                    </div>
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComboEnemy" aria-expanded="true" aria-controls="collapseComboEnemy">
+                                Enemy Combo
+                            </button>
+                        </h1>
+                        <div id="collapseComboEnemy" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="buffs">
+                                    <div class="buffIcon reactionIcon" id="breakEnemy"><img src="img\statuses\debuffs\break.png" data-toggle="tooltip" data-placement="top" title="Break" alt="Break"></div>
+                                    <div class="buffIcon reactionIcon" id="toppleEnemy"><img src="img\statuses\debuffs\topple.png" data-toggle="tooltip" data-placement="top" title="Topple" alt="Topple"></div>
+                                    <div class="buffIcon reactionIcon" id="launchEnemy"><img src="img\statuses\debuffs\launch.png" data-toggle="tooltip" data-placement="top" title="Launch" alt="Launch"></div>
+                                    <div class="buffIcon reactionIcon" id="dazeEnemy"><img src="img\statuses\debuffs\daze.png" data-toggle="tooltip" data-placement="top" title="Daze" alt="Daze"></div>
+                                    <div class="buffIcon reactionIcon" id="smashEnemy"><img src="img\statuses\debuffs\smash.png" data-toggle="tooltip" data-placement="top" title="Smash" alt="Smash"></div>
+                                    <div class="buffIcon reactionIcon" id="burstEnemy"><img src="img\statuses\debuffs\burst.png" data-toggle="tooltip" data-placement="top" title="Burst" alt="Burst"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="accuracyDownEnemy"><img src="img\statuses\debuffs\accuracy-down.png" data-toggle="tooltip" data-placement="top" title="Accuracy Down" alt="Accuracy Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-accuracyDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                    </div>
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFields" aria-expanded="true" aria-controls="collapseFields">
+                                Fields
+                            </button>
+                        </h1>
+                        <div id="collapseFields" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="buffs">
+                                    <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
+                                    <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
+                                    <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
+                                    <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
+                                    <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
+                                    <div class="buffIcon"><img src="img\statuses\fields\art-follow-up.png" data-toggle="tooltip" data-placement="top" title="Art Follow-Up" alt="Art Follow-Up"></div>
+                                    <div class="buffIcon"><img src="img\statuses\fields\defender.png" data-toggle="tooltip" data-placement="top" title="Defender" alt="Defender"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="evasionDownEnemy"><img src="img\statuses\debuffs\evasion-down.png" data-toggle="tooltip" data-placement="top" title="Evasion Down" alt="Evasion Down"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-evasionDownEnemy" min="100" max="300" value="100" oninput="recalculate()">
+                    </div>
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnemyType" aria-expanded="true" aria-controls="collapseEnemyType">
+                                Enemy Type
+                            </button>
+                        </h1>
+                        <div id="collapseEnemyType" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="buffs">
+                                    <div class="buffIcon typeIcon" id="enemyTerrestrial"><img src="img\statuses\types\enemy-terrestrial.png" data-toggle="tooltip" data-placement="top" title="Terrestrial" alt="Terrestrial"></div>
+                                    <div class="buffIcon typeIcon" id="enemyAquatic"><img src="img\statuses\types\enemy-aquatic.png" data-toggle="tooltip" data-placement="top" title="Aquatic" alt="Aquatic"></div>
+                                    <div class="buffIcon typeIcon" id="enemyAerial"><img src="img\statuses\types\enemy-aerial.png" data-toggle="tooltip" data-placement="top" title="Aerial" alt="Aerial"></div>
+                                    <div class="buffIcon typeIcon" id="enemyKeves"><img src="img\statuses\types\enemy-keves.png" data-toggle="tooltip" data-placement="top" title="Keves" alt="Keves"></div>
+                                    <div class="buffIcon typeIcon" id="enemyAgnus"><img src="img\statuses\types\enemy-agnus.png" data-toggle="tooltip" data-placement="top" title="Agnus" alt="Agnus"></div>
+                                    <div class="buffIcon typeIcon" id="enemyLostNumbers"><img src="img\statuses\types\enemy-lost-numbers.png" data-toggle="tooltip" data-placement="top" title="Lost Numbers" alt="Lost Numbers"></div>
+                                    <div class="buffIcon typeIcon" id="enemyMachines"><img src="img\statuses\types\enemy-machines.png" data-toggle="tooltip" data-placement="top" title="Machines" alt="Machines"></div>
+                                    <div class="buffIcon typeIcon" id="enemyMoebius"><img src="img\statuses\types\enemy-moebius.png" data-toggle="tooltip" data-placement="top" title="Moebius" alt="Moebius"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="horizontal-fields">
-                            <div class="buffIcon" id="reduceAll"><img src="img\statuses\debuffs\reduce-all.png" data-toggle="tooltip" data-placement="top" title="Reduce All" alt="Reduce All"></div>
-                            <input class="number-input buff-power" type="number" id="buff-power-reduceAll" min="100" max="300" value="100" oninput="recalculate()">
+                    </div>
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePosition" aria-expanded="true" aria-controls="collapsePosition">
+                                Position
+                            </button>
+                        </h1>
+                        <div id="collapsePosition" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="buffs">
+                                    <div class="buffIcon positionIcon" id="positionFront"><img src="img\statuses\position-front.png" data-toggle="tooltip" data-placement="top" title="Front" alt="Front"></div>
+                                    <div class="buffIcon positionIcon" id="positionSide"><img src="img\statuses\position-side.png" data-toggle="tooltip" data-placement="top" title="Side" alt="Side"></div>
+                                    <div class="buffIcon positionIcon" id="positionBack"><img src="img\statuses\position-back.png" data-toggle="tooltip" data-placement="top" title="Back" alt="Back"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <h1 class="info-text-3">Enemy Combo</h1>
-                    <div class="buffs">
-                        <div class="buffIcon reactionIcon" id="breakEnemy"><img src="img\statuses\debuffs\break.png" data-toggle="tooltip" data-placement="top" title="Break" alt="Break"></div>
-                        <div class="buffIcon reactionIcon" id="toppleEnemy"><img src="img\statuses\debuffs\topple.png" data-toggle="tooltip" data-placement="top" title="Topple" alt="Topple"></div>
-                        <div class="buffIcon reactionIcon" id="launchEnemy"><img src="img\statuses\debuffs\launch.png" data-toggle="tooltip" data-placement="top" title="Launch" alt="Launch"></div>
-                        <div class="buffIcon reactionIcon" id="dazeEnemy"><img src="img\statuses\debuffs\daze.png" data-toggle="tooltip" data-placement="top" title="Daze" alt="Daze"></div>
-                        <div class="buffIcon reactionIcon" id="smashEnemy"><img src="img\statuses\debuffs\smash.png" data-toggle="tooltip" data-placement="top" title="Smash" alt="Smash"></div>
-                        <div class="buffIcon reactionIcon" id="burstEnemy"><img src="img\statuses\debuffs\burst.png" data-toggle="tooltip" data-placement="top" title="Burst" alt="Burst"></div>
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAttributes" aria-expanded="true" aria-controls="collapseAttributes">
+                                Enemy Attributes
+                            </button>
+                        </h1>
+                        <div id="collapseAttributes" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Physical Defense: </h1>
+                                    <input class="number-input" type="number" id="enemy-physical-defense" min="-100" max="100" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Ether Defense: </h1>
+                                    <input class="number-input" type="number" id="enemy-ether-defense" min="-100" max="100" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Level: </h1>
+                                    <input class="number-input" type="number" id="enemy-level" min="1" max="200" value="99" oninput="recalculate()">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h1 class="info-text-3">Fields</h1>
-                    <div class="buffs">
-                        <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Attack Up" alt="Attack Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Defense Up" alt="Defense Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Evasion Up" alt="Evasion Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Critical Rate Up" alt="Critical Rate Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\fields\up.png" data-toggle="tooltip" data-placement="top" title="Armor Veil" alt="Armor Veil"></div>
-                        <div class="buffIcon"><img src="img\statuses\fields\art-follow-up.png" data-toggle="tooltip" data-placement="top" title="Art Follow-Up" alt="Art Follow-Up"></div>
-                        <div class="buffIcon"><img src="img\statuses\fields\defender.png" data-toggle="tooltip" data-placement="top" title="Defender" alt="Defender"></div>
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseElementals" aria-expanded="true" aria-controls="collapseElementals">
+                                Elementals
+                            </button>
+                        </h1>
+                        <div id="collapseElementals" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Here I Shall Stand: </h1>
+                                    <input class="number-input" type="number" id="hiss-power" min="0" max="50" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Flares Summoned: </h1>
+                                    <input class="number-input" type="number" id="summoned-flares" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Earths Summoned: </h1>
+                                    <input class="number-input" type="number" id="summoned-earths" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Aquas Summoned: </h1>
+                                    <input class="number-input" type="number" id="summoned-aquas" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h1 class="info-text-3">Enemy Type</h1>
-                    <div class="buffs">
-                        <div class="buffIcon typeIcon" id="enemyTerrestrial"><img src="img\statuses\types\enemy-terrestrial.png" data-toggle="tooltip" data-placement="top" title="Terrestrial" alt="Terrestrial"></div>
-                        <div class="buffIcon typeIcon" id="enemyAquatic"><img src="img\statuses\types\enemy-aquatic.png" data-toggle="tooltip" data-placement="top" title="Aquatic" alt="Aquatic"></div>
-                        <div class="buffIcon typeIcon" id="enemyAerial"><img src="img\statuses\types\enemy-aerial.png" data-toggle="tooltip" data-placement="top" title="Aerial" alt="Aerial"></div>
-                        <div class="buffIcon typeIcon" id="enemyKeves"><img src="img\statuses\types\enemy-keves.png" data-toggle="tooltip" data-placement="top" title="Keves" alt="Keves"></div>
-                        <div class="buffIcon typeIcon" id="enemyAgnus"><img src="img\statuses\types\enemy-agnus.png" data-toggle="tooltip" data-placement="top" title="Agnus" alt="Agnus"></div>
-                        <div class="buffIcon typeIcon" id="enemyLostNumbers"><img src="img\statuses\types\enemy-lost-numbers.png" data-toggle="tooltip" data-placement="top" title="Lost Numbers" alt="Lost Numbers"></div>
-                        <div class="buffIcon typeIcon" id="enemyMachines"><img src="img\statuses\types\enemy-machines.png" data-toggle="tooltip" data-placement="top" title="Machines" alt="Machines"></div>
-                        <div class="buffIcon typeIcon" id="enemyMoebius"><img src="img\statuses\types\enemy-moebius.png" data-toggle="tooltip" data-placement="top" title="Moebius" alt="Moebius"></div>
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseChecks" aria-expanded="true" aria-controls="collapseChecks">
+                                Checks
+                            </button>
+                        </h1>
+                        <div id="collapseChecks" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Critical: </h1>
+                                    <div class="buffIcon" id="critical"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Critical Hit?" alt="Critical"></div>
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Cancel: </h1>
+                                    <div class="buffIcon" id="cancel"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Canceled?" alt="Cancel"></div>
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Blocked: </h1>
+                                    <div class="buffIcon" id="enemyBlocked"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Blocked?" alt="Blocked"></div>
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">First 30 Seconds: </h1>
+                                    <div class="buffIcon" id="first30seconds"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="First 30 Seconds?" alt="First 30 Seconds"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h1 class="info-text-3">Position</h1>
-                    <div class="buffs">
-                        <div class="buffIcon positionIcon" id="positionFront"><img src="img\statuses\position-front.png" data-toggle="tooltip" data-placement="top" title="Front" alt="Front"></div>
-                        <div class="buffIcon positionIcon" id="positionSide"><img src="img\statuses\position-side.png" data-toggle="tooltip" data-placement="top" title="Side" alt="Side"></div>
-                        <div class="buffIcon positionIcon" id="positionBack"><img src="img\statuses\position-back.png" data-toggle="tooltip" data-placement="top" title="Back" alt="Back"></div>
-                    </div>
-                    <h1 class="info-text-3">Enemy Attributes</h1>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Physical Defense: </h1>
-                        <input class="number-input" type="number" id="enemy-physical-defense" min="-100" max="100" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Ether Defense: </h1>
-                        <input class="number-input" type="number" id="enemy-ether-defense" min="-100" max="100" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Level: </h1>
-                        <input class="number-input" type="number" id="enemy-level" min="1" max="200" value="99" oninput="recalculate()">
-                    </div>
-                    <h1 class="info-text-3">Elementals</h1>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Here I Shall Stand: </h1>
-                        <input class="number-input" type="number" id="hiss-power" min="0" max="50" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Flares Summoned: </h1>
-                        <input class="number-input" type="number" id="summoned-flares" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Earths Summoned: </h1>
-                        <input class="number-input" type="number" id="summoned-earths" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Aquas Summoned: </h1>
-                        <input class="number-input" type="number" id="summoned-aquas" min="0" max="3" value="0" oninput="elementalLimit(); recalculate()">
-                    </div>
-                    <h1 class="info-text-3">Checks</h1>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Critical: </h1>
-                        <div class="buffIcon" id="critical"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Critical Hit?" alt="Critical"></div>
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Cancel: </h1>
-                        <div class="buffIcon" id="cancel"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Canceled?" alt="Cancel"></div>
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Blocked: </h1>
-                        <div class="buffIcon" id="enemyBlocked"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Blocked?" alt="Blocked"></div>
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">First 30 Seconds: </h1>
-                        <div class="buffIcon" id="first30seconds"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="First 30 Seconds?" alt="First 30 Seconds"></div>
-                    </div>
-                    <h1 class="info-text-3">Incrementals</h1>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Player HP Remaining (%): </h1>
-                        <input class="number-input" type="number" id="current-hp-player" min="1" max="100" value="100" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Chain Attack Multiplier: </h1>
-                        <input class="number-input" type="number" id="chain-attack-multiplier" min="100" max="9999" value="100" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Talent Arts Used: </h1>
-                        <input class="number-input" type="number" id="used-talents" min="0" max="99" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Successive Hits: </h1>
-                        <input class="number-input" type="number" id="hits-successive" min="0" max="99" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Number of Crits: </h1>
-                        <input class="number-input" type="number" id="crits-hit" min="0" max="99" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Buffs Applied: </h1>
-                        <input class="number-input" type="number" id="buffs-applied" min="0" max="99" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Debuffs Applied: </h1>
-                        <input class="number-input" type="number" id="debuffs-applied" min="0" max="99" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Number of Cancels: </h1>
-                        <input class="number-input" type="number" id="cancels-total" min="0" max="99" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Number of Enemies: </h1>
-                        <input class="number-input" type="number" id="enemies-total" min="0" max="99" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Elementals Discharged: </h1>
-                        <input class="number-input" type="number" id="elementals-discharged" min="0" max="99" value="0" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Soul Hacks: </h1>
-                        <input class="number-input" type="number" id="soul-hacks" min="3" max="128" value="3" oninput="recalculate()">
-                    </div>
-                    <div class="horizontal-fields">
-                        <h1 class="info-text-3 smaller-text">Launch Time Remaining (Frames): </h1>
-                        <input class="number-input" type="number" id="launch-time" min="0" max="99" value="0" oninput="recalculate()">
+                    <div class="accordion accordion-flush width-limiter">
+                        <h1 class="info-text-3">
+                            <button class="accordion-button accordion-button-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIncrementals" aria-expanded="true" aria-controls="collapseIncrementals">
+                                Incrementals
+                            </button>
+                        </h1>
+                        <div id="collapseIncrementals" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                            <div class="accordion-body width-limiter">
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Player HP Remaining (%): </h1>
+                                    <input class="number-input" type="number" id="current-hp-player" min="1" max="100" value="100" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Chain Attack Multiplier: </h1>
+                                    <input class="number-input" type="number" id="chain-attack-multiplier" min="100" max="9999" value="100" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Talent Arts Used: </h1>
+                                    <input class="number-input" type="number" id="used-talents" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Successive Hits: </h1>
+                                    <input class="number-input" type="number" id="hits-successive" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Number of Crits: </h1>
+                                    <input class="number-input" type="number" id="crits-hit" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Buffs Applied: </h1>
+                                    <input class="number-input" type="number" id="buffs-applied" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Debuffs Applied: </h1>
+                                    <input class="number-input" type="number" id="debuffs-applied" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Number of Cancels: </h1>
+                                    <input class="number-input" type="number" id="cancels-total" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Number of Enemies: </h1>
+                                    <input class="number-input" type="number" id="enemies-total" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Elementals Discharged: </h1>
+                                    <input class="number-input" type="number" id="elementals-discharged" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Soul Hacks: </h1>
+                                    <input class="number-input" type="number" id="soul-hacks" min="3" max="128" value="3" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Launch Time Remaining (Frames): </h1>
+                                    <input class="number-input" type="number" id="launch-time" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="damageNumbers">
@@ -502,6 +623,7 @@
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="src/characters.js"></script>
         <script src="src/skills.js"></script>

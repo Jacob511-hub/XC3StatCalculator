@@ -384,6 +384,17 @@ body {
     background-color: #2d2d2d7b;
 }
 
+.horizontal-fields-modal {
+    width: 95%;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.horizontal-fields-modal:hover {
+    background-color: #cc7e19c6;
+}
+
 .number-input {
     margin: 10px;
     width: 70px;
@@ -651,11 +662,11 @@ body {
 }
 
 .class-list {
-    display: grid;
-    grid-template-columns: [first] auto [line2] auto [line3] auto [end];
-    grid-template-rows: [row1-start] auto [row1-end] auto [third-line] auto [last-line];
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     justify-content: space-around;
+    align-items: center;
     overflow-y: auto;
 }
 
@@ -664,12 +675,6 @@ body {
     width: 100px;
     cursor: pointer;
     border-radius: 15px;
-    background-color: #00000000;
-    transition: background-color 0.2s;
-}
-
-.modal-icon:hover {
-    background-color: #cc7e19c6;
 }
 
 .modal-icon img {
@@ -753,6 +758,12 @@ body {
     background-color: rgba(0,0,0,0.4);
 }
 
+.name-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .info-text-1 {
     margin-top: 0%;
 }
@@ -790,6 +801,11 @@ body {
     padding-right: 10px;
 }
 
+.info-text-arts-modal {
+    margin: 0%;
+    padding-left: 10px;
+}
+
 .damage-text {
     margin: 0%;
     padding: 10px;
@@ -824,7 +840,7 @@ body {
     height: auto;
 }
 
-.fade {
+.faded-icon {
     opacity: 0.4;
     cursor: context-menu;
 }
@@ -866,6 +882,15 @@ body {
 .talentSlot img {
     width: 100%;
     height: auto;
+}
+
+.accordion-button-custom {
+    border-radius: 15px;
+}
+
+.width-limiter {
+    width: 100%;
+    padding: 0;
 }
 
 @keyframes dropdown {
