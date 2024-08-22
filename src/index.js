@@ -389,7 +389,15 @@ function getSkillsByClass(characterStored) {
         image.src = currentSkills[index].src;
         slot.removeChild(slot.firstChild);
         slot.appendChild(image);
-        $(skills[index]).attr('title', currentSkills[index].name).tooltip('dispose').tooltip();
+        let tooltipContent;
+        if (typeof currentSkills[index].description === 'function') {
+            variableAmountSkill = currentSkills[index].boostAmount;
+            tooltipContent = `${currentSkills[index].name}<br>${currentSkills[index].description()}`;
+        }
+        else {
+            tooltipContent = `${currentSkills[index].name}`;
+        }
+        $(skills[index]).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
 
         if (currentSkills === skillsSoulhackerClass) {
             if (index > 1) {
@@ -695,17 +703,30 @@ function populateMenuSkills() {
         const container = document.createElement("div");
         container.className = "horizontal-fields";
         container.classList.add("horizontal-fields-modal");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
         image.src = skillList[index].src;
+
         const name = document.createElement("h1");
         name.className = "info-text-3";
         name.textContent = skillList[index].name;
 
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        variableAmountSkill = skillList[index].boostAmount;
+        if (typeof skillList[index].description === 'function') {
+            description.textContent = skillList[index].description();
+        }
+
         div.appendChild(image);
         container.appendChild(div);
-        container.appendChild(name);
+        container.appendChild(textContainer);
+        textContainer.appendChild(name);
+        textContainer.appendChild(description);
         const element = document.getElementById("classList");
         element.appendChild(container);
         
@@ -824,7 +845,7 @@ function populateMenuArts() {
         
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
-        variableAmount = artList[index].boostAmount;
+        variableAmountArt = artList[index].boostAmount;
         if (typeof artList[index].description === 'function') {
             description.textContent = artList[index].description();
         }
@@ -1112,7 +1133,15 @@ function skillLoad(slotNumber, loadedSkillName) {
     const image = document.createElement("img");
     image.src = loadedSkill.src;
     slot.appendChild(image);
-    $(slot).attr('title', loadedSkill.name).tooltip('dispose').tooltip();
+    let tooltipContent;
+    if (typeof loadedSkill.description === 'function') {
+        variableAmountSkill = loadedSkill.boostAmount;
+        tooltipContent = `${loadedSkill.name}<br>${loadedSkill.description()}`;
+    }
+    else {
+        tooltipContent = `${loadedSkill.name}`;
+    }
+    $(slot).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
 }
 
 function artLoad(slotNumber, loadedArtName) {
