@@ -654,7 +654,7 @@ body {
     background-repeat: no-repeat;
     margin: 5% auto;
     border: 10px solid #2c2c2c;
-    width: 400px;
+    width: 500px;
     height: 70%;
     animation: dropdown 0.4s;
     display: flex;

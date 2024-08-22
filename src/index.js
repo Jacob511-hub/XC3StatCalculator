@@ -816,6 +816,11 @@ function populateMenuArts() {
         const name = document.createElement("h1");
         name.className = "info-text-arts-modal";
         name.textContent = artList[index].name;
+
+        const ratio = document.createElement("p");
+        ratio.className = "info-text-arts-modal";
+        ratio.textContent = "Power Multiplier: " + artList[index].ratio + "%";
+        ratio.style.textDecoration = "underline";
         
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
@@ -838,6 +843,7 @@ function populateMenuArts() {
         modalIcon.appendChild(artSlot);
         container.appendChild(modalIcon);
         textContainer.appendChild(name);
+        textContainer.appendChild(ratio);
         textContainer.appendChild(description);
         container.appendChild(textContainer);
 
