@@ -711,7 +711,7 @@ function populateMenu() {
         textContainer.appendChild(description);
         const element = document.getElementById("classList");
         element.appendChild(container);
-        
+
         container.addEventListener("click", () => {
             const key = "class";
             const value = menuList[index].name;
@@ -1024,7 +1024,16 @@ function populateMenuGems() {
 
         const element = document.getElementById("gemList");
         element.appendChild(modalIcon);
-        $(gemContainer).attr('title', gems[index].name).tooltip('dispose').tooltip(({placement: 'top'}));
+
+        let tooltipContent;
+        if (typeof gems[index].description === 'function') {
+            variableAmountGems = gems[index].boostAmount;
+            tooltipContent = `${gems[index].name}<br>${gems[index].description()}`;
+        }
+        else {
+            tooltipContent = `${gems[index].name}`;
+        }
+        $(gemContainer).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
 
         prev.addEventListener("click", () => {
             currentRank = currentRank - 1;
@@ -1129,6 +1138,16 @@ function populateMenuAccessories() {
 
         const element = document.getElementById("accessoryList");
         element.appendChild(modalIcon);
+
+        let tooltipContent;
+        if (typeof accessories[index].description === 'function') {
+            variableAmountAccessories = accessories[index].boostAmount;
+            tooltipContent = `${accessories[index].name}<br>${accessories[index].description()}`;
+        }
+        else {
+            tooltipContent = `${accessories[index].name}`;
+        }
+        $(accessoryContainer).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
 
         prev.addEventListener("click", () => {
             currentRarity = currentRarity - 1;

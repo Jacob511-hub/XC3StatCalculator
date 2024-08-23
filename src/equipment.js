@@ -1,3 +1,6 @@
+let variableAmountGems = 0;
+let variableAmountAccessories = 0;
+
 const gems = [
     { name: "Tailwind", src: "img/equipment/gems/gem-blue.png", boostType: "additive", boostStat: "agility", boostAmount: 35},
     { name: "Steel Protection", src: "img/equipment/gems/gem-blue.png"},
@@ -6,7 +9,7 @@ const gems = [
     { name: "Perilous Presence", src: "img/equipment/gems/gem-blue.png"},
     { name: "Steelcleaver", src: "img/equipment/gems/gem-red.png", boostType: "additive", boostStat: "attack", boostAmount: 70},
     { name: "Accurate Grace", src: "img/equipment/gems/gem-red.png"},
-    { name: "Analyze Weakness", src: "img/equipment/gems/gem-red.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 70},
+    { name: "Analyze Weakness", src: "img/equipment/gems/gem-red.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 70, description: function() {return `Increases critical hit damage bonus by ${variableAmountGems} percentage points.`;}},
     { name: "Swelling Scourge", src: "img/equipment/gems/gem-red.png"},
     { name: "Refined Incantation", src: "img/equipment/gems/gem-red.png"},
     { name: "Lifebearer", src: "img/equipment/gems/gem-green.png"},
@@ -44,7 +47,7 @@ const accessories = [
     { name: "Shackle Ring", src: "img/equipment/accessories/accessory-jewelry.png"},
     { name: "Fraternal Badge", src: "img/equipment/accessories/accessory-medal.png"},
     { name: "Archsage's Flower Fan", src: "img/equipment/accessories/accessory-other.png", boostType: "multiplier x3", boostStat1: "hp", boostAmount1: 30, boostStat2: "attack", boostAmount2: 30, boostStat3: "healing", boostAmount3: 30},
-    { name: "Saturni Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "attack", boostAmount: 40},
+    { name: "Saturni Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "attack", boostAmount: 40, description: function() {return `Boosts Attack by ${variableAmountAccessories}%.`;}},
     { name: "Solis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "healing", boostAmount: 40},
     { name: "Iovis Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "agility", boostAmount: 40},
     { name: "Mercurii Rings", src: "img/equipment/accessories/accessory-jewelry.png", boostType: "multiplier", boostStat: "crit", boostAmount: 60},
