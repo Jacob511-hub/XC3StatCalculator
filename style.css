@@ -893,6 +893,15 @@ body {
     padding: 0;
 }
 
+.tour-start {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    max-width: 60px;
+    height: auto;
+    cursor: pointer;
+}
+
 @keyframes dropdown {
     from {transform: translateY(-50px); opacity: 0;}
     to {transform: translateY(0); opacity: 1;}

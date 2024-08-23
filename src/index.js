@@ -63,6 +63,65 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
     }
+
+    const tourSteps = [
+        {
+            target: '#characters',
+            title: 'Characters',
+            content: `<p>Switch the character you would like to customize here.</p> <img src="img/tour/tour-party.png" alt="Party Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#class',
+            title: 'Class',
+            content: `<p>Change the character's Class here. Changing the Class affects the Arts and Skills available to the character, as well as their base stats. Heroes can also be changed here.</p> <img src="img/tour/tour-classes.png" alt="Class Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#stats',
+            title: 'Stats',
+            content: `<p>The current character's stats are displayed here.</p> <img src="img/tour/tour-stats.png" alt="Stats Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#arts',
+            title: 'Arts',
+            content: `<p>The character's current Arts can be changed here. Different Arts have different Power Multipliers and secondary effects that may increase damage.</p> <img src="img/tour/tour-arts.png" alt="Arts Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#skills',
+            title: 'Skills',
+            content: `<p>The Skills of the character's current Class are visible here, as well has the ability to change their Master Skills, which may increase their stats or damage dealt.</p> <img src="img/tour/tour-skills.png" alt="Skills Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#gems',
+            title: 'Gems',
+            content: `<p>Gems can be equipped to the character here to increase their stats or damage dealt.</p> <img src="img/tour/tour-gems.png" alt="Gems Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#accessories',
+            title: 'Accessories',
+            content: `<p>Accessories can be equipped to the character here to increase their stats or damage dealt.</p> <img src="img/tour/tour-accessories.png" alt="Accessories Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#statuses',
+            title: 'Statuses',
+            content: `<p>Buffs, debuffs, and other effects that may affect damage dealt are controllable here.</p> <img src="img/tour/tour-statuses.png" alt="Statuses Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#damageNumbers',
+            title: 'Damage',
+            content: `<p>The damage dealt by the character's currently set Arts under the conditions set by the user are caclulated and displayed here.</p> <img src="img/tour/tour-damage.png" alt="Damage Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+    ];
+
+    const tg = new tourguide.TourGuideClient({
+        steps: tourSteps,
+        showPrevButton: true,
+    });
+
+    let tourButton = document.getElementById("startTour");
+
+    tourButton.addEventListener("click", () => {
+        tg.start();
+    })
 });
 
 const statsMap = {
