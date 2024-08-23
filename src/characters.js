@@ -377,8 +377,8 @@ const portraitsImages = [
 ];
 
 const classIcons = [
-    { name: "Swordfighter", src: "img/classes/Swordfighter.png", stability: 0.08 },
-    { name: "Zephyr", src: "img/classes/Zephyr.png", stability: 0.05 },
+    { name: "Swordfighter", src: "img/classes/Swordfighter.png", stability: 0.08, description: function() {return `An Attacker armed with a large sword whose refined technique balances offense and defense.`;}},
+    { name: "Zephyr", src: "img/classes/Zephyr.png", stability: 0.05, description: function() {return `A Defender who baffles foes with quick movement, skilled evasion and strong counterattacks.`;}},
     { name: "Medic Gunner", src: "img/classes/MedicGunner.png", stability: 0.03 },
     { name: "Tactician", src: "img/classes/Tactician.png", stability: 0.02 },
     { name: "Heavy Guard", src: "img/classes/HeavyGuard.png", stability: 0.12 },

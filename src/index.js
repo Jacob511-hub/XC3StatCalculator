@@ -686,19 +686,32 @@ function populateMenu() {
         const container = document.createElement("div");
         container.className = "horizontal-fields";
         container.classList.add("horizontal-fields-modal");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
         image.src = menuList[index].src;
+
         const name = document.createElement("h1");
         name.className = "info-text-3";
         name.textContent = menuList[index].name;
 
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        if (typeof menuList[index].description === 'function') {
+            description.textContent = menuList[index].description();
+        }
+
         div.appendChild(image);
         container.appendChild(div);
-        container.appendChild(name);
+        container.appendChild(textContainer);
+        textContainer.appendChild(name);
+        textContainer.appendChild(description);
         const element = document.getElementById("classList");
         element.appendChild(container);
+        
         container.addEventListener("click", () => {
             const key = "class";
             const value = menuList[index].name;
