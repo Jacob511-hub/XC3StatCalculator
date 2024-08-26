@@ -225,13 +225,15 @@ function calculateStats(characterStored) {
         modifyCharacter(key, interpolatedValue, characterStored, characterStored.stats);
     }
 
+    getWeaponStats(characterStored.class, playerLevel);
+
     let hp = Math.floor(Math.floor(characterStored.stats.hp * classStats["class_stats"]["hp"]) * (1 + (hpMultipliersSum / 100)) + hpAdditivesSum);
-    let attack = Math.floor(Math.floor(characterStored.stats.attack * classStats["class_stats"]["attack"] + classStats["weapon_stats"]["attack"]) * (1 + (attackMultipliersSum / 100)) + attackAdditivesSum);
+    let attack = Math.floor(Math.floor(characterStored.stats.attack * classStats["class_stats"]["attack"] + damageBase) * (1 + (attackMultipliersSum / 100)) + attackAdditivesSum);
     let healingPower = Math.floor(Math.floor(characterStored.stats.healing_power * classStats["class_stats"]["healing_power"]) * (1 + (healingMultipliersSum / 100)) + healingAdditivesSum);
     let dexterity = Math.floor(Math.floor(characterStored.stats.dexterity * classStats["class_stats"]["dexterity"]) * (1 + (dexterityMultipliersSum / 100)) + dexterityAdditivesSum);
     let agility = Math.floor(Math.floor(characterStored.stats.agility * classStats["class_stats"]["agility"]) * (1 + (agilityMultipliersSum / 100)) + agilityAdditivesSum);
-    let critical = Math.floor(classStats["weapon_stats"]["critical"] * (1 + (critMultipliersSum / 100))) + critAdditivesSum + "%";
-    let block = Math.floor(classStats["weapon_stats"]["block"] * (1 + (blockMultipliersSum / 100))) + blockAdditivesSum + "%";
+    let critical = Math.floor(critRateBase * (1 + (critMultipliersSum / 100))) + critAdditivesSum + "%";
+    let block = Math.floor(blockRateBase * (1 + (blockMultipliersSum / 100))) + blockAdditivesSum + "%";
     let defensePhysical = Math.floor(classStats["class_stats"]["physical_defense"] * (1 + (physicalMultipliersSum / 100))) + physicalAdditivesSum + "%";
     let defenseEther = Math.floor(classStats["class_stats"]["ether_defense"] * (1 + (etherMultipliersSum / 100))) + etherAdditivesSum + "%";
 

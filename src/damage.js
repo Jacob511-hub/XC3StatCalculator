@@ -1,4 +1,4 @@
-function damage(damageRatio, attribute, weaponStability, range, inheritance) {
+function damage(damageRatio, attribute, weaponStability, range) {
     if (damageRatio === undefined || damageRatio === 0) {
         return 0;
     }
@@ -7,13 +7,7 @@ function damage(damageRatio, attribute, weaponStability, range, inheritance) {
     let classWeaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
 
     let weaponAttack;
-    if (inheritance === undefined || inheritance === null) {
-        weaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
-    }
-    else {
-        let classSource = statsMap[inheritance]
-        weaponAttack = parseInt(classSource["weapon_stats"]["attack"]);
-    }
+    weaponAttack = damageBase;
     
     powerMultiplier = (damageRatio)/100;
     multiHitCorrection = 1/(1);
@@ -97,32 +91,64 @@ function smashDamage(damage, launchFrames) {
     return Math.min(9999999, Math.max(1, Math.floor((damage * smashMultiplier))));
 }
 
-function getChainArt(currentCharacter) {
-    let obj = getConfig();
-    let heroIndex = artsChain.findIndex(heroIndex => heroIndex.class === obj.class);
-    const chainArts = {
-        "noahConfig": "Brave Assault",
-        "mioConfig": "Lightning Quick",
-        "eunieConfig": "Pinion Primed",
-        "taionConfig": "Art of Subjugation",
-        "lanzConfig": "Tyrant Wave",
-        "senaConfig": "Bombshell Blitz",
-        "heroConfig": artsChain[heroIndex].name,
-    };
+let damageBase = 0;
+let critRateBase = 0;
+let blockRateBase = 0;
+let damageUpgraded = 0;
+let critRateUpgraded = 0;
+let blockRateUpgraded = 0;
+
+function getWeaponStats(currentClass, currentLevel) {
+    const apiUrl = `https://xc3-weapon-stat-scraper.vercel.app/stats?class_name=${currentClass}&level=${currentLevel}`;
+
+    // fetch(apiUrl, {method: 'GET'})
+    // .then(response => {
+    //   if (!response.ok) {
+    //     throw new Error('Network response was not ok ' + response.statusText);
+    //   }
+    //   return response.json();
+    // })
+    // .then(data => {
+    //   damageBase = data.damage_base;
+    //   critRateBase = data.crit_rate_base;
+    //   blockRateBase = data.block_rate_base;
+    //   damageUpgraded = data.damage_upgraded;
+    //   critRateUpgraded = data.crit_rate_upgraded;
+    //   blockRateUpgraded = data.block_rate_upgraded;
+    // })
+    // .catch(error => {
+    //   console.error('There was a problem with the fetch operation:', error);
+    // });
+    if (currentClass === undefined || currentClass === null) {
+        damageBase = parseInt(classStats["weapon_stats"]["attack"]);
+    }
+    else {
+        let classSource = statsMap[currentClass]
+        damageBase = parseInt(classSource["weapon_stats"]["attack"]);
+    }
+    critRateBase = 10;
+    blockRateBase = 10;
+    damageUpgraded = 700;
+    critRateUpgraded = 15;
+    blockRateUpgraded = 15;
 }
 
 function printDamage() {
     artMultiplier(null);
     fusionCheck(false);
+    let obj = getConfig();
+    let playerLevel = Number(document.getElementById('player-level').value)
+    getWeaponStats(obj.class, playerLevel);
     damagePrint[0].firstChild.textContent = "Auto-Attack: ";
-    damagePrintBadge[0].textContent = (damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1, artClass[index]));
+    damagePrintBadge[0].textContent = (damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1));
 
     for(let index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
             fusionCheck(false);
+            getWeaponStats(artClass[index], playerLevel);
             damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
-            damagePrintBadge[index + 1].textContent = (damage(ratio[index], attribute[index], 0, 0.9, artClass[index]) + " - " + damage(ratio[index], attribute[index], stability, 1.1, artClass[index]));
+            damagePrintBadge[index + 1].textContent = (damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
         }
         else if (attribute[index] === "heal") {
             damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
@@ -135,15 +161,15 @@ function printDamage() {
     }
     for (let index = 0; index < 3; index++) {
         fusionCheck(true);
-        let obj = getConfig();
+        getWeaponStats(obj.class, playerLevel);
         let masterArtMin = 0;
         let masterArtMax = 0;
         let classArtMin = 0;
         let classArtMax = 0;
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
-            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9, obj.class);
-            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1, obj.class);
+            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9);
+            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1);
 
             const artKeys = Object.keys(noahConfig.arts);
             if (obj.arts[artKeys[index]] === "Quickdraw") {
@@ -153,8 +179,8 @@ function printDamage() {
         }
         if (attribute[index + 3] === "physical" || attribute[index  + 3] === "ether") {
             artMultiplier(index);
-            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9, obj.class);
-            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1, obj.class);
+            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9);
+            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1);
         }
         damagePrint[index + 8].firstChild.textContent = (artNames[index].textContent + " + " + artNames[index + 3].textContent + ": ");
         damagePrintBadge[index + 8].textContent = ((masterArtMin + classArtMin) + " - " + (masterArtMax + classArtMax));
@@ -162,7 +188,6 @@ function printDamage() {
 
     artMultiplier(null);
     fusionCheck(false);
-    let obj = getConfig();
     let indexChainArt = 0;
     if (currentCharacter === "heroConfig") {
         indexChainArt = artsChain.findIndex(indexChainArt => indexChainArt.character === obj.class);
