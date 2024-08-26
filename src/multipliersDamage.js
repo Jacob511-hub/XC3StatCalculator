@@ -66,6 +66,8 @@ const flags = {
     "positionFront": false,
     "positionSide": false,
     "positionBack": false,
+
+    "weaponUpgrade": false,
 };
 
 function setFlag(flagName) {

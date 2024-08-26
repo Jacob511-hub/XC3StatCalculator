@@ -3,11 +3,16 @@ function damage(damageRatio, attribute, weaponStability, range) {
         return 0;
     }
 
-    let statAttack = parseInt(currentStats[1].textContent);
-    let classWeaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
-
     let weaponAttack;
-    weaponAttack = damageBase;
+    if (flags["weaponUpgrade"] === false) {
+        weaponAttack = damageBase;
+    }
+    else if (flags["weaponUpgrade"] === true) {
+        weaponAttack = damageUpgraded;
+    }
+    
+    let obj = getConfig();
+    let statAttack  = Math.floor(Math.floor(obj.stats.attack * classStats["class_stats"]["attack"] + weaponAttack) * (1 + (attackMultipliersSum / 100)) + attackAdditivesSum);
     
     powerMultiplier = (damageRatio)/100;
     multiHitCorrection = 1/(1);
@@ -46,7 +51,7 @@ function damage(damageRatio, attribute, weaponStability, range) {
     levelMultiplier = 1;
     difficultyMultiplier = 1;
 
-    uncapped_damage = ((statAttack - classWeaponAttack + weaponAttack) + Math.floor(weaponAttack * weaponStability))
+    uncapped_damage = (statAttack + Math.floor(weaponAttack * weaponStability))
                   * powerMultiplier * multiHitCorrection
                   * (1 + (MultiplierGroup1Sum + artMultiplierGroup1Sum + fusionBoostSum)/100)
                   * (1 + (MultiplierGroup2Sum + artMultiplierGroup2Sum)/100)
@@ -128,7 +133,7 @@ function getWeaponStats(currentClass, currentLevel) {
     }
     critRateBase = 10;
     blockRateBase = 10;
-    damageUpgraded = 700;
+    damageUpgraded = Math.floor(damageBase * 1.2);
     critRateUpgraded = 15;
     blockRateUpgraded = 15;
 }
