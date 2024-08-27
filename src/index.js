@@ -193,7 +193,7 @@ function getStatsByClass(characterStored) {
 
 const currentStats = document.getElementsByClassName("stats-text");
 
-function calculateStats(characterStored) {
+async function calculateStats(characterStored) {
     getStatsAdditives();
     getStatsMultipliers();
 
@@ -223,7 +223,7 @@ function calculateStats(characterStored) {
         modifyCharacter(key, interpolatedValue, characterStored, characterStored.stats);
     }
 
-    getWeaponStats(characterStored.class, playerLevel);
+    await getWeaponStats(characterStored.class, playerLevel);
     let weaponAttack;
     let weaponCrit;
     let weaponBlock;

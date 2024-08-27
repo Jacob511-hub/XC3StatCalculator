@@ -96,54 +96,47 @@ function smashDamage(damage, launchFrames) {
     return Math.min(9999999, Math.max(1, Math.floor((damage * smashMultiplier))));
 }
 
-let damageBase = 0;
-let critRateBase = 0;
-let blockRateBase = 0;
-let damageUpgraded = 0;
-let critRateUpgraded = 0;
-let blockRateUpgraded = 0;
+let damageBase;
+let critRateBase;
+let blockRateBase;
+let damageUpgraded;
+let critRateUpgraded;
+let blockRateUpgraded;
 
-function getWeaponStats(currentClass, currentLevel) {
+async function getWeaponStats(currentClass, currentLevel) {
+    //TODO: CHECK WEAPON NAME INSTEAD OF CLASS, ADD WEAPON NAMES TO CLASSES
+    if (currentClass === undefined || currentClass === null) {
+        return;
+    }
     const apiUrl = `https://xc3-weapon-stat-scraper.vercel.app/stats?class_name=${currentClass}&level=${currentLevel}`;
 
-    // fetch(apiUrl, {method: 'GET'})
-    // .then(response => {
-    //   if (!response.ok) {
-    //     throw new Error('Network response was not ok ' + response.statusText);
-    //   }
-    //   return response.json();
-    // })
-    // .then(data => {
-    //   damageBase = data.damage_base;
-    //   critRateBase = data.crit_rate_base;
-    //   blockRateBase = data.block_rate_base;
-    //   damageUpgraded = data.damage_upgraded;
-    //   critRateUpgraded = data.crit_rate_upgraded;
-    //   blockRateUpgraded = data.block_rate_upgraded;
-    // })
-    // .catch(error => {
-    //   console.error('There was a problem with the fetch operation:', error);
-    // });
-    if (currentClass === undefined || currentClass === null) {
-        damageBase = parseInt(classStats["weapon_stats"]["attack"]);
-    }
-    else {
-        let classSource = statsMap[currentClass]
-        damageBase = parseInt(classSource["weapon_stats"]["attack"]);
-    }
-    critRateBase = 10;
-    blockRateBase = 10;
-    damageUpgraded = Math.floor(damageBase * 1.2);
-    critRateUpgraded = 15;
-    blockRateUpgraded = 15;
+    await fetch(apiUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        damageBase = Number(data[0].damage_base);
+        critRateBase = Number(parseFloat(data[0].crit_rate_base.replace('%', '')));
+        blockRateBase = Number(parseFloat(data[0].block_rate_base.replace('%', '')));
+        damageUpgraded = Number(data[0].damage_upgraded);
+        critRateUpgraded = Number(parseFloat(data[0].crit_rate_upgraded.replace('%', '')));
+        blockRateUpgraded = Number(parseFloat(data[0].block_rate_upgraded.replace('%', '')));
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
 
-function printDamage() {
+async function printDamage() {
+    //TODO: ADD "CALCULATE" BUTTON, CALL THIS FUNCTION ONLY WHEN PRESSED, CHANGE ART NAMES IN SEPARATE FUNCTION
     artMultiplier(null);
     fusionCheck(false);
     let obj = getConfig();
     let playerLevel = Number(document.getElementById('player-level').value)
-    getWeaponStats(obj.class, playerLevel);
+    await getWeaponStats(obj.class, playerLevel);
     damagePrint[0].firstChild.textContent = "Auto-Attack: ";
     damagePrintBadge[0].textContent = (damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1));
 
@@ -151,7 +144,7 @@ function printDamage() {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
             fusionCheck(false);
-            getWeaponStats(artClass[index], playerLevel);
+            await getWeaponStats(artClass[index], playerLevel);
             damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
             damagePrintBadge[index + 1].textContent = (damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
         }
@@ -166,7 +159,7 @@ function printDamage() {
     }
     for (let index = 0; index < 3; index++) {
         fusionCheck(true);
-        getWeaponStats(obj.class, playerLevel);
+        await getWeaponStats(obj.class, playerLevel);
         let masterArtMin = 0;
         let masterArtMax = 0;
         let classArtMin = 0;
