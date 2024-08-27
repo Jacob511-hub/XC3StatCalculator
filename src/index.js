@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     let obj = getConfig();
     characterLoad(obj);
+    printDamage();
 
     let currentHero = localStorage.getItem("heroConfig");
     const heroIndex = heroIcons.findIndex(obj => obj.name === JSON.parse(currentHero).class);
@@ -56,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
             getSkillsByClass(localStorage.getItem(currentCharacter));
             characterLoad(obj);
+            //printDamage();
             let characterName = document.getElementById("character-name");
             characterName.textContent = portraitsImages[index].name;
             if (currentCharacter === "heroConfig") {
@@ -650,8 +652,10 @@ function recalculate() {
     let obj = getConfig();
     calculateStats(obj);
     getDamageMultipliers();
-    printDamage();
 }
+
+const calcButton = document.getElementById("calc-button");
+calcButton.onclick = printDamage;
 
 var frToggle = document.getElementById("fr-toggle-button");
 const bg1 = 'url("img/bg.png")';

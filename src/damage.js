@@ -130,7 +130,7 @@ async function getWeaponStats(currentWeapon, currentLevel) {
 }
 
 async function printDamage() {
-    //TODO: ADD "CALCULATE" BUTTON, CALL THIS FUNCTION ONLY WHEN PRESSED, CHANGE ART NAMES IN SEPARATE FUNCTION
+    calcButton.onclick = null;
     artMultiplier(null);
     fusionCheck(false);
     let obj = getConfig();
@@ -204,4 +204,5 @@ async function printDamage() {
 
     damagePrint[11].firstChild.textContent = chainArts[currentCharacter];
     damagePrintBadge[11].textContent = (damage(artsChain[indexChainArt].ratio, artsChain[indexChainArt].attribute, 0, 0.9) + " - " + damage(artsChain[indexChainArt].ratio, artsChain[indexChainArt].attribute, stability, 1.1));
+    calcButton.onclick = printDamage;
 }
