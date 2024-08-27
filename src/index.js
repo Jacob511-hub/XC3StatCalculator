@@ -193,6 +193,69 @@ function getStatsByClass(characterStored) {
 
 const currentStats = document.getElementsByClassName("stats-text");
 
+const weaponsMap = {
+    "Swordfighter": "Veiled+Sword",
+    "Zephyr": "Dual+Moonblades",
+    "Medic Gunner": "Gunrod",
+    "Tactician": "Spell+Tags:+Mondo",
+    "Heavy Guard": "Shieldblade",
+    "Ogre": "Comet Mallet",
+    "Flash Fencer": "Dual+Rapiers",
+    "War Medic": "Relief+Rifle",
+    "Guardian Commander": "Gutsy+Gladius",
+    "Thaumaturge": "Martial+Linkstaff",
+    "Yumsmith": "Variable+Arms",
+    "Full Metal Jaguar": "Gun+Drones",
+    "Strategos": "Disc+Launcher",
+    "Stalker": "Luminescent+Bow",
+    "Lone Exile": "Twinsaber",
+    "Incursor": "Exponential+Edge",
+    "Lost Vanguard": "Defense+Mace",
+    "Signifer": "War+Standard",
+    "Soulhacker (Power)": "Mimic+Knuckles",
+    "Soulhacker (Strike)": "Mimic+Knuckles",
+    "Soulhacker (Tough)": "Mimic+Knuckles",
+    "Soulhacker (Dodge)": "Mimic+Knuckles",
+    "Soulhacker (Heal)": "Mimic+Knuckles",
+    "Soulhacker (Balanced)": "Mimic+Knuckles",
+    "Martial Artist": "Turbo+Cestus",
+    "Troubadour": "Silken+Ivy",
+    "Seraph": "Heatshimmer+Spear",
+    "Machine Assassin": "Doom+Axes",
+    "Lifesage": "Anima+Sword",
+    "Royal Summoner": "Elemental+Staff",
+    "Noponic Champion": "Inosabers",
+    "Lapidarist": "Dazzling+Rings",
+
+    "Lucky Seven (Attacker)": "Lucky+Seven",
+    "Lucky Seven (Defender)": "Lucky+Seven",
+    "Lucky Seven (Healer)": "Lucky+Seven",
+
+    "Ethel": "Dual+Rapiers",
+    "Valdi": "Relief+Rifle",
+    "Zeon": "Gutsy+Gladius",
+    "Teach": "Martial+Linkstaff",
+    "Riku & Manana": "Variable+Arms",
+    "Gray": "Gun+Drones",
+    "Isurd": "Disc+Launcher",
+    "Juniper": "Luminescent+Bow",
+    "Ashera": "Twinsaber",
+    "Alexandria": "Exponential+Edge",
+    "Monica": "Defense+Mace",
+    "Fiona": "War+Standard",
+    "Triton": "Mimic+Knuckles",
+    "Ghondor": "Turbo+Cestus",
+    "Miyabi": "Silken+Ivy",
+    "Cammuravi": "Heatshimmer+Spear",
+    "Segiri": "Doom+Axes",
+    "Nia": "Anima+Sword",
+    "Melia": "Elemental+Staff",
+    "Ino": "Inosabers",
+    "Masha": "Dazzling+Rings",
+    "Shulk": "Monado+REX%2B",
+    "Rex": "Firelight+Swords"
+};
+
 async function calculateStats(characterStored) {
     getStatsAdditives();
     getStatsMultipliers();
@@ -223,7 +286,7 @@ async function calculateStats(characterStored) {
         modifyCharacter(key, interpolatedValue, characterStored, characterStored.stats);
     }
 
-    await getWeaponStats(characterStored.class, playerLevel);
+    await getWeaponStats(weaponsMap[characterStored.class], playerLevel);
     let weaponAttack;
     let weaponCrit;
     let weaponBlock;

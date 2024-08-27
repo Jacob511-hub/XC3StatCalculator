@@ -103,12 +103,11 @@ let damageUpgraded;
 let critRateUpgraded;
 let blockRateUpgraded;
 
-async function getWeaponStats(currentClass, currentLevel) {
-    //TODO: CHECK WEAPON NAME INSTEAD OF CLASS, ADD WEAPON NAMES TO CLASSES
-    if (currentClass === undefined || currentClass === null) {
+async function getWeaponStats(currentWeapon, currentLevel) {
+    if (currentWeapon === undefined || currentWeapon === null) {
         return;
     }
-    const apiUrl = `https://xc3-weapon-stat-scraper.vercel.app/stats?class_name=${currentClass}&level=${currentLevel}`;
+    const apiUrl = `https://xc3-weapon-stat-scraper.vercel.app/stats?weapon_name=${currentWeapon}&level=${currentLevel}`;
 
     await fetch(apiUrl)
     .then(response => {
@@ -136,7 +135,7 @@ async function printDamage() {
     fusionCheck(false);
     let obj = getConfig();
     let playerLevel = Number(document.getElementById('player-level').value)
-    await getWeaponStats(obj.class, playerLevel);
+    await getWeaponStats(weaponsMap[obj.class], playerLevel);
     damagePrint[0].firstChild.textContent = "Auto-Attack: ";
     damagePrintBadge[0].textContent = (damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1));
 
@@ -144,7 +143,7 @@ async function printDamage() {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
             fusionCheck(false);
-            await getWeaponStats(artClass[index], playerLevel);
+            await getWeaponStats(weaponsMap[artClass[index]], playerLevel);
             damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
             damagePrintBadge[index + 1].textContent = (damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
         }
@@ -159,7 +158,7 @@ async function printDamage() {
     }
     for (let index = 0; index < 3; index++) {
         fusionCheck(true);
-        await getWeaponStats(obj.class, playerLevel);
+        await getWeaponStats(weaponsMap[obj.class], playerLevel);
         let masterArtMin = 0;
         let masterArtMax = 0;
         let classArtMin = 0;
