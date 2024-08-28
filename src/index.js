@@ -1,4 +1,8 @@
 let currentCharacter = "noahConfig";
+const portrait = document.getElementById("currentCharacter");
+const heroButtonImg = document.getElementById("buttonHeroImg");
+const buttons = document.getElementsByClassName("icon");
+let heroIndex;
 let classStats;
 let classArts;
 let masterArts;
@@ -10,20 +14,17 @@ let stability;
 let damagePrint = document.querySelectorAll("h1.damage-text");
 let damagePrintBadge = document.querySelectorAll("span.badge-warning");
 
+const characterConfigs = {
+    "noahConfig": noahConfig,
+    "mioConfig": mioConfig,
+    "eunieConfig": eunieConfig,
+    "taionConfig": taionConfig,
+    "lanzConfig": lanzConfig,
+    "senaConfig": senaConfig,
+    "heroConfig": heroConfig,
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-    const portrait = document.getElementById("currentCharacter");
-    const buttons = document.getElementsByClassName("icon");
-
-    let characterConfigs = {
-        "noahConfig": noahConfig,
-        "mioConfig": mioConfig,
-        "eunieConfig": eunieConfig,
-        "taionConfig": taionConfig,
-        "lanzConfig": lanzConfig,
-        "senaConfig": senaConfig,
-        "heroConfig": heroConfig,
-    };
-
     for (const key in characterConfigs) {
         if (characterConfigs.hasOwnProperty(key) && !localStorage.getItem(key)) {
             localStorage.setItem(key, JSON.stringify(characterConfigs[key]));
@@ -37,33 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
     printDamage();
 
     let currentHero = localStorage.getItem("heroConfig");
-    const heroIndex = heroIcons.findIndex(obj => obj.name === JSON.parse(currentHero).class);
+    heroIndex = heroIcons.findIndex(obj => obj.name === JSON.parse(currentHero).class);
     const buttonImage = heroIcons[heroIndex].buttonSrc;
     heroButtonImg.src = buttonImage;
     $('#buttonHero').attr('title', heroIcons[heroIndex].name).tooltip('dispose').tooltip();
 
-    for (let index = 0; index < buttons.length; index++) {
-        if (index >= portraitsImages.length){
-           return;
-        }
-        buttons[index].addEventListener("click", () => {
-            const portraitImg = portraitsImages[index].src
-            portrait.src = portraitImg;
-            const characters = Object.keys(characterConfigs);
-            currentCharacter = characters[index];
-            obj = getConfig();
-            getStatsByClass(localStorage.getItem(currentCharacter));
-            classArts = getArtsByClass(localStorage.getItem(currentCharacter));
-            masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
-            getSkillsByClass(localStorage.getItem(currentCharacter));
-            characterLoad(obj);
-            //printDamage();
-            let characterName = document.getElementById("character-name");
-            characterName.textContent = portraitsImages[index].name;
-            if (currentCharacter === "heroConfig") {
-                characterName.textContent = heroIcons[heroIndex].name;
-            }
-        })
+    for (let index = 0; index < 7; index++) {
+        buttons[index].onclick = partySwap(index);
     }
 
     const tourSteps = [
@@ -125,6 +106,27 @@ document.addEventListener("DOMContentLoaded", () => {
         tg.start();
     })
 });
+
+function partySwap(index) {
+    return function() {
+    const portraitImg = portraitsImages[index].src;
+    portrait.src = portraitImg;
+    const characters = Object.keys(characterConfigs);
+    currentCharacter = characters[index];
+    let obj = getConfig();
+    getStatsByClass(localStorage.getItem(currentCharacter));
+    classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+    masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
+    getSkillsByClass(localStorage.getItem(currentCharacter));
+    characterLoad(obj);
+    let characterName = document.getElementById("character-name");
+    characterName.textContent = portraitsImages[index].name;
+    if (currentCharacter === "heroConfig") {
+        characterName.textContent = heroIcons[heroIndex].name;
+    }
+    printDamage();
+    }  
+}
 
 const statsMap = {
     "Swordfighter": statsSwordfighter,
@@ -758,9 +760,6 @@ function clearMenu() {
         parent.removeChild(parent.firstChild);
     }
 }
-
-const portrait = document.getElementById("currentCharacter");
-const heroButtonImg = document.getElementById("buttonHeroImg");
 
 function populateMenu() {
     for (let index = 0; index < menuList.length; index++) {

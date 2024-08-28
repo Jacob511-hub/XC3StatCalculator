@@ -130,6 +130,10 @@ async function getWeaponStats(currentWeapon, currentLevel) {
 }
 
 async function printDamage() {
+    const buttons = document.getElementsByClassName("icon");
+    for (let index = 0; index < 7; index++) {
+        buttons[index].onclick = null;
+    }
     calcButton.onclick = null;
     artMultiplier(null);
     fusionCheck(false);
@@ -204,5 +208,8 @@ async function printDamage() {
 
     damagePrint[11].firstChild.textContent = chainArts[currentCharacter];
     damagePrintBadge[11].textContent = (damage(artsChain[indexChainArt].ratio, artsChain[indexChainArt].attribute, 0, 0.9) + " - " + damage(artsChain[indexChainArt].ratio, artsChain[indexChainArt].attribute, stability, 1.1));
+    for (let index = 0; index < 7; index++) {
+        buttons[index].onclick = partySwap(index);
+    }
     calcButton.onclick = printDamage;
 }
