@@ -135,6 +135,9 @@ async function printDamage() {
         buttons[index].onclick = null;
     }
     calcButton.onclick = null;
+    calcButton.classList.add("faded-icon");
+    const loadingIcon = document.getElementById("loadingIcon");
+    loadingIcon.style.display = "block"
     artMultiplier(null);
     fusionCheck(false);
     let obj = getConfig();
@@ -212,4 +215,6 @@ async function printDamage() {
         buttons[index].onclick = partySwap(index);
     }
     calcButton.onclick = printDamage;
+    calcButton.classList.remove("faded-icon");
+    loadingIcon.style.display = "none"
 }

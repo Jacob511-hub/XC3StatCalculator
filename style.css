@@ -10,6 +10,7 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
 
     h1 {
         font-size: 1.17em;
@@ -807,8 +808,11 @@ body {
 }
 
 .calc-button {
+    display: flex;
+    align-items: center;
     margin: 10px;
     font-size: x-large;
+    text-shadow: 2px 2px #000000c8;
     cursor: pointer;
 }
 
