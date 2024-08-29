@@ -1,4 +1,8 @@
 let currentCharacter = "noahConfig";
+const portrait = document.getElementById("currentCharacter");
+const heroButtonImg = document.getElementById("buttonHeroImg");
+const buttons = document.getElementsByClassName("icon");
+let heroIndex;
 let classStats;
 let classArts;
 let masterArts;
@@ -10,20 +14,17 @@ let stability;
 let damagePrint = document.querySelectorAll("h1.damage-text");
 let damagePrintBadge = document.querySelectorAll("span.badge-warning");
 
+const characterConfigs = {
+    "noahConfig": noahConfig,
+    "mioConfig": mioConfig,
+    "eunieConfig": eunieConfig,
+    "taionConfig": taionConfig,
+    "lanzConfig": lanzConfig,
+    "senaConfig": senaConfig,
+    "heroConfig": heroConfig,
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-    const portrait = document.getElementById("currentCharacter");
-    const buttons = document.getElementsByClassName("icon");
-
-    let characterConfigs = {
-        "noahConfig": noahConfig,
-        "mioConfig": mioConfig,
-        "eunieConfig": eunieConfig,
-        "taionConfig": taionConfig,
-        "lanzConfig": lanzConfig,
-        "senaConfig": senaConfig,
-        "heroConfig": heroConfig,
-    };
-
     for (const key in characterConfigs) {
         if (characterConfigs.hasOwnProperty(key) && !localStorage.getItem(key)) {
             localStorage.setItem(key, JSON.stringify(characterConfigs[key]));
@@ -34,36 +35,98 @@ document.addEventListener("DOMContentLoaded", () => {
     masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
     let obj = getConfig();
     characterLoad(obj);
+    printDamage();
 
     let currentHero = localStorage.getItem("heroConfig");
-    const heroIndex = heroIcons.findIndex(obj => obj.name === JSON.parse(currentHero).class);
+    heroIndex = heroIcons.findIndex(obj => obj.name === JSON.parse(currentHero).class);
     const buttonImage = heroIcons[heroIndex].buttonSrc;
     heroButtonImg.src = buttonImage;
     $('#buttonHero').attr('title', heroIcons[heroIndex].name).tooltip('dispose').tooltip();
 
-    for (let index = 0; index < buttons.length; index++) {
-        if (index >= portraitsImages.length){
-           return;
-        }
-        buttons[index].addEventListener("click", () => {
-            const portraitImg = portraitsImages[index].src
-            portrait.src = portraitImg;
-            const characters = Object.keys(characterConfigs);
-            currentCharacter = characters[index];
-            obj = getConfig();
-            getStatsByClass(localStorage.getItem(currentCharacter));
-            classArts = getArtsByClass(localStorage.getItem(currentCharacter));
-            masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
-            getSkillsByClass(localStorage.getItem(currentCharacter));
-            characterLoad(obj);
-            let characterName = document.getElementById("character-name");
-            characterName.textContent = portraitsImages[index].name;
-            if (currentCharacter === "heroConfig") {
-                characterName.textContent = heroIcons[heroIndex].name;
-            }
-        })
+    for (let index = 0; index < 7; index++) {
+        buttons[index].onclick = partySwap(index);
     }
+
+    const tourSteps = [
+        {
+            target: '#characters',
+            title: 'Characters',
+            content: `<p>Switch the character you would like to customize here.</p> <img src="img/tour/tour-party.png" alt="Party Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#class',
+            title: 'Class',
+            content: `<p>Change the character's Class here. Changing the Class affects the Arts and Skills available to the character, as well as their base stats. Heroes can also be changed here.</p> <img src="img/tour/tour-classes.png" alt="Class Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#stats',
+            title: 'Stats',
+            content: `<p>The current character's stats are displayed here.</p> <img src="img/tour/tour-stats.png" alt="Stats Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#arts',
+            title: 'Arts',
+            content: `<p>The character's current Arts can be changed here. Different Arts have different Power Multipliers and secondary effects that may increase damage.</p> <img src="img/tour/tour-arts.png" alt="Arts Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#skills',
+            title: 'Skills',
+            content: `<p>The Skills of the character's current Class are visible here, as well has the ability to change their Master Skills, which may increase their stats or damage dealt.</p> <img src="img/tour/tour-skills.png" alt="Skills Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#gems',
+            title: 'Gems',
+            content: `<p>Gems can be equipped to the character here to increase their stats or damage dealt.</p> <img src="img/tour/tour-gems.png" alt="Gems Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#accessories',
+            title: 'Accessories',
+            content: `<p>Accessories can be equipped to the character here to increase their stats or damage dealt.</p> <img src="img/tour/tour-accessories.png" alt="Accessories Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#statuses',
+            title: 'Statuses',
+            content: `<p>Buffs, debuffs, and other effects that may affect damage dealt are controllable here.</p> <img src="img/tour/tour-statuses.png" alt="Statuses Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+        {
+            target: '#damageNumbers',
+            title: 'Damage',
+            content: `<p>The damage dealt by the character's currently set Arts under the conditions set by the user are caclulated and displayed here.</p> <img src="img/tour/tour-damage.png" alt="Damage Tour Image" style="max-width:100%; border-radius: 15px;">`,
+        },
+    ];
+
+    const tg = new tourguide.TourGuideClient({
+        steps: tourSteps,
+        showPrevButton: true,
+    });
+
+    let tourButton = document.getElementById("startTour");
+
+    tourButton.addEventListener("click", () => {
+        tg.start();
+    })
 });
+
+function partySwap(index) {
+    return function() {
+    const portraitImg = portraitsImages[index].src;
+    portrait.src = portraitImg;
+    const characters = Object.keys(characterConfigs);
+    currentCharacter = characters[index];
+    let obj = getConfig();
+    getStatsByClass(localStorage.getItem(currentCharacter));
+    classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+    masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
+    getSkillsByClass(localStorage.getItem(currentCharacter));
+    characterLoad(obj);
+    let characterName = document.getElementById("character-name");
+    characterName.textContent = portraitsImages[index].name;
+    if (currentCharacter === "heroConfig") {
+        characterName.textContent = heroIcons[heroIndex].name;
+    }
+    printDamage();
+    }  
+}
 
 const statsMap = {
     "Swordfighter": statsSwordfighter,
@@ -134,13 +197,74 @@ function getStatsByClass(characterStored) {
 
 const currentStats = document.getElementsByClassName("stats-text");
 
-function calculateStats(characterStored) {
+const weaponsMap = {
+    "Swordfighter": "Veiled+Sword",
+    "Zephyr": "Dual+Moonblades",
+    "Medic Gunner": "Gunrod",
+    "Tactician": "Spell+Tags:+Mondo",
+    "Heavy Guard": "Shieldblade",
+    "Ogre": "Comet Mallet",
+    "Flash Fencer": "Dual+Rapiers",
+    "War Medic": "Relief+Rifle",
+    "Guardian Commander": "Gutsy+Gladius",
+    "Thaumaturge": "Martial+Linkstaff",
+    "Yumsmith": "Variable+Arms",
+    "Full Metal Jaguar": "Gun+Drones",
+    "Strategos": "Disc+Launcher",
+    "Stalker": "Luminescent+Bow",
+    "Lone Exile": "Twinsaber",
+    "Incursor": "Exponential+Edge",
+    "Lost Vanguard": "Defense+Mace",
+    "Signifer": "War+Standard",
+    "Soulhacker (Power)": "Mimic+Knuckles",
+    "Soulhacker (Strike)": "Mimic+Knuckles",
+    "Soulhacker (Tough)": "Mimic+Knuckles",
+    "Soulhacker (Dodge)": "Mimic+Knuckles",
+    "Soulhacker (Heal)": "Mimic+Knuckles",
+    "Soulhacker (Balanced)": "Mimic+Knuckles",
+    "Martial Artist": "Turbo+Cestus",
+    "Troubadour": "Silken+Ivy",
+    "Seraph": "Heatshimmer+Spear",
+    "Machine Assassin": "Doom+Axes",
+    "Lifesage": "Anima+Sword",
+    "Royal Summoner": "Elemental+Staff",
+    "Noponic Champion": "Inosabers",
+    "Lapidarist": "Dazzling+Rings",
+
+    "Lucky Seven (Attacker)": "Lucky+Seven",
+    "Lucky Seven (Defender)": "Lucky+Seven",
+    "Lucky Seven (Healer)": "Lucky+Seven",
+
+    "Ethel": "Dual+Rapiers",
+    "Valdi": "Relief+Rifle",
+    "Zeon": "Gutsy+Gladius",
+    "Teach": "Martial+Linkstaff",
+    "Riku & Manana": "Variable+Arms",
+    "Gray": "Gun+Drones",
+    "Isurd": "Disc+Launcher",
+    "Juniper": "Luminescent+Bow",
+    "Ashera": "Twinsaber",
+    "Alexandria": "Exponential+Edge",
+    "Monica": "Defense+Mace",
+    "Fiona": "War+Standard",
+    "Triton": "Mimic+Knuckles",
+    "Ghondor": "Turbo+Cestus",
+    "Miyabi": "Silken+Ivy",
+    "Cammuravi": "Heatshimmer+Spear",
+    "Segiri": "Doom+Axes",
+    "Nia": "Anima+Sword",
+    "Melia": "Elemental+Staff",
+    "Ino": "Inosabers",
+    "Masha": "Dazzling+Rings",
+    "Shulk": "Monado+REX%2B",
+    "Rex": "Firelight+Swords"
+};
+
+async function calculateStats(characterStored) {
     getStatsAdditives();
     getStatsMultipliers();
 
     let playerLevel = Number(document.getElementById('player-level').value);
-    let levelDisplay = document.getElementById('level');
-    levelDisplay.textContent = playerLevel;
     modifyCharacter("level", playerLevel, characterStored, characterStored);
     let interpolation = (playerLevel - 1)/98;
     
@@ -166,13 +290,29 @@ function calculateStats(characterStored) {
         modifyCharacter(key, interpolatedValue, characterStored, characterStored.stats);
     }
 
+    await getWeaponStats(weaponsMap[characterStored.class], playerLevel);
+    let weaponAttack;
+    let weaponCrit;
+    let weaponBlock;
+    
+    if (flags["weaponUpgrade"] === false) {
+        weaponAttack = damageBase;
+        weaponCrit = critRateBase;
+        weaponBlock = blockRateBase
+    }
+    else if (flags["weaponUpgrade"] === true) {
+        weaponAttack = damageUpgraded;
+        weaponCrit = critRateUpgraded;
+        weaponBlock = blockRateUpgraded;
+    }
+
     let hp = Math.floor(Math.floor(characterStored.stats.hp * classStats["class_stats"]["hp"]) * (1 + (hpMultipliersSum / 100)) + hpAdditivesSum);
-    let attack = Math.floor(Math.floor(characterStored.stats.attack * classStats["class_stats"]["attack"] + classStats["weapon_stats"]["attack"]) * (1 + (attackMultipliersSum / 100)) + attackAdditivesSum);
+    let attack = Math.floor(Math.floor(characterStored.stats.attack * classStats["class_stats"]["attack"] + weaponAttack) * (1 + (attackMultipliersSum / 100)) + attackAdditivesSum);
     let healingPower = Math.floor(Math.floor(characterStored.stats.healing_power * classStats["class_stats"]["healing_power"]) * (1 + (healingMultipliersSum / 100)) + healingAdditivesSum);
     let dexterity = Math.floor(Math.floor(characterStored.stats.dexterity * classStats["class_stats"]["dexterity"]) * (1 + (dexterityMultipliersSum / 100)) + dexterityAdditivesSum);
     let agility = Math.floor(Math.floor(characterStored.stats.agility * classStats["class_stats"]["agility"]) * (1 + (agilityMultipliersSum / 100)) + agilityAdditivesSum);
-    let critical = Math.floor(classStats["weapon_stats"]["critical"] * (1 + (critMultipliersSum / 100))) + critAdditivesSum + "%";
-    let block = Math.floor(classStats["weapon_stats"]["block"] * (1 + (blockMultipliersSum / 100))) + blockAdditivesSum + "%";
+    let critical = Math.floor(weaponCrit * (1 + (critMultipliersSum / 100))) + critAdditivesSum + "%";
+    let block = Math.floor(weaponBlock * (1 + (blockMultipliersSum / 100))) + blockAdditivesSum + "%";
     let defensePhysical = Math.floor(classStats["class_stats"]["physical_defense"] * (1 + (physicalMultipliersSum / 100))) + physicalAdditivesSum + "%";
     let defenseEther = Math.floor(classStats["class_stats"]["ether_defense"] * (1 + (etherMultipliersSum / 100))) + etherAdditivesSum + "%";
 
@@ -389,20 +529,31 @@ function getSkillsByClass(characterStored) {
         image.src = currentSkills[index].src;
         slot.removeChild(slot.firstChild);
         slot.appendChild(image);
-        $(skills[index]).attr('title', currentSkills[index].name).tooltip('dispose').tooltip();
+        let tooltipContent;
+        if (typeof currentSkills[index].description === 'function') {
+            variableAmountSkill = currentSkills[index].boostAmount;
+            tooltipContent = `${currentSkills[index].name}<br>${currentSkills[index].description()}`;
+        }
+        else {
+            tooltipContent = `${currentSkills[index].name}`;
+        }
+        $(skills[index]).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
+
         if (currentSkills === skillsSoulhackerClass) {
-            skills[1].addEventListener("click", function() {
+            if (index > 1) {
+                image.classList.add("faded-icon");
+            }
+        }
+        skills[1].addEventListener("click", function() {
+            if (currentSkills === skillsSoulhackerClass) {
                 menuList = SoulhackerRoles;
                 parent = document.getElementById("classList");
                 clearMenu();
                 populateMenu();
                 classMenu = document.getElementById("classModal");
                 classMenu.style.display = "block";
-            })
-            if (index > 1) {
-                image.classList.add("fade");
             }
-        }
+        })
     };
 }
 
@@ -503,8 +654,10 @@ function recalculate() {
     let obj = getConfig();
     calculateStats(obj);
     getDamageMultipliers();
-    printDamage();
 }
+
+const calcButton = document.getElementById("calc-button");
+calcButton.onclick = printDamage;
 
 var frToggle = document.getElementById("fr-toggle-button");
 const bg1 = 'url("img/bg.png")';
@@ -608,20 +761,38 @@ function clearMenu() {
     }
 }
 
-const portrait = document.getElementById("currentCharacter");
-const heroButtonImg = document.getElementById("buttonHeroImg");
-
 function populateMenu() {
     for (let index = 0; index < menuList.length; index++) {
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
         image.src = menuList[index].src;
 
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = menuList[index].name;
+
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        if (typeof menuList[index].description === 'function') {
+            description.textContent = menuList[index].description();
+        }
+
         div.appendChild(image);
+        container.appendChild(div);
+        container.appendChild(textContainer);
+        textContainer.appendChild(name);
+        textContainer.appendChild(description);
         const element = document.getElementById("classList");
-        element.appendChild(div);
-        div.addEventListener("click", () => {
+        element.appendChild(container);
+
+        container.addEventListener("click", () => {
             const key = "class";
             const value = menuList[index].name;
             obj = getConfig();
@@ -670,7 +841,6 @@ function skillsMenu() {
 }
 
 function populateMenuSkills() {
-    let parent = skills[skillSlot + 4];
     for (let index = 0; index < skillList.length; index++) {
         let skip = false;
         for (let indexA = 0; indexA < 4; indexA++) {
@@ -682,19 +852,37 @@ function populateMenuSkills() {
         if (skip) {
             continue;
         }
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
         const div = document.createElement("div");
         div.className = "modal-icon";
         const image = document.createElement("img");
         image.src = skillList[index].src;
 
-        div.appendChild(image);
-        const element = document.getElementById("classList");
-        element.appendChild(div);
-        $(div).attr('title', skillList[index].name).tooltip('dispose').tooltip();
-        
-        div.addEventListener("click", () => {
-            $(parent).attr('title', skillList[index].name).tooltip('dispose').tooltip();
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = skillList[index].name;
 
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        variableAmountSkill = skillList[index].boostAmount;
+        if (typeof skillList[index].description === 'function') {
+            description.textContent = skillList[index].description();
+        }
+
+        div.appendChild(image);
+        container.appendChild(div);
+        container.appendChild(textContainer);
+        textContainer.appendChild(name);
+        textContainer.appendChild(description);
+        const element = document.getElementById("classList");
+        element.appendChild(container);
+        
+        container.addEventListener("click", () => {
             const skillKeys = Object.keys(noahConfig.skills);
             const key = skillKeys[skillSlot];
             const value = skillList[index].name;
@@ -708,11 +896,6 @@ function populateMenuSkills() {
 
             modifyCharacter(key, value, obj, obj.skills);
             characterLoad(obj);
-            
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-            }
-            parent.appendChild(image.cloneNode(true));
             classMenu.style.display = "none";
             })
     }
@@ -792,11 +975,32 @@ function populateMenuArts() {
         if (currentCharacter === "heroConfig" && index === 5) {
             continue;
         }
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
         const modalIcon = document.createElement("div");
         modalIcon.className = "modal-icon";
         const artSlot = document.createElement("div");
         artSlot.className = "artSlotModal";
-        $(artSlot).attr('title', artList[index].name).tooltip('dispose').tooltip();
+
+        const name = document.createElement("h1");
+        name.className = "info-text-arts-modal";
+        name.textContent = artList[index].name;
+
+        const ratio = document.createElement("p");
+        ratio.className = "info-text-arts-modal";
+        ratio.textContent = "Power Multiplier: " + artList[index].ratio + "%";
+        ratio.style.textDecoration = "underline";
+        
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        variableAmountArt = artList[index].boostAmount;
+        if (typeof artList[index].description === 'function') {
+            description.textContent = artList[index].description();
+        }
 
         let artImage = new Array(4);
 
@@ -810,14 +1014,19 @@ function populateMenuArts() {
         artImage[3].src = artList[index].type;
 
         modalIcon.appendChild(artSlot);
+        container.appendChild(modalIcon);
+        textContainer.appendChild(name);
+        textContainer.appendChild(ratio);
+        textContainer.appendChild(description);
+        container.appendChild(textContainer);
 
         for (let indexA = 0; indexA < 4; indexA++) {
             artSlot.appendChild(artImage[indexA]);
         }
         const element = document.getElementById("classList");
-        element.appendChild(modalIcon);
+        element.appendChild(container);
 
-        modalIcon.addEventListener("click", () => {
+        container.addEventListener("click", () => {
             let obj = getConfig();
             const value = artList[index].name;
             const artKeys = Object.keys(obj.arts);
@@ -895,7 +1104,16 @@ function populateMenuGems() {
 
         const element = document.getElementById("gemList");
         element.appendChild(modalIcon);
-        $(gemContainer).attr('title', gems[index].name).tooltip('dispose').tooltip(({placement: 'top'}));
+
+        let tooltipContent;
+        if (typeof gems[index].description === 'function') {
+            variableAmountGems = gems[index].boostAmount;
+            tooltipContent = `${gems[index].name}<br>${gems[index].description()}`;
+        }
+        else {
+            tooltipContent = `${gems[index].name}`;
+        }
+        $(gemContainer).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
 
         prev.addEventListener("click", () => {
             currentRank = currentRank - 1;
@@ -1001,6 +1219,16 @@ function populateMenuAccessories() {
         const element = document.getElementById("accessoryList");
         element.appendChild(modalIcon);
 
+        let tooltipContent;
+        if (typeof accessories[index].description === 'function') {
+            variableAmountAccessories = accessories[index].boostAmount;
+            tooltipContent = `${accessories[index].name}<br>${accessories[index].description()}`;
+        }
+        else {
+            tooltipContent = `${accessories[index].name}`;
+        }
+        $(accessoryContainer).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
+
         prev.addEventListener("click", () => {
             currentRarity = currentRarity - 1;
 
@@ -1059,7 +1287,7 @@ function skillLoad(slotNumber, loadedSkillName) {
         const image = document.createElement("img");
         image.src = "img/skills/skill-0.png";
         if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
-            image.classList.add("fade");
+            image.classList.add("faded-icon");
         }
         slot.appendChild(image);
         $(slot).attr('title', "None").tooltip('dispose').tooltip();
@@ -1076,7 +1304,15 @@ function skillLoad(slotNumber, loadedSkillName) {
     const image = document.createElement("img");
     image.src = loadedSkill.src;
     slot.appendChild(image);
-    $(slot).attr('title', loadedSkill.name).tooltip('dispose').tooltip();
+    let tooltipContent;
+    if (typeof loadedSkill.description === 'function') {
+        variableAmountSkill = loadedSkill.boostAmount;
+        tooltipContent = `${loadedSkill.name}<br>${loadedSkill.description()}`;
+    }
+    else {
+        tooltipContent = `${loadedSkill.name}`;
+    }
+    $(slot).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
 }
 
 function artLoad(slotNumber, loadedArtName) {
@@ -1127,7 +1363,7 @@ function artLoad(slotNumber, loadedArtName) {
         artImage.src = loadedArt.recharge;
         artImage.className = "art-features";
         if (currentCharacter === "heroConfig") {
-            artImage.classList.add("fade");
+            artImage.classList.add("faded-icon");
         }
         slot.appendChild(artImage);
         ratio[slotNumber] = undefined;
@@ -1260,10 +1496,10 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     let rank;
 
     if (currentCharacter === "heroConfig") {
-        gemRemove[slotNumber].classList.add("fade");
+        gemRemove[slotNumber].classList.add("faded-icon");
     }
     else {
-        gemRemove[slotNumber].classList.remove("fade");
+        gemRemove[slotNumber].classList.remove("faded-icon");
     }
 
     if (loadedGemType === null) {
@@ -1306,10 +1542,10 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     let rarity;
 
     if (currentCharacter === "heroConfig") {
-        gemRemove[slotNumber].classList.add("fade");
+        gemRemove[slotNumber].classList.add("faded-icon");
     }
     else {
-        gemRemove[slotNumber].classList.remove("fade");
+        gemRemove[slotNumber].classList.remove("faded-icon");
     }
 
     if (loadedAccessoryType === null) {

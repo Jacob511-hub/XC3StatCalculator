@@ -1,19 +1,18 @@
-function damage(damageRatio, attribute, weaponStability, range, inheritance) {
+function damage(damageRatio, attribute, weaponStability, range) {
     if (damageRatio === undefined || damageRatio === 0) {
         return 0;
     }
 
-    let statAttack = parseInt(currentStats[1].textContent);
-    let classWeaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
-
     let weaponAttack;
-    if (inheritance === undefined || inheritance === null) {
-        weaponAttack = parseInt(classStats["weapon_stats"]["attack"]);
+    if (flags["weaponUpgrade"] === false) {
+        weaponAttack = damageBase;
     }
-    else {
-        let classSource = statsMap[inheritance]
-        weaponAttack = parseInt(classSource["weapon_stats"]["attack"]);
+    else if (flags["weaponUpgrade"] === true) {
+        weaponAttack = damageUpgraded;
     }
+    
+    let obj = getConfig();
+    let statAttack  = Math.floor(Math.floor(obj.stats.attack * classStats["class_stats"]["attack"] + weaponAttack) * (1 + (attackMultipliersSum / 100)) + attackAdditivesSum);
     
     powerMultiplier = (damageRatio)/100;
     multiHitCorrection = 1/(1);
@@ -52,7 +51,7 @@ function damage(damageRatio, attribute, weaponStability, range, inheritance) {
     levelMultiplier = 1;
     difficultyMultiplier = 1;
 
-    uncapped_damage = ((statAttack - classWeaponAttack + weaponAttack) + Math.floor(weaponAttack * weaponStability))
+    uncapped_damage = (statAttack + Math.floor(weaponAttack * weaponStability))
                   * powerMultiplier * multiHitCorrection
                   * (1 + (MultiplierGroup1Sum + artMultiplierGroup1Sum + fusionBoostSum)/100)
                   * (1 + (MultiplierGroup2Sum + artMultiplierGroup2Sum)/100)
@@ -97,32 +96,63 @@ function smashDamage(damage, launchFrames) {
     return Math.min(9999999, Math.max(1, Math.floor((damage * smashMultiplier))));
 }
 
-function getChainArt(currentCharacter) {
-    let obj = getConfig();
-    let heroIndex = artsChain.findIndex(heroIndex => heroIndex.class === obj.class);
-    const chainArts = {
-        "noahConfig": "Brave Assault",
-        "mioConfig": "Lightning Quick",
-        "eunieConfig": "Pinion Primed",
-        "taionConfig": "Art of Subjugation",
-        "lanzConfig": "Tyrant Wave",
-        "senaConfig": "Bombshell Blitz",
-        "heroConfig": artsChain[heroIndex].name,
-    };
+let damageBase;
+let critRateBase;
+let blockRateBase;
+let damageUpgraded;
+let critRateUpgraded;
+let blockRateUpgraded;
+
+async function getWeaponStats(currentWeapon, currentLevel) {
+    if (currentWeapon === undefined || currentWeapon === null) {
+        return;
+    }
+    const apiUrl = `https://xc3-weapon-stat-scraper.vercel.app/stats?weapon_name=${currentWeapon}&level=${currentLevel}`;
+
+    await fetch(apiUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        damageBase = Number(data[0].damage_base);
+        critRateBase = Number(parseFloat(data[0].crit_rate_base.replace('%', '')));
+        blockRateBase = Number(parseFloat(data[0].block_rate_base.replace('%', '')));
+        damageUpgraded = Number(data[0].damage_upgraded);
+        critRateUpgraded = Number(parseFloat(data[0].crit_rate_upgraded.replace('%', '')));
+        blockRateUpgraded = Number(parseFloat(data[0].block_rate_upgraded.replace('%', '')));
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
 
-function printDamage() {
+async function printDamage() {
+    const buttons = document.getElementsByClassName("icon");
+    for (let index = 0; index < 7; index++) {
+        buttons[index].onclick = null;
+    }
+    calcButton.onclick = null;
+    calcButton.classList.add("faded-icon");
+    const loadingIcon = document.getElementById("loadingIcon");
+    loadingIcon.style.display = "block"
     artMultiplier(null);
     fusionCheck(false);
+    let obj = getConfig();
+    let playerLevel = Number(document.getElementById('player-level').value)
+    await getWeaponStats(weaponsMap[obj.class], playerLevel);
     damagePrint[0].firstChild.textContent = "Auto-Attack: ";
-    damagePrintBadge[0].textContent = (damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1, artClass[index]));
+    damagePrintBadge[0].textContent = (damage(60, "physical", 0, 0.9) + " - " + damage(60, "physical", stability, 1.1));
 
     for(let index = 0; index < 7; index++) {
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
             fusionCheck(false);
+            await getWeaponStats(weaponsMap[artClass[index]], playerLevel);
             damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
-            damagePrintBadge[index + 1].textContent = (damage(ratio[index], attribute[index], 0, 0.9, artClass[index]) + " - " + damage(ratio[index], attribute[index], stability, 1.1, artClass[index]));
+            damagePrintBadge[index + 1].textContent = (damage(ratio[index], attribute[index], 0, 0.9) + " - " + damage(ratio[index], attribute[index], stability, 1.1));
         }
         else if (attribute[index] === "heal") {
             damagePrint[index + 1].firstChild.textContent = (artNames[index].textContent + ": ");
@@ -135,15 +165,15 @@ function printDamage() {
     }
     for (let index = 0; index < 3; index++) {
         fusionCheck(true);
-        let obj = getConfig();
+        await getWeaponStats(weaponsMap[obj.class], playerLevel);
         let masterArtMin = 0;
         let masterArtMax = 0;
         let classArtMin = 0;
         let classArtMax = 0;
         if (attribute[index] === "physical" || attribute[index] === "ether") {
             artMultiplier(index);
-            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9, obj.class);
-            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1, obj.class);
+            masterArtMin = damage(ratio[index], attribute[index], 0, 0.9);
+            masterArtMax = damage(ratio[index], attribute[index], stability, 1.1);
 
             const artKeys = Object.keys(noahConfig.arts);
             if (obj.arts[artKeys[index]] === "Quickdraw") {
@@ -153,8 +183,8 @@ function printDamage() {
         }
         if (attribute[index + 3] === "physical" || attribute[index  + 3] === "ether") {
             artMultiplier(index);
-            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9, obj.class);
-            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1, obj.class);
+            classArtMin = damage(ratio[index + 3], attribute[index + 3], 0, 0.9);
+            classArtMax = damage(ratio[index + 3], attribute[index + 3], stability, 1.1);
         }
         damagePrint[index + 8].firstChild.textContent = (artNames[index].textContent + " + " + artNames[index + 3].textContent + ": ");
         damagePrintBadge[index + 8].textContent = ((masterArtMin + classArtMin) + " - " + (masterArtMax + classArtMax));
@@ -162,7 +192,6 @@ function printDamage() {
 
     artMultiplier(null);
     fusionCheck(false);
-    let obj = getConfig();
     let indexChainArt = 0;
     if (currentCharacter === "heroConfig") {
         indexChainArt = artsChain.findIndex(indexChainArt => indexChainArt.character === obj.class);
@@ -182,4 +211,10 @@ function printDamage() {
 
     damagePrint[11].firstChild.textContent = chainArts[currentCharacter];
     damagePrintBadge[11].textContent = (damage(artsChain[indexChainArt].ratio, artsChain[indexChainArt].attribute, 0, 0.9) + " - " + damage(artsChain[indexChainArt].ratio, artsChain[indexChainArt].attribute, stability, 1.1));
+    for (let index = 0; index < 7; index++) {
+        buttons[index].onclick = partySwap(index);
+    }
+    calcButton.onclick = printDamage;
+    calcButton.classList.remove("faded-icon");
+    loadingIcon.style.display = "none"
 }

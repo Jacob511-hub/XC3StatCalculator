@@ -1,15 +1,17 @@
+let variableAmountSkill = 0;
+
 const skillsSwordfighter = [
-    { name: "Sharp Eye", src: "img/skills/skill-9.png", boostType: "multiplier", boostStat: "dexterity", boostAmount: 50},
-    { name: "Covert Attack", src: "img/skills/skill-13.png"},
-    { name: "Cypher Edge", src: "img/skills/skill-4.png", boostType: "multiplier", boostStat: "crit", boostAmount: 50},
-    { name: "Inspirit", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["boss", "unique"], boostAmount: 150},
+    { name: "Sharp Eye", src: "img/skills/skill-9.png", boostType: "multiplier", boostStat: "dexterity", boostAmount: 50, description: function() {return `Boosts Dexterity by ${variableAmountSkill}%.`;}},
+    { name: "Covert Attack", src: "img/skills/skill-13.png", description: function() {return `Reduces aggro generated from attacks by 65%.`;}},
+    { name: "Cypher Edge", src: "img/skills/skill-4.png", boostType: "multiplier", boostStat: "crit", boostAmount: 50, description: function() {return `Boosts Critical Rate by ${variableAmountSkill}%.`;}},
+    { name: "Inspirit", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["boss", "unique"], boostAmount: 150, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when fighting a unique or boss monster.`;}},
 ];
 
 const skillsZephyr = [
-    { name: "Stormy Gale", src: "img/skills/skill-10.png"},
-    { name: "I'll Defend You", src: "img/skills/skill-28.png"},
-    { name: "Split-Second Counter", src: "img/skills/skill-19.png"},
-    { name: "Ether's Sanctuary", src: "img/skills/skill-8.png"},
+    { name: "Stormy Gale", src: "img/skills/skill-10.png", boostType: "multiplier", boostStat: "agility", boostAmount: 30, description: function() {return `Boosts Agility by ${variableAmountSkill}%.`;}},
+    { name: "I'll Defend You", src: "img/skills/skill-28.png", description: function() {return `6% chance to prevent attacks on allies within a fixed radius.`;}},
+    { name: "Split-Second Counter", src: "img/skills/skill-19.png", description: function() {return `Deals 200% of Attack damage when you evade an attack.`;}},
+    { name: "Ether's Sanctuary", src: "img/skills/skill-8.png", boostType: "multiplier", boostStat: "ether", boostAmount: 30, description: function() {return `Boosts Ether Defense by ${variableAmountSkill}%`;}},
 ];
 
 const skillsMedicGunner = [
@@ -188,7 +190,7 @@ const skillsLifesage = [
 ];
 
 const skillsRoyalSummoner = [
-    { name: "Elemental Boost", src: "img/skills/skill-20.png"},
+    { name: "Elemental Boost", src: "img/skills/skill-20.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["elementalsDischarged"], boostIncrement: 40, boostMax: 400},
     { name: "Essence of Ether", src: "img/skills/skill-31.png"},
     { name: "Fortified Ether Guard", src: "img/skills/skill-8.png"},
     { name: "Here I Shall Stand", src: "img/skills/skill-20.png"},
@@ -245,7 +247,7 @@ const skillsLuckySevenHealer = [
 
 const skillsMaster = [
     { name: "None", src: "img/skills/skill-0.png"},
-    { name: "Cypher Edge", src: "img/skills/skill-4.png", boostType: "multiplier", boostStat: "crit", boostAmount: 50},
+    { name: "Cypher Edge", src: "img/skills/skill-4.png", boostType: "multiplier", boostStat: "crit", boostAmount: 50, description: function() {return `Boosts Critical Rate by ${variableAmountSkill}%.`;}},
     { name: "Covert Attack", src: "img/skills/skill-13.png"},
     { name: "Split-Second Counter", src: "img/skills/skill-19.png"},
     { name: "Stormy Gale", src: "img/skills/skill-10.png"},

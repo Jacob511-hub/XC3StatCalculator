@@ -10,6 +10,7 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
 
     h1 {
         font-size: 1.17em;
@@ -384,6 +385,17 @@ body {
     background-color: #2d2d2d7b;
 }
 
+.horizontal-fields-modal {
+    width: 95%;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.horizontal-fields-modal:hover {
+    background-color: #cc7e19c6;
+}
+
 .number-input {
     margin: 10px;
     width: 70px;
@@ -643,7 +655,7 @@ body {
     background-repeat: no-repeat;
     margin: 5% auto;
     border: 10px solid #2c2c2c;
-    width: 400px;
+    width: 550px;
     height: 70%;
     animation: dropdown 0.4s;
     display: flex;
@@ -651,30 +663,24 @@ body {
 }
 
 .class-list {
-    display: grid;
-    grid-template-columns: [first] auto [line2] auto [line3] auto [end];
-    grid-template-rows: [row1-start] auto [row1-end] auto [third-line] auto [last-line];
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     justify-content: space-around;
+    align-items: center;
     overflow-y: auto;
 }
 
 .modal-icon {
-    height: auto;
-    width: 100px;
+    height: 100%;
+    width: auto;
     cursor: pointer;
     border-radius: 15px;
-    background-color: #00000000;
-    transition: background-color 0.2s;
-}
-
-.modal-icon:hover {
-    background-color: #cc7e19c6;
 }
 
 .modal-icon img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
 }
 
 .modal-icon-gem {
@@ -753,6 +759,12 @@ body {
     background-color: rgba(0,0,0,0.4);
 }
 
+.name-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .info-text-1 {
     margin-top: 0%;
 }
@@ -790,6 +802,20 @@ body {
     padding-right: 10px;
 }
 
+.info-text-arts-modal {
+    margin: 0%;
+    padding-left: 10px;
+}
+
+.calc-button {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    font-size: x-large;
+    text-shadow: 2px 2px #000000c8;
+    cursor: pointer;
+}
+
 .damage-text {
     margin: 0%;
     padding: 10px;
@@ -824,7 +850,7 @@ body {
     height: auto;
 }
 
-.fade {
+.faded-icon {
     opacity: 0.4;
     cursor: context-menu;
 }
@@ -866,6 +892,24 @@ body {
 .talentSlot img {
     width: 100%;
     height: auto;
+}
+
+.accordion-button-custom {
+    border-radius: 15px;
+}
+
+.width-limiter {
+    width: 100%;
+    padding: 0;
+}
+
+.tour-start {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    max-width: 60px;
+    height: auto;
+    cursor: pointer;
 }
 
 @keyframes dropdown {
