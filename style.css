@@ -114,6 +114,8 @@ html, body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 10px;
 }
 
 #statuses {
@@ -219,9 +221,11 @@ html, body {
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 10px;
 }
 
 #masterArts {
@@ -995,10 +999,8 @@ html, body {
     }
 
     #center {
-        display: grid;
-        grid-template-areas:
-            "row1 row1"
-            "row2 row2";
+        display: flex;
+        flex-direction: column;
         gap: 10px;
         position: relative;
         top: 180px;
@@ -1025,25 +1027,45 @@ html, body {
     }
 
     #stats {
-        flex-direction: row;
-        grid-area: row1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         box-sizing: border-box;
         width: 100%;
+        gap: 5px;
+        order: 1;
+    }
+
+    #stat-container {
+        justify-content: flex-start;
     }
 
     #damageNumbers {
         width: auto;
+        order: 4;
+        max-height: fit-content;
+        overflow-y: visible;
     }
 
     #statuses {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        width: calc(100% - 20px);
+        width: auto;
         margin-left: 10px;
         margin-right: 10px;
         box-sizing: border-box;
         border-radius: 15px;
-        grid-area: row2;
+        order: 2;
+    }
+
+    #equipment {
+        width: auto;
+        align-self: auto;
+        align-items: center;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 0;
+        box-sizing: border-box;
+        order: 3;
     }
 
     #level-select {
@@ -1062,6 +1084,7 @@ html, body {
     }
 
     #arts {
+        width: auto;
         grid-area: row2;
     }
 
@@ -1073,6 +1096,78 @@ html, body {
     #masterSkills {
         padding-right: 64px;
         box-sizing: border-box;
+    }
+
+    #gems {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    #accessories {
+        width: 70%;
+        align-items: center;
+    }
+
+    .gemContainer {
+        flex-direction: column-reverse;
+        position: relative;
+        width: 150px;
+    }
+
+    .gem {
+        width: 100%;
+        height: 100%;
+    }
+
+    .gem::after {
+        content: "";
+        display: block;
+        padding-top: 100%;
+    }
+
+    .gem img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .gem-remove {
+        font-size: 40px;
+        margin: 0;
+        top: -8px;
+        right: -5px;
+    }
+
+    .gem-text {
+        text-align: center;
+    }
+
+    .accessory-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .accessory {
+        width: 100%;
+        height: auto;
+    }
+
+    .accessory::after {
+        content: "";
+        display: block;
+        padding-top: 21.33%;
+    }
+
+    .accessory img {
+        width: 100%;
+        height: auto;
+    }
+
+    .accessory-remove {
+        font-size: 40px;
+        margin: 0;
+        top: -8px;
+        right: -5px;
     }
 
     .classMenuContent {
