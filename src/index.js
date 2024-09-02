@@ -1046,6 +1046,7 @@ function populateMenuArts() {
 
 const gemButtons = document.getElementsByClassName("gem");
 const gemText = document.getElementsByClassName("gem-text");
+const gemDescription = document.getElementsByClassName("gem-description");
 const gemRemove = document.getElementsByClassName("gem-remove");
 
 let gemSelect = 0;
@@ -1510,6 +1511,7 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
         image.src = "img/equipment/gems/gemOutline.png";
         slot.appendChild(image);
         gemText[slotNumber].textContent = "None";
+        gemDescription[slotNumber].textContent = ``;
         return;
     }
     else {
@@ -1531,7 +1533,16 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     slot.appendChild(image1);
     slot.appendChild(image2);
 
+    let gemEffect;
+    if (typeof loadedType.description === 'function') {
+        variableAmountGems = loadedType.boostAmount;
+        gemEffect = `${loadedType.description()}`;
+    }
+    else {
+        gemEffect = ``;
+    }
     gemText[slotNumber].textContent = loadedType.name;
+    gemDescription[slotNumber].textContent = gemEffect;
 }
 
 function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
@@ -1540,13 +1551,6 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     let loadedRarity;
     let type;
     let rarity;
-
-    if (currentCharacter === "heroConfig") {
-        gemRemove[slotNumber].classList.add("faded-icon");
-    }
-    else {
-        gemRemove[slotNumber].classList.remove("faded-icon");
-    }
 
     if (loadedAccessoryType === null) {
         while (slot.firstChild) {
