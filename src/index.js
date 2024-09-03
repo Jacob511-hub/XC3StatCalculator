@@ -120,9 +120,12 @@ function partySwap(index) {
     getSkillsByClass(localStorage.getItem(currentCharacter));
     characterLoad(obj);
     let characterName = document.getElementById("character-name");
+    let characterNameHeader = document.getElementById("current-character-name");
     characterName.textContent = portraitsImages[index].name;
+    characterNameHeader.textContent = portraitsImages[index].name;
     if (currentCharacter === "heroConfig") {
         characterName.textContent = heroIcons[heroIndex].name;
+        characterNameHeader.textContent = heroIcons[heroIndex].name;
     }
     printDamage();
     }  

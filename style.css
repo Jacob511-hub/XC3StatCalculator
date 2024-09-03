@@ -282,6 +282,10 @@ html, body {
     align-items: center;
 }
 
+#current-character-name {
+    display: none;
+}
+
 .icon {
     position: relative;
     display: flex;
@@ -956,6 +960,10 @@ html, body {
         max-height: 100%;
         max-width: 100%;
         box-sizing: border-box;
+
+        h1, p {
+            font-size: 1.75em;
+        }
     }
 
     #statCalculator {
@@ -969,6 +977,7 @@ html, body {
         top: 0px;
         left: 50%;
         transform: translateX(-50%);
+        height: 210px;
         width: 100%;
         z-index: 3;
         border-bottom-right-radius: 15px;
@@ -979,19 +988,22 @@ html, body {
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 0px;
+        padding-bottom: 10px;
     }
     
     #characters {
         height: 37px;
+        max-width: 1000px;
+        justify-content: center;
         order: 1;
     }
 
     #ouroboros {
         box-sizing: border-box;
         height: 37px;
-        max-width: 760px;
+        max-width: 1000px;
+        justify-content: center;
         padding-left: 55px;
         padding-right: 55px;
         order: 2;
@@ -1007,7 +1019,7 @@ html, body {
         flex-direction: column;
         gap: 10px;
         position: relative;
-        top: 180px;
+        top: 220px;
         width: 100%;
         box-sizing: border-box;
     }
@@ -1020,7 +1032,7 @@ html, body {
         grid-template-columns: auto 50%;
         gap: 10px;
         position: relative;
-        top: 180px;
+        top: 220px;
         padding-bottom: 10px;
         width: 100%;
         box-sizing: border-box;
@@ -1077,6 +1089,23 @@ html, body {
         grid-column: 2;
     }
 
+    .accordion-button-custom {
+        font-size: 1.25rem;
+    }
+
+    .buffIcon {
+        height: 75px;
+    }
+
+    .number-input {
+        font-size: 1.2em;
+        width: 100px;
+    }
+
+    .smaller-text {
+        font-size: 1.3rem;
+    }
+
     .statIcon {
         max-width: 50px;
         height: auto;
@@ -1093,13 +1122,25 @@ html, body {
     }
 
     #skills {
-        align-items: flex-end;
-        padding-right: 10px;
+        align-items: flex-start;
+        height: 100%;
+    }
+
+    #classSkills {
+        height: 50%;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     #masterSkills {
-        padding-right: 64px;
+        height: 50%;
+        width: 100%;
         box-sizing: border-box;
+    }
+
+    .skillSlot img {
+        height: 100%;
+        width: auto;
     }
 
     #gems {
@@ -1111,6 +1152,27 @@ html, body {
     #accessories {
         width: 70%;
         align-items: center;
+    }
+
+    .accessoriesMenuContent {
+        width: 700px;
+    }
+
+    .accessory-features-menu {
+        width: 563px;
+    }
+
+    .modal-icon-accessory {
+        height: 120px;
+    }
+
+    .modal-icon-accessory img {
+        height: 100%;
+        width: auto;
+    }
+
+    .icon-next, .icon-prev {
+        font-size: 40px;
     }
 
     .gemContainer {
@@ -1152,6 +1214,7 @@ html, body {
     .gem-description {
         display: block;
         text-align: center;
+        font-size: 1.5em;
         order: 3;
     }
 
@@ -1198,5 +1261,15 @@ html, body {
 
     .accessoriesMenuContent {
         max-height: 700px
+    }
+
+    .classIcon {
+        height: 150px;
+        width: 150px;
+    }
+
+    #current-character-name {
+        display: block;
+        font-size: 2em;
     }
 }
