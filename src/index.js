@@ -554,7 +554,7 @@ function getSkillsByClass(characterStored) {
                 clearMenu();
                 populateMenu();
                 classMenu = document.getElementById("classModal");
-                classMenu.style.display = "block";
+                classMenu.style.display = "flex";
             }
         })
     };
@@ -730,7 +730,7 @@ classButton.onclick = function() {
     clearMenu();
     populateMenu();
     classMenu = document.getElementById("classModal");
-    classMenu.style.display = "block";
+    classMenu.style.display = "flex";
 }
 
 for (let index = 0; index < classSpan.length; index++) {
@@ -840,7 +840,7 @@ function skillsMenu() {
     clearMenu();
     populateMenuSkills();
     classMenu = document.getElementById("classModal");
-    classMenu.style.display = "block";
+    classMenu.style.display = "flex";
 }
 
 function populateMenuSkills() {
@@ -941,7 +941,7 @@ function artsMenu() {
     clearMenu();
     populateMenuArts();
     classMenu = document.getElementById("classModal");
-    classMenu.style.display = "block";
+    classMenu.style.display = "flex";
 }
 
 function populateMenuArts() {
@@ -1064,7 +1064,7 @@ for (let index = 0; index < gemButtons.length; index++) {
         gemSelect = index;
         classMenu = document.getElementById("gemsModal");
         populateMenuGems();
-        classMenu.style.display = "block";
+        classMenu.style.display = "flex";
     })
     gemRemove[index].addEventListener("click", function() {
         if (currentCharacter === "heroConfig") {
@@ -1172,7 +1172,7 @@ for (let index = 0; index < accessoryButtons.length; index++) {
         accessorySelect = index;
         classMenu = document.getElementById("accessoriesModal");
         populateMenuAccessories();
-        classMenu.style.display = "block";
+        classMenu.style.display = "flex";
     })
     accessoryRemove[index].addEventListener("click", function() {
         accessoryLoad(index, null, null);

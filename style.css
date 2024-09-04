@@ -462,8 +462,8 @@ html, body {
 }
 
 .gem img {
-    width: auto;
-    height: 100%;
+    width: 100%;
+    height: auto;
     cursor: pointer;
 }
 
@@ -476,8 +476,8 @@ html, body {
 }
 
 .gem-features-shift {
-    left: 15px;
-    width: 70px;
+    left: 25px;
+    width: 100px;
     cursor: pointer;
     z-index: 5;
     border-radius: 15px;
@@ -491,8 +491,10 @@ html, body {
 
 .gemsMenu {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    z-index: 4;
+    z-index: 99;
     left: 0;
     top: 0;
     width: 100%;
@@ -505,10 +507,7 @@ html, body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin: 5% auto;
     border: 10px solid #2c2c2c;
-    width: 500px;
-    height: 65%;
     animation: dropdown 0.4s;
     display: flex;
     flex-direction: column;
@@ -519,6 +518,8 @@ html, body {
     grid-template-columns: [first] auto [line2] auto [line3] auto [line4] auto [end];
     grid-template-rows: [row1-start] auto [row1-end] auto [third-line] auto [fourth-line] auto [fifth-line] auto [last-line];
     gap: 10px;
+    padding: 10px;
+    padding-top: 0px;
     justify-content: space-around;
     overflow-y: auto;
     grid-auto-flow: column;
@@ -528,22 +529,22 @@ html, body {
     position: absolute;
     color: #ffffff;
     left: 0;
-    font-size: 28px;
+    font-size: 50px;
     font-weight: bold;
     cursor: pointer;
     &:before {
-      content: "\2039";
+        content: "\2039";
     }
   }
   .icon-next {
     position: absolute;
     color: #ffffff;
     right: 0;
-    font-size: 28px;
+    font-size: 50px;
     font-weight: bold;
     cursor: pointer;
     &:before {
-      content: "\203a";
+        content: "\203a";
     }
   }
 
@@ -603,8 +604,10 @@ html, body {
 
 .accessoriesMenu {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    z-index: 4;
+    z-index: 99;
     left: 0;
     top: 0;
     width: 100%;
@@ -617,10 +620,9 @@ html, body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin: 5% auto;
     border: 10px solid #2c2c2c;
     width: 500px;
-    height: 75%;
+    height: 90%;
     animation: dropdown 0.4s;
     display: flex;
     flex-direction: column;
@@ -653,8 +655,10 @@ html, body {
 
 .classMenu {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    z-index: 4;
+    z-index: 99;
     left: 0;
     top: 0;
     width: 100%;
@@ -667,10 +671,9 @@ html, body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin: 5% auto;
     border: 10px solid #2c2c2c;
     width: 550px;
-    height: 70%;
+    height: 90%;
     animation: dropdown 0.4s;
     display: flex;
     flex-direction: column;
@@ -694,15 +697,15 @@ html, body {
 
 .modal-icon img {
     width: auto;
-    height: 100%;
+    height: 100px;
 }
 
 .modal-icon-gem {
     display: flex;
     position: relative;
     align-items: center;
-    height: 70px;
-    width: 100px;
+    height: 100px;
+    width: 150px;
     cursor: context-menu;
 }
 
@@ -765,7 +768,7 @@ html, body {
 .heroMenu {
     display: none;
     position: fixed;
-    z-index: 4;
+    z-index: 99;
     left: 0;
     top: 0;
     width: 100%;
@@ -922,6 +925,7 @@ html, body {
     bottom: 10px;
     right: 10px;
     max-width: 60px;
+    z-index: 98;
     height: auto;
     cursor: pointer;
 }
@@ -979,7 +983,7 @@ html, body {
         transform: translateX(-50%);
         height: 210px;
         width: 100%;
-        z-index: 3;
+        z-index: 97;
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
         background-color: #2d2d2d;
@@ -995,6 +999,7 @@ html, body {
     #characters {
         height: 37px;
         max-width: 1000px;
+        gap: 30px;
         justify-content: center;
         order: 1;
     }
@@ -1003,6 +1008,7 @@ html, body {
         box-sizing: border-box;
         height: 37px;
         max-width: 1000px;
+        gap: 30px;
         justify-content: center;
         padding-left: 55px;
         padding-right: 55px;
@@ -1012,6 +1018,13 @@ html, body {
     #fr-toggle {
         display: flex;
         order: 3;
+    }
+
+    .tour-start {
+        top: 130px;
+        right: 5px;
+        bottom: 0;
+        max-width: 70px;
     }
 
     #center {
@@ -1156,6 +1169,7 @@ html, body {
 
     .accessoriesMenuContent {
         width: 700px;
+        height: 75%;
     }
 
     .accessory-features-menu {
@@ -1169,10 +1183,6 @@ html, body {
     .modal-icon-accessory img {
         height: 100%;
         width: auto;
-    }
-
-    .icon-next, .icon-prev {
-        font-size: 40px;
     }
 
     .gemContainer {
@@ -1218,6 +1228,10 @@ html, body {
         order: 3;
     }
 
+    .gem-list {
+        gap: 20px;
+    }
+
     .accessory-container {
         position: relative;
         width: 100%;
@@ -1251,25 +1265,22 @@ html, body {
         width: 300px;
     }
 
-    .classMenuContent {
-        max-height: 700px
-    }
-
-    .gemsMenuContent {
-        max-height: 500px
-    }
-
-    .accessoriesMenuContent {
-        max-height: 700px
-    }
-
     .classIcon {
         height: 150px;
         width: 150px;
     }
 
+    .classMenuContent {
+        height: 75%;
+    }
+
     #current-character-name {
         display: block;
         font-size: 2em;
+    }
+
+    .calc-button {
+        font-size: 3em;
+        border-radius: 15px;
     }
 }
