@@ -112,6 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
     tourButton.addEventListener("click", () => {
         tg.start();
     })
+
+    const firstVisit = "firstVisit";
+
+    if (!localStorage.getItem(firstVisit)) {
+        tg.start();
+        localStorage.setItem(firstVisit, false);
+    }
 });
 
 function partySwap(index) {
