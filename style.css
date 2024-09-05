@@ -1107,6 +1107,10 @@ html, body {
         overflow-y: visible;
     }
 
+    .badge {
+        font-size: 100%;
+    }
+
     #statuses {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -1309,5 +1313,44 @@ html, body {
     .calc-button {
         font-size: 3em;
         border-radius: 15px;
+    }
+
+    #arts {
+        flex-direction: column-reverse;
+    }
+
+    #artContainerLeft {
+        margin-right: 100px;
+    }
+
+    #artContainerRight {
+        margin-left: 100px;
+    }
+
+    #classArts {
+        margin-left: 0;
+    }
+
+    #normalArts {
+        width: 500px;
+    }
+
+    #artContainerTalent {
+        width: 400px;
+    }
+
+    #masterArts {
+        width: 500px;
+        margin-left: 400px;
+    }
+
+    .artSlot {
+        min-width: 100px;
+        min-height: 100px;
+    }
+
+    .talentSlot {
+        min-width: 140px;
+        min-height: 140px;
     }
 }
