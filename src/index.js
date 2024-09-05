@@ -123,25 +123,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function partySwap(index) {
     return function() {
-    const portraitImg = portraitsImages[index].src;
-    portrait.src = portraitImg;
-    const characters = Object.keys(characterConfigs);
-    currentCharacter = characters[index];
-    let obj = getConfig();
-    getStatsByClass(localStorage.getItem(currentCharacter));
-    classArts = getArtsByClass(localStorage.getItem(currentCharacter));
-    masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
-    getSkillsByClass(localStorage.getItem(currentCharacter));
-    characterLoad(obj);
-    let characterName = document.getElementById("character-name");
-    let characterNameHeader = document.getElementById("current-character-name");
-    characterName.textContent = portraitsImages[index].name;
-    characterNameHeader.textContent = portraitsImages[index].name;
-    if (currentCharacter === "heroConfig") {
-        characterName.textContent = heroIcons[heroIndex].name;
-        characterNameHeader.textContent = heroIcons[heroIndex].name;
-    }
-    printDamage();
+        const portraitImg = portraitsImages[index].src;
+        portrait.src = portraitImg;
+        const characters = Object.keys(characterConfigs);
+        currentCharacter = characters[index];
+        let obj = getConfig();
+        getStatsByClass(localStorage.getItem(currentCharacter));
+        classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+        masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
+        getSkillsByClass(localStorage.getItem(currentCharacter));
+        characterLoad(obj);
+        let characterName = document.getElementById("character-name");
+        let characterNameHeader = document.getElementById("current-character-name");
+        characterName.textContent = portraitsImages[index].name;
+        characterNameHeader.textContent = portraitsImages[index].name;
+        for (let index = 0; index < 7; index++) {
+            buttons[index].classList.remove("icon-highlight");
+        }
+        buttons[index].classList.add("icon-highlight");
+        if (currentCharacter === "heroConfig") {
+            characterName.textContent = heroIcons[heroIndex].name;
+            characterNameHeader.textContent = heroIcons[heroIndex].name;
+        }
+        printDamage();
     }  
 }
 
@@ -817,17 +821,6 @@ function populateMenu() {
             let className = document.getElementById("class-name");
             className.textContent = menuList[index].name;
             classSwap();
-
-            if (characterType === "hero") {
-                const portraitImg = heroIcons[index].portraitSrc;
-                portrait.src = portraitImg;
-                const buttonImage = heroIcons[index].buttonSrc;
-                heroButtonImg.src = buttonImage;
-                portraitsImages[6].src = portraitImg;
-                $('#buttonHero').attr('title', heroIcons[index].name).tooltip('dispose').tooltip();
-                let characterName = document.getElementById("character-name");
-                characterName.textContent = heroIcons[index].name;
-            }
             classMenu.style.display = "none";
         })
     }
@@ -1467,7 +1460,9 @@ function classLoad(currentClass) {
         getSkillsByClass(localStorage.getItem(currentCharacter));
         $('#buttonHero').attr('title', heroIcons[item].name).tooltip('dispose').tooltip();
         let characterName = document.getElementById("character-name");
+        let characterNameHeader = document.getElementById("current-character-name");
         characterName.textContent = heroIcons[item].name;
+        characterNameHeader.textContent = heroIcons[item].name;
     }
     else if (currentClass === "Lucky Seven (Attacker)" || currentClass === "Lucky Seven (Defender)" || currentClass === "Lucky Seven (Healer)") {
         item = luckySevenIcons.findIndex(item => item.name === currentClass);

@@ -323,6 +323,15 @@ html, body {
     height: auto;
 }
 
+.icon-highlight {
+    background-color: #4ff9ffba;
+    transition: background-color 0.3s;
+}
+
+.icon-highlight:hover {
+    background-color: #4ff9ffba;
+}
+
 .fr-button {
     display: flex;
     align-items: center;
@@ -978,7 +987,7 @@ html, body {
 
     #party {
         flex-direction: column;
-        gap: 5px;
+        gap: 20px;
         position: fixed;
         top: 0px;
         left: 50%;
@@ -999,31 +1008,52 @@ html, body {
     }
     
     #characters {
-        height: 37px;
+        height: 42px;
         max-width: 1000px;
-        gap: 30px;
+        gap: 20px;
         justify-content: center;
         order: 1;
     }
 
     #ouroboros {
         box-sizing: border-box;
-        height: 37px;
+        height: 42px;
         max-width: 1000px;
-        gap: 30px;
+        gap: 20px;
         justify-content: center;
         padding-left: 55px;
         padding-right: 55px;
         order: 2;
     }
 
+    #current-character-name {
+        display: block;
+        font-size: 2em;
+        margin-top: 10px;
+        background-color: #cc7e19c6;
+        border-radius: 10px;
+    }
+
+    .icon img {
+        max-width: 120px;
+    }
+
     #fr-toggle {
         display: flex;
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        height: 70px;
+        width: 70px;
         order: 3;
     }
 
+    .fr-button img {
+        max-width: none;
+    }
+
     .tour-start {
-        top: 130px;
+        top: 5px;
         right: 5px;
         bottom: 0;
         max-width: 70px;
@@ -1274,11 +1304,6 @@ html, body {
 
     .classMenuContent {
         height: 75%;
-    }
-
-    #current-character-name {
-        display: block;
-        font-size: 2em;
     }
 
     .calc-button {
