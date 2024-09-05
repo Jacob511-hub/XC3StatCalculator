@@ -12,6 +12,7 @@ html, body {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
 
     h1 {
         font-size: 1.17em;
@@ -964,6 +965,7 @@ html, body {
         max-height: 100%;
         max-width: 100%;
         box-sizing: border-box;
+        overflow: visible;
 
         h1, p {
             font-size: 1.75em;

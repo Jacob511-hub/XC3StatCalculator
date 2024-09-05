@@ -97,8 +97,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const tg = new tourguide.TourGuideClient({
         steps: tourSteps,
-        showPrevButton: true,
+        targetPadding: 0,
     });
+
+    tg.onAfterStepChange(async () => {
+            return new Promise(async (resolve) => {
+            await tg.updatePositions()
+            return resolve(true)
+        })
+    })
 
     let tourButton = document.getElementById("startTour");
 
