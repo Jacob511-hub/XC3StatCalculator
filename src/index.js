@@ -864,7 +864,7 @@ function populateMenuSkills() {
         }
         const container = document.createElement("div");
         container.className = "horizontal-fields";
-        container.classList.add("horizontal-fields-modal");
+        container.classList.add("horizontal-fields-modal", "horizontal-fields-skill");
         const textContainer = document.createElement("div");
         textContainer.className = "name-description-container";
 
@@ -1168,6 +1168,7 @@ function populateMenuGems() {
 }
 
 const accessoryButtons = document.getElementsByClassName("accessory");
+const accessoryDescription = document.getElementsByClassName("accessory-description");
 const accessoryRemove = document.getElementsByClassName("accessory-remove");
 
 let accessorySelect = 0;
@@ -1571,6 +1572,7 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
         const image = document.createElement("img");
         image.src = "img/equipment/accessories/accessory-slot.png";
         slot.appendChild(image);
+        accessoryDescription[slotNumber].textContent = ``;
         return;
     }
     else {
@@ -1596,6 +1598,15 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     name.textContent = loadedType.name;
     name.className = "accessory-text";
     name.classList.add("accessory-text-2");
+    let accessoryEffect;
+    if (typeof loadedType.description === 'function') {
+        variableAmountAccessories = loadedType.boostAmount;
+        accessoryEffect = `${loadedType.description()}`;
+    }
+    else {
+        accessoryEffect = ``;
+    }
+    accessoryDescription[slotNumber].textContent = accessoryEffect;
 
     slot.appendChild(accessorySlot);
     slot.appendChild(image2);
