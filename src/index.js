@@ -1102,6 +1102,10 @@ function populateMenuGems() {
         gemRank.src = gemRanks[currentRank].src;
         gemRank.className = "gem-features";
 
+        const gemName = document.createElement("h1");
+        gemName.className = "gem-name";
+        gemName.textContent = gems[index].name;
+
         const prev = document.createElement("span");
         prev.className = "icon-prev";
         const next = document.createElement("span");
@@ -1112,6 +1116,7 @@ function populateMenuGems() {
         gemContainer.appendChild(gemRank);
         modalIcon.appendChild(prev);
         modalIcon.appendChild(next);
+        modalIcon.appendChild(gemName);
 
         const element = document.getElementById("gemList");
         element.appendChild(modalIcon);
