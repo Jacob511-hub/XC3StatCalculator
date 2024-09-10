@@ -266,6 +266,7 @@ html, body {
     justify-content: flex-start;
     align-items: center;
     width: 220px;
+    min-width: 220px;
     text-align: start;
 }
 
@@ -739,8 +740,8 @@ html, body {
 }
 
 .modal-icon img {
-    width: 96px;
-    height: 96px;
+    width: auto;
+    height: 100%;
 }
 
 .modal-icon-gem {
@@ -788,8 +789,6 @@ html, body {
     position: sticky;
     top: 0;
     justify-content: space-between;
-    margin-bottom: 10px;
-    padding-left: 10px;
     padding-right: 10px;
     background-color: rgb(255, 170, 0);
 }
@@ -895,6 +894,17 @@ html, body {
     cursor: pointer;
 }
 
+.showSkillInfo {
+    height: 64px;
+    width: auto;
+    cursor: pointer;
+}
+
+.showSkillInfo img {
+    height: 100%;
+    width: auto;
+}
+
 .artSlot {
     display: flex;
     position: relative;
@@ -920,8 +930,8 @@ html, body {
     position: relative;
     align-items: baseline;
     justify-content: left;
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
     cursor: pointer;
 }
 
@@ -1242,6 +1252,10 @@ html, body {
         width: auto;
     }
 
+    .showSkillInfo {
+        height: 100%;
+    }
+
     #gems {
         flex-direction: row;
         width: 100%;
@@ -1261,6 +1275,11 @@ html, body {
 
     .accessory-features-menu {
         width: 563px;
+    }
+
+    .modal-icon {
+        height: 150px;
+        width: 150px;
     }
 
     .modal-icon-accessory {
@@ -1371,6 +1390,7 @@ html, body {
 
     .classMenuContent {
         height: 75%;
+        width: 750px;
     }
 
     .calc-button {

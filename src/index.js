@@ -478,6 +478,8 @@ function getMasterArtsByClass(characterStored) {
     return artsMap[JSON.parse(characterStored).class];
 }
 
+const modalHeader = document.getElementById("modalHeader");
+
 function getSkillsByClass(characterStored) {
     const skillsMap = {
         "Swordfighter": skillsSwordfighter,
@@ -571,6 +573,7 @@ function getSkillsByClass(characterStored) {
                 parent = document.getElementById("classList");
                 clearMenu();
                 populateMenu();
+                modalHeader.textContent = "Soulhacker Role Menu"
                 classMenu = document.getElementById("classModal");
                 classMenu.style.display = "flex";
             }
@@ -747,6 +750,7 @@ classButton.onclick = function() {
     menuSwap();
     clearMenu();
     populateMenu();
+    modalHeader.textContent = "Class Menu"
     classMenu = document.getElementById("classModal");
     classMenu.style.display = "flex";
 }
@@ -846,6 +850,7 @@ function skillsMenu() {
     parent = document.getElementById("classList");
     clearMenu();
     populateMenuSkills();
+    modalHeader.textContent = "Skill Menu"
     classMenu = document.getElementById("classModal");
     classMenu.style.display = "flex";
 }
@@ -911,6 +916,83 @@ function populateMenuSkills() {
     }
 }
 
+const skillInfo = document.getElementsByClassName("showSkillInfo");
+
+skillInfo[0].addEventListener("click", function() {
+    skillsInfoMenu();
+})
+
+function skillsInfoMenu() {
+    parent = document.getElementById("classList");
+    clearMenu();
+    populateMenuCurrentSkills();
+    modalHeader.textContent = "Currently Equipped Skills"
+    classMenu = document.getElementById("classModal");
+    classMenu.style.display = "flex";
+}
+
+function populateMenuCurrentSkills() {
+    const skillKeys = Object.keys(noahConfig.skills);
+    let obj = getConfig();
+
+    let classSkill1 = currentSkills[0].name;
+    let classSkill2 = currentSkills[1].name;
+    let classSkill3 = currentSkills[2].name;
+    let classSkill4 = currentSkills[3].name;
+    let masterSkill1 = obj.skills[skillKeys[0]];
+    let masterSkill2 = obj.skills[skillKeys[1]];
+    let masterSkill3 = obj.skills[skillKeys[2]];
+
+    let allSkills = [classSkill1, classSkill2, classSkill3, classSkill4, masterSkill1, masterSkill2, masterSkill3];
+
+    for (let index = 0; index < allSkills.length; index++) {
+        let loadedSkill;
+        if (allSkills[index] === null || allSkills[index] === "None") {
+            continue;
+        }
+        else {
+            if (index < 4) {
+                item = currentSkills.findIndex(item => item.name === allSkills[index]);
+                loadedSkill = currentSkills[item];
+            }
+            else if (index >= 4) {
+                item = skillList.findIndex(item => item.name === allSkills[index]);
+                loadedSkill = skillList[item];
+            }
+        }
+
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal", "horizontal-fields-skill");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
+        const div = document.createElement("div");
+        div.className = "modal-icon";
+        const image = document.createElement("img");
+        image.src = loadedSkill.src;
+
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = loadedSkill.name;
+
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        variableAmountSkill = loadedSkill.boostAmount;
+        if (typeof loadedSkill.description === 'function') {
+            description.textContent = loadedSkill.description();
+        }
+
+        div.appendChild(image);
+        container.appendChild(div);
+        container.appendChild(textContainer);
+        textContainer.appendChild(name);
+        textContainer.appendChild(description);
+        const element = document.getElementById("classList");
+        element.appendChild(container);
+    }
+}
+
 const arts = document.getElementsByClassName("artSlot");
 const artNames = document.getElementsByClassName("info-text-arts");
 const talentArt = document.getElementById("talentArtIcon");
@@ -947,6 +1029,7 @@ function artsMenu() {
     parent = document.getElementById("classList");
     clearMenu();
     populateMenuArts();
+    modalHeader.textContent = "Arts Menu"
     classMenu = document.getElementById("classModal");
     classMenu.style.display = "flex";
 }
