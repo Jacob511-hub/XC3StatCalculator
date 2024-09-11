@@ -97,34 +97,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const tg = new tourguide.TourGuideClient({
         steps: tourSteps,
-        showPrevButton: true,
+        targetPadding: 0,
     });
+
+    tg.onAfterStepChange(async () => {
+            return new Promise(async (resolve) => {
+            await tg.updatePositions()
+            return resolve(true)
+        })
+    })
 
     let tourButton = document.getElementById("startTour");
 
     tourButton.addEventListener("click", () => {
         tg.start();
     })
+
+    const firstVisit = "firstVisit";
+
+    if (!localStorage.getItem(firstVisit)) {
+        tg.start();
+        localStorage.setItem(firstVisit, false);
+    }
 });
 
 function partySwap(index) {
     return function() {
-    const portraitImg = portraitsImages[index].src;
-    portrait.src = portraitImg;
-    const characters = Object.keys(characterConfigs);
-    currentCharacter = characters[index];
-    let obj = getConfig();
-    getStatsByClass(localStorage.getItem(currentCharacter));
-    classArts = getArtsByClass(localStorage.getItem(currentCharacter));
-    masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
-    getSkillsByClass(localStorage.getItem(currentCharacter));
-    characterLoad(obj);
-    let characterName = document.getElementById("character-name");
-    characterName.textContent = portraitsImages[index].name;
-    if (currentCharacter === "heroConfig") {
-        characterName.textContent = heroIcons[heroIndex].name;
-    }
-    printDamage();
+        const portraitImg = portraitsImages[index].src;
+        portrait.src = portraitImg;
+        const characters = Object.keys(characterConfigs);
+        currentCharacter = characters[index];
+        let obj = getConfig();
+        getStatsByClass(localStorage.getItem(currentCharacter));
+        classArts = getArtsByClass(localStorage.getItem(currentCharacter));
+        masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
+        getSkillsByClass(localStorage.getItem(currentCharacter));
+        characterLoad(obj);
+        let characterName = document.getElementById("character-name");
+        let characterNameHeader = document.getElementById("current-character-name");
+        characterName.textContent = portraitsImages[index].name;
+        characterNameHeader.textContent = portraitsImages[index].name;
+        for (let index = 0; index < 7; index++) {
+            buttons[index].classList.remove("icon-highlight");
+        }
+        buttons[index].classList.add("icon-highlight");
+        if (currentCharacter === "heroConfig") {
+            characterName.textContent = heroIcons[heroIndex].name;
+            characterNameHeader.textContent = heroIcons[heroIndex].name;
+        }
+        printDamage();
     }  
 }
 
@@ -457,6 +478,8 @@ function getMasterArtsByClass(characterStored) {
     return artsMap[JSON.parse(characterStored).class];
 }
 
+const modalHeader = document.getElementById("modalHeader");
+
 function getSkillsByClass(characterStored) {
     const skillsMap = {
         "Swordfighter": skillsSwordfighter,
@@ -532,6 +555,7 @@ function getSkillsByClass(characterStored) {
         let tooltipContent;
         if (typeof currentSkills[index].description === 'function') {
             variableAmountSkill = currentSkills[index].boostAmount;
+            variableAmountSkillExtra = currentSkills[index].boostAmountExtra;
             tooltipContent = `${currentSkills[index].name}<br>${currentSkills[index].description()}`;
         }
         else {
@@ -550,8 +574,9 @@ function getSkillsByClass(characterStored) {
                 parent = document.getElementById("classList");
                 clearMenu();
                 populateMenu();
+                modalHeader.textContent = "Soulhacker Role Menu"
                 classMenu = document.getElementById("classModal");
-                classMenu.style.display = "block";
+                classMenu.style.display = "flex";
             }
         })
     };
@@ -726,8 +751,9 @@ classButton.onclick = function() {
     menuSwap();
     clearMenu();
     populateMenu();
+    modalHeader.textContent = "Class Menu"
     classMenu = document.getElementById("classModal");
-    classMenu.style.display = "block";
+    classMenu.style.display = "flex";
 }
 
 for (let index = 0; index < classSpan.length; index++) {
@@ -800,17 +826,6 @@ function populateMenu() {
             let className = document.getElementById("class-name");
             className.textContent = menuList[index].name;
             classSwap();
-
-            if (characterType === "hero") {
-                const portraitImg = heroIcons[index].portraitSrc;
-                portrait.src = portraitImg;
-                const buttonImage = heroIcons[index].buttonSrc;
-                heroButtonImg.src = buttonImage;
-                portraitsImages[6].src = portraitImg;
-                $('#buttonHero').attr('title', heroIcons[index].name).tooltip('dispose').tooltip();
-                let characterName = document.getElementById("character-name");
-                characterName.textContent = heroIcons[index].name;
-            }
             classMenu.style.display = "none";
         })
     }
@@ -836,8 +851,9 @@ function skillsMenu() {
     parent = document.getElementById("classList");
     clearMenu();
     populateMenuSkills();
+    modalHeader.textContent = "Skill Menu"
     classMenu = document.getElementById("classModal");
-    classMenu.style.display = "block";
+    classMenu.style.display = "flex";
 }
 
 function populateMenuSkills() {
@@ -854,7 +870,7 @@ function populateMenuSkills() {
         }
         const container = document.createElement("div");
         container.className = "horizontal-fields";
-        container.classList.add("horizontal-fields-modal");
+        container.classList.add("horizontal-fields-modal", "horizontal-fields-skill");
         const textContainer = document.createElement("div");
         textContainer.className = "name-description-container";
 
@@ -870,6 +886,7 @@ function populateMenuSkills() {
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
         variableAmountSkill = skillList[index].boostAmount;
+        variableAmountSkillExtra = skillList[index].boostAmountExtra;
         if (typeof skillList[index].description === 'function') {
             description.textContent = skillList[index].description();
         }
@@ -898,6 +915,84 @@ function populateMenuSkills() {
             characterLoad(obj);
             classMenu.style.display = "none";
             })
+    }
+}
+
+const skillInfo = document.getElementsByClassName("showSkillInfo");
+
+skillInfo[0].addEventListener("click", function() {
+    skillsInfoMenu();
+})
+
+function skillsInfoMenu() {
+    parent = document.getElementById("classList");
+    clearMenu();
+    populateMenuCurrentSkills();
+    modalHeader.textContent = "Currently Equipped Skills"
+    classMenu = document.getElementById("classModal");
+    classMenu.style.display = "flex";
+}
+
+function populateMenuCurrentSkills() {
+    const skillKeys = Object.keys(noahConfig.skills);
+    let obj = getConfig();
+
+    let classSkill1 = currentSkills[0].name;
+    let classSkill2 = currentSkills[1].name;
+    let classSkill3 = currentSkills[2].name;
+    let classSkill4 = currentSkills[3].name;
+    let masterSkill1 = obj.skills[skillKeys[0]];
+    let masterSkill2 = obj.skills[skillKeys[1]];
+    let masterSkill3 = obj.skills[skillKeys[2]];
+
+    let allSkills = [classSkill1, classSkill2, classSkill3, classSkill4, masterSkill1, masterSkill2, masterSkill3];
+
+    for (let index = 0; index < allSkills.length; index++) {
+        let loadedSkill;
+        if (allSkills[index] === null || allSkills[index] === "None") {
+            continue;
+        }
+        else {
+            if (index < 4) {
+                item = currentSkills.findIndex(item => item.name === allSkills[index]);
+                loadedSkill = currentSkills[item];
+            }
+            else if (index >= 4) {
+                item = skillList.findIndex(item => item.name === allSkills[index]);
+                loadedSkill = skillList[item];
+            }
+        }
+
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal", "horizontal-fields-skill");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
+        const div = document.createElement("div");
+        div.className = "modal-icon";
+        const image = document.createElement("img");
+        image.src = loadedSkill.src;
+
+        const name = document.createElement("h1");
+        name.className = "info-text-3";
+        name.textContent = loadedSkill.name;
+
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        variableAmountSkill = loadedSkill.boostAmount;
+        variableAmountSkillExtra = loadedSkill.boostAmountExtra;
+        if (typeof loadedSkill.description === 'function') {
+            description.textContent = loadedSkill.description();
+        }
+
+        div.appendChild(image);
+        container.appendChild(div);
+        container.appendChild(textContainer);
+        textContainer.appendChild(name);
+        textContainer.appendChild(description);
+        const element = document.getElementById("classList");
+        element.appendChild(container);
     }
 }
 
@@ -937,8 +1032,9 @@ function artsMenu() {
     parent = document.getElementById("classList");
     clearMenu();
     populateMenuArts();
+    modalHeader.textContent = "Arts Menu"
     classMenu = document.getElementById("classModal");
-    classMenu.style.display = "block";
+    classMenu.style.display = "flex";
 }
 
 function populateMenuArts() {
@@ -1046,6 +1142,7 @@ function populateMenuArts() {
 
 const gemButtons = document.getElementsByClassName("gem");
 const gemText = document.getElementsByClassName("gem-text");
+const gemDescription = document.getElementsByClassName("gem-description");
 const gemRemove = document.getElementsByClassName("gem-remove");
 
 let gemSelect = 0;
@@ -1060,7 +1157,7 @@ for (let index = 0; index < gemButtons.length; index++) {
         gemSelect = index;
         classMenu = document.getElementById("gemsModal");
         populateMenuGems();
-        classMenu.style.display = "block";
+        classMenu.style.display = "flex";
     })
     gemRemove[index].addEventListener("click", function() {
         if (currentCharacter === "heroConfig") {
@@ -1091,6 +1188,10 @@ function populateMenuGems() {
         gemRank.src = gemRanks[currentRank].src;
         gemRank.className = "gem-features";
 
+        const gemName = document.createElement("h1");
+        gemName.className = "gem-name";
+        gemName.textContent = gems[index].name;
+
         const prev = document.createElement("span");
         prev.className = "icon-prev";
         const next = document.createElement("span");
@@ -1101,6 +1202,7 @@ function populateMenuGems() {
         gemContainer.appendChild(gemRank);
         modalIcon.appendChild(prev);
         modalIcon.appendChild(next);
+        modalIcon.appendChild(gemName);
 
         const element = document.getElementById("gemList");
         element.appendChild(modalIcon);
@@ -1157,6 +1259,7 @@ function populateMenuGems() {
 }
 
 const accessoryButtons = document.getElementsByClassName("accessory");
+const accessoryDescription = document.getElementsByClassName("accessory-description");
 const accessoryRemove = document.getElementsByClassName("accessory-remove");
 
 let accessorySelect = 0;
@@ -1168,7 +1271,7 @@ for (let index = 0; index < accessoryButtons.length; index++) {
         accessorySelect = index;
         classMenu = document.getElementById("accessoriesModal");
         populateMenuAccessories();
-        classMenu.style.display = "block";
+        classMenu.style.display = "flex";
     })
     accessoryRemove[index].addEventListener("click", function() {
         accessoryLoad(index, null, null);
@@ -1307,6 +1410,7 @@ function skillLoad(slotNumber, loadedSkillName) {
     let tooltipContent;
     if (typeof loadedSkill.description === 'function') {
         variableAmountSkill = loadedSkill.boostAmount;
+        variableAmountSkillExtra = loadedSkill.boostAmountExtra;
         tooltipContent = `${loadedSkill.name}<br>${loadedSkill.description()}`;
     }
     else {
@@ -1449,7 +1553,9 @@ function classLoad(currentClass) {
         getSkillsByClass(localStorage.getItem(currentCharacter));
         $('#buttonHero').attr('title', heroIcons[item].name).tooltip('dispose').tooltip();
         let characterName = document.getElementById("character-name");
+        let characterNameHeader = document.getElementById("current-character-name");
         characterName.textContent = heroIcons[item].name;
+        characterNameHeader.textContent = heroIcons[item].name;
     }
     else if (currentClass === "Lucky Seven (Attacker)" || currentClass === "Lucky Seven (Defender)" || currentClass === "Lucky Seven (Healer)") {
         item = luckySevenIcons.findIndex(item => item.name === currentClass);
@@ -1510,6 +1616,7 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
         image.src = "img/equipment/gems/gemOutline.png";
         slot.appendChild(image);
         gemText[slotNumber].textContent = "None";
+        gemDescription[slotNumber].textContent = ``;
         return;
     }
     else {
@@ -1531,7 +1638,16 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     slot.appendChild(image1);
     slot.appendChild(image2);
 
+    let gemEffect;
+    if (typeof loadedType.description === 'function') {
+        variableAmountGems = loadedType.boostAmount;
+        gemEffect = `${loadedType.description()}`;
+    }
+    else {
+        gemEffect = ``;
+    }
     gemText[slotNumber].textContent = loadedType.name;
+    gemDescription[slotNumber].textContent = gemEffect;
 }
 
 function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
@@ -1541,13 +1657,6 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     let type;
     let rarity;
 
-    if (currentCharacter === "heroConfig") {
-        gemRemove[slotNumber].classList.add("faded-icon");
-    }
-    else {
-        gemRemove[slotNumber].classList.remove("faded-icon");
-    }
-
     if (loadedAccessoryType === null) {
         while (slot.firstChild) {
             slot.removeChild(slot.firstChild);
@@ -1555,6 +1664,7 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
         const image = document.createElement("img");
         image.src = "img/equipment/accessories/accessory-slot.png";
         slot.appendChild(image);
+        accessoryDescription[slotNumber].textContent = ``;
         return;
     }
     else {
@@ -1580,6 +1690,15 @@ function accessoryLoad(slotNumber, loadedAccessoryType, loadedAccessoryRarity) {
     name.textContent = loadedType.name;
     name.className = "accessory-text";
     name.classList.add("accessory-text-2");
+    let accessoryEffect;
+    if (typeof loadedType.description === 'function') {
+        variableAmountAccessories = loadedType.boostAmount;
+        accessoryEffect = `${loadedType.description()}`;
+    }
+    else {
+        accessoryEffect = ``;
+    }
+    accessoryDescription[slotNumber].textContent = accessoryEffect;
 
     slot.appendChild(accessorySlot);
     slot.appendChild(image2);
