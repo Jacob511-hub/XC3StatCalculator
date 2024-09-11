@@ -555,6 +555,7 @@ function getSkillsByClass(characterStored) {
         let tooltipContent;
         if (typeof currentSkills[index].description === 'function') {
             variableAmountSkill = currentSkills[index].boostAmount;
+            variableAmountSkillExtra = currentSkills[index].boostAmountExtra;
             tooltipContent = `${currentSkills[index].name}<br>${currentSkills[index].description()}`;
         }
         else {
@@ -885,6 +886,7 @@ function populateMenuSkills() {
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
         variableAmountSkill = skillList[index].boostAmount;
+        variableAmountSkillExtra = skillList[index].boostAmountExtra;
         if (typeof skillList[index].description === 'function') {
             description.textContent = skillList[index].description();
         }
@@ -979,6 +981,7 @@ function populateMenuCurrentSkills() {
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
         variableAmountSkill = loadedSkill.boostAmount;
+        variableAmountSkillExtra = loadedSkill.boostAmountExtra;
         if (typeof loadedSkill.description === 'function') {
             description.textContent = loadedSkill.description();
         }
@@ -1407,6 +1410,7 @@ function skillLoad(slotNumber, loadedSkillName) {
     let tooltipContent;
     if (typeof loadedSkill.description === 'function') {
         variableAmountSkill = loadedSkill.boostAmount;
+        variableAmountSkillExtra = loadedSkill.boostAmountExtra;
         tooltipContent = `${loadedSkill.name}<br>${loadedSkill.description()}`;
     }
     else {
