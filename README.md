@@ -6,7 +6,7 @@ This is a calculator to help you experiment with team building in Xenoblade Chro
 
 - This is a webpage designed to allow players of Xenoblade Chronicles 3 to simulate party compositions and battle conditions to produce the stat values and damage numbers that would be produced by the game under the same circumstances.
 - Users can customize almost everything the game allows them to, including Classes, Skills, Arts, gems, accessories, and more for each character.
-- This is in order to assist players in understanding various mechanics and allow for ease of experimentation for finding what will produce better results.
+- This is in order to assist players in understanding various mechanics and allow for ease of experimentation for finding what will produce better results while minimizing the time and resource investments that would otherwise be necessary for the user to determine the same results in-game.
 - **THIS WEBPAGE CONTAINS SPOILERS PERTAINING TO CLASSES, HEROES, ARTS, AND OTHER MECHANICS THAT ARE OBTAINED IN XENOBLADE CHRONICLES 3 AND XENOBLADE CHRONICLES 3: FUTURE REDEEMED. USER DISCRETION IS ADVISED FOR THOSE WHO HAVE NOT COMPLETED XENOBLADE CHRONICLES 3 AND XENOBLADE CHRONICLES 3: FUTURE REDEEMED.**
 
 ## Usage
@@ -64,7 +64,32 @@ Class Skills cannot be changed without changing the Class.
 - Source code can be found on [GitHub](https://github.com/Jacob511-hub/XC3StatCalculator)
 - Webpage is deployed via [GitHub Pages](https://jacob511-hub.github.io/XC3StatCalculator/)
 
+## Installation and Usage
+
+To download a local copy of the code to view and edit, you can clone the repository using Git.
+
+**1. Clone the repository**
+```
+https://github.com/Jacob511-hub/XC3StatCalculator.git
+```
+**2. Navigate to the folder**
+```
+cd XC3StatCalculator
+```
+**3. Open index.html**
+
+This will let you view the current state of the page in your web browser (Chrome recommended).
+- For macOS/Linux:
+```
+open index.html
+```
+- For Windows:
+```
+start index.html
+```
+Or alternatively, navigate to the folder where it was saved and open index.html from there.
+
 ## Credits
 
-- Credit to both the [Xeno Series Wiki](https://www.xenoserieswiki.org/) and [Xenoblade Wiki](https://xenoblade.fandom.com/) for having information regarding the stats, numbers, and formulas used in the calculations performed by this project.
-- Credit also goes to sainisoham27 for creating the [Google Drive Folder](https://drive.google.com/drive/folders/1skV2Fnt5EBIUW3B_wsDmE-bJhDgXqd9Y) containing assets taken from Xenoblade Chronicles 3 that are used in this project.
+- Credit to both the [Xeno Series Wiki](https://www.xenoserieswiki.org/) and [Xenoblade Wiki](https://xenoblade.fandom.com/) for having information regarding the stats, numbers, and formulas used in the calculations performed by this page.
+- Credit also goes to sainisoham27 for creating the [Google Drive Folder](https://drive.google.com/drive/folders/1skV2Fnt5EBIUW3B_wsDmE-bJhDgXqd9Y) containing assets taken from Xenoblade Chronicles 3 that are used in this page.
