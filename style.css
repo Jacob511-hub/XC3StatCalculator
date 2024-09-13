@@ -1,41 +1,47 @@
 html, body {
     height: auto;
-    width: 100vw;
+    min-width: 100vw;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif !important;
     font-size: 1em !important;
     color: white;
     background-image: url('img/bg.png');
-    transition: background-image 0.3s ease-in-out;
+    background-color: #00000000;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    transition: background-image 0.3s ease-in-out;
     overflow-x: hidden;
+    overflow-y: auto;
+}
 
-    h1 {
-        font-size: 1.17em;
-        font-weight: bold;
-    }
+h1 {
+    font-size: 1.17em;
+    font-weight: bold;
+}
 
-    *::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-    }
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
 
-    *::-webkit-scrollbar-track {
-        background: #ffffff00;
-    }
+*::-webkit-scrollbar-button {
+    display: none;
+}
 
-    *::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 6px;
-    }
+*::-webkit-scrollbar-track {
+    background-color: #00000000;
+}
 
-    *::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+*::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 #statCalculator {
@@ -847,10 +853,10 @@ html, body {
 .accessory-text-2 {
     font-size: 1em;
     text-align: center;
-    white-space: nowrap; 
-    width: 150px; 
+    white-space: nowrap;
+    width: 150px;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
 
 .info-text-3 {
@@ -980,6 +986,10 @@ html, body {
     padding: 0;
 }
 
+.lock-scroll {
+    overflow: hidden;
+}
+
 .tour-start {
     position: fixed;
     bottom: 15px;
@@ -1019,12 +1029,15 @@ html, body {
     }
 }
 
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+/* |||||||||||||||||||||||||||||||||||||||||||MOBILE FORMATTING||||||||||||||||||||||||||||||||||||||||||| */
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+
 @media (max-width: 1130px) {
     html, body {
         max-height: 100%;
         max-width: 100%;
         box-sizing: border-box;
-        overflow: visible;
 
         h1, p {
             font-size: 1.75em;
@@ -1049,7 +1062,7 @@ html, body {
         transform: translateX(-50%);
         height: 210px;
         max-height: 210px;
-        width: 100%;
+        width: 100vw;
         z-index: 97;
         border-top-right-radius: 0px;
         border-top-left-radius: 0px;
@@ -1384,6 +1397,10 @@ html, body {
         display: block;
         text-align: center;
         font-size: 1.5em;
+    }
+
+    .accessory-text {
+        font-size: 1.6em;
     }
 
     .accessory-text-2 {
