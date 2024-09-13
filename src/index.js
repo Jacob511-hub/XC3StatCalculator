@@ -1221,6 +1221,7 @@ function populateMenuGems() {
         let tooltipContent;
         if (typeof gems[index].description === 'function') {
             variableAmountGems = gems[index].boostAmount;
+            variableAmountGemsExtra = gems[index].boostAmountExtra;
             tooltipContent = `${gems[index].name}<br>${gems[index].description()}`;
         }
         else {
@@ -1655,6 +1656,7 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     let gemEffect;
     if (typeof loadedType.description === 'function') {
         variableAmountGems = loadedType.boostAmount;
+        variableAmountGemsExtra = loadedType.boostAmountExtra;
         gemEffect = `${loadedType.description()}`;
     }
     else {
