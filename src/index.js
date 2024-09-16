@@ -1222,7 +1222,7 @@ function populateMenuGems() {
         if (typeof gems[index].description === 'function') {
             variableAmountGems = gems[index].boostAmount;
             variableAmountGemsExtra = gems[index].boostAmountExtra;
-            tooltipContent = `${gems[index].name}<br>${gems[index].description()}`;
+            tooltipContent = `${gems[index].description()}`;
         }
         else {
             tooltipContent = `${gems[index].name}`;
