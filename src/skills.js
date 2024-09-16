@@ -44,10 +44,10 @@ const skillsOgre = [
 ];
 
 const skillsFlashFencer = [
-    { name: "First Move Wins", src: "img/skills/skill-3.png", boostType: "multiplierDamage", group: "1", flags: ["first30seconds"], boostAmount: 50},
-    { name: "Fighting Instinct", src: "img/skills/skill-32.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["usedTalents"], boostIncrement: 50, boostMax: 200},
-    { name: "Critical Strike", src: "img/skills/skill-4.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 50},
-    { name: "Capable Hands", src: "img/skills/skill-32.png"},
+    { name: "First Move Wins", src: "img/skills/skill-3.png", boostType: "multiplierDamage", group: "1", flags: ["first30seconds"], boostAmount: 50, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% for the first 30 seconds of battle.`;}},
+    { name: "Fighting Instinct", src: "img/skills/skill-32.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["usedTalents"], boostIncrement: 50, boostMax: 200, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when using a Talent Art (up to a maximum of 200%).`;}},
+    { name: "Critical Strike", src: "img/skills/skill-4.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 50, description: function() {return `Increases critical hit damage bonus by ${variableAmountSkill} percentage points.`;}},
+    { name: "Capable Hands", src: "img/skills/skill-32.png", boostAmount: 100, description: function() {return `Fills Talent Art recharge gauge by ${variableAmountSkill}% at start of battle.`;}},
 ];
 
 const skillsWarMedic = [
@@ -79,17 +79,17 @@ const skillsYumsmith = [
 ];
 
 const skillsFullMetalJaguar = [
-    { name: "Sixth Sense", src: "img/skills/skill-38.png"},
-    { name: "Positioning Pro", src: "img/skills/skill-1.png"},
-    { name: "Shock Shot", src: "img/skills/skill-38.png"},
-    { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["hitsSuccessive"], boostIncrement: 20, boostMax: 255},
+    { name: "Sixth Sense", src: "img/skills/skill-38.png", boostAmount: 100, description: function() {return `Boosts accuracy against enemies performing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Positioning Pro", src: "img/skills/skill-1.png", description: function() {return `Increases the no. of positional Arts that can be set to the Arts Palette by 1.`;}},
+    { name: "Shock Shot", src: "img/skills/skill-38.png", boostAmount: 100, description: function() {return `Boosts damage against enemies performing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["hitsSuccessive"], boostIncrement: 20, boostMax: 255, description: function() {return `Each attack that hits boosts damage dealt by ${variableAmountSkill}% (max. 255%). Missing cancels the boost.`;}},
 ];
 
 const skillsGray = [
-    { name: "Sixth Sense", src: "img/skills/skill-38.png"},
-    { name: "Precision Shot", src: "img/skills/skill-14.png"},
-    { name: "Shock Shot", src: "img/skills/skill-38.png"},
-    { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["hitsSuccessive"], boostIncrement: 20, boostMax: 255},
+    { name: "Sixth Sense", src: "img/skills/skill-38.png", boostAmount: 100, description: function() {return `Boosts accuracy against enemies performing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Precision Shot", src: "img/skills/skill-14.png", boostAmount: 150, description: function() {return `Boosts accuracy of auto-attacks by ${variableAmountSkill}%.`;}},
+    { name: "Shock Shot", src: "img/skills/skill-38.png", boostAmount: 100, description: function() {return `Boosts damage against enemies performing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["hitsSuccessive"], boostIncrement: 20, boostMax: 255, description: function() {return `Each attack that hits boosts damage dealt by ${variableAmountSkill}% (max. 255%). Missing cancels the boost.`;}},
 ];
 
 const skillsStrategos = [
@@ -134,18 +134,18 @@ const skillsSignifer = [
     { name: "We Can Do Better", src: "img/skills/skill-2.png"},
 ];
 
-const skillsSoulhackerClass = [
-    { name: "Soul Hack", src: "img/skills/skill-1.png"},
-    { name: "Power Soul", src: "img/skills/skill-3.png"},
-    { name: "None", src: "img/skills/skill-0.png"},
-    { name: "None", src: "img/skills/skill-0.png"},
-];
-
 const skillsFiona = [
     { name: "Cheer Up, Everyone", src: "img/skills/skill-39.png"},
     { name: "I've Got Your Backs", src: "img/skills/skill-21.png"},
     { name: "Brightest Star", src: "img/skills/skill-11.png"},
     { name: "We Can Do Better", src: "img/skills/skill-2.png"},
+];
+
+const skillsSoulhackerClass = [
+    { name: "Soul Hack", src: "img/skills/skill-1.png"},
+    { name: "Power Soul", src: "img/skills/skill-3.png"},
+    { name: "None", src: "img/skills/skill-0.png"},
+    { name: "None", src: "img/skills/skill-0.png"},
 ];
 
 const skillsTriton = [
@@ -212,17 +212,17 @@ const skillsLapidarist = [
 ];
 
 const skillsGrandMarshal = [
-    { name: "Right Back At You", src: "img/skills/skill-19.png"},
-    { name: "Natural Born Warrior", src: "img/skills/skill-11.png"},
-    { name: "Gentleman's Valor", src: "img/skills/skill-19.png"},
-    { name: "Mechanical Rhythm", src: "img/skills/skill-10.png"},
+    { name: "Right Back At You", src: "img/skills/skill-19.png", boostAmount: 200, description: function() {return `When nearby ally is attacked, deal ${variableAmountSkill}% of attack in damage to enemy.`;}},
+    { name: "Natural Born Warrior", src: "img/skills/skill-11.png", boostAmount: 50, description: function() {return `Grants a large increase to damage dealt the more enemies target you (up to a maximum of 300%).`;}},
+    { name: "Gentleman's Valor", src: "img/skills/skill-19.png", boostAmount: 20, description: function() {return `Grants Awakening when damage taken exceeds ${variableAmountSkill}% of max HP.`;}},
+    { name: "Mechanical Rhythm", src: "img/skills/skill-10.png", boostAmount: 15, description: function() {return `${variableAmountSkill}% chance for own attack to become a guaranteed hit and to evade enemy attacks during it.`;}},
 ];
 
 const skillsMasterDriver = [
-    { name: "Raging Flame", src: "img/skills/skill-11.png"},
-    { name: "Lightspeed Blade", src: "img/skills/skill-4.png"},
-    { name: "Heroic Spirit", src: "img/skills/skill-1.png"},
-    { name: "Flash and Flame", src: "img/skills/skill-4.png"},
+    { name: "Raging Flame", src: "img/skills/skill-11.png", boostAmount: 8, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when landing a critical hit (up to a maximum of 150%).`;}},
+    { name: "Lightspeed Blade", src: "img/skills/skill-4.png", boostAmount: 50, description: function() {return `On critical, ignore enemy defense. Also increases critical hit damage bonus by ${variableAmountSkill} percentage points.`;}},
+    { name: "Heroic Spirit", src: "img/skills/skill-1.png", boostAmount: 150, boostAmountExtra: 30, description: function() {return `If an ally is down/has low HP, deal ${variableAmountSkill}% more damage and take ${variableAmountSkillExtra}% less damage.`;}},
+    { name: "Flash and Flame", src: "img/skills/skill-4.png", boostAmount: 20, boostAmountExtra: 50, description: function() {return `Increases Critical Rate by ${variableAmountSkill} percentage points and critical hit damage by ${variableAmountSkillExtra} percentage points.`;}},
 ];
 
 const skillsLuckySevenAttacker = [

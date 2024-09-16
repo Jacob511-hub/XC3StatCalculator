@@ -555,6 +555,9 @@ function getSkillsByClass(characterStored) {
         let tooltipContent;
         if (typeof currentSkills[index].description === 'function') {
             variableAmountSkill = currentSkills[index].boostAmount;
+            if (currentSkills[index].boostType === "multiplierDamageIncremental") {
+                variableAmountSkill = currentSkills[index].boostIncrement;
+            }
             variableAmountSkillExtra = currentSkills[index].boostAmountExtra;
             tooltipContent = `${currentSkills[index].name}<br>${currentSkills[index].description()}`;
         }
@@ -892,6 +895,9 @@ function populateMenuSkills() {
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
         variableAmountSkill = skillList[index].boostAmount;
+        if (skillList[index].boostType === "multiplierDamageIncremental") {
+            variableAmountSkill = skillList[index].boostIncrement;
+        }
         variableAmountSkillExtra = skillList[index].boostAmountExtra;
         if (typeof skillList[index].description === 'function') {
             description.textContent = skillList[index].description();
@@ -989,6 +995,9 @@ function populateMenuCurrentSkills() {
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
         variableAmountSkill = loadedSkill.boostAmount;
+        if (loadedSkill.boostType === "multiplierDamageIncremental") {
+            variableAmountSkill = loadedSkill.boostIncrement;
+        }
         variableAmountSkillExtra = loadedSkill.boostAmountExtra;
         if (typeof loadedSkill.description === 'function') {
             description.textContent = loadedSkill.description();
@@ -1425,6 +1434,9 @@ function skillLoad(slotNumber, loadedSkillName) {
     let tooltipContent;
     if (typeof loadedSkill.description === 'function') {
         variableAmountSkill = loadedSkill.boostAmount;
+        if (loadedSkill.boostType === "multiplierDamageIncremental") {
+            variableAmountSkill = loadedSkill.boostIncrement;
+        }
         variableAmountSkillExtra = loadedSkill.boostAmountExtra;
         tooltipContent = `${loadedSkill.name}<br>${loadedSkill.description()}`;
     }
