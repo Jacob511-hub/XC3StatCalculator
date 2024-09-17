@@ -339,6 +339,12 @@ function getDamageMultipliers() {
             const value = calculateIncremental(input, allSkills[skill].boostMax, allSkills[skill].boostIncrement)
             multipliersMap[allSkills[skill].group].push(value);
         }
+        else if (allSkills[skill].boostTypeExtra === "multiplierDamage") {
+            const flagSet = allSkills[skill].flagsExtra.some(flag => flags[flag]);
+            if (flagSet) {
+                multipliersMap[allSkills[skill].groupExtra].push(allSkills[skill].boostAmountExtra);
+            }
+        }
     }
     for (index = 0; index < characters.length; index++) {
         let character = JSON.parse(localStorage.getItem(characters[index]));
