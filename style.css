@@ -936,6 +936,7 @@ h1 {
 .faded-icon {
     opacity: 0.4;
     cursor: context-menu;
+    pointer-events: none;
 }
 
 .artSlotModal {

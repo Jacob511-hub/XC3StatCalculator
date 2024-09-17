@@ -568,8 +568,14 @@ function getSkillsByClass(characterStored) {
 
         if (currentSkills === skillsSoulhackerClass) {
             if (index > 1) {
-                image.classList.add("faded-icon");
+                slot.classList.add("faded-icon");
             }
+            else {
+                slot.classList.remove("faded-icon");
+            }
+        }
+        else {
+            slot.classList.remove("faded-icon");
         }
         skills[1].addEventListener("click", function() {
             if (currentSkills === skillsSoulhackerClass) {
@@ -1406,6 +1412,13 @@ function skillLoad(slotNumber, loadedSkillName) {
     let loadedSkill;
     let item;
     let obj = getConfig();
+    
+    if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
+        slot.classList.add("faded-icon");
+    }
+    else {
+        slot.classList.remove("faded-icon");
+    }
 
     if (loadedSkillName === null || loadedSkillName === "None") {
         while (slot.firstChild) {
@@ -1413,9 +1426,6 @@ function skillLoad(slotNumber, loadedSkillName) {
         }
         const image = document.createElement("img");
         image.src = "img/skills/skill-0.png";
-        if (currentCharacter === "heroConfig" || obj.class === "Lucky Seven (Attacker)" || obj.class === "Lucky Seven (Defender)" || obj.class === "Lucky Seven (Healer)") {
-            image.classList.add("faded-icon");
-        }
         slot.appendChild(image);
         $(slot).attr('title', "None").tooltip('dispose').tooltip();
         return;
@@ -1457,6 +1467,12 @@ function artLoad(slotNumber, loadedArtName) {
     if (slotNumber < 3){
         slot = arts[slotNumber];
         artList = masterArts;
+        if (currentCharacter === "heroConfig") {
+            slot.classList.add("faded-icon");
+        }
+        else {
+            slot.classList.remove("faded-icon");
+        }
     }
     else if (3 <= slotNumber && slotNumber < 6){
         slot = arts[slotNumber];
@@ -1483,7 +1499,7 @@ function artLoad(slotNumber, loadedArtName) {
         }
     }
 
-    if (loadedArtName === null) {
+    if (loadedArtName === null || loadedArtName === "None") {
         while (slot.firstChild) {
             slot.removeChild(slot.firstChild);
         }
@@ -1493,9 +1509,6 @@ function artLoad(slotNumber, loadedArtName) {
         loadedArt = artList[item];
         artImage.src = loadedArt.recharge;
         artImage.className = "art-features";
-        if (currentCharacter === "heroConfig") {
-            artImage.classList.add("faded-icon");
-        }
         slot.appendChild(artImage);
         ratio[slotNumber] = undefined;
         attribute[slotNumber] = undefined;
@@ -1630,9 +1643,11 @@ function gemLoad(slotNumber, loadedGemType, loadedGemRank) {
     let rank;
 
     if (currentCharacter === "heroConfig") {
+        slot.classList.remove("clickButton");
         gemRemove[slotNumber].classList.add("faded-icon");
     }
     else {
+        slot.classList.add("clickButton");
         gemRemove[slotNumber].classList.remove("faded-icon");
     }
 
