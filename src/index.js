@@ -1583,6 +1583,7 @@ function classLoad(currentClass) {
         let characterNameHeader = document.getElementById("current-character-name");
         characterName.textContent = heroIcons[item].name;
         characterNameHeader.textContent = heroIcons[item].name;
+        stability = heroIcons[item].stability;
     }
     else if (currentClass === "Lucky Seven (Attacker)" || currentClass === "Lucky Seven (Defender)" || currentClass === "Lucky Seven (Healer)") {
         item = luckySevenIcons.findIndex(item => item.name === currentClass);
