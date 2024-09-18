@@ -142,7 +142,7 @@ const skillsFiona = [
 ];
 
 const skillsSoulhackerClass = [
-    { name: "Soul Hack", src: "img/skills/skill-1.png"},
+    { name: "Soul Hack", src: "img/skills/skill-1.png", description: function() {return `When defeating a unique monster, gain a Skill or Art.`;}},
     { name: "Power Soul", src: "img/skills/skill-3.png"},
     { name: "None", src: "img/skills/skill-0.png"},
     { name: "None", src: "img/skills/skill-0.png"},

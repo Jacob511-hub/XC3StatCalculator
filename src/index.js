@@ -564,7 +564,7 @@ function getSkillsByClass(characterStored) {
         else {
             tooltipContent = `${currentSkills[index].name}`;
         }
-        $(skills[index]).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
+        $(slot).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
 
         if (currentSkills === skillsSoulhackerClass) {
             if (index > 1) {
@@ -816,6 +816,10 @@ function populateMenu() {
         const name = document.createElement("h1");
         name.className = "info-text-3";
         name.textContent = menuList[index].name;
+        if (menuList === SoulhackerRoles) {
+            container.classList.add("horizontal-fields-skill");
+            name.textContent = menuList[index].role;
+        }
 
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
@@ -965,6 +969,11 @@ function populateMenuCurrentSkills() {
     let masterSkill2 = obj.skills[skillKeys[1]];
     let masterSkill3 = obj.skills[skillKeys[2]];
 
+    if (currentSkills === skillsSoulhackerClass) {
+        item = SoulhackerRoles.findIndex(item => item.name === obj.class);
+        classSkill2 = SoulhackerRoles[item].name;
+    }
+
     let allSkills = [classSkill1, classSkill2, classSkill3, classSkill4, masterSkill1, masterSkill2, masterSkill3];
 
     for (let index = 0; index < allSkills.length; index++) {
@@ -976,6 +985,10 @@ function populateMenuCurrentSkills() {
             if (index < 4) {
                 item = currentSkills.findIndex(item => item.name === allSkills[index]);
                 loadedSkill = currentSkills[item];
+                if (index === 1 && currentSkills === skillsSoulhackerClass) {
+                    item = SoulhackerRoles.findIndex(item => item.name === obj.class);
+                    loadedSkill = SoulhackerRoles[item];
+                }
             }
             else if (index >= 4) {
                 item = skillList.findIndex(item => item.name === allSkills[index]);
@@ -997,6 +1010,9 @@ function populateMenuCurrentSkills() {
         const name = document.createElement("h1");
         name.className = "info-text-3";
         name.textContent = loadedSkill.name;
+        if (index === 1 && currentSkills === skillsSoulhackerClass) {
+            name.textContent = loadedSkill.role;
+        }
 
         const description = document.createElement("p");
         description.className = "info-text-arts-modal";
@@ -1577,13 +1593,12 @@ function artLoad(slotNumber, loadedArtName) {
 
 // Loads the details regarding the character's current class, including the class icon and class skills
 function classLoad(currentClass) {
-    let image;
+    const image = document.createElement("img");
     while (classButton.children[1]) {
         classButton.removeChild(classButton.children[1]);
     }
     if (currentCharacter === "heroConfig") {
         item = heroIcons.findIndex(item => item.name === currentClass);
-        image = document.createElement("img");
         image.src = heroIcons[item].src;
         const portraitImg = heroIcons[item].portraitSrc;
         portrait.src = portraitImg;
@@ -1600,14 +1615,12 @@ function classLoad(currentClass) {
     }
     else if (currentClass === "Lucky Seven (Attacker)" || currentClass === "Lucky Seven (Defender)" || currentClass === "Lucky Seven (Healer)") {
         item = luckySevenIcons.findIndex(item => item.name === currentClass);
-        image = document.createElement("img");
         image.src = luckySevenIcons[item].src;
         getSkillsByClass(localStorage.getItem(currentCharacter));
         stability = luckySevenIcons[item].stability;
     }
     else if (SoulhackerRoles.some(obj => obj.name === currentClass)) {
         item = SoulhackerRoles.findIndex(item => item.name === currentClass);
-        image = document.createElement("img");
         image.src = SoulhackerRoles[item].class;
         getSkillsByClass(localStorage.getItem(currentCharacter));
         skillList = skillsSoulhacker;
@@ -1617,12 +1630,16 @@ function classLoad(currentClass) {
         imageSkill.src = SoulhackerRoles[item].src;
         slot.removeChild(slot.firstChild);
         slot.appendChild(imageSkill);
-        $(skills[1]).attr('title', SoulhackerRoles[item].role).tooltip('dispose').tooltip();
+
+        let tooltipContent;
+        if (typeof SoulhackerRoles[item].description === 'function') {
+            tooltipContent = `${SoulhackerRoles[item].role}<br>${SoulhackerRoles[item].description()}`;
+        }
+        $(slot).attr('title', tooltipContent).tooltip('dispose').tooltip({html: true});
         stability = SoulhackerRoles[item].stability;
     }
     else {
         item = classIcons.findIndex(item => item.name === currentClass);
-        image = document.createElement("img");
         image.src = classIcons[item].src;
         getSkillsByClass(localStorage.getItem(currentCharacter));
         stability = classIcons[item].stability;
