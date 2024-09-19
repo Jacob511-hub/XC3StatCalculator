@@ -220,7 +220,7 @@ const skillsGrandMarshal = [
 
 const skillsMasterDriver = [
     { name: "Raging Flame", src: "img/skills/skill-11.png", boostAmount: 8, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when landing a critical hit (up to a maximum of 150%).`;}},
-    { name: "Lightspeed Blade", src: "img/skills/skill-4.png", boostAmount: 50, description: function() {return `On critical, ignore enemy defense. Also increases critical hit damage bonus by ${variableAmountSkill} percentage points.`;}},
+    { name: "Lightspeed Blade", src: "img/skills/skill-4.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 50, pierce: true, description: function() {return `On critical, ignore enemy defense. Also increases critical hit damage bonus by ${variableAmountSkill} percentage points.`;}},
     { name: "Heroic Spirit", src: "img/skills/skill-1.png", boostAmount: 150, boostAmountExtra: 30, description: function() {return `If an ally is down/has low HP, deal ${variableAmountSkill}% more damage and take ${variableAmountSkillExtra}% less damage.`;}},
     { name: "Flash and Flame", src: "img/skills/skill-4.png", boostType: "additive", boostStat: "crit", boostAmount: 20, boostTypeExtra: "multiplierDamage", groupExtra: "critical", flagsExtra: ["critical"], boostAmountExtra: 50, description: function() {return `Increases Critical Rate by ${variableAmountSkill} percentage points and critical hit damage by ${variableAmountSkillExtra} percentage points.`;}},
 ];

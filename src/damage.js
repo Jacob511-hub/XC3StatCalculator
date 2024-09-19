@@ -17,8 +17,29 @@ function damage(damageRatio, attribute, weaponStability, range) {
     powerMultiplier = (damageRatio)/100;
     multiHitCorrection = 1/(1);
 
-    let defenseEnemyPhysical = document.getElementById('enemy-physical-defense').value;
-    let defenseEnemyEther = document.getElementById('enemy-ether-defense').value;
+    let defenseEnemyPhysical;
+    let defenseEnemyEther;
+
+    if (artPierce === true || skillPierce === true) {
+        if (document.getElementById('enemy-physical-defense').value > 0) {
+            defenseEnemyPhysical = 0;
+        }
+        else {
+            defenseEnemyPhysical = document.getElementById('enemy-physical-defense').value;
+        }
+
+        if (document.getElementById('enemy-ether-defense').value > 0) {
+            defenseEnemyEther = 0;
+        }
+        else {
+            defenseEnemyEther = document.getElementById('enemy-ether-defense').value;
+        }
+    }
+    else {
+        defenseEnemyPhysical = document.getElementById('enemy-physical-defense').value;
+        defenseEnemyEther = document.getElementById('enemy-ether-defense').value;
+    }
+
     let defenseMultiplierPhysical = defenseEnemyPhysical - DefenseReductionPhysicalGroupSum;
     let defenseMultiplierEther = defenseEnemyEther - DefenseReductionEtherGroupSum;
     let defenseMultiplier;

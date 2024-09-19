@@ -31,12 +31,12 @@ const talentArts = [
 ];
 
 const talentArtsNoah = [
-    { name: "Infinity Blade", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 1000, attribute: "physical", description: function() {return `Deals damage that ignores defense.`;}},
+    { name: "Infinity Blade", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 1000, attribute: "physical", pierce: true, class: "Swordfighter", description: function() {return `Deals damage that ignores defense.`;}},
     { name: "Unlimited Sword", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-buff.png", reaction: "img/arts/reaction/art-blank.png", aoe: "img/arts/aoe/art-blank.png", ratio: 0, attribute: "buff"}
 ];
 
 const talentArtsMio = [
-    { name: "Dominion Flower", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-burst.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 750, attribute: "ether", description: function() {return `Deals damage that ignores defense.`;}}
+    { name: "Dominion Flower", recharge: "img/arts/recharge/art-keves.png", type: "img/arts/type/art-attack.png", reaction: "img/arts/reaction/art-burst.png", aoe: "img/arts/aoe/art-aoe-attack.png", ratio: 750, attribute: "ether", class: "Zephyr", description: function() {return `Deals damage that ignores defense.`;}}
 ];
 
 const artsSwordfighter = [

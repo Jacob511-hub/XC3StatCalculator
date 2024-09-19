@@ -10,6 +10,8 @@ let artMultiplierGroup2Sum;
 let artMultiplierGroup3Sum;
 let fusionBoostSum;
 let fusionDamageMultiplier;
+let artPierce;
+let skillPierce;
 
 let characters = [
     "noahConfig",
@@ -135,7 +137,7 @@ function artMultiplier(index) {
     const artKeys = Object.keys(noahConfig.arts);
     let classArts = getArtsByClass(localStorage.getItem(currentCharacter));
     let masterArts = getMasterArtsByClass(localStorage.getItem(currentCharacter));
-    const allArts = classArts.concat(masterArts, talentArts);
+    const allArts = classArts.concat(masterArts, talentArts, talentArtsNoah, talentArtsMio);
 
     let playerBuffsActive = [flags["attackUpPlayer"], flags["defenseUpPlayer"], flags["accuracyUpPlayer"], flags["evasionUpPlayer"], flags["critRateUpPlayer"], flags["criticalPlusPlayer"], flags["powerChargePlayer"], flags["armorVeilPlayer"], flags["awakeningPlayer"]];
     let playerBuffsActiveCount = playerBuffsActive.filter(Boolean).length;
@@ -193,6 +195,14 @@ function artMultiplier(index) {
             artMultipliersMap[allArts[art].group].push(allArts[art].boost3);
         }
     }
+
+    if(allArts[art].pierce === true) {
+        artPierce = true;
+    }
+    else {
+        artPierce = false;
+    }
+
     artMultiplierGroup1Sum = artMultiplierGroup1.reduce((acc, currentValue) => acc + currentValue, 0);
     artMultiplierGroup2Sum = artMultiplierGroup2.reduce((acc, currentValue) => acc + currentValue, 0);
     artMultiplierGroup3Sum = artMultiplierGroup3.reduce((acc, currentValue) => acc + currentValue, 0);
@@ -389,5 +399,18 @@ function getDamageMultipliers() {
     }
     else {
         CriticalGroupSum = 0;
+    }
+    for (index = 0; index < skillsClassMaster.length; index++) {
+        let skill = allSkills.findIndex(skill => skill.name === skillsClassMaster[index]);
+        if (skill === -1) {
+            continue;
+        }
+        if (allSkills[skill].pierce === true && allSkills[skill].flags.some(flag => flags[flag]) === true) {
+            skillPierce = true;
+            break;
+        }
+        else {
+            skillPierce = false;
+        }
     }
 }
