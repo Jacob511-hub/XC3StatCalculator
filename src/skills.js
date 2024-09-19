@@ -44,7 +44,7 @@ const skillsOgre = [
 ];
 
 const skillsFlashFencer = [
-    { name: "First Move Wins", src: "img/skills/skill-3.png", boostType: "multiplierDamage", group: "1", flags: ["first30seconds"], boostAmount: 50, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% for the first 30 seconds of battle.`;}},
+    { name: "First Move Wins", src: "img/skills/skill-3.png", boostType: "multiplierDamage", group: "1", flags: [undefined], timeThreshold: 30, boostAmount: 50, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% for the first 30 seconds of battle.`;}},
     { name: "Fighting Instinct", src: "img/skills/skill-32.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["usedTalents"], boostIncrement: 50, boostMax: 200, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when using a Talent Art (up to a maximum of 200%).`;}},
     { name: "Critical Strike", src: "img/skills/skill-4.png", boostType: "multiplierDamage", group: "critical", flags: ["critical"], boostAmount: 50, description: function() {return `Increases critical hit damage bonus by ${variableAmountSkill} percentage points.`;}},
     { name: "Capable Hands", src: "img/skills/skill-32.png", boostAmount: 100, description: function() {return `Fills Talent Art recharge gauge by ${variableAmountSkill}% at start of battle.`;}},
@@ -150,7 +150,7 @@ const skillsSoulhackerClass = [
 
 const skillsTriton = [
     { name: "Underworld Rage", src: "img/skills/skill-11.png"},
-    { name: "Amazing Growth", src: "img/skills/skill-11.png"},
+    { name: "Amazing Growth", src: "img/skills/skill-11.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["timeElapsed"], boostIncrement: 0.5, boostMax: 60, description: function() {return `Boosts damage dealt based on the amount of battle time elapsed.`;}},
     { name: "Recharge Cheer", src: "img/skills/skill-40.png"},
     { name: "Magic Transmutation", src: "img/skills/skill-11.png"},
 ];
@@ -309,7 +309,7 @@ const skillsSoulhacker = [
     { name: "Accelerator Organ", src: "img/skills/skill-9.png"},
     { name: "Action Reaction", src: "img/skills/skill-18.png"},
     { name: "Air Body", src: "img/skills/skill-1.png"},
-    { name: "Amazing Growth", src: "img/skills/skill-11.png"},
+    { name: "Amazing Growth", src: "img/skills/skill-11.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["timeElapsed"], boostIncrement: 0.5, boostMax: 60, description: function() {return `Boosts damage dealt based on the amount of battle time elapsed.`;}},
     { name: "Apothecary's Wisdom", src: "img/skills/skill-17.png"},
     { name: "Aquatic Warrior", src: "img/skills/skill-11.png"},
     { name: "Attack Heal", src: "img/skills/skill-14.png"},

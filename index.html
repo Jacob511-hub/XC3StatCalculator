@@ -401,10 +401,6 @@
                                     <h1 class="info-text-3 smaller-text">Blocked: </h1>
                                     <div class="buffIcon" id="enemyBlocked"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="Blocked?" alt="Blocked"></div>
                                 </div>
-                                <div class="horizontal-fields">
-                                    <h1 class="info-text-3 smaller-text">First 30 Seconds: </h1>
-                                    <div class="buffIcon" id="first30seconds"><img src="img\statuses\check.png" data-toggle="tooltip" data-placement="top" title="First 30 Seconds?" alt="First 30 Seconds"></div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -427,6 +423,10 @@
                                 <div class="horizontal-fields">
                                     <h1 class="info-text-3 smaller-text">Talent Arts Used: </h1>
                                     <input class="number-input" type="number" id="used-talents" min="0" max="99" value="0" oninput="recalculate()">
+                                </div>
+                                <div class="horizontal-fields">
+                                    <h1 class="info-text-3 smaller-text">Time Elapsed (Seconds): </h1>
+                                    <input class="number-input" type="number" id="time-elapsed" min="0" max="999" value="0" oninput="recalculate()">
                                 </div>
                                 <div class="horizontal-fields">
                                     <h1 class="info-text-3 smaller-text">Successive Hits: </h1>

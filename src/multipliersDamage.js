@@ -31,7 +31,6 @@ const flags = {
     "enemyBlocked": false,
     "boss": false,
     "unique": false,
-    "first30seconds": false,
 
     "attackUpPlayer": false,
     "defenseUpPlayer": false,
@@ -250,6 +249,7 @@ function getDamageMultipliers() {
         "buffsAllies": 10, //PLACEHOLDER VALUE. User will be able to set a value that this will pull from
         "buffsUser": playerBuffsActiveCount,
         "usedTalents": document.getElementById('used-talents').value,
+        "timeElapsed": document.getElementById('time-elapsed').value,
         "launchTime": document.getElementById('launch-time').value,
         "currentHpPlayer": document.getElementById('current-hp-player').value,
         "enemyLevel": document.getElementById('enemy-level').value,
@@ -340,6 +340,11 @@ function getDamageMultipliers() {
             }
             else if (allSkills[skill].hasOwnProperty("levelThreshold")) {
                 if (incrementalsMap["enemyLevel"] > allSkills[skill].levelThreshold) {
+                    multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
+                }
+            }
+            else if (allSkills[skill].hasOwnProperty("timeThreshold")) {
+                if (incrementalsMap["timeElapsed"] <= allSkills[skill].timeThreshold) {
                     multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
                 }
             }
