@@ -16,31 +16,31 @@ const skillsZephyr = [
 ];
 
 const skillsMedicGunner = [
-    { name: "Medical Mind", src: "img/skills/skill-3.png"},
-    { name: "Speedy Recovery", src: "img/skills/skill-26.png"},
-    { name: "Ninja Healer", src: "img/skills/skill-13.png"},
-    { name: "Eternal Formation", src: "img/skills/skill-21.png"},
+    { name: "Medical Mind", src: "img/skills/skill-3.png", boostAmount: 30, description: function() {return `Boosts amount of HP healed from using healing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Speedy Recovery", src: "img/skills/skill-26.png", boostAmount: 15, description: function() {return `Boosts speed of ally revival by 40% and raises Healing by ${variableAmountSkill}.`;}},
+    { name: "Ninja Healer", src: "img/skills/skill-13.png", boostAmount: 50, description: function() {return `Reduces aggro generated from healing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Eternal Formation", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Increases field effect duration by ${variableAmountSkill}%.`;}},
 ];
 
 const skillsTactician = [
-    { name: "Ethereal Ability", src: "img/skills/skill-30.png"},
-    { name: "Shieldrender", src: "img/skills/skill-6.png"},
-    { name: "Eternal Curse", src: "img/skills/skill-21.png"},
-    { name: "Inevitable Evitability", src: "img/skills/skill-10.png"},
+    { name: "Ethereal Ability", src: "img/skills/skill-30.png", boostAmount: 50, description: function() {return `Boosts damage dealt by ether Arts by ${variableAmountSkill}%.`;}},
+    { name: "Shieldrender", src: "img/skills/skill-6.png", boostAmount: 100, description: function() {return `Adds ${variableAmountSkill}% chance for attack to be unblockable.`;}},
+    { name: "Eternal Curse", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration timers of debuffs applied to enemies by ${variableAmountSkill}%.`;}},
+    { name: "Inevitable Evitability", src: "img/skills/skill-10.png", boostAmount: 10, description: function() {return `${variableAmountSkill}% chance to evade enemy attack.`;}},
 ];
 
 const skillsHeavyGuard = [
-    { name: "Defensive Soul", src: "img/skills/skill-7.png"},
-    { name: "I'll Protect You", src: "img/skills/skill-5.png"},
-    { name: "Aggravator", src: "img/skills/skill-13.png"},
-    { name: "Tenacious Blocker", src: "img/skills/skill-5.png"},
+    { name: "Defensive Soul", src: "img/skills/skill-7.png", boostAmount: 20, description: function() {return `Boosts Physical Defense by ${variableAmountSkill}%.`;}},
+    { name: "I'll Protect You", src: "img/skills/skill-5.png", boostAmount: 30, description: function() {return `Reduces damage taken by allies in a fixed radius by ${variableAmountSkill}%.`;}},
+    { name: "Aggravator", src: "img/skills/skill-13.png", description: function() {return `Accrues Aggro every second.`;}},
+    { name: "Tenacious Blocker", src: "img/skills/skill-5.png", boostAmount: 50, description: function() {return `Boosts Block Rate by ${variableAmountSkill} percentage points when HP is at 30% or lower.`;}},
 ];
 
 const skillsOgre = [
-    { name: "Insult to Injury", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy"], boostAmount: 150},
-    { name: "Fury Smash", src: "img/skills/skill-15.png"},
-    { name: "Fighting Prowess", src: "img/skills/skill-29.png"},
-    { name: "Dynamite Spirit", src: "img/skills/skill-11.png"},
+    { name: "Insult to Injury", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy"], boostAmount: 150, description: function() {return `Boosts damage dealt when attacking toppled enemies by ${variableAmountSkill}%.`;}},
+    { name: "Fury Smash", src: "img/skills/skill-15.png", boostAmount: 45, description: function() {return `Increases reaction success rate by ${variableAmountSkill} percentage points`;}},
+    { name: "Fighting Prowess", src: "img/skills/skill-29.png", boostAmount: 50, description: function() {return `Boosts damage dealt by physical Arts by ${variableAmountSkill}%.`;}},
+    { name: "Dynamite Spirit", src: "img/skills/skill-11.png", boostAmount: 60, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when HP is at 90% or higher.`;}},
 ];
 
 const skillsFlashFencer = [
@@ -51,31 +51,31 @@ const skillsFlashFencer = [
 ];
 
 const skillsWarMedic = [
-    { name: "Recovery Engine", src: "img/skills/skill-2.png"},
-    { name: "Rescue License", src: "img/skills/skill-26.png"},
-    { name: "Healing License", src: "img/skills/skill-17.png"},
-    { name: "Antibody System", src: "img/skills/skill-24.png"},
+    { name: "Recovery Engine", src: "img/skills/skill-2.png", boostAmount: 50, description: function() {return `Removing debuffs boosts own Healing Power by ${variableAmountSkill}% (up to a maximum of 150%).`;}},
+    { name: "Rescue License", src: "img/skills/skill-26.png", boostAmount: 40, description: function() {return `Increases HP restored when reviving an ally by ${variableAmountSkill}%.`;}},
+    { name: "Healing License", src: "img/skills/skill-17.png", boostAmount: 30, description: function() {return `Boosts amount of HP healed from using healing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Antibody System", src: "img/skills/skill-24.png", boostAmount: 50, description: function() {return `Shortens duration of debuffs on self by ${variableAmountSkill}%.`;}},
 ];
 
 const skillsGuardianCommander = [
-    { name: "I'll Help", src: "img/skills/skill-13.png"},
-    { name: "Soldier's Potential", src: "img/skills/skill-33.png"},
-    { name: "Protector's Pride", src: "img/skills/skill-18.png"},
-    { name: "Mind for Guarding", src: "img/skills/skill-7.png"},
+    { name: "I'll Help", src: "img/skills/skill-13.png", boostAmount: 20, description: function() {return `Take attacks for nearby allies with low HP. Damage taken is reduced by ${variableAmountSkill}%.`;}},
+    { name: "Soldier's Potential", src: "img/skills/skill-33.png", boostAmount: 1.4, description: function() {return `When HP is at 30% or lower, restore ${variableAmountSkill}% HP each second.`;}},
+    { name: "Protector's Pride", src: "img/skills/skill-18.png", boostAmount: 50, description: function() {return `Boosts recharge speed by ${variableAmountSkill}% when non-Defenders are targeted.`;}},
+    { name: "Mind for Guarding", src: "img/skills/skill-7.png", boostAmount: 20, description: function() {return `Increases damage reduction rate when blocking by ${variableAmountSkill} percentage points.`;}},
 ];
 
 const skillsThaumaturge = [
-    { name: "Wheel of Rebirth", src: "img/skills/skill-2.png"},
-    { name: "Qinggong", src: "img/skills/skill-10.png"},
-    { name: "Ultimate Qigong", src: "img/skills/skill-34.png", boostType: "multiplierDamage", group: "defenseReductionPhysical", flags: ["none"], boostAmount: 50},
-    { name: "Life-Saving Fists", src: "img/skills/skill-14.png"},
+    { name: "Wheel of Rebirth", src: "img/skills/skill-2.png", boostAmount: 900, description: function() {return `Heals all allies using ${variableAmountSkill}% of Healing Power when executing a Burst.`;}},
+    { name: "Qinggong", src: "img/skills/skill-10.png", boostAmount: 35, description: function() {return `Boosts evasion by ${variableAmountSkill}% while moving.`;}},
+    { name: "Ultimate Qigong", src: "img/skills/skill-34.png", boostType: "multiplierDamage", group: "defenseReductionPhysical", flags: ["none"], boostAmount: 50, description: function() {return `When landing a hit, deals damage as though enemy's physical defense was ${variableAmountSkill}% lower.`;}},
+    { name: "Life-Saving Fists", src: "img/skills/skill-14.png", boostAmount: 100, description: function() {return `Heals self when auto-attack hits, to a maximum of ${variableAmountSkill}% of Healing Power.`;}},
 ];
 
 const skillsYumsmith = [
-    { name: "Bangsplosion!", src: "img/skills/skill-22.png"},
-    { name: "Sappy-Sappy Drain!", src: "img/skills/skill-44.png"},
-    { name: "Slicey-Dicey!", src: "img/skills/skill-22.png"},
-    { name: "Preppy-Preppy Link!", src: "img/skills/skill-35.png"},
+    { name: "Bangsplosion!", src: "img/skills/skill-22.png", boostAmount: 300, description: function() {return `Boosts field dissolution damage by ${variableAmountSkill}%.`;}},
+    { name: "Sappy-Sappy Drain!", src: "img/skills/skill-44.png", boostAmount: 25, description: function() {return `Increases success rate of debuff effects by ${variableAmountSkill} percentage points.`;}},
+    { name: "Slicey-Dicey!", src: "img/skills/skill-22.png", boostAmount: 200, description: function() {return `Boosts field damage dealt by ${variableAmountSkill}%.`;}},
+    { name: "Preppy-Preppy Link!", src: "img/skills/skill-35.png", description: function() {return `Fills Chain Attack gauge slightly on Art execution.`;}},
 ];
 
 const skillsFullMetalJaguar = [
@@ -198,17 +198,17 @@ const skillsRoyalSummoner = [
 ];
 
 const skillsNoponicChampion = [
-    { name: "Tit For Tat", src: "img/skills/skill-18.png"},
-    { name: "Nanomachine Repair", src: "img/skills/skill-45.png"},
-    { name: "Velocity Gear", src: "img/skills/skill-10.png"},
-    { name: "Overclock", src: "img/skills/skill-18.png"},
+    { name: "Tit For Tat", src: "img/skills/skill-18.png", boostAmount: 20, description: function() {return `Whenever an ally in a fixed radius is attacked, boosts recharge of one Art at random by ${variableAmountSkill}%.`;}},
+    { name: "Nanomachine Repair", src: "img/skills/skill-45.png", boostAmount: 8, description: function() {return `Adds 25% chance to restore HP by ${variableAmountSkill}% when evading.`;}},
+    { name: "Velocity Gear", src: "img/skills/skill-10.png", boostAmount: 10, description: function() {return `All Arts except Talent Art gain ${variableAmountSkill}% recharge when evading.`;}},
+    { name: "Overclock", src: "img/skills/skill-18.png", boostAmount: 20, description: function() {return `Boosts recharge rate by ${variableAmountSkill}% each time the character is incapacitated (to a maximum of 25%).`;}},
 ];
 
 const skillsLapidarist = [
-    { name: "Star Treatment", src: "img/skills/skill-45.png"},
+    { name: "Star Treatment", src: "img/skills/skill-45.png", boostAmount: 70, description: function() {return `On critical hit, heal nearby allies to max of ${variableAmountSkill}% of Healing Power.`;}},
     { name: "Beaming Edge", src: "img/skills/skill-4.png", boostAmount: 20, boostAmountExtra: 50, description: function() {return `Boosts all allies' Critical Rate by ${variableAmountSkill}% and critical hit damage by ${variableAmountSkillExtra} perc. points. (Does not stack.)`;}},
-    { name: "Fascinator", src: "img/skills/skill-3.png"},
-    { name: "Ring à la Mode", src: "img/skills/skill-1.png"},
+    { name: "Fascinator", src: "img/skills/skill-3.png", boostAmount: 70, description: function() {return `Boosts damage dealt when in range of a field effect by ${variableAmountSkill}%.`;}},
+    { name: "Ring à la Mode", src: "img/skills/skill-1.png", description: function() {return `Increases the maximum number of fields that can be set from 3 to 4. (Does not stack.)	`;}},
 ];
 
 const skillsGrandMarshal = [
