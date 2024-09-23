@@ -93,108 +93,108 @@ const skillsGray = [
 ];
 
 const skillsStrategos = [
-    { name: "Prowess Gambit", src: "img/skills/skill-11.png"},
-    { name: "Sapping Gambit", src: "img/skills/skill-21.png"},
-    { name: "Strengthening Gambit", src: "img/skills/skill-21.png"},
-    { name: "Preemption Gambit", src: "img/skills/skill-23.png"},
+    { name: "Prowess Gambit", src: "img/skills/skill-11.png", boostAmount: 30, description: function() {return `Buffing an ally boosts damage dealt by ${variableAmountSkill}% (up to a maximum of 200%).`;}},
+    { name: "Sapping Gambit", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration timers of debuffs applied to enemies by ${variableAmountSkill}%.`;}},
+    { name: "Strengthening Gambit", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration of buff effects issued by self by ${variableAmountSkill}%.`;}},
+    { name: "Preemption Gambit", src: "img/skills/skill-23.png", boostAmount: 100, description: function() {return `${variableAmountSkill}% chance to grant all allies Attack Up on a preemptive attack.`;}},
 ];
 
 const skillsStalker = [
-    { name: "Swift Death", src: "img/skills/skill-11.png"},
-    { name: "In Cold Blood", src: "img/skills/skill-25.png"},
-    { name: "Evasion Expertise", src: "img/skills/skill-10.png"},
-    { name: "Serene Heart", src: "img/skills/skill-13.png"},
+    { name: "Swift Death", src: "img/skills/skill-11.png", boostAmount: 70, description: function() {return `Deals ${variableAmountSkill}% more damage against enemies who are at 30% HP or less.`;}},
+    { name: "In Cold Blood", src: "img/skills/skill-25.png", boostAmount: 150, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when attacking an enemy suffering from Bleed.`;}},
+    { name: "Evasion Expertise", src: "img/skills/skill-10.png", boostAmount: 50, description: function() {return `${variableAmountSkill}% chance to evade ranged attacks.`;}},
+    { name: "Serene Heart", src: "img/skills/skill-13.png", boostAmount: 50, description: function() {return `Reduces aggro generated from attacks by ${variableAmountSkill}%.`;}},
 ];
 
 const skillsLoneExile = [
-    { name: "Goading Attack", src: "img/skills/skill-13.png"},
-    { name: "Maniac", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], levelThreshold: 99, boostAmount: 50},
-    { name: "Returning the Favor", src: "img/skills/skill-36.png"},
-    { name: "Natural Selection", src: "img/skills/skill-12.png"},
+    { name: "Goading Attack", src: "img/skills/skill-13.png", boostAmount: 60, description: function() {return `Boosts aggro generated from dealing damage by ${variableAmountSkill}%.`;}},
+    { name: "Maniac", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], levelThreshold: 99, boostAmount: 50, description: function() {return `Boosts damage dealt when attacking higher-level enemies by ${variableAmountSkill}%.`;}},
+    { name: "Returning the Favor", src: "img/skills/skill-36.png", boostAmount: 250, description: function() {return `When nearby ally is attacked, deal ${variableAmountSkill}% of attack in damage to enemy.`;}},
+    { name: "Natural Selection", src: "img/skills/skill-12.png", boostAmount: 30, description: function() {return `Reduces damage taken by ${variableAmountSkill}% when HP is at 30% or lower.`;}},
 ];
 
 const skillsIncursor = [
-    { name: "Adroit Blade", src: "img/skills/skill-11.png"},
-    { name: "Floating Kill", src: "img/skills/skill-4.png"},
-    { name: "Vigilance", src: "img/skills/skill-14.png"},
-    { name: "Eye for Weak Points", src: "img/skills/skill-4.png"},
+    { name: "Adroit Blade", src: "img/skills/skill-11.png", boostAmount: 8, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when landing a critical hit (up to a maximum of 150%).`;}},
+    { name: "Floating Kill", src: "img/skills/skill-4.png", boostAmount: 100, description: function() {return `Boosts Critical Rate by ${variableAmountSkill}% when attacking a launched enemy.`;}},
+    { name: "Vigilance", src: "img/skills/skill-14.png", boostAmount: 150, description: function() {return `Boosts Critical Rate of auto-attacks by ${variableAmountSkill}%.`;}},
+    { name: "Eye for Weak Points", src: "img/skills/skill-4.png", boostAmount: 2, description: function() {return `Each successful attack boosts Critical Rate by ${variableAmountSkill}% of initial value (up to a maximum of 100%).`;}},
 ];
 
 const skillsLostVanguard = [
-    { name: "Come an' Get Me!", src: "img/skills/skill-13.png"},
-    { name: "Now That's Tactics!", src: "img/skills/skill-1.png"},
-    { name: "Never Again!", src: "img/skills/skill-42.png"},
-    { name: "Stay Right There!", src: "img/skills/skill-16.png"},
+    { name: "Come an' Get Me!", src: "img/skills/skill-13.png", boostAmount: 200, description: function() {return `When blocking, deals ${variableAmountSkill}% of Attack damage to enemy, drawing aggro.`;}},
+    { name: "Now That's Tactics!", src: "img/skills/skill-1.png", boostAmount: 10, description: function() {return `At start of Chain Attack, increases TP by ${variableAmountSkill}.`;}},
+    { name: "Never Again!", src: "img/skills/skill-42.png", boostAmount: 20, description: function() {return `Grants ${variableAmountSkill}% chance to absorb attacks dealt to allies within range.`;}},
+    { name: "Stay Right There!", src: "img/skills/skill-16.png", boostAmount: 20, description: function() {return `When taking damage, ${variableAmountSkill}% chance to inflict Knockback on assailant.`;}},
 ];
 
 const skillsSignifer = [
-    { name: "Cheer Up, Everyone", src: "img/skills/skill-39.png"},
-    { name: "I've Got Your Backs", src: "img/skills/skill-21.png"},
-    { name: "All About Support", src: "img/skills/skill-1.png"},
-    { name: "We Can Do Better", src: "img/skills/skill-2.png"},
+    { name: "Cheer Up, Everyone", src: "img/skills/skill-39.png", boostAmount: 50, description: function() {return `Restores nearby allies' HP on Art execution. Amount healed is equal to ${variableAmountSkill}% of user's Healing.`;}},
+    { name: "I've Got Your Backs", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration of buff effects issued by self by ${variableAmountSkill}%.`;}},
+    { name: "All About Support", src: "img/skills/skill-1.png", description: function() {return `Increases the no. of Field Arts that can be set to the Arts Palette by 1.`;}},
+    { name: "We Can Do Better", src: "img/skills/skill-2.png", boostAmount: 5, description: function() {return `Restores ${variableAmountSkill}% of HP when a buff is applied.`;}},
 ];
 
 const skillsFiona = [
-    { name: "Cheer Up, Everyone", src: "img/skills/skill-39.png"},
-    { name: "I've Got Your Backs", src: "img/skills/skill-21.png"},
-    { name: "Brightest Star", src: "img/skills/skill-11.png"},
-    { name: "We Can Do Better", src: "img/skills/skill-2.png"},
+    { name: "Cheer Up, Everyone", src: "img/skills/skill-39.png", boostAmount: 60, description: function() {return `Restores nearby allies' HP on Art execution. Amount healed is equal to ${variableAmountSkill}% of user's Healing.`;}},
+    { name: "I've Got Your Backs", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration of buff effects issued by self by ${variableAmountSkill}%.`;}},
+    { name: "Brightest Star", src: "img/skills/skill-11.png", boostAmount: 60, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when HP is at 90% or higher.`;}},
+    { name: "We Can Do Better", src: "img/skills/skill-2.png", boostAmount: 5, description: function() {return `Restores ${variableAmountSkill}% of HP when a buff is applied.`;}},
 ];
 
 const skillsSoulhackerClass = [
     { name: "Soul Hack", src: "img/skills/skill-1.png", description: function() {return `When defeating a unique monster, gain a Skill or Art.`;}},
-    { name: "Power Soul", src: "img/skills/skill-3.png"},
+    { name: "Power Soul", src: "img/skills/skill-3.png", description: function() {return `Changes role to Attacker, giving high attack, but low accuracy.`;}},
     { name: "None", src: "img/skills/skill-0.png"},
     { name: "None", src: "img/skills/skill-0.png"},
 ];
 
 const skillsTriton = [
-    { name: "Underworld Rage", src: "img/skills/skill-11.png"},
+    { name: "Underworld Rage", src: "img/skills/skill-11.png", boostAmount: 100, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% each time an ally is incapacitated (to a maximum of 200%).`;}},
     { name: "Amazing Growth", src: "img/skills/skill-11.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["timeElapsed"], boostIncrement: 0.5, boostMax: 60, description: function() {return `Boosts damage dealt based on the amount of battle time elapsed.`;}},
-    { name: "Recharge Cheer", src: "img/skills/skill-40.png"},
-    { name: "Magic Transmutation", src: "img/skills/skill-11.png"},
+    { name: "Recharge Cheer", src: "img/skills/skill-40.png", boostAmount: 12, description: function() {return `${variableAmountSkill}% chance to keep recharge when using Art.`;}},
+    { name: "Magic Transmutation", src: "img/skills/skill-11.png", boostAmount: 100, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when afflicted with a debuff.`;}},
 ];
 
 const skillsMartialArtist = [
-    { name: "Storm and Stress", src: "img/skills/skill-11.png"},
-    { name: "Flashing Punch", src: "img/skills/skill-14.png"},
-    { name: "Feline Righting Reflex", src: "img/skills/skill-41.png"},
-    { name: "Frenzied Combo", src: "img/skills/skill-18.png"},
+    { name: "Storm and Stress", src: "img/skills/skill-11.png", boostAmount: 20, description: function() {return `Each time you perform a cancel, boosts damage dealt by ${variableAmountSkill}% (to a maximum of 150%).`;}},
+    { name: "Flashing Punch", src: "img/skills/skill-14.png", description: function() {return `Chained auto-attacks increase attack speed. Auto-attack interval is also shortened.`;}},
+    { name: "Feline Righting Reflex", src: "img/skills/skill-41.png", boostAmount: 100, description: function() {return `Ignore Blowdown and Launch by somersaulting. Also has ${variableAmountSkill}% chance to grant Attack Up.`;}},
+    { name: "Frenzied Combo", src: "img/skills/skill-18.png", boostAmount: 30, description: function() {return `On critical hit, recharge Art used by ${variableAmountSkill}%.`;}},
 ];
 
 const skillsTroubadour = [
-    { name: "Endsong", src: "img/skills/skill-18.png"},
-    { name: "Dance of Barrages", src: "img/skills/skill-40.png"},
-    { name: "Dance of Life", src: "img/skills/skill-18.png"},
-    { name: "Swiftsong", src: "img/skills/skill-10.png"},
+    { name: "Endsong", src: "img/skills/skill-18.png", boostAmount: 100, description: function() {return `Recharges all allies' Arts by ${variableAmountSkill}% when incapacitated.`;}},
+    { name: "Dance of Barrages", src: "img/skills/skill-40.png", boostAmount: 12, description: function() {return `${variableAmountSkill}% chance to keep recharge when using Art.`;}},
+    { name: "Dance of Life", src: "img/skills/skill-18.png", boostAmount: 100, description: function() {return `Own Arts gain ${variableAmountSkill}% recharge when an ally is incapacitated.`;}},
+    { name: "Swiftsong", src: "img/skills/skill-10.png", boostAmount: 20, description: function() {return `Boosts all allies' accuracy and evasion by ${variableAmountSkill}%. Does not stack.`;}},
 ];
 
 const skillsSeraph = [
-    { name: "Beast Mode", src: "img/skills/skill-1.png"},
-    { name: "Got the Guts", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdBelow: 85, boostAmount: 100},
-    { name: "Greatest Warrior", src: "img/skills/skill-43.png"},
-    { name: "Universal Annihilation", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy", "launchEnemy"], boostAmount: 150},
+    { name: "Beast Mode", src: "img/skills/skill-1.png", boostAmount: 25, description: function() {return `Grants Awakening when damage taken exceeds ${variableAmountSkill}% of max HP.`;}},
+    { name: "Got the Guts", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdBelow: 85, boostAmount: 100, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when HP is at 85% or lower.`;}},
+    { name: "Greatest Warrior", src: "img/skills/skill-43.png", boostAmount: 35, description: function() {return `Boosts damage by ${variableAmountSkill}% for every enemy in battle (max. 200%).`;}},
+    { name: "Universal Annihilation", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy", "launchEnemy"], boostAmount: 150, description: function() {return `Boosts damage dealt to toppled and launched targets by ${variableAmountSkill}%.`;}},
 ];
 
 const skillsMachineAssassin = [
-    { name: "Chaos Chain", src: "img/skills/skill-11.png"},
-    { name: "Phantom Strike", src: "img/skills/skill-6.png"},
-    { name: "Cursed Edge", src: "img/skills/skill-11.png"},
-    { name: "Anti-Erosion System", src: "img/skills/skill-44.png"},
+    { name: "Chaos Chain", src: "img/skills/skill-11.png", boostAmount: 30, description: function() {return `Debuffing an enemy boosts damage dealt by ${variableAmountSkill}% (up to a maximum of 150%).`;}},
+    { name: "Phantom Strike", src: "img/skills/skill-6.png", boostAmount: 100, description: function() {return `Adds ${variableAmountSkill}% chance for attack to be unblockable.`;}},
+    { name: "Cursed Edge", src: "img/skills/skill-11.png", boostAmount: 70, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when attacking a debuffed enemy.`;}},
+    { name: "Anti-Erosion System", src: "img/skills/skill-44.png", boostAmount: 50, description: function() {return `Grants ${variableAmountSkill}% resistance to all debuffs.`;}},
 ];
 
 const skillsLifesage = [
-    { name: "Steadfast Feelings", src: "img/skills/skill-2.png"},
-    { name: "Instant Regen+", src: "img/skills/skill-45.png"},
-    { name: "Enhanced Cellular Stimulus", src: "img/skills/skill-46.png"},
-    { name: "Abundant Oceans", src: "img/skills/skill-39.png"},
+    { name: "Steadfast Feelings", src: "img/skills/skill-2.png", boostAmount: 50, description: function() {return `Restores nearby allies' HP on Art execution. Amount healed is equal to ${variableAmountSkill}% of user's Healing.`;}},
+    { name: "Instant Regen+", src: "img/skills/skill-45.png", boostAmount: 100, description: function() {return `25% chance to heal using ${variableAmountSkill}% of Healing Power upon taking damage.`;}},
+    { name: "Enhanced Cellular Stimulus", src: "img/skills/skill-46.png", boostAmount: 200, boostAmountExtra: 50, description: function() {return `${variableAmountSkillExtra}% chance on hit to deal ${variableAmountSkill}% of Healing Power as defense-bypassing damage.`;}},
+    { name: "Abundant Oceans", src: "img/skills/skill-39.png", boostAmount: 15, description: function() {return `Reduces damage to allies by ${variableAmountSkill}%, and boosts HP recovery by ${variableAmountSkill}% (does not stack).`;}},
 ];
 
 const skillsRoyalSummoner = [
-    { name: "Elemental Boost", src: "img/skills/skill-20.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["elementalsDischarged"], boostIncrement: 40, boostMax: 400},
-    { name: "Essence of Ether", src: "img/skills/skill-31.png"},
-    { name: "Fortified Ether Guard", src: "img/skills/skill-8.png"},
-    { name: "Here I Shall Stand", src: "img/skills/skill-20.png"},
+    { name: "Elemental Boost", src: "img/skills/skill-20.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["elementalsDischarged"], boostIncrement: 40, boostMax: 400, description: function() {return `Each elemental discharge boosts damage dealt by ${variableAmountSkill}% (up to a maximum of 400%).`;}},
+    { name: "Essence of Ether", src: "img/skills/skill-31.png", boostAmount: 30, boostAmountExtra: 15, description: function() {return `Boosts allies' damage by ${variableAmountSkill}% and reduces enemy Block Rate by ${variableAmountSkillExtra}% (does not stack).`;}},
+    { name: "Fortified Ether Guard", src: "img/skills/skill-8.png", boostAmount: 20, description: function() {return `Boosts Ether Defense by ${variableAmountSkill}%.`;}},
+    { name: "Here I Shall Stand", src: "img/skills/skill-20.png", boostAmount: 100, boostAmountExtra: 50, description: function() {return `Boosts elemental damage by ${variableAmountSkill}% and elemental buff effects by ${variableAmountSkillExtra}%.`;}},
 ];
 
 const skillsNoponicChampion = [
@@ -226,24 +226,24 @@ const skillsMasterDriver = [
 ];
 
 const skillsLuckySevenAttacker = [
-    { name: "Cut In Half", src: "img/skills/skill-27.png"},
-    { name: "Opening Stand", src: "img/skills/skill-18.png"},
-    { name: "Realm of the Master", src: "img/skills/skill-4.png"},
-    { name: "Silent Sword", src: "img/skills/skill-13.png"},
+    { name: "Cut In Half", src: "img/skills/skill-27.png", boostAmount: 5.91, description: function() {return `${variableAmountSkill}% chance to inflict Doom on hit. Does not apply to bosses and unique monsters.`;}},
+    { name: "Opening Stand", src: "img/skills/skill-18.png", boostAmount: 20, description: function() {return `On critical hit, recharge Art used by ${variableAmountSkill}%.`;}},
+    { name: "Realm of the Master", src: "img/skills/skill-4.png", boostAmount: 10, description: function() {return `Boosts damage dealt and Critical Rate by ${variableAmountSkill}% on critical hit`;}},
+    { name: "Silent Sword", src: "img/skills/skill-13.png", boostAmount: 40, description: function() {return `Reduces aggro generated from attacks by ${variableAmountSkill}%.`;}},
 ];
 
 const skillsLuckySevenDefender = [
-    { name: "Flash of Avoidance", src: "img/skills/skill-19.png"},
-    { name: "I Will Take Over", src: "img/skills/skill-13.png"},
-    { name: "Never Again", src: "img/skills/skill-10.png"},
-    { name: "Unwavering Will", src: "img/skills/skill-33.png"},
+    { name: "Flash of Avoidance", src: "img/skills/skill-19.png", boostAmount: 200, description: function() {return `Deals ${variableAmountSkill}% of Attack damage when you evade an attack.`;}},
+    { name: "I Will Take Over", src: "img/skills/skill-13.png", boostAmount: 25, boostAmountExtra: 30, description: function() {return `Gains ${variableAmountSkill} aggro per second and increases attacking aggro generation by ${variableAmountSkillExtra}%.`;}},
+    { name: "Never Again", src: "img/skills/skill-10.png", boostAmount: 2, description: function() {return `Boosts evasion by ${variableAmountSkill}% (up to a maximum of 50%) each time user takes damage.`;}},
+    { name: "Unwavering Will", src: "img/skills/skill-33.png", boostAmount: 30, description: function() {return `Reduces damage taken by allies in a fixed radius by ${variableAmountSkill}%.`;}},
 ];
 
 const skillsLuckySevenHealer = [
-    { name: "Encouragement", src: "img/skills/skill-26.png"},
-    { name: "Extinguishing Bloodlust", src: "img/skills/skill-13.png"},
-    { name: "Indomitable Will", src: "img/skills/skill-1.png"},
-    { name: "Sword of Protection", src: "img/skills/skill-11.png"},
+    { name: "Encouragement", src: "img/skills/skill-26.png", description: function() {return `When helping an incapacitated ally, revives them with the Invincible buff.`;}},
+    { name: "Extinguishing Bloodlust", src: "img/skills/skill-13.png", boostAmount: 40, description: function() {return `Reduces aggro generated from attacks by ${variableAmountSkill}%.`;}},
+    { name: "Indomitable Will", src: "img/skills/skill-1.png", boostAmount: 100, boostAmountExtra: 25, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% and reduces damage taken by ${variableAmountSkillExtra}% while an ally is incapacitated or their HP is at 30% or lower.`;}},
+    { name: "Sword of Protection", src: "img/skills/skill-11.png", boostAmount: 10, description: function() {return `Healing an ally boosts damage dealt by ${variableAmountSkill}% (up to a maximum of 100%).`;}},
 ];
 
 const skillsMaster = [
