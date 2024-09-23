@@ -4,6 +4,8 @@ let MultiplierGroup3Sum;
 let DamageReductionGroupSum;
 let DefenseReductionPhysicalGroupSum;
 let DefenseReductionEtherGroupSum;
+let PhysicalBoostGroupSum;
+let EtherBoostGroupSum;
 let CriticalGroupSum;
 let artMultiplierGroup1Sum;
 let artMultiplierGroup2Sum;
@@ -214,6 +216,8 @@ function getDamageMultipliers() {
     let DamageReductionGroup = [];
     let DefenseReductionPhysicalGroup = [];
     let DefenseReductionEtherGroup = [];
+    let PhysicalBoostGroup = [];
+    let EtherBoostGroup = [];
     let CriticalGroup = [];
 
     const multipliersMap = {
@@ -223,6 +227,8 @@ function getDamageMultipliers() {
         "damageReduction": DamageReductionGroup,
         "defenseReductionPhysical": DefenseReductionPhysicalGroup,
         "defenseReductionEther": DefenseReductionEtherGroup,
+        "physicalBoost": PhysicalBoostGroup,
+        "etherBoost": EtherBoostGroup,
         "critical": CriticalGroup,
     }
   
@@ -398,6 +404,8 @@ function getDamageMultipliers() {
     DamageReductionGroupSum = DamageReductionGroup.reduce((acc, currentValue) => acc + currentValue, 0);
     DefenseReductionPhysicalGroupSum = DefenseReductionPhysicalGroup.reduce((acc, currentValue) => acc + currentValue, 0);
     DefenseReductionEtherGroupSum = DefenseReductionEtherGroup.reduce((acc, currentValue) => acc + currentValue, 0);
+    PhysicalBoostGroupSum = PhysicalBoostGroup.reduce((acc, currentValue) => acc + currentValue, 0);
+    EtherBoostGroupSum = EtherBoostGroup.reduce((acc, currentValue) => acc + currentValue, 0);
 
     if (flags["critical"]) {
         CriticalGroupSum = 25 + (CriticalGroup.reduce((acc, currentValue) => acc + currentValue, 0));

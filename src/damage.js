@@ -42,12 +42,19 @@ function damage(damageRatio, attribute, weaponStability, range) {
 
     let defenseMultiplierPhysical = defenseEnemyPhysical - DefenseReductionPhysicalGroupSum;
     let defenseMultiplierEther = defenseEnemyEther - DefenseReductionEtherGroupSum;
-    let defenseMultiplier;
+    let defenseMultiplier = 0;
+    let attributeDamageBoost = 0;
     if (attribute === "physical") {
         defenseMultiplier = defenseMultiplierPhysical;
+        if (damageRatio != 60) {
+            attributeDamageBoost = PhysicalBoostGroupSum;
+        }
     }
     else if (attribute === "ether") {
         defenseMultiplier = defenseMultiplierEther;
+        if (damageRatio !== 60) {
+            attributeDamageBoost = EtherBoostGroupSum;
+        }
     }
 
     let blockedMultiplier;
@@ -74,7 +81,7 @@ function damage(damageRatio, attribute, weaponStability, range) {
 
     uncapped_damage = (statAttack + Math.floor(weaponAttack * weaponStability))
                   * powerMultiplier * multiHitCorrection
-                  * (1 + (MultiplierGroup1Sum + artMultiplierGroup1Sum + fusionBoostSum)/100)
+                  * (1 + (MultiplierGroup1Sum + artMultiplierGroup1Sum + fusionBoostSum + attributeDamageBoost)/100)
                   * (1 + (MultiplierGroup2Sum + artMultiplierGroup2Sum)/100)
                   * (1 + (MultiplierGroup3Sum + artMultiplierGroup3Sum)/100)
                   * (1 - (DamageReductionGroupSum)/100)
