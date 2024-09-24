@@ -33,6 +33,7 @@ const flags = {
     "enemyBlocked": false,
     "boss": false,
     "unique": false,
+    "performingArt": false,
 
     "attackUpPlayer": false,
     "defenseUpPlayer": false,
