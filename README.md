@@ -11,6 +11,8 @@ This is a calculator to help you experiment with team building in Xenoblade Chro
 - This is in order to assist players in understanding various mechanics and allow for ease of experimentation for finding what will produce better results while minimizing the time and resource investments that would otherwise be necessary for the user to determine the same results in-game.
 - **THIS WEBPAGE CONTAINS SPOILERS PERTAINING TO CLASSES, HEROES, ARTS, AND OTHER MECHANICS THAT ARE OBTAINED IN XENOBLADE CHRONICLES 3 AND XENOBLADE CHRONICLES 3: FUTURE REDEEMED. USER DISCRETION IS ADVISED FOR THOSE WHO HAVE NOT COMPLETED XENOBLADE CHRONICLES 3 AND XENOBLADE CHRONICLES 3: FUTURE REDEEMED.**
 
+![ProjectPhoto1](https://github.com/user-attachments/assets/e53d7f2c-53cd-4116-8ced-10db232382ab)
+
 ## Usage
 
 ### Character:
@@ -24,6 +26,8 @@ This is a calculator to help you experiment with team building in Xenoblade Chro
 - Changing the current Hero functions identically.
 - (Class Ranks cannot be be changed at this time and all classes are locked to Rank 20).
 - The current Class's weapon can be upgraded (including weapons that cannot normally be upgraded. Weapon upgrades are applied to all weapons used by the character's current Arts).
+
+![ProjectPhoto2](https://github.com/user-attachments/assets/2ce05924-5301-4d3b-9a6f-ede9a5aa243f)
 
 ### Skills:
 - The character's current Class Skills can be viewed for their effects and conditions.
@@ -53,6 +57,8 @@ Class Skills cannot be changed without changing the Class.
 - Other conditions such as the character's position, the enemy's type, and the enemy's defenses can also be set.
 - Checks and incremental values that act as the trigger for the effects of different Skills and accessories, such as if the attack was a critical hit, if it was blocked, the character's current remaining HP, or how many enemies are present, can also be modified.
 - The character's level can also be set from 1 to 99, affecting their stats.
+
+![ProjectPhoto4](https://github.com/user-attachments/assets/2d983e54-db1f-4635-819e-afeb6117f7ce)
 
 ### Damage:
 - The damage of the character's Auto-Attacks, Master Arts, Class Arts, Talent Art, Fusion Arts, and Chain Art are calculated and displayed.
