@@ -68,7 +68,7 @@ const skillsThaumaturge = [
     { name: "Wheel of Rebirth", src: "img/skills/skill-2.png", boostAmount: 900, description: function() {return `Heals all allies using ${variableAmountSkill}% of Healing Power when executing a Burst.`;}},
     { name: "Qinggong", src: "img/skills/skill-10.png", boostAmount: 35, description: function() {return `Boosts evasion by ${variableAmountSkill}% while moving.`;}},
     { name: "Ultimate Qigong", src: "img/skills/skill-34.png", boostType: "multiplierDamage", group: "defenseReductionPhysical", flags: ["none"], boostAmount: 50, description: function() {return `When landing a hit, deals damage as though enemy's physical defense was ${variableAmountSkill}% lower.`;}},
-    { name: "Life-Saving Fists", src: "img/skills/skill-14.png", boostAmount: 100, description: function() {return `Heals self when auto-attack hits, to a maximum of ${variableAmountSkill}% of Healing Power.`;}},
+    { name: "Life-Saving Fists", src: "img/skills/skill-14.png", boostAmount: 100, description: function() {return `Heals self when auto-attack hits, to a maximum of 100% of Healing Power.`;}},
 ];
 
 const skillsYumsmith = [
@@ -267,7 +267,7 @@ const skillsMaster = [
     { name: "Protector's Pride", src: "img/skills/skill-18.png", boostAmount: 50, description: function() {return `Boosts recharge speed by ${variableAmountSkill}% when non-Defenders are targeted.`;}},
     { name: "Mind for Guarding", src: "img/skills/skill-7.png", boostAmount: 20, description: function() {return `Increases damage reduction rate when blocking by ${variableAmountSkill} percentage points.`;}},
     { name: "Ultimate Qigong", src: "img/skills/skill-34.png", boostType: "multiplierDamage", group: "defenseReductionPhysical", flags: ["none"], boostAmount: 50, description: function() {return `When landing a hit, deals damage as though enemy's physical defense was ${variableAmountSkill}% lower.`;}},
-    { name: "Life-Saving Fists", src: "img/skills/skill-14.png", description: function() {return `Heals self when auto-attack hits, to a maximum of ${variableAmountSkill}% of Healing Power.`;}},
+    { name: "Life-Saving Fists", src: "img/skills/skill-14.png", description: function() {return `Heals self when auto-attack hits, to a maximum of 100% of Healing Power.`;}},
     { name: "Sappy-Sappy Drain!", src: "img/skills/skill-44.png", boostAmount: 25, description: function() {return `Increases success rate of debuff effects by ${variableAmountSkill} percentage points.`;}},
     { name: "Slicey Dicey!", src: "img/skills/skill-22.png", boostAmount: 200, description: function() {return `Boosts field damage dealt by ${variableAmountSkill}%.`;}},
     { name: "Postioning Pro", src: "img/skills/skill-1.png", description: function() {return `Increases the no. of positional Arts that can be set to the Arts Palette by 1.`;}},
