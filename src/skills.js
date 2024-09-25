@@ -275,7 +275,7 @@ const skillsMaster = [
     { name: "Strengthening Gambit", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration of buff effects issued by self by ${variableAmountSkill}%.`;}},
     { name: "Preemption Gambit", src: "img/skills/skill-23.png", boostAmount: 100, description: function() {return `${variableAmountSkill}% chance to grant all allies Attack Up on a preemptive attack.`;}},
     { name: "Evasion Expertise", src: "img/skills/skill-10.png", boostAmount: 50, description: function() {return `${variableAmountSkill}% chance to evade ranged attacks.`;}},
-    { name: "Swift Death", src: "img/skills/skill-11.png", boostAmount: 70, description: function() {return `Deals ${variableAmountSkill}% more damage against enemies who are at 30% HP or less.`;}},
+    { name: "Swift Death", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdBelowEnemy: 30, boostAmount: 70, description: function() {return `Deals ${variableAmountSkill}% more damage against enemies who are at 30% HP or less.`;}},
     { name: "Natural Selection", src: "img/skills/skill-12.png", boostAmount: 30, description: function() {return `Reduces damage taken by ${variableAmountSkill}% when HP is at 30% or lower.`;}},
     { name: "Maniac", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], levelThreshold: 99, boostAmount: 50, description: function() {return `Boosts damage dealt when attacking higher-level enemies by ${variableAmountSkill}%.`;}},
     { name: "Vigilance", src: "img/skills/skill-14.png", boostAmount: 150, description: function() {return `Boosts Critical Rate of auto-attacks by ${variableAmountSkill}%.`;}},

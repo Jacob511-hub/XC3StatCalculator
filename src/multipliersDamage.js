@@ -259,6 +259,7 @@ function getDamageMultipliers() {
         "timeElapsed": document.getElementById('time-elapsed').value,
         "launchTime": document.getElementById('launch-time').value,
         "currentHpPlayer": document.getElementById('current-hp-player').value,
+        "currentHpEnemy": document.getElementById('current-hp-enemy').value,
         "enemyLevel": document.getElementById('enemy-level').value,
         "elementalsDischarged": document.getElementById('elementals-discharged').value,
         "summonedFlares": document.getElementById('summoned-flares').value,
@@ -342,6 +343,16 @@ function getDamageMultipliers() {
             }
             else if (allSkills[skill].hasOwnProperty("hpThresholdAbove")) {
                 if (incrementalsMap["currentHpPlayer"] >= allSkills[skill].hpThresholdAbove) {
+                    multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
+                }
+            }
+            else if (allSkills[skill].hasOwnProperty("hpThresholdBelowEnemy")) {
+                if (incrementalsMap["currentHpEnemy"] <= allSkills[skill].hpThresholdBelowEnemy) {
+                    multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
+                }
+            }
+            else if (allSkills[skill].hasOwnProperty("hpThresholdAboveEnemy")) {
+                if (incrementalsMap["currentHpEnemy"] >= allSkills[skill].hpThresholdAboveEnemy) {
                     multipliersMap[allSkills[skill].group].push(allSkills[skill].boostAmount);
                 }
             }
