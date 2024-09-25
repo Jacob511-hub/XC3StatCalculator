@@ -289,7 +289,7 @@ const skillsMaster = [
     { name: "Frenzied Combo", src: "img/skills/skill-18.png", boostAmount: 30, description: function() {return `On critical hit, recharge Art used by ${variableAmountSkill}%.`;}},
     { name: "Dance of Barrages", src: "img/skills/skill-40.png", boostAmount: 12, description: function() {return `${variableAmountSkill}% chance to keep recharge when using Art.`;}},
     { name: "Swiftsong", src: "img/skills/skill-10.png", boostAmount: 20, description: function() {return `Boosts all allies' accuracy and evasion by ${variableAmountSkill}%. Does not stack.`;}},
-    { name: "Greatest Warrior", src: "img/skills/skill-43.png", boostAmount: 35, description: function() {return `Boosts damage by ${variableAmountSkill}% for every enemy in battle (max. 200%).`;}},
+    { name: "Greatest Warrior", src: "img/skills/skill-43.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["enemiesNumber"], boostIncrement: 35, boostMax: 200, description: function() {return `Boosts damage by ${variableAmountSkill}% for every enemy in battle (max. 200%).`;}},
     { name: "Universal Annihilation", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy", "launchEnemy"], boostAmount: 150, description: function() {return `Boosts damage dealt to toppled and launched targets by ${variableAmountSkill}%.`;}},
     { name: "Cursed Edge", src: "img/skills/skill-11.png", boostAmount: 70, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when attacking a debuffed enemy.`;}},
     { name: "Anti-Erosion System", src: "img/skills/skill-44.png", boostAmount: 50, description: function() {return `Grants ${variableAmountSkill}% resistance to all debuffs.`;}},
