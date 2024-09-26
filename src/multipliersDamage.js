@@ -257,10 +257,13 @@ function getDamageMultipliers() {
         "buffsUser": playerBuffsActiveCount,
         "usedTalents": document.getElementById('used-talents').value,
         "timeElapsed": document.getElementById('time-elapsed').value,
+
         "launchTime": document.getElementById('launch-time').value,
+
         "currentHpPlayer": document.getElementById('current-hp-player').value,
         "currentHpEnemy": document.getElementById('current-hp-enemy').value,
         "enemyLevel": document.getElementById('enemy-level').value,
+
         "elementalsDischarged": document.getElementById('elementals-discharged').value,
         "summonedFlares": document.getElementById('summoned-flares').value,
         "summonedEarths": document.getElementById('summoned-earths').value,

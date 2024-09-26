@@ -23,14 +23,14 @@ const skillsMedicGunner = [
 ];
 
 const skillsTactician = [
-    { name: "Ethereal Ability", src: "img/skills/skill-30.png", boostAmount: 50, description: function() {return `Boosts damage dealt by ether Arts by ${variableAmountSkill}%.`;}},
+    { name: "Ethereal Ability", src: "img/skills/skill-30.png", boostType: "multiplierDamage", group: "etherBoost", flags: ["none"], boostAmount: 50, description: function() {return `Boosts damage dealt by ether Arts by ${variableAmountSkill}%.`;}},
     { name: "Shieldrender", src: "img/skills/skill-6.png", boostAmount: 100, description: function() {return `Adds ${variableAmountSkill}% chance for attack to be unblockable.`;}},
     { name: "Eternal Curse", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration timers of debuffs applied to enemies by ${variableAmountSkill}%.`;}},
     { name: "Inevitable Evitability", src: "img/skills/skill-10.png", boostAmount: 10, description: function() {return `${variableAmountSkill}% chance to evade enemy attack.`;}},
 ];
 
 const skillsHeavyGuard = [
-    { name: "Defensive Soul", src: "img/skills/skill-7.png", boostAmount: 20, description: function() {return `Boosts Physical Defense by ${variableAmountSkill}%.`;}},
+    { name: "Defensive Soul", src: "img/skills/skill-7.png", boostType: "multiplier", boostStat: "physical", boostAmount: 20, description: function() {return `Boosts Physical Defense by ${variableAmountSkill}%.`;}},
     { name: "I'll Protect You", src: "img/skills/skill-5.png", boostAmount: 30, description: function() {return `Reduces damage taken by allies in a fixed radius by ${variableAmountSkill}%.`;}},
     { name: "Aggravator", src: "img/skills/skill-13.png", description: function() {return `Accrues Aggro every second.`;}},
     { name: "Tenacious Blocker", src: "img/skills/skill-5.png", boostAmount: 50, description: function() {return `Boosts Block Rate by ${variableAmountSkill} percentage points when HP is at 30% or lower.`;}},
@@ -39,8 +39,8 @@ const skillsHeavyGuard = [
 const skillsOgre = [
     { name: "Insult to Injury", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: ["toppleEnemy"], boostAmount: 150, description: function() {return `Boosts damage dealt when attacking toppled enemies by ${variableAmountSkill}%.`;}},
     { name: "Fury Smash", src: "img/skills/skill-15.png", boostAmount: 45, description: function() {return `Increases reaction success rate by ${variableAmountSkill} percentage points`;}},
-    { name: "Fighting Prowess", src: "img/skills/skill-29.png", boostAmount: 50, description: function() {return `Boosts damage dealt by physical Arts by ${variableAmountSkill}%.`;}},
-    { name: "Dynamite Spirit", src: "img/skills/skill-11.png", boostAmount: 60, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when HP is at 90% or higher.`;}},
+    { name: "Fighting Prowess", src: "img/skills/skill-29.png", boostType: "multiplierDamage", group: "physicalBoost", flags: ["none"], boostAmount: 50, description: function() {return `Boosts damage dealt by physical Arts by ${variableAmountSkill}%.`;}},
+    { name: "Dynamite Spirit", src: "img/skills/skill-11.png", boostType: "multiplierDamage", group: "1", flags: [undefined], hpThresholdAbove: 90, boostAmount: 60, description: function() {return `Boosts damage dealt by ${variableAmountSkill}% when HP is at 90% or higher.`;}},
 ];
 
 const skillsFlashFencer = [
@@ -81,19 +81,19 @@ const skillsYumsmith = [
 const skillsFullMetalJaguar = [
     { name: "Sixth Sense", src: "img/skills/skill-38.png", boostAmount: 100, description: function() {return `Boosts accuracy against enemies performing Arts by ${variableAmountSkill}%.`;}},
     { name: "Positioning Pro", src: "img/skills/skill-1.png", description: function() {return `Increases the no. of positional Arts that can be set to the Arts Palette by 1.`;}},
-    { name: "Shock Shot", src: "img/skills/skill-38.png", boostAmount: 100, description: function() {return `Boosts damage against enemies performing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Shock Shot", src: "img/skills/skill-38.png", boostType: "multiplierDamage", group: "1", flags: ["performingArt"], boostAmount: 100, description: function() {return `Boosts damage against enemies performing Arts by ${variableAmountSkill}%.`;}},
     { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["hitsSuccessive"], boostIncrement: 20, boostMax: 255, description: function() {return `Each attack that hits boosts damage dealt by ${variableAmountSkill}% (max. 255%). Missing cancels the boost.`;}},
 ];
 
 const skillsGray = [
     { name: "Sixth Sense", src: "img/skills/skill-38.png", boostAmount: 100, description: function() {return `Boosts accuracy against enemies performing Arts by ${variableAmountSkill}%.`;}},
     { name: "Precision Shot", src: "img/skills/skill-14.png", boostAmount: 150, description: function() {return `Boosts accuracy of auto-attacks by ${variableAmountSkill}%.`;}},
-    { name: "Shock Shot", src: "img/skills/skill-38.png", boostAmount: 100, description: function() {return `Boosts damage against enemies performing Arts by ${variableAmountSkill}%.`;}},
+    { name: "Shock Shot", src: "img/skills/skill-38.png", boostType: "multiplierDamage", group: "1", flags: ["performingArt"], boostAmount: 100, description: function() {return `Boosts damage against enemies performing Arts by ${variableAmountSkill}%.`;}},
     { name: "Bullet Symphony", src: "img/skills/skill-37.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["hitsSuccessive"], boostIncrement: 20, boostMax: 255, description: function() {return `Each attack that hits boosts damage dealt by ${variableAmountSkill}% (max. 255%). Missing cancels the boost.`;}},
 ];
 
 const skillsStrategos = [
-    { name: "Prowess Gambit", src: "img/skills/skill-11.png", boostAmount: 30, description: function() {return `Buffing an ally boosts damage dealt by ${variableAmountSkill}% (up to a maximum of 200%).`;}},
+    { name: "Prowess Gambit", src: "img/skills/skill-11.png", boostType: "multiplierDamageIncremental", group: "1", flags: ["buffsApplied"], boostIncrement: 30, boostMax: 200, description: function() {return `Buffing an ally boosts damage dealt by ${variableAmountSkill}% (up to a maximum of 200%).`;}},
     { name: "Sapping Gambit", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration timers of debuffs applied to enemies by ${variableAmountSkill}%.`;}},
     { name: "Strengthening Gambit", src: "img/skills/skill-21.png", boostAmount: 50, description: function() {return `Extends duration of buff effects issued by self by ${variableAmountSkill}%.`;}},
     { name: "Preemption Gambit", src: "img/skills/skill-23.png", boostAmount: 100, description: function() {return `${variableAmountSkill}% chance to grant all allies Attack Up on a preemptive attack.`;}},
