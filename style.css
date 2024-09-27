@@ -729,7 +729,7 @@ h1 {
     background-repeat: no-repeat;
     border: 10px solid #2c2c2c;
     width: 600px;
-    height: 90%;
+    height: 92%;
     animation: dropdown 0.4s;
     display: flex;
     flex-direction: column;

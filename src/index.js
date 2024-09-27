@@ -1128,7 +1128,30 @@ function populateMenuArts() {
 
         const ratio = document.createElement("p");
         ratio.className = "info-text-arts-modal";
-        ratio.textContent = "Power Multiplier: " + artList[index].ratio + "%";
+        let artAttribute = "";
+        let colorAttribute = "white";
+        if (artList[index].attribute === "physical") {
+            artAttribute = "Physical";
+            colorAttribute = "red";
+        }
+        else if (artList[index].attribute === "ether") {
+            artAttribute = "Ether";
+            colorAttribute = "#c002fa";
+        }
+        else if (artList[index].attribute === "heal") {
+            artAttribute = "Heal";
+            colorAttribute = "#22d40f";
+        }
+        else if (artList[index].attribute === "buff") {
+            artAttribute = "Buff";
+            colorAttribute = "#0059ff";
+        }
+        else if (artList[index].attribute === "field") {
+            artAttribute = "Field";
+            colorAttribute = "#66ff00";
+        }
+
+        ratio.innerHTML = "Power Multiplier: " + artList[index].ratio + "% | Attribute: <span style='color: " + colorAttribute + "'>" + artAttribute + "</span>";
         ratio.style.textDecoration = "underline";
         
         const description = document.createElement("p");
