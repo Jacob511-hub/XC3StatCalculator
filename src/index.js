@@ -1204,6 +1204,162 @@ function populateMenuArts() {
     }
 }
 
+const artInfo = document.getElementsByClassName("showArtInfo");
+
+artInfo[0].addEventListener("click", function() {
+    artsInfoMenu();
+})
+
+function artsInfoMenu() {
+    parent = document.getElementById("classList");
+    clearMenu();
+    populateMenuCurrentArts();
+    modalHeader.textContent = "Currently Equipped Arts"
+    classMenu = document.getElementById("classModal");
+    classMenu.style.display = "flex";
+    document.body.classList.add("lock-scroll");
+}
+
+function populateMenuCurrentArts() {
+    const artKeys = Object.keys(noahConfig.arts);
+    let obj = getConfig();
+
+    let masterArt1 = obj.arts[artKeys[0]];
+    let masterArt2 = obj.arts[artKeys[1]];
+    let masterArt3 = obj.arts[artKeys[2]];
+    let classArt1 = obj.arts[artKeys[3]];
+    let classArt2 = obj.arts[artKeys[4]];
+    let classArt3 = obj.arts[artKeys[5]];
+    let talentArt = obj.arts[artKeys[6]];
+
+    let allArts = [classArt1, classArt2, classArt3, masterArt1, masterArt2, masterArt3, talentArt];
+
+    let talentList;
+    if (currentCharacter === "noahConfig") {
+        if (SoulhackerRoles.some(item => item.name === obj.class)) {
+            talentList = talentArtsNoah.concat(talentArts[18]);
+        }
+        else if (obj.class === "Lucky Seven (Attacker)") {
+            talentList = artsLuckySevenAttacker;
+        }
+        else if (obj.class === "Lucky Seven (Defender)") {
+            talentList = artsLuckySevenDefender;
+        }
+        else if (obj.class === "Lucky Seven (Healer)") {
+            talentList = artsLuckySevenHealer;
+        }
+        else {
+            talentList = talentArtsNoah.concat(talentArts);
+        }
+    }
+    else if (currentCharacter === "mioConfig") {
+        let obj = getConfig();
+        if (SoulhackerRoles.some(item => item.name === obj.class)) {
+            talentList = talentArtsMio.concat(talentArts[18]);
+        }
+        else {
+            talentList = talentArtsMio.concat(talentArts);
+        }
+    }
+    else {
+        talentList = talentArts;
+    }
+
+    for (let index = 0; index < allArts.length; index++) {
+        let loadedArt;
+        if (allArts[index] === null || allArts[index] === "None" || allArts[index] === undefined) {
+            continue;
+        }
+        else {
+            if (index < 3) {
+                item = classArts.findIndex(item => item.name === allArts[index]);
+                loadedArt = classArts[item];
+            }
+            else if (index >= 3 && index !== 6) {
+                item = masterArts.findIndex(item => item.name === allArts[index]);
+                loadedArt = masterArts[item];
+            }
+            else if (index === 6) {
+                item = talentList.findIndex(item => item.name === allArts[index]);
+                loadedArt = talentList[item];
+            }
+        }
+        const container = document.createElement("div");
+        container.className = "horizontal-fields";
+        container.classList.add("horizontal-fields-modal");
+        const textContainer = document.createElement("div");
+        textContainer.className = "name-description-container";
+
+        const modalIcon = document.createElement("div");
+        modalIcon.className = "modal-icon";
+        const artSlot = document.createElement("div");
+        artSlot.className = "artSlotModal";
+
+        const name = document.createElement("h1");
+        name.className = "info-text-arts-modal";
+        name.textContent = loadedArt.name;
+
+        const ratio = document.createElement("p");
+        ratio.className = "info-text-arts-modal";
+        let artAttribute = "";
+        let colorAttribute = "white";
+        if (loadedArt.attribute === "physical") {
+            artAttribute = "Physical";
+            colorAttribute = "red";
+        }
+        else if (loadedArt.attribute === "ether") {
+            artAttribute = "Ether";
+            colorAttribute = "#c002fa";
+        }
+        else if (loadedArt.attribute === "heal") {
+            artAttribute = "Heal";
+            colorAttribute = "#22d40f";
+        }
+        else if (loadedArt.attribute === "buff") {
+            artAttribute = "Buff";
+            colorAttribute = "#0059ff";
+        }
+        else if (loadedArt.attribute === "field") {
+            artAttribute = "Field";
+            colorAttribute = "#66ff00";
+        }
+
+        ratio.innerHTML = "Power Multiplier: " + loadedArt.ratio + "% | Attribute: <span style='color: " + colorAttribute + "'>" + artAttribute + "</span>";
+        ratio.style.textDecoration = "underline";
+        
+        const description = document.createElement("p");
+        description.className = "info-text-arts-modal";
+        variableAmountArt = loadedArt.boostAmount;
+        if (typeof loadedArt.description === 'function') {
+            description.textContent = loadedArt.description();
+        }
+
+        let artImage = new Array(4);
+
+        for (let indexA = 0; indexA < 4; indexA++) {
+            artImage[indexA] = document.createElement("img");
+            artImage[indexA].className = "art-features";
+        }
+        artImage[0].src = loadedArt.recharge;
+        artImage[1].src = loadedArt.reaction;
+        artImage[2].src = loadedArt.aoe;
+        artImage[3].src = loadedArt.type;
+
+        modalIcon.appendChild(artSlot);
+        container.appendChild(modalIcon);
+        textContainer.appendChild(name);
+        textContainer.appendChild(ratio);
+        textContainer.appendChild(description);
+        container.appendChild(textContainer);
+
+        for (let indexA = 0; indexA < 4; indexA++) {
+            artSlot.appendChild(artImage[indexA]);
+        }
+        const element = document.getElementById("classList");
+        element.appendChild(container);
+    }
+}
+
 const gemButtons = document.getElementsByClassName("gem");
 const gemText = document.getElementsByClassName("gem-text");
 const gemDescription = document.getElementsByClassName("gem-description");

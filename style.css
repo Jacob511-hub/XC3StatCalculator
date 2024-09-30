@@ -237,6 +237,7 @@ h1 {
 
 #arts {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -978,6 +979,21 @@ h1 {
     height: auto;
 }
 
+.showArtInfo {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    max-width: 64px;
+    z-index: 98;
+    height: auto;
+    cursor: pointer;
+}
+
+.showArtInfo img {
+    width: 100%;
+    height: auto;
+}
+
 .accordion-button-custom {
     border-radius: 15px;
 }
@@ -1455,5 +1471,10 @@ h1 {
     .talentSlot {
         min-width: 140px;
         min-height: 140px;
+    }
+
+    .showArtInfo {
+        max-width: 128px;
+        width: 100%;
     }
 }
