@@ -586,6 +586,7 @@ function getSkillsByClass(characterStored) {
                 modalHeader.textContent = "Soulhacker Role Menu"
                 classMenu = document.getElementById("classModal");
                 classMenu.style.display = "flex";
+                parent.scrollTop = 0;
                 document.body.classList.add("lock-scroll");
             }
         })
@@ -764,6 +765,7 @@ classButton.onclick = function() {
     modalHeader.textContent = "Class Menu"
     classMenu = document.getElementById("classModal");
     classMenu.style.display = "flex";
+    parent.scrollTop = 0;
     document.body.classList.add("lock-scroll");
 }
 
@@ -872,6 +874,7 @@ function skillsMenu() {
     modalHeader.textContent = "Skill Menu"
     classMenu = document.getElementById("classModal");
     classMenu.style.display = "flex";
+    parent.scrollTop = 0;
     document.body.classList.add("lock-scroll");
 }
 
@@ -954,6 +957,7 @@ function skillsInfoMenu() {
     modalHeader.textContent = "Currently Equipped Skills"
     classMenu = document.getElementById("classModal");
     classMenu.style.display = "flex";
+    parent.scrollTop = 0;
     document.body.classList.add("lock-scroll");
 }
 
@@ -1074,6 +1078,7 @@ function artsMenu() {
     modalHeader.textContent = "Arts Menu"
     classMenu = document.getElementById("classModal");
     classMenu.style.display = "flex";
+    parent.scrollTop = 0;
     document.body.classList.add("lock-scroll");
 }
 
@@ -1217,6 +1222,7 @@ function artsInfoMenu() {
     modalHeader.textContent = "Currently Equipped Arts"
     classMenu = document.getElementById("classModal");
     classMenu.style.display = "flex";
+    parent.scrollTop = 0;
     document.body.classList.add("lock-scroll");
 }
 
@@ -1378,6 +1384,7 @@ for (let index = 0; index < gemButtons.length; index++) {
         classMenu = document.getElementById("gemsModal");
         populateMenuGems();
         classMenu.style.display = "flex";
+        parent.scrollTop = 0;
         document.body.classList.add("lock-scroll");
     })
     gemRemove[index].addEventListener("click", function() {
@@ -1495,6 +1502,7 @@ for (let index = 0; index < accessoryButtons.length; index++) {
         classMenu = document.getElementById("accessoriesModal");
         populateMenuAccessories();
         classMenu.style.display = "flex";
+        parent.scrollTop = 0;
         document.body.classList.add("lock-scroll");
     })
     accessoryRemove[index].addEventListener("click", function() {
