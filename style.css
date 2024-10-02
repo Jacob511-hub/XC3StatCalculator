@@ -749,7 +749,7 @@ h1 {
     align-items: center;
     justify-content: center;
     height: 100px;
-    width: 100px;
+    min-width: 100px;
     cursor: pointer;
     border-radius: 15px;
 }
