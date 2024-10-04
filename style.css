@@ -429,7 +429,10 @@ h1 {
     width: 95%;
     justify-content: flex-start;
     cursor: pointer;
-    transition: background-color 0.2s;
+    background-color: #00000000;
+    background-image: linear-gradient(#62221ec2, #95472fc2);
+    box-shadow: 0 0 0 .10rem #ffebdac2;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .horizontal-fields-modal:hover {
