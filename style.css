@@ -68,6 +68,7 @@ h1 {
     padding: 10px;
     background-color: rgba(0,0,0,0.4);
     border-radius: 15px;
+    box-shadow: 0 0 0 .15rem #ffebdac2;
 }
 
 #center {
@@ -132,6 +133,7 @@ h1 {
     align-items: center;
     background-color: rgba(0,0,0,0.4);
     border-radius: 12px;
+    box-shadow: 0 0 0 .15rem #ffebdac2;
 }
 
 #statuses {
@@ -144,6 +146,14 @@ h1 {
     overflow-y: auto;
     background-color: rgba(0,0,0,0.4);
     border-radius: 15px;
+    box-shadow: 0 0 0 .15rem #ffebdac2;
+}
+
+#scrollableContentStatuses {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 #damageNumbers {
@@ -155,9 +165,17 @@ h1 {
     height: 100%;
     margin-left: 10px;
     margin-right: 10px;
-    overflow-y: auto;
+    overflow: hidden;
     background-color: rgba(0,0,0,0.4);
     border-radius: 15px;
+    box-shadow: 0 0 0 .15rem #ffebdac2;
+}
+
+#scrollableContentDamage {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 #equipment {
@@ -170,6 +188,7 @@ h1 {
     height: 100%;
     background-color: rgba(0,0,0,0.4);
     border-radius: 15px;
+    box-shadow: 0 0 0 .15rem #ffebdac2;
 }
 
 #gems {
@@ -194,6 +213,7 @@ h1 {
     gap: 5px;
     background-color: rgba(0,0,0,0.4);
     border-radius: 15px;
+    box-shadow: 0 0 0 .15rem #ffebdac2;
 }
 
 #class {
@@ -221,6 +241,7 @@ h1 {
     padding: 10px;
     background-color: rgba(0,0,0,0.4);
     border-radius: 15px;
+    box-shadow: 0 0 0 .15rem #ffebdac2;
 }
 
 #classSkills {
@@ -245,6 +266,7 @@ h1 {
     padding: 5px;
     background-color: rgba(0,0,0,0.4);
     border-radius: 15px;
+    box-shadow: 0 0 0 .15rem #ffebdac2;
 }
 
 #masterArts {
@@ -889,7 +911,7 @@ h1 {
 }
 
 .calc-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     margin: 10px;
     font-size: x-large;
@@ -1229,14 +1251,17 @@ h1 {
     }
 
     #statuses {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        width: auto;
+        order: 2;
         margin-left: 10px;
         margin-right: 10px;
+        width: auto;
         box-sizing: border-box;
+    }
+
+    #scrollableContentStatuses {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         border-radius: 15px;
-        order: 2;
     }
 
     #equipment {
