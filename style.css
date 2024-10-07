@@ -68,7 +68,7 @@ h1 {
     padding: 10px;
     background-color: rgba(0,0,0,0.4);
     border-radius: 15px;
-    box-shadow: 0 0 0 .15rem #ffebdac2;
+    box-shadow: 0 0 0 .10rem #ffebdac2;
 }
 
 #center {
@@ -133,7 +133,7 @@ h1 {
     align-items: center;
     background-color: rgba(0,0,0,0.4);
     border-radius: 12px;
-    box-shadow: 0 0 0 .15rem #ffebdac2;
+    box-shadow: 0 0 0 .10rem #ffebdac2;
 }
 
 #statuses {
@@ -1143,6 +1143,7 @@ h1 {
         margin: 0;
         padding-top: 0px;
         padding-bottom: 10px;
+        box-shadow: 0 0 0 0rem rgba(0, 0, 0, 0);
     }
     
     #characters {
