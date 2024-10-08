@@ -818,7 +818,10 @@ function populateMenu() {
         const name = document.createElement("h1");
         name.className = "info-text-3";
         name.textContent = menuList[index].name;
-        if (menuList === SoulhackerRoles) {
+        if (menuList === heroIcons) {
+            name.textContent = menuList[index].name + " | " + menuList[index].class;
+        }
+        else if (menuList === SoulhackerRoles) {
             container.classList.add("horizontal-fields-skill");
             name.textContent = menuList[index].role;
         }
