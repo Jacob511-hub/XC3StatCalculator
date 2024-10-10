@@ -577,7 +577,8 @@ h1 {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 10px solid #2c2c2c;
+    border: 5px solid #ce865f;
+    border-radius: 15px;
     animation: dropdown 0.4s;
     display: flex;
     flex-direction: column;
@@ -706,7 +707,8 @@ h1 {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 10px solid #2c2c2c;
+    border: 5px solid #ce865f;
+    border-radius: 15px;
     width: 550px;
     height: 90%;
     animation: dropdown 0.4s;
@@ -758,7 +760,8 @@ h1 {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 10px solid #2c2c2c;
+    border: 5px solid #ce865f;
+    border-radius: 15px;
     width: 600px;
     height: 92%;
     animation: dropdown 0.4s;
@@ -834,7 +837,9 @@ h1 {
     top: 0;
     justify-content: space-between;
     padding-right: 10px;
-    background-color: rgb(255, 170, 0);
+    background-color: #00000000;
+    background-image: linear-gradient(#62221e, #95472f);
+    border-radius: 10px;
 }
 
 .close {
