@@ -34,6 +34,9 @@ const flags = {
     "boss": false,
     "unique": false,
     "performingArt": false,
+    "quickMove": false,
+    "inWater": false,
+    "onLand": false,
 
     "attackUpPlayer": false,
     "defenseUpPlayer": false,
